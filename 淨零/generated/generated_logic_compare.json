@@ -1,0 +1,558 @@
+{
+  "note": "Compare predicates only. Ignore m/p id differences and displayed mXXX field differences.",
+  "generated_rule_count": 20,
+  "existing_logic_do_if_count": 20,
+  "matched_count": 20,
+  "unmatched_count": 0,
+  "generated_rules": [
+    {
+      "m": "350",
+      "condition": "b=1",
+      "mode": "required",
+      "targets": [
+        "v33_1"
+      ],
+      "check": "any(1,v33_1_96)",
+      "predicate": "b=1&any(1,v33_1_96)"
+    },
+    {
+      "m": "351",
+      "condition": "b!=1",
+      "mode": "forbidden",
+      "targets": [
+        "v33_1"
+      ],
+      "check": "any(0,v33_1_96)",
+      "predicate": "b!=1&any(0,v33_1_96)"
+    },
+    {
+      "m": "352",
+      "condition": "b=2",
+      "mode": "required",
+      "targets": [
+        "v33_2"
+      ],
+      "check": "any(1,v33_2_96)",
+      "predicate": "b=2&any(1,v33_2_96)"
+    },
+    {
+      "m": "353",
+      "condition": "b!=2",
+      "mode": "forbidden",
+      "targets": [
+        "v33_2"
+      ],
+      "check": "any(0,v33_2_96)",
+      "predicate": "b!=2&any(0,v33_2_96)"
+    },
+    {
+      "m": "354",
+      "condition": "b=3",
+      "mode": "required",
+      "targets": [
+        "v33_3"
+      ],
+      "check": "any(1,v33_3_96)",
+      "predicate": "b=3&any(1,v33_3_96)"
+    },
+    {
+      "m": "355",
+      "condition": "b!=3",
+      "mode": "forbidden",
+      "targets": [
+        "v33_3"
+      ],
+      "check": "any(0,v33_3_96)",
+      "predicate": "b!=3&any(0,v33_3_96)"
+    },
+    {
+      "m": "356",
+      "condition": "b=4",
+      "mode": "required",
+      "targets": [
+        "v33_4"
+      ],
+      "check": "any(1,v33_4_96)",
+      "predicate": "b=4&any(1,v33_4_96)"
+    },
+    {
+      "m": "357",
+      "condition": "b!=4",
+      "mode": "forbidden",
+      "targets": [
+        "v33_4"
+      ],
+      "check": "any(0,v33_4_96)",
+      "predicate": "b!=4&any(0,v33_4_96)"
+    },
+    {
+      "m": "358",
+      "condition": "b=5",
+      "mode": "required",
+      "targets": [
+        "v33_5"
+      ],
+      "check": "any(1,v33_5_96)",
+      "predicate": "b=5&any(1,v33_5_96)"
+    },
+    {
+      "m": "359",
+      "condition": "b!=5",
+      "mode": "forbidden",
+      "targets": [
+        "v33_5"
+      ],
+      "check": "any(0,v33_5_96)",
+      "predicate": "b!=5&any(0,v33_5_96)"
+    },
+    {
+      "m": "360",
+      "condition": "v50<=3",
+      "mode": "forbidden",
+      "targets": [
+        "v51"
+      ],
+      "check": "any(0,v51_96)",
+      "predicate": "v50<=3&any(0,v51_96)"
+    },
+    {
+      "m": "361",
+      "condition": "v50>=4&v50<96",
+      "mode": "required",
+      "targets": [
+        "v51"
+      ],
+      "check": "any(1,v51_96)",
+      "predicate": "v50>=4&v50<96&any(1,v51_96)"
+    },
+    {
+      "m": "362",
+      "condition": "v57=3",
+      "mode": "required",
+      "targets": [
+        "v58"
+      ],
+      "check": "any(1,v58_96)",
+      "predicate": "v57=3&any(1,v58_96)"
+    },
+    {
+      "m": "363",
+      "condition": "v57!=3",
+      "mode": "forbidden",
+      "targets": [
+        "v58"
+      ],
+      "check": "any(0,v58_96)",
+      "predicate": "v57!=3&any(0,v58_96)"
+    },
+    {
+      "m": "364",
+      "condition": "any(v70,1,2,3,4,10)",
+      "mode": "required",
+      "targets": [
+        "v71_1",
+        "v71_2s1",
+        "v71_2s2",
+        "v71_2s3",
+        "v71_2s4"
+      ],
+      "check": "(any(1,v71_1_96)|v71_2s1=\"96\"|v71_2s2=\"96\"|v71_2s3=\"96\"|v71_2s4=\"96\")",
+      "predicate": "any(v70,1,2,3,4,10)&(any(1,v71_1_96)|v71_2s1=\"96\"|v71_2s2=\"96\"|v71_2s3=\"96\"|v71_2s4=\"96\")"
+    },
+    {
+      "m": "365",
+      "condition": "v70>=5&v70<10",
+      "mode": "forbidden",
+      "targets": [
+        "v71_1",
+        "v71_2s1",
+        "v71_2s2",
+        "v71_2s3",
+        "v71_2s4"
+      ],
+      "check": "(any(0,v71_1_96)|v71_2s1!=\"96\"|v71_2s2!=\"96\"|v71_2s3!=\"96\"|v71_2s4!=\"96\")",
+      "predicate": "v70>=5&v70<10&(any(0,v71_1_96)|v71_2s1!=\"96\"|v71_2s2!=\"96\"|v71_2s3!=\"96\"|v71_2s4!=\"96\")"
+    },
+    {
+      "m": "366",
+      "condition": "v70>=4&v70<10",
+      "mode": "forbidden",
+      "targets": [
+        "vZ2city"
+      ],
+      "check": "any(0,vz2city_96)",
+      "predicate": "v70>=4&v70<10&any(0,vz2city_96)"
+    },
+    {
+      "m": "367",
+      "condition": "any(v70,1,2,3,10)",
+      "mode": "required",
+      "targets": [
+        "vZ2city"
+      ],
+      "check": "any(1,vz2city_96)",
+      "predicate": "any(v70,1,2,3,10)&any(1,vz2city_96)"
+    },
+    {
+      "m": "368",
+      "condition": "v70=5",
+      "mode": "required",
+      "targets": [
+        "vZ3city"
+      ],
+      "check": "any(1,vz3city_96)",
+      "predicate": "v70=5&any(1,vz3city_96)"
+    },
+    {
+      "m": "369",
+      "condition": "v70!=5",
+      "mode": "forbidden",
+      "targets": [
+        "vZ3city"
+      ],
+      "check": "any(0,vz3city_96)",
+      "predicate": "v70!=5&any(0,vz3city_96)"
+    }
+  ],
+  "logic_sheet_normalization": {
+    "corrected_count": 0,
+    "unresolved_count": 10,
+    "corrected": [],
+    "unresolved": [
+      {
+        "row": 2,
+        "column": "條件",
+        "token": "b",
+        "context": "條件"
+      },
+      {
+        "row": 3,
+        "column": "條件",
+        "token": "b",
+        "context": "條件"
+      },
+      {
+        "row": 4,
+        "column": "條件",
+        "token": "b",
+        "context": "條件"
+      },
+      {
+        "row": 5,
+        "column": "條件",
+        "token": "b",
+        "context": "條件"
+      },
+      {
+        "row": 6,
+        "column": "條件",
+        "token": "b",
+        "context": "條件"
+      },
+      {
+        "row": 7,
+        "column": "條件",
+        "token": "b",
+        "context": "條件"
+      },
+      {
+        "row": 8,
+        "column": "條件",
+        "token": "b",
+        "context": "條件"
+      },
+      {
+        "row": 9,
+        "column": "條件",
+        "token": "b",
+        "context": "條件"
+      },
+      {
+        "row": 10,
+        "column": "條件",
+        "token": "b",
+        "context": "條件"
+      },
+      {
+        "row": 11,
+        "column": "條件",
+        "token": "b",
+        "context": "條件"
+      }
+    ]
+  },
+  "existing_do_ifs": [
+    "do if b=1 & any(1,v33_1_96).",
+    "do if b~=1 & any(0,v33_1_96).",
+    "do if b=2 & any(1,v33_2_96).",
+    "do if b~=2 & any(0,v33_2_96).",
+    "do if b=3 & any(1,v33_3_96).",
+    "do if b~=3 & any(0,v33_3_96).",
+    "do if b=4 & any(1,v33_4_96).",
+    "do if b~=4 & any(0,v33_4_96).",
+    "do if b=5 & any(1,v33_5_96).",
+    "do if b~=5 & any(0,v33_5_96).",
+    "do if v50<=3 & any(0,v51_96).",
+    "do if v50>=4 & v50<96 & any(1,v51_96).",
+    "do if v57=3 & any(1,v58_96).",
+    "do if v57~=3 & any(0,v58_96).",
+    "do if any(v70,1,2,3,4,10) & (any(1,v71_1_96) | v71_2s1=\"96\" | v71_2s2=\"96\" | v71_2s3=\"96\" |v71_2s4=\"96\" ).",
+    "do if v70>=5 & v70<10 &  (any(0,v71_1_96) | v71_2s1~=\"96\" | v71_2s2~=\"96\" | v71_2s3~=\"96\" |v71_2s4~=\"96\" ).",
+    "do if v70>=4 & v70<10 & any(0,vZ2city_96).",
+    "do if any(v70,1,2,3,10) & any(1,vZ2city_96).",
+    "do if v70~=5 & any(0,vZ3city_96).",
+    "do if v70=5 & any(1,vZ3city_96)."
+  ],
+  "existing_normalized_do_ifs": [
+    "b=1&any(1,v33_1_96)",
+    "b!=1&any(0,v33_1_96)",
+    "b=2&any(1,v33_2_96)",
+    "b!=2&any(0,v33_2_96)",
+    "b=3&any(1,v33_3_96)",
+    "b!=3&any(0,v33_3_96)",
+    "b=4&any(1,v33_4_96)",
+    "b!=4&any(0,v33_4_96)",
+    "b=5&any(1,v33_5_96)",
+    "b!=5&any(0,v33_5_96)",
+    "v50<=3&any(0,v51_96)",
+    "v50>=4&v50<96&any(1,v51_96)",
+    "v57=3&any(1,v58_96)",
+    "v57!=3&any(0,v58_96)",
+    "any(v70,1,2,3,4,10)&(any(1,v71_1_96)|v71_2s1=\"96\"|v71_2s2=\"96\"|v71_2s3=\"96\"|v71_2s4=\"96\")",
+    "v70>=5&v70<10&(any(0,v71_1_96)|v71_2s1!=\"96\"|v71_2s2!=\"96\"|v71_2s3!=\"96\"|v71_2s4!=\"96\")",
+    "v70>=4&v70<10&any(0,vz2city_96)",
+    "any(v70,1,2,3,10)&any(1,vz2city_96)",
+    "v70!=5&any(0,vz3city_96)",
+    "v70=5&any(1,vz3city_96)"
+  ],
+  "review": [
+    {
+      "m": "350",
+      "condition": "b=1",
+      "mode": "required",
+      "targets": [
+        "v33_1"
+      ],
+      "expected_check": "any(1,v33_1_96)",
+      "generated_predicate": "b=1&any(1,v33_1_96)",
+      "matched_existing_do_if": true
+    },
+    {
+      "m": "351",
+      "condition": "b!=1",
+      "mode": "forbidden",
+      "targets": [
+        "v33_1"
+      ],
+      "expected_check": "any(0,v33_1_96)",
+      "generated_predicate": "b!=1&any(0,v33_1_96)",
+      "matched_existing_do_if": true
+    },
+    {
+      "m": "352",
+      "condition": "b=2",
+      "mode": "required",
+      "targets": [
+        "v33_2"
+      ],
+      "expected_check": "any(1,v33_2_96)",
+      "generated_predicate": "b=2&any(1,v33_2_96)",
+      "matched_existing_do_if": true
+    },
+    {
+      "m": "353",
+      "condition": "b!=2",
+      "mode": "forbidden",
+      "targets": [
+        "v33_2"
+      ],
+      "expected_check": "any(0,v33_2_96)",
+      "generated_predicate": "b!=2&any(0,v33_2_96)",
+      "matched_existing_do_if": true
+    },
+    {
+      "m": "354",
+      "condition": "b=3",
+      "mode": "required",
+      "targets": [
+        "v33_3"
+      ],
+      "expected_check": "any(1,v33_3_96)",
+      "generated_predicate": "b=3&any(1,v33_3_96)",
+      "matched_existing_do_if": true
+    },
+    {
+      "m": "355",
+      "condition": "b!=3",
+      "mode": "forbidden",
+      "targets": [
+        "v33_3"
+      ],
+      "expected_check": "any(0,v33_3_96)",
+      "generated_predicate": "b!=3&any(0,v33_3_96)",
+      "matched_existing_do_if": true
+    },
+    {
+      "m": "356",
+      "condition": "b=4",
+      "mode": "required",
+      "targets": [
+        "v33_4"
+      ],
+      "expected_check": "any(1,v33_4_96)",
+      "generated_predicate": "b=4&any(1,v33_4_96)",
+      "matched_existing_do_if": true
+    },
+    {
+      "m": "357",
+      "condition": "b!=4",
+      "mode": "forbidden",
+      "targets": [
+        "v33_4"
+      ],
+      "expected_check": "any(0,v33_4_96)",
+      "generated_predicate": "b!=4&any(0,v33_4_96)",
+      "matched_existing_do_if": true
+    },
+    {
+      "m": "358",
+      "condition": "b=5",
+      "mode": "required",
+      "targets": [
+        "v33_5"
+      ],
+      "expected_check": "any(1,v33_5_96)",
+      "generated_predicate": "b=5&any(1,v33_5_96)",
+      "matched_existing_do_if": true
+    },
+    {
+      "m": "359",
+      "condition": "b!=5",
+      "mode": "forbidden",
+      "targets": [
+        "v33_5"
+      ],
+      "expected_check": "any(0,v33_5_96)",
+      "generated_predicate": "b!=5&any(0,v33_5_96)",
+      "matched_existing_do_if": true
+    },
+    {
+      "m": "360",
+      "condition": "v50<=3",
+      "mode": "forbidden",
+      "targets": [
+        "v51"
+      ],
+      "expected_check": "any(0,v51_96)",
+      "generated_predicate": "v50<=3&any(0,v51_96)",
+      "matched_existing_do_if": true
+    },
+    {
+      "m": "361",
+      "condition": "v50>=4&v50<96",
+      "mode": "required",
+      "targets": [
+        "v51"
+      ],
+      "expected_check": "any(1,v51_96)",
+      "generated_predicate": "v50>=4&v50<96&any(1,v51_96)",
+      "matched_existing_do_if": true
+    },
+    {
+      "m": "362",
+      "condition": "v57=3",
+      "mode": "required",
+      "targets": [
+        "v58"
+      ],
+      "expected_check": "any(1,v58_96)",
+      "generated_predicate": "v57=3&any(1,v58_96)",
+      "matched_existing_do_if": true
+    },
+    {
+      "m": "363",
+      "condition": "v57!=3",
+      "mode": "forbidden",
+      "targets": [
+        "v58"
+      ],
+      "expected_check": "any(0,v58_96)",
+      "generated_predicate": "v57!=3&any(0,v58_96)",
+      "matched_existing_do_if": true
+    },
+    {
+      "m": "364",
+      "condition": "any(v70,1,2,3,4,10)",
+      "mode": "required",
+      "targets": [
+        "v71_1",
+        "v71_2s1",
+        "v71_2s2",
+        "v71_2s3",
+        "v71_2s4"
+      ],
+      "expected_check": "(any(1,v71_1_96)|v71_2s1=\"96\"|v71_2s2=\"96\"|v71_2s3=\"96\"|v71_2s4=\"96\")",
+      "generated_predicate": "any(v70,1,2,3,4,10)&(any(1,v71_1_96)|v71_2s1=\"96\"|v71_2s2=\"96\"|v71_2s3=\"96\"|v71_2s4=\"96\")",
+      "matched_existing_do_if": true
+    },
+    {
+      "m": "365",
+      "condition": "v70>=5&v70<10",
+      "mode": "forbidden",
+      "targets": [
+        "v71_1",
+        "v71_2s1",
+        "v71_2s2",
+        "v71_2s3",
+        "v71_2s4"
+      ],
+      "expected_check": "(any(0,v71_1_96)|v71_2s1!=\"96\"|v71_2s2!=\"96\"|v71_2s3!=\"96\"|v71_2s4!=\"96\")",
+      "generated_predicate": "v70>=5&v70<10&(any(0,v71_1_96)|v71_2s1!=\"96\"|v71_2s2!=\"96\"|v71_2s3!=\"96\"|v71_2s4!=\"96\")",
+      "matched_existing_do_if": true
+    },
+    {
+      "m": "366",
+      "condition": "v70>=4&v70<10",
+      "mode": "forbidden",
+      "targets": [
+        "vZ2city"
+      ],
+      "expected_check": "any(0,vz2city_96)",
+      "generated_predicate": "v70>=4&v70<10&any(0,vz2city_96)",
+      "matched_existing_do_if": true
+    },
+    {
+      "m": "367",
+      "condition": "any(v70,1,2,3,10)",
+      "mode": "required",
+      "targets": [
+        "vZ2city"
+      ],
+      "expected_check": "any(1,vz2city_96)",
+      "generated_predicate": "any(v70,1,2,3,10)&any(1,vz2city_96)",
+      "matched_existing_do_if": true
+    },
+    {
+      "m": "368",
+      "condition": "v70=5",
+      "mode": "required",
+      "targets": [
+        "vZ3city"
+      ],
+      "expected_check": "any(1,vz3city_96)",
+      "generated_predicate": "v70=5&any(1,vz3city_96)",
+      "matched_existing_do_if": true
+    },
+    {
+      "m": "369",
+      "condition": "v70!=5",
+      "mode": "forbidden",
+      "targets": [
+        "vZ3city"
+      ],
+      "expected_check": "any(0,vz3city_96)",
+      "generated_predicate": "v70!=5&any(0,vz3city_96)",
+      "matched_existing_do_if": true
+    }
+  ]
+}
