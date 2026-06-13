@@ -1,0 +1,3493 @@
+{
+  "summary": {
+    "workbook": "傳播4-1\\檢核程式套印-傳播4-1.xlsx",
+    "sheets": {
+      "numeric": "數值題",
+      "open": "開放欄位",
+      "multi": "複選題_301-400",
+      "mutex": "複選題內_互斥",
+      "multi_vars": "複選題變項清單",
+      "logic": "邏輯組"
+    },
+    "issue_counts": {
+      "warning": 319,
+      "error": 67
+    }
+  },
+  "issues": [
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "1",
+      "column": "限制",
+      "code": "missing_recommended_header",
+      "message": "Recommended header 限制 is absent; current tools can continue, but related rules cannot be generated."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "error",
+      "sheet": "複選題_301-400",
+      "row": "2",
+      "column": "m",
+      "code": "duplicate_global_mp",
+      "message": "m 301 duplicates 數值題 row 202."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "error",
+      "sheet": "複選題_301-400",
+      "row": "3",
+      "column": "m",
+      "code": "duplicate_global_mp",
+      "message": "m 302 duplicates 數值題 row 203."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "error",
+      "sheet": "複選題_301-400",
+      "row": "4",
+      "column": "m",
+      "code": "duplicate_global_mp",
+      "message": "m 303 duplicates 數值題 row 204."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "error",
+      "sheet": "複選題_301-400",
+      "row": "2",
+      "column": "p",
+      "code": "duplicate_global_mp",
+      "message": "p 301 duplicates 數值題 row 202."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "error",
+      "sheet": "複選題_301-400",
+      "row": "3",
+      "column": "p",
+      "code": "duplicate_global_mp",
+      "message": "p 302 duplicates 數值題 row 203."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "error",
+      "sheet": "複選題_301-400",
+      "row": "4",
+      "column": "p",
+      "code": "duplicate_global_mp",
+      "message": "p 303 duplicates 數值題 row 204."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "error",
+      "sheet": "複選題內_互斥",
+      "row": "2",
+      "column": "m",
+      "code": "duplicate_global_mp",
+      "message": "m 304 duplicates 數值題 row 205."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "error",
+      "sheet": "複選題內_互斥",
+      "row": "3",
+      "column": "m",
+      "code": "duplicate_global_mp",
+      "message": "m 305 duplicates 數值題 row 206."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "error",
+      "sheet": "複選題內_互斥",
+      "row": "4",
+      "column": "m",
+      "code": "duplicate_global_mp",
+      "message": "m 306 duplicates 數值題 row 207."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "error",
+      "sheet": "複選題內_互斥",
+      "row": "2",
+      "column": "p",
+      "code": "duplicate_global_mp",
+      "message": "p 304 duplicates 數值題 row 205."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "error",
+      "sheet": "複選題內_互斥",
+      "row": "3",
+      "column": "p",
+      "code": "duplicate_global_mp",
+      "message": "p 305 duplicates 數值題 row 206."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "error",
+      "sheet": "複選題內_互斥",
+      "row": "4",
+      "column": "p",
+      "code": "duplicate_global_mp",
+      "message": "p 306 duplicates 數值題 row 207."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "error",
+      "sheet": "開放欄位",
+      "row": "9",
+      "column": "題號變項名稱",
+      "code": "formula_error",
+      "message": "Cell contains #VALUE!."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "error",
+      "sheet": "開放欄位",
+      "row": "9",
+      "column": "range_new",
+      "code": "formula_error",
+      "message": "Cell contains #VALUE!."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "error",
+      "sheet": "開放欄位",
+      "row": "9",
+      "column": "n",
+      "code": "formula_error",
+      "message": "Cell contains #VALUE!."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "error",
+      "sheet": "開放欄位",
+      "row": "10",
+      "column": "題號變項名稱",
+      "code": "formula_error",
+      "message": "Cell contains #VALUE!."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "error",
+      "sheet": "開放欄位",
+      "row": "10",
+      "column": "range_new",
+      "code": "formula_error",
+      "message": "Cell contains #VALUE!."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "error",
+      "sheet": "開放欄位",
+      "row": "10",
+      "column": "n",
+      "code": "formula_error",
+      "message": "Cell contains #VALUE!."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "error",
+      "sheet": "開放欄位",
+      "row": "12",
+      "column": "題號變項名稱",
+      "code": "formula_error",
+      "message": "Cell contains #VALUE!."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "error",
+      "sheet": "開放欄位",
+      "row": "12",
+      "column": "range_new",
+      "code": "formula_error",
+      "message": "Cell contains #VALUE!."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "error",
+      "sheet": "開放欄位",
+      "row": "12",
+      "column": "n",
+      "code": "formula_error",
+      "message": "Cell contains #VALUE!."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "error",
+      "sheet": "開放欄位",
+      "row": "26",
+      "column": "題號",
+      "code": "formula_error",
+      "message": "Cell contains #VALUE!."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "error",
+      "sheet": "開放欄位",
+      "row": "26",
+      "column": "題號變項名稱",
+      "code": "formula_error",
+      "message": "Cell contains #VALUE!."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "error",
+      "sheet": "開放欄位",
+      "row": "26",
+      "column": "選項數值",
+      "code": "formula_error",
+      "message": "Cell contains #VALUE!."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "error",
+      "sheet": "開放欄位",
+      "row": "26",
+      "column": "var2_new",
+      "code": "formula_error",
+      "message": "Cell contains #VALUE!."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "error",
+      "sheet": "開放欄位",
+      "row": "26",
+      "column": "range_new",
+      "code": "formula_error",
+      "message": "Cell contains #VALUE!."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "error",
+      "sheet": "開放欄位",
+      "row": "26",
+      "column": "n",
+      "code": "formula_error",
+      "message": "Cell contains #VALUE!."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "error",
+      "sheet": "開放欄位",
+      "row": "56",
+      "column": "題號",
+      "code": "formula_error",
+      "message": "Cell contains #VALUE!."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "error",
+      "sheet": "開放欄位",
+      "row": "56",
+      "column": "題號變項名稱",
+      "code": "formula_error",
+      "message": "Cell contains #VALUE!."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "error",
+      "sheet": "開放欄位",
+      "row": "56",
+      "column": "選項數值",
+      "code": "formula_error",
+      "message": "Cell contains #VALUE!."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "error",
+      "sheet": "開放欄位",
+      "row": "56",
+      "column": "var2_new",
+      "code": "formula_error",
+      "message": "Cell contains #VALUE!."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "error",
+      "sheet": "開放欄位",
+      "row": "57",
+      "column": "題號",
+      "code": "formula_error",
+      "message": "Cell contains #VALUE!."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "error",
+      "sheet": "開放欄位",
+      "row": "57",
+      "column": "題號變項名稱",
+      "code": "formula_error",
+      "message": "Cell contains #VALUE!."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "error",
+      "sheet": "開放欄位",
+      "row": "57",
+      "column": "選項數值",
+      "code": "formula_error",
+      "message": "Cell contains #VALUE!."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "error",
+      "sheet": "開放欄位",
+      "row": "57",
+      "column": "var2_new",
+      "code": "formula_error",
+      "message": "Cell contains #VALUE!."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "error",
+      "sheet": "開放欄位",
+      "row": "58",
+      "column": "題號",
+      "code": "formula_error",
+      "message": "Cell contains #VALUE!."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "error",
+      "sheet": "開放欄位",
+      "row": "58",
+      "column": "題號變項名稱",
+      "code": "formula_error",
+      "message": "Cell contains #VALUE!."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "error",
+      "sheet": "開放欄位",
+      "row": "58",
+      "column": "選項數值",
+      "code": "formula_error",
+      "message": "Cell contains #VALUE!."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "error",
+      "sheet": "開放欄位",
+      "row": "58",
+      "column": "var2_new",
+      "code": "formula_error",
+      "message": "Cell contains #VALUE!."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "開放欄位",
+      "row": "26",
+      "column": "寬度",
+      "code": "open_width_review",
+      "message": "vE3_1 open field width is expected to be 150."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "error",
+      "sheet": "開放欄位",
+      "row": "31",
+      "column": "是否複選",
+      "code": "invalid_multi_flag",
+      "message": "vG10o88 是否複選 should be 0 or 1."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "error",
+      "sheet": "開放欄位",
+      "row": "32",
+      "column": "是否複選",
+      "code": "invalid_multi_flag",
+      "message": "vG11o88 是否複選 should be 0 or 1."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "error",
+      "sheet": "開放欄位",
+      "row": "33",
+      "column": "是否複選",
+      "code": "invalid_multi_flag",
+      "message": "vB7ao88 是否複選 should be 0 or 1."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "error",
+      "sheet": "開放欄位",
+      "row": "34",
+      "column": "是否複選",
+      "code": "invalid_multi_flag",
+      "message": "vB7o88 是否複選 should be 0 or 1."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "error",
+      "sheet": "開放欄位",
+      "row": "35",
+      "column": "是否複選",
+      "code": "invalid_multi_flag",
+      "message": "vB8o88 是否複選 should be 0 or 1."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "error",
+      "sheet": "開放欄位",
+      "row": "36",
+      "column": "是否複選",
+      "code": "invalid_multi_flag",
+      "message": "vG3o88 是否複選 should be 0 or 1."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "error",
+      "sheet": "開放欄位",
+      "row": "37",
+      "column": "是否複選",
+      "code": "invalid_multi_flag",
+      "message": "vF5o88 是否複選 should be 0 or 1."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "error",
+      "sheet": "開放欄位",
+      "row": "38",
+      "column": "是否複選",
+      "code": "invalid_multi_flag",
+      "message": "vC3o88 是否複選 should be 0 or 1."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "error",
+      "sheet": "開放欄位",
+      "row": "39",
+      "column": "是否複選",
+      "code": "invalid_multi_flag",
+      "message": "vJB1o88 是否複選 should be 0 or 1."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "error",
+      "sheet": "開放欄位",
+      "row": "40",
+      "column": "是否複選",
+      "code": "invalid_multi_flag",
+      "message": "vJB2o88 是否複選 should be 0 or 1."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "error",
+      "sheet": "開放欄位",
+      "row": "41",
+      "column": "是否複選",
+      "code": "invalid_multi_flag",
+      "message": "vM2o88 是否複選 should be 0 or 1."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "error",
+      "sheet": "開放欄位",
+      "row": "42",
+      "column": "是否複選",
+      "code": "invalid_multi_flag",
+      "message": "vM3o88 是否複選 should be 0 or 1."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "error",
+      "sheet": "開放欄位",
+      "row": "43",
+      "column": "是否複選",
+      "code": "invalid_multi_flag",
+      "message": "vQ20o88 是否複選 should be 0 or 1."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "error",
+      "sheet": "開放欄位",
+      "row": "44",
+      "column": "是否複選",
+      "code": "invalid_multi_flag",
+      "message": "vQ25o88 是否複選 should be 0 or 1."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "error",
+      "sheet": "開放欄位",
+      "row": "45",
+      "column": "是否複選",
+      "code": "invalid_multi_flag",
+      "message": "vQ22o88 是否複選 should be 0 or 1."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "error",
+      "sheet": "開放欄位",
+      "row": "46",
+      "column": "是否複選",
+      "code": "invalid_multi_flag",
+      "message": "vQ23o88 是否複選 should be 0 or 1."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "error",
+      "sheet": "開放欄位",
+      "row": "47",
+      "column": "是否複選",
+      "code": "invalid_multi_flag",
+      "message": "vQ26o88 是否複選 should be 0 or 1."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "error",
+      "sheet": "開放欄位",
+      "row": "48",
+      "column": "是否複選",
+      "code": "invalid_multi_flag",
+      "message": "vQ27o88 是否複選 should be 0 or 1."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "error",
+      "sheet": "開放欄位",
+      "row": "49",
+      "column": "是否複選",
+      "code": "invalid_multi_flag",
+      "message": "vQ44o88 是否複選 should be 0 or 1."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "error",
+      "sheet": "開放欄位",
+      "row": "50",
+      "column": "是否複選",
+      "code": "invalid_multi_flag",
+      "message": "vQ45o88 是否複選 should be 0 or 1."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "error",
+      "sheet": "開放欄位",
+      "row": "51",
+      "column": "是否複選",
+      "code": "invalid_multi_flag",
+      "message": "vQ51o88 是否複選 should be 0 or 1."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "error",
+      "sheet": "開放欄位",
+      "row": "52",
+      "column": "是否複選",
+      "code": "invalid_multi_flag",
+      "message": "vQ53o88 是否複選 should be 0 or 1."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "error",
+      "sheet": "開放欄位",
+      "row": "53",
+      "column": "是否複選",
+      "code": "invalid_multi_flag",
+      "message": "vQ54o88 是否複選 should be 0 or 1."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "error",
+      "sheet": "開放欄位",
+      "row": "54",
+      "column": "是否複選",
+      "code": "invalid_multi_flag",
+      "message": "vZE1o03 是否複選 should be 0 or 1."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "error",
+      "sheet": "開放欄位",
+      "row": "55",
+      "column": "是否複選",
+      "code": "invalid_multi_flag",
+      "message": "vZE1o04 是否複選 should be 0 or 1."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "開放欄位",
+      "row": "56",
+      "column": "寬度",
+      "code": "open_width_review",
+      "message": "vZE2_1 open field width is expected to be 150."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "error",
+      "sheet": "開放欄位",
+      "row": "56",
+      "column": "是否複選",
+      "code": "invalid_multi_flag",
+      "message": "vZE2_1 是否複選 should be 0 or 1."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "開放欄位",
+      "row": "57",
+      "column": "寬度",
+      "code": "open_width_review",
+      "message": "vZE2_2 open field width is expected to be 150."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "error",
+      "sheet": "開放欄位",
+      "row": "57",
+      "column": "是否複選",
+      "code": "invalid_multi_flag",
+      "message": "vZE2_2 是否複選 should be 0 or 1."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "開放欄位",
+      "row": "58",
+      "column": "寬度",
+      "code": "open_width_review",
+      "message": "vZE2_3 open field width is expected to be 150."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "error",
+      "sheet": "開放欄位",
+      "row": "58",
+      "column": "是否複選",
+      "code": "invalid_multi_flag",
+      "message": "vZE2_3 是否複選 should be 0 or 1."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "2",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "3",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "4",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "5",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "6",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "7",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "8",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "9",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "10",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "11",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "12",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "13",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "14",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "15",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "16",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "17",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "18",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "19",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "20",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "21",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "22",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "23",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "24",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "25",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "26",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "27",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "28",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "29",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "30",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "31",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "32",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "33",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "34",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "35",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "36",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "37",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "38",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "39",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "40",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "41",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "42",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "43",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "44",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "45",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "46",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "47",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "48",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "49",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "50",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "51",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "52",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "53",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "54",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "55",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "56",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "57",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "58",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "59",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "60",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "61",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "62",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "63",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "64",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "65",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "66",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "67",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "68",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "69",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "70",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "71",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "72",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "73",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "74",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "75",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "76",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "77",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "78",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "79",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "80",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "81",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "82",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "83",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "84",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "85",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "86",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "87",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "88",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "89",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "90",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "91",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "92",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "93",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "94",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "95",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "96",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "97",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "98",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "99",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "100",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "101",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "102",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "103",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "104",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "105",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "106",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "107",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "108",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "109",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "110",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "111",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "112",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "113",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "114",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "115",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "116",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "117",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "118",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "119",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "120",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "121",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "122",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "123",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "124",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "125",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "126",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "127",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "128",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "129",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "130",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "131",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "132",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "133",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "134",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "135",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "136",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "137",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "138",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "139",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "140",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "141",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "142",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "143",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "144",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "145",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "146",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "147",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "148",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "149",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "150",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "151",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "152",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "153",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "154",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "155",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "156",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "157",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "158",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "159",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "160",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "161",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "162",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "163",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "164",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "165",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "166",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "167",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "168",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "169",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "170",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "171",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "172",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "173",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "174",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "175",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "176",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "177",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "178",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "179",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "180",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "181",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "182",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "183",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "184",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "185",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "186",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "187",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "188",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "189",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "190",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "191",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "192",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "193",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "194",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "195",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "196",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "197",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "198",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "199",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "200",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "201",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "202",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "203",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "204",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "205",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "206",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "207",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "208",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "209",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "210",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "211",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "212",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "213",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "214",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "215",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "216",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "217",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "218",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "219",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "220",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "221",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "222",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "223",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "224",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "225",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "226",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "227",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "228",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "229",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "230",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "231",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "232",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "233",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "234",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "235",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "236",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "237",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "238",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "239",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "240",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "241",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "242",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "243",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "244",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "245",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "246",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "247",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "248",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "249",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "250",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "251",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "252",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "253",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "254",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "255",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "256",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "257",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "258",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "259",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "260",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "261",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "262",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "263",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "264",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "265",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "266",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "267",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "268",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "269",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "270",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "271",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "272",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "273",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "274",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "275",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "276",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "277",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "278",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "279",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "280",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "281",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "282",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "283",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "284",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "285",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "286",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "287",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "288",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "289",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "290",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "291",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "292",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "293",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "294",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "295",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "296",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "297",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "298",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "299",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "300",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "301",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "302",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "303",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "304",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "305",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "306",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "307",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "308",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "309",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "310",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "311",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "312",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "313",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "314",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    },
+    {
+      "project": "傳播4-1",
+      "severity": "warning",
+      "sheet": "邏輯組",
+      "row": "315",
+      "column": "",
+      "code": "blank_logic_rule",
+      "message": "Logic row has no condition/action fields."
+    }
+  ]
+}

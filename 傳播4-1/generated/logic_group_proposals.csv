@@ -1,0 +1,246 @@
+﻿status,row_source,qid,condition_text,condition,required_vars,forbidden_vars,limit,reason,raw_text
+review,paragraph:29,T0_1,T0答(02)顯示此題,,,,,restriction/check/display cue needs rule-specific handling,T0_1‧請問他/她/您(中選受訪者)有沒有「視力上完全看不到」或「聽力完全聽不到」的狀況?【T0答(02)顯示此題】
+review,paragraph:62,Y0_1,跳至Y1,,,,,restriction/check/display cue needs rule-specific handling,(01)只有一戶【跳至Y1】
+review,paragraph:87,Y2,"若受訪者已聽過前述說明,以下無須重複唸讀,請直接勾選訪函提供狀況;如不確定,請唸讀以下內容",,,,,"cannot parse condition atom: 若受訪已聽過前述說明,以下無須重複唸讀,請直接勾選訪函提供狀況;如不確定,請唸讀以下內容","ZA【若受訪者已聽過前述說明,以下無須重複唸讀,請直接勾選訪函提供狀況;如不確定,請唸讀以下內容】"
+apply,paragraph:112,A2,"A1答(997)或(998)者,才需回答此題","vA1 in 997,998",vA2,,,,"A2‧請問您今年大概幾歲?【A1答(997)或(998)者,才需回答此題】"
+apply,paragraph:166,A5,"A4答(01)、(97)、(98)者,不需回答此題","vA4 in 1,97,98",,"vA5city,vA5town",,,"A5‧那請問您的戶籍所在地是哪個縣市、哪個鄉鎮市區呢?(以身分證上的為主)【地區題】【A4答(01)、(97)、(98)者,不需回答此題】"
+review,paragraph:253,O1_1,"A9答(01)者,選項互斥",vA9 in 1,,,,restriction/check/display cue needs rule-specific handling,"□ (01) 是,日間部【A9答(01)者,選項互斥】"
+review,paragraph:254,O1_1,"A9答(01)者,選項互斥",vA9 in 1,,,,restriction/check/display cue needs rule-specific handling,"□ (02) 是,夜間部/進修部 【A9答(01)者,選項互斥】"
+review,paragraph:255,O1_1,"A9答(01)者,選項互斥",vA9 in 1,,,,restriction/check/display cue needs rule-specific handling,"□ (03) 是,在職專班【A9答(01)者,選項互斥】"
+review,paragraph:256,O1_1,"A9答(01)者,選項互斥",vA9 in 1,,,,restriction/check/display cue needs rule-specific handling,"□ (04) 是,空中大學【A9答(01)者,選項互斥】"
+review,paragraph:276,O1,"O1_1答(05)者,選項互斥",vO1_1 in 5,,,,restriction/check/display cue needs rule-specific handling,"□ (14)沒有工作:正在就學中【O1_1答(05)者,選項互斥】"
+apply,paragraph:283,O2,"O1答(01)-(05)、(88)者,才需回答此題","vO1 in 1,2,3,4,5,88",vO2,,,,"O2‧請問您的行業:(卡4)【O1答(01)-(05)、(88)者,才需回答此題】"
+apply,paragraph:313,O3,"O1答(01)-(05)、(88)者,才需回答此題","vO1 in 1,2,3,4,5,88",vO3,,,,"O3‧請問您現在的工作屬於哪一類?(卡5)【O1答(01)-(05)、(88)者,才需回答此題】"
+apply,paragraph:327,O4,"O1答(01)-(05)、(88)者,且O3答(01)、(03)-(06)、(88),需回答此題","vO1 in 1,2,3,4,5,88 & vO3 in 3,4,5,6,1,88",vO4,,,,"5000、9991、9997、9998】【O1答(01)-(05)、(88)者,且O3答(01)、(03)-(06)、(88),需回答此題】"
+apply,paragraph:354,D2,"D1答(01)、(02)者,需回答此題","vD1 in 1,2",vD2,,,,"D2‧請問您每週平均有幾天會使用手機?【數值題,可輸入小數點,範圍為0.5、1、1.5、2、2.5、3、3.5、4、4.5、5、5.5、6、6.5、7、95、97、98】【D1答(01)、(02)者,需回答此題】"
+apply,paragraph:367,D3,"D1答(01)、(02)者,需回答此題","vD1 in 1,2",vD3,,,,"D3‧在您有使用手機的那一天,您一整天大概會使用多久?使用手機是指「講電話」或「眼睛有看著手機螢幕」,例如使用LINE、看影片或照片等都算。【數值題,範圍:0001-2359、9797、9898】【D1答(01)、(02)者,需回答此題】"
+apply,paragraph:382,D4,"D1答(01)、(02)者,需回答此題","vD1 in 1,2","vD4sD4,vD4sD5,vD4sD6,vD4sD7,vD4sD8",,,,"D4-D8.請問下面這些事情多常發生在您身上?(卡6)【D1答(01)、(02)者,需回答此題】"
+apply,paragraph:429,E17,"K1答(01)者,或K2答(13)者,才需回答此題",(vK1m01 in 1 | vK2m13 in 1),vE17,,,,"E17‧請問您平常主要是透過手機、平板或電腦使用LINE?【K1答(01)者,或K2答(13)者,才需回答此題】"
+review,paragraph:432,E17,與D1答(03)互斥,vD1 in 3,,,,restriction/check/display cue needs rule-specific handling,□ (01)手機【與D1答(03)互斥】
+apply,paragraph:439,KLI1,"K1答(01)者,或K2答(13)者,才需回答此題",(vK1m01 in 1 | vK2m13 in 1),vKLI1,,,,"KLI1‧請問您每週平均有幾天使用LINE?【數值題,可輸入小數點,範圍為0.5、1、1.5、2、2.5、3、3.5、4、4.5、5、5.5、6、6.5、7、95、97、98】【K1答(01)者,或K2答(13)者,才需回答此題】"
+apply,paragraph:453,KLI2,"K1答(01)者,或K2答(13)者,才需回答此題",(vK1m01 in 1 | vK2m13 in 1),vKLI2,,,,"KLI2‧在您有使用LINE的那一天,您一整天大概會使用多久(要真的有在用LINE傳訊息、通話、看LINE Today的時間)?【數值題,範圍:0001-2359、9797、9898】【K1答(01)者,或K2答(13)者,才需回答此題】"
+apply,paragraph:468,KFB1,"K1答(02)者,或K2答(01)者,才需回答此題",(vK1m02 in 1 | vK2m01 in 1),vKFB1,,,,"KFB1‧請問您每週平均有幾天使用臉書(Facebook),包含臉書聊天室(FB Messenger)也算?【數值題,可輸入小數點,範圍為0.5、1、1.5、2、2.5、3、3.5、4、4.5、5、5.5、6、6.5、7、95、97、98】【K1答(02)者,或K2答(01)者,才需回答此題】"
+apply,paragraph:482,KFB2,"K1答(02)者,或K2答(01)者,才需回答此題",(vK1m02 in 1 | vK2m01 in 1),vKFB2,,,,"KFB2‧在您有使用臉書(Facebook),包含臉書聊天室(FB Messenger)的那一天,您一整天大概會使用多久(真的有在用的時間)?【數值題,範圍:0001-2359、9797、9898】【K1答(02)者,或K2答(01)者,才需回答此題】"
+apply,paragraph:496,KFB3,"K1答(02)者,或K2答(01)者,才需回答此題",(vK1m02 in 1 | vK2m01 in 1),"vKFB3m01,vKFB3m02,vKFB3m03,vKFB3m04,vKFB3m05,vKFB3m06,vKFB3m07,vKFB3m08,vKFB3m09,vKFB3m10,vKFB3m11,vKFB3m12,vKFB3m13,vKFB3m14,vKFB3m15,vKFB3m16,vKFB3m17,vKFB3m88",,,,"KFB3‧請問您使用臉書(Facebook)主要的原因或動機是什麼呢?(可多選)(卡9)【K1答(02)者,或K2答(01)者,才需回答此題】"
+apply,paragraph:499,KFB4,"K1答(02)者,或K2答(01)者,才需回答此題",(vK1m02 in 1 | vK2m01 in 1),"vKFB4m01,vKFB4m02,vKFB4m03,vKFB4m04,vKFB4m05,vKFB4m06,vKFB4m07,vKFB4m08,vKFB4m09,vKFB4m10,vKFB4m11,vKFB4m12,vKFB4m13,vKFB4m14,vKFB4m15,vKFB4m16,vKFB4m17,vKFB4m18,vKFB4m88",,,,"KFB4‧請問您平常會在臉書(Facebook)上做哪些事情呢?(可多選)(卡10)【K1答(02)者,或K2答(01)者,才需回答此題】"
+review,paragraph:517,KFB4,"資料處理:K1答(02)者,選項(18)必選",vK1m02 in 1,,,,restriction/check/display cue needs rule-specific handling,"□ (18)傳送訊息(文字、圖片、語音)或視訊【資料處理:K1答(02)者,選項(18)必選】"
+apply,paragraph:522,KIG1,"K1答(03)者,或K2答(02)者,才需回答此題",(vK1m03 in 1 | vK2m02 in 1),vKIG1,,,,"KIG1‧請問您每週平均有幾天使用Instagram(IG)?【數值題,可輸入小數點,範圍為0.5、1、1.5、2、2.5、3、3.5、4、4.5、5、5.5、6、6.5、7、95、97、98】【K1答(03)者,或K2答(02)者,才需回答此題】"
+apply,paragraph:535,KIG2,"K1答(03)者,或K2答(02)者,才需回答此題",(vK1m03 in 1 | vK2m02 in 1),vKIG2,,,,"KIG2‧在您有使用Instagram(IG)的那一天,您一整天大概會使用多久(真的有在用Instagram(IG)的時間)?【數值題,範圍:0001-2359、9797、9898】【K1答(03)者,或K2答(02)者,才需回答此題】"
+apply,paragraph:547,KIG3,"K1答(03)者,或K2答(02)者,才需回答此題",(vK1m03 in 1 | vK2m02 in 1),"vKIG3m01,vKIG3m02,vKIG3m03,vKIG3m04,vKIG3m05,vKIG3m06,vKIG3m07,vKIG3m08,vKIG3m09,vKIG3m10,vKIG3m11,vKIG3m12,vKIG3m13,vKIG3m14,vKIG3m15,vKIG3m16,vKIG3m17,vKIG3m88",,,,"KIG3‧請問您使用Instagram(IG)主要的原因或動機是什麼呢?(可多選)(卡11)【K1答(03)者,或K2答(02)者,才需回答此題】"
+apply,paragraph:569,KIG4,"K1答(03)者,或K2答(02)者,才需回答此題",(vK1m03 in 1 | vK2m02 in 1),"vKIG4m01,vKIG4m02,vKIG4m03,vKIG4m04,vKIG4m05,vKIG4m06,vKIG4m07,vKIG4m08,vKIG4m09,vKIG4m10,vKIG4m11,vKIG4m12,vKIG4m13,vKIG4m14,vKIG4m88",,,,"KIG4‧請問您平常會在Instagram(IG)上做哪些事情呢?(可多選)(卡12)【K1答(03)者,或K2答(02)者,才需回答此題】"
+review,paragraph:583,KIG4,"資料處理:K1答(03)者,選項(14)必選",vK1m03 in 1,,,,restriction/check/display cue needs rule-specific handling,"□ (14)傳送訊息(文字、圖片、語音)或視訊【資料處理:K1答(03)者,選項(14)必選】"
+apply,paragraph:588,KTT1,"K1答(11)者,或K2答(07)者,才需回答此題",(vK1m11 in 1 | vK2m07 in 1),vKTT1,,,,"KTT1‧請問您每週平均有幾天使用抖音(TikTok)?【數值題,可輸入小數點,範圍為0.5、1、1.5、2、2.5、3、3.5、4、4.5、5、5.5、6、6.5、7、95、97、98】【K1答(11)者,或K2答(07)者,才需回答此題】"
+apply,paragraph:601,KTT2,"K1答(11)者,或K2答(07)者,才需回答此題",(vK1m11 in 1 | vK2m07 in 1),vKTT2,,,,"KTT2‧在您有使用抖音(TikTok)的那一天,您一整天大概會使用多久(真的有在用抖音(TikTok)的時間)?【數值題,範圍:0001-2359、9797、9898】【K1答(11)者,或K2答(07)者,才需回答此題】"
+apply,paragraph:614,KTT3,"K1答(11)者,或K2答(07)者,才需回答此題",(vK1m11 in 1 | vK2m07 in 1),"vKTT3m01,vKTT3m02,vKTT3m03,vKTT3m04,vKTT3m05,vKTT3m06,vKTT3m07,vKTT3m08,vKTT3m09,vKTT3m10,vKTT3m11,vKTT3m12,vKTT3m13,vKTT3m14,vKTT3m15,vKTT3m16,vKTT3m88",,,,"KTT3‧請問您使用抖音(TikTok)主要的原因或動機是什麼呢?(可多選)(卡13)【K1答(11)者,或K2答(07)者,才需回答此題】"
+apply,paragraph:635,KTT4,"K1答(11)者,或K2答(07)者,才需回答此題",(vK1m11 in 1 | vK2m07 in 1),"vKTT4m01,vKTT4m02,vKTT4m03,vKTT4m04,vKTT4m05,vKTT4m06,vKTT4m07,vKTT4m08,vKTT4m09,vKTT4m10,vKTT4m11,vKTT4m12,vKTT4m13,vKTT4m14,vKTT4m88",,,,"KTT4‧請問您平常會在抖音(TikTok)上做哪些事情呢?(可多選)(卡14)【K1答(11)者,或K2答(07)者,才需回答此題】"
+apply,paragraph:654,KTT5,"K1答(11)者,或K2答(07)者,才需回答此題",(vK1m11 in 1 | vK2m07 in 1),"vKTT5m01,vKTT5m02,vKTT5m03,vKTT5m04,vKTT5m05,vKTT5m06,vKTT5m07,vKTT5m08,vKTT5m09,vKTT5m10,vKTT5m11,vKTT5m12,vKTT5m88",,,,"KTT5‧請問您平常會在抖音(TikTok)上看什麼內容?(可多選)(卡15)【K1答(11)者,或K2答(07)者,才需回答此題】"
+apply,paragraph:673,P5_1,"K1答(13)者,或K2答(11)者,才需回答此題",(vK1m13 in 1 | vK2m11 in 1),vP5_1,,,,"【陶振超委員】P5_1‧請問您每週平均有幾天使用Threads?【數值題,可輸入小數點,範圍為0.5、1、1.5、2、2.5、3、3.5、4、4.5、5、5.5、6、6.5、7、95、97、98】【K1答(13)者,或K2答(11)者,才需回答此題】"
+apply,paragraph:683,P5_2,"K1答(13)者,或K2答(11)者,才需回答此題",(vK1m13 in 1 | vK2m11 in 1),vP5_2,,,,"【陶振超委員】P5_2‧在您有使用Threads的那一天,您一整天大概會使用多久(真的有在用Threads的時間)?【數值題,範圍:0001-2359、9797、9898】【K1答(13)者,或K2答(11)者,才需回答此題】"
+apply,paragraph:718,E18,"K3答(01)者,才需回答此題",vK3m01 in 1,vE18,,,,"E18‧請問您平常主要是透過哪種方式使用YouTube?(卡17)【K3答(01)者,才需回答此題】"
+review,paragraph:720,E18,與D1答(03)互斥,vD1 in 3,,,,restriction/check/display cue needs rule-specific handling,□ (01)手機【與D1答(03)互斥】
+review,paragraph:723,E18,開放填答,,,,,restriction/check/display cue needs rule-specific handling,"□ (04)智慧型電視/連網電視□ (88)其他,請說明:_________【開放填答】"
+apply,paragraph:728,KYT1,"K3答(01)者,才需回答此題",vK3m01 in 1,vKYT1,,,,"KYT1‧請問您每週平均有幾天使用YouTube?【數值題,可輸入小數點,範圍為0.5、1、1.5、2、2.5、3、3.5、4、4.5、5、5.5、6、6.5、7、95、97、98】【K3答(01)者,才需回答此題】"
+apply,paragraph:743,KYT2,"K3答(01)者,才需回答此題",vK3m01 in 1,vKYT2,,,,"KYT2‧在您有使用YouTube的那一天,您一整天大概會使用多久(真的有在用YouTube的時間)?【數值題,範圍:0001-2359、9797、9898】【K3答(01)者,才需回答此題】"
+review,paragraph:762,E1,"K1或K2或K3答(01)-(88)者,只能選填此選項",(vK1m01 in 1 | vK1m02 in 1 | vK1m03 in 1 | vK1m04 in 1 | vK1m05 in 1 | vK1m06 in 1 | vK1m07 in 1 | vK1m08 in 1 | vK1m09 in 1 | vK1m10 in 1 | vK1m11 in 1 | vK1m12 in 1 | vK1m13 in 1 | vK1m88 in 1 | vK2m01 in 1 | vK2m02 in 1 | vK2m03 in 1 | vK2m04 in 1 | vK2m05 in 1 | vK2m06 in 1 | vK2m07 in 1 | vK2m08 in 1 | vK2m09 in 1 | vK2m11 in 1 | vK2m12 in 1 | vK2m13 in 1 | vK2m88 in 1 | vK3m01 in 1 | vK3m02 in 1 | vK3m03 in 1 | vK3m04 in 1 | vK3m05 in 1 | vK3m06 in 1 | vK3m07 in 1 | vK3m08 in 1 | vK3m09 in 1 | vK3m88 in 1),,,,not an answer-required/not-required cue,"□ (01)有【K1或K2或K3答(01)-(88)者,只能選填此選項】"
+apply,paragraph:768,E2,"E1答(01)者,需答此題",vE1 in 1,"vE2m01,vE2m02,vE2m03,vE2m04,vE2m88",,,,"E2‧請問您平常是用哪些設備上網?(可多選)(卡18)【E1答(01)者,需答此題】【資料處理:E17或E18答(01)者,E2選項(01)必選;E17或E18答(02)者,E2選項(02)必選;E17或E18答(03)者,E2選項(03)必選;E18答(04)者,E2選項(04)必選】"
+review,paragraph:768,E2,"資料處理:E17或E18答(01)者,E2選項(01)必選;E17或E18答(02)者,E2選項(02)必選;E17或E18答(03)者,E2選項(03)必選;E18答(04)者,E2選項(04)必選",(vE17 in 1 | vE18 in 1),,,,restriction/check/display cue needs rule-specific handling,"E2‧請問您平常是用哪些設備上網?(可多選)(卡18)【E1答(01)者,需答此題】【資料處理:E17或E18答(01)者,E2選項(01)必選;E17或E18答(02)者,E2選項(02)必選;E17或E18答(03)者,E2選項(03)必選;E18答(04)者,E2選項(04)必選】"
+review,paragraph:773,E2,與D1答(03)互斥,vD1 in 3,,,,restriction/check/display cue needs rule-specific handling,□ (01)手機【與D1答(03)互斥】
+review,paragraph:776,E2,開放填答,,,,,restriction/check/display cue needs rule-specific handling,"□ (04)智慧型電視/連網電視 □ (88)其他,請說明:_________【開放填答】"
+review,paragraph:780,E4,貼D2答案,,,,,cannot map condition atom: 貼D2答案,"E4‧您先前回答「每週平均有【貼D2答案】天會使用手機」,請問【貼D2答案】天中,平均有幾天會透過手機上網,例如:用LINE、滑臉書(Facebook)、看YouTube,只算有用手機上網的天數?【數值題,可輸入小數點,範圍為0.5、1、1.5、2、2.5、3、3.5、4、4.5、5、5.5、6、6.5、7、95、97、98】【E2有答(01)或E17答(01)或E18答(01),才需回答此題】"
+review,paragraph:780,E4,貼D2答案,,,,,cannot map condition atom: 貼D2答案,"E4‧您先前回答「每週平均有【貼D2答案】天會使用手機」,請問【貼D2答案】天中,平均有幾天會透過手機上網,例如:用LINE、滑臉書(Facebook)、看YouTube,只算有用手機上網的天數?【數值題,可輸入小數點,範圍為0.5、1、1.5、2、2.5、3、3.5、4、4.5、5、5.5、6、6.5、7、95、97、98】【E2有答(01)或E17答(01)或E18答(01),才需回答此題】"
+apply,paragraph:780,E4,"E2有答(01)或E17答(01)或E18答(01),才需回答此題",(vE2m01 in 1 | vE17 in 1 | vE18 in 1),vE4,,,,"E4‧您先前回答「每週平均有【貼D2答案】天會使用手機」,請問【貼D2答案】天中,平均有幾天會透過手機上網,例如:用LINE、滑臉書(Facebook)、看YouTube,只算有用手機上網的天數?【數值題,可輸入小數點,範圍為0.5、1、1.5、2、2.5、3、3.5、4、4.5、5、5.5、6、6.5、7、95、97、98】【E2有答(01)或E17答(01)或E18答(01),才需回答此題】"
+review,paragraph:784,CKE4,"E4>D2時(D2<=7,E4<=7,E4>D2;D2=95,1<=E4<=7,顯示此題",,,,,restriction/check/display cue needs rule-specific handling,"CKE4‧【檢查題】【請注意】【E4>D2時(D2<=7,E4<=7,E4>D2;D2=95,1<=E4<=7,顯示此題】"
+review,paragraph:785,CKE4,貼E4答案,,,,,cannot map condition atom: 貼E4答案,"您之前答每週透過手機上網(E4)【貼E4答案】天,超過使用手機的總天數(D2)【貼D2答案】天。"
+review,paragraph:785,CKE4,貼D2答案,,,,,cannot map condition atom: 貼D2答案,"您之前答每週透過手機上網(E4)【貼E4答案】天,超過使用手機的總天數(D2)【貼D2答案】天。"
+review,paragraph:791,E5,貼D3答案,,,,,cannot map condition atom: 貼D3答案,"E5‧您先前回答「有使用手機的那一天,大約使用【貼D3答案】」,我們想請教您:【數值題,範圍:0000-2359、9797、9898】【E2有答(01)或E17答(01)或E18答(01),需回答此題】【O1_1答(01)~(04)、(88),或O1答(01)~(05)、(12)、(13)、(14)、(88)者,需回答此題】"
+apply,paragraph:791,E5,"E2有答(01)或E17答(01)或E18答(01),需回答此題",(vE2m01 in 1 | vE17 in 1 | vE18 in 1),vE5,,,,"E5‧您先前回答「有使用手機的那一天,大約使用【貼D3答案】」,我們想請教您:【數值題,範圍:0000-2359、9797、9898】【E2有答(01)或E17答(01)或E18答(01),需回答此題】【O1_1答(01)~(04)、(88),或O1答(01)~(05)、(12)、(13)、(14)、(88)者,需回答此題】"
+apply,paragraph:791,E5,"O1_1答(01)~(04)、(88),或O1答(01)~(05)、(12)、(13)、(14)、(88)者,需回答此題","(vO1_1 in 1,2,3,4,88 | vO1 in 1,2,3,4,5,12,13,14,88)",vE5,,,,"E5‧您先前回答「有使用手機的那一天,大約使用【貼D3答案】」,我們想請教您:【數值題,範圍:0000-2359、9797、9898】【E2有答(01)或E17答(01)或E18答(01),需回答此題】【O1_1答(01)~(04)、(88),或O1答(01)~(05)、(12)、(13)、(14)、(88)者,需回答此題】"
+review,paragraph:792,E5,貼O1_1答案,,,,,cannot map condition atom: 貼O1_1答案,受訪者的學習狀況:【貼O1_1答案】
+review,paragraph:793,E5,貼O1答案,,,,,cannot map condition atom: 貼O1答案,受訪者的工作狀況:【貼O1答案】
+review,paragraph:806,E6,貼D3答案,,,,,cannot map condition atom: 貼D3答案,"E6‧您先前回答「有使用手機的那一天,大約使用【貼D3答案】」,我們想請教您:【數值題,範圍:0000-2359、9797、9898】【E2有答(01)或E17答(01)或E18答(01),才需答此題】"
+apply,paragraph:806,E6,"E2有答(01)或E17答(01)或E18答(01),才需答此題",(vE2m01 in 1 | vE17 in 1 | vE18 in 1),vE6,,,,"E6‧您先前回答「有使用手機的那一天,大約使用【貼D3答案】」,我們想請教您:【數值題,範圍:0000-2359、9797、9898】【E2有答(01)或E17答(01)或E18答(01),才需答此題】"
+review,paragraph:810,E6,貼O1_1答案,,,,,cannot map condition atom: 貼O1_1答案,受訪者的學習狀況:【貼O1_1答案】
+review,paragraph:811,E6,貼O1答案,,,,,cannot map condition atom: 貼O1答案,受訪者的工作狀況:【貼O1答案】
+review,paragraph:823,CKE5,"E2有答(01)或E17答(01)或E18答(01),且O1_1答(01)~(04)、(88),或O1答(01)~(05)、(12)、(13)、(14)、(88),且E5+E6=0者",,,,,cannot parse condition atom: E5+E6=0,"CKE5 檢查題(顯示題)
+【請注意】【E2有答(01)或E17答(01)或E18答(01),且O1_1答(01)~(04)、(88),或O1答(01)~(05)、(12)、(13)、(14)、(88),且E5+E6=0者】【E2有答(01)或E17答(01)或E18答(01),且O1_1答(05)、(97)、(98),或O1答(06)~(11),且E6=0者】"
+review,paragraph:823,CKE5,"E2有答(01)或E17答(01)或E18答(01),且O1_1答(05)、(97)、(98),或O1答(06)~(11),且E6=0者",,,,,cannot parse condition atom: E6=0,"CKE5 檢查題(顯示題)
+【請注意】【E2有答(01)或E17答(01)或E18答(01),且O1_1答(01)~(04)、(88),或O1答(01)~(05)、(12)、(13)、(14)、(88),且E5+E6=0者】【E2有答(01)或E17答(01)或E18答(01),且O1_1答(05)、(97)、(98),或O1答(06)~(11),且E6=0者】"
+apply,paragraph:829,E7,"E2有答(02)或E17答(02)或E18答(02)者,才需回答此題",(vE2m02 in 1 | vE17 in 2 | vE18 in 2),vE7,,,,"E7‧請問您每週平均有幾天會透過平板上網?【數值題,可輸入小數點,範圍為0.5、1、1.5、2、2.5、3、3.5、4、4.5、5、5.5、6、6.5、7、95、97、98】【E2有答(02)或E17答(02)或E18答(02)者,才需回答此題】"
+apply,paragraph:834,E8,"E2有答(02)或E17答(02)或E18答(02),需回答此題",(vE2m02 in 1 | vE17 in 2 | vE18 in 2),vE8,,,,"E8‧在您有上網的那一天:【數值題,範圍:0000-2359、9797、9898】【E2有答(02)或E17答(02)或E18答(02),需回答此題】【O1_1答(01)~(04)、(88),或O1答(01)~(05)、(12)、(13)、(14)、(88)者,需回答此題】"
+apply,paragraph:834,E8,"O1_1答(01)~(04)、(88),或O1答(01)~(05)、(12)、(13)、(14)、(88)者,需回答此題","(vO1_1 in 1,2,3,4,88 | vO1 in 1,2,3,4,5,12,13,14,88)",vE8,,,,"E8‧在您有上網的那一天:【數值題,範圍:0000-2359、9797、9898】【E2有答(02)或E17答(02)或E18答(02),需回答此題】【O1_1答(01)~(04)、(88),或O1答(01)~(05)、(12)、(13)、(14)、(88)者,需回答此題】"
+review,paragraph:835,E8,貼O1_1答案,,,,,cannot map condition atom: 貼O1_1答案,受訪者的學習狀況:【貼O1_1答案】
+review,paragraph:836,E8,貼O1答案,,,,,cannot map condition atom: 貼O1答案,受訪者的工作狀況:【貼O1答案】
+apply,paragraph:850,E9,"E2有答(02)或E17答(02)或E18答(02),才需答此題",(vE2m02 in 1 | vE17 in 2 | vE18 in 2),vE9,,,,"E9‧在您有上網的那一天:【數值題,範圍:0000-2359、9797、9898】【E2有答(02)或E17答(02)或E18答(02),才需答此題】"
+review,paragraph:851,E9,貼O1_1答案,,,,,cannot map condition atom: 貼O1_1答案,受訪者的學習狀況:【貼O1_1答案】
+review,paragraph:852,E9,貼O1答案,,,,,cannot map condition atom: 貼O1答案,受訪者的工作狀況:【貼O1答案】
+review,paragraph:866,CKE8,"E2有答(02)或E17答(02)或E18答(02),且O1_1答(01)~(04)、(88),或O1答(01)~(05)、(12)、(13)、(14)、(88),且E8+E9=0者;或2. E2有答(02)或E17答(02)或E18答(02),且O1_1答(05)、(97)、(98),或O1答(06)~(11),且E9=0者",,,,,cannot parse condition atom: E8+E9=0,"CKE8 檢查題(顯示題)
+【請注意】【E2有答(02)或E17答(02)或E18答(02),且O1_1答(01)~(04)、(88),或O1答(01)~(05)、(12)、(13)、(14)、(88),且E8+E9=0者;或2. E2有答(02)或E17答(02)或E18答(02),且O1_1答(05)、(97)、(98),或O1答(06)~(11),且E9=0者】"
+apply,paragraph:872,E10,"E2有答(03)或E17答(03)或E18答(03),才需回答此題",(vE2m03 in 1 | vE17 in 3 | vE18 in 3),vE10,,,,"E10‧請問您每週平均有幾天會透過電腦上網?【數值題,可輸入小數點,範圍為0.5、1、1.5、2、2.5、3、3.5、4、4.5、5、5.5、6、6.5、7、95、97、98】【E2有答(03)或E17答(03)或E18答(03),才需回答此題】"
+apply,paragraph:885,E11,"E2有答(03)或E17答(03)或E18答(03),需回答此題",(vE2m03 in 1 | vE17 in 3 | vE18 in 3),vE11,,,,"E11‧在您有上網的那一天:【數值題,範圍:0000-2359、9797、9898】【E2有答(03)或E17答(03)或E18答(03),需回答此題】【O1_1答(01)~(04)、(88),或O1答(01)~(05)、(12)、(13)、(14)、(88)者,需回答此題】"
+apply,paragraph:885,E11,"O1_1答(01)~(04)、(88),或O1答(01)~(05)、(12)、(13)、(14)、(88)者,需回答此題","(vO1_1 in 1,2,3,4,88 | vO1 in 1,2,3,4,5,12,13,14,88)",vE11,,,,"E11‧在您有上網的那一天:【數值題,範圍:0000-2359、9797、9898】【E2有答(03)或E17答(03)或E18答(03),需回答此題】【O1_1答(01)~(04)、(88),或O1答(01)~(05)、(12)、(13)、(14)、(88)者,需回答此題】"
+review,paragraph:886,E11,貼O1_1答案,,,,,cannot map condition atom: 貼O1_1答案,受訪者的學習狀況:【貼O1_1答案】
+review,paragraph:887,E11,貼O1答案,,,,,cannot map condition atom: 貼O1答案,受訪者的工作狀況:【貼O1答案】
+apply,paragraph:902,E12,"E2有答(03)或E17答(03)或E18答(03)者,才需回答此題",(vE2m03 in 1 | vE17 in 3 | vE18 in 3),vE12,,,,"E12‧在您有上網的那一天:【數值題,範圍:0000-2359、9797、9898】【E2有答(03)或E17答(03)或E18答(03)者,才需回答此題】"
+review,paragraph:903,E12,貼O1_1答案,,,,,cannot map condition atom: 貼O1_1答案,受訪者的學習狀況:【貼O1_1答案】
+review,paragraph:904,E12,貼O1答案,,,,,cannot map condition atom: 貼O1答案,受訪者的工作狀況:【貼O1答案】
+review,paragraph:917,CKE11,"E2有答(03)或E17答(03)或E18答(03),且O1_1答(01)~(04)、(88),或O1答(01)~(05)、(12)、(13)、(14)、(88),且E11+E12=0者;或2. E2有答(03)或E17答(03)或E18答(03),且O1_1答(05)、(97)、(98),或O1答(06)~(11),且E12=0者",,,,,cannot parse condition atom: E11+E12=0,"CKE11 檢查題(顯示題)
+【請注意】【E2有答(03)或E17答(03)或E18答(03),且O1_1答(01)~(04)、(88),或O1答(01)~(05)、(12)、(13)、(14)、(88),且E11+E12=0者;或2. E2有答(03)或E17答(03)或E18答(03),且O1_1答(05)、(97)、(98),或O1答(06)~(11),且E12=0者】"
+review,paragraph:923,E3_1,貼E2答案,,,,,cannot map condition atom: 貼E2答案,"E3_1‧檢查題(開放題)您剛回答使用【貼E2答案】因「工作與課業」或「不是工作或課業所需」的上網總時間超過24小時,想請問您原因為何?【E5、E6、E8、E9、E11、E12加總超過2400者(不含任一題答9797、9898),才需回答此題】"
+review,paragraph:923,E3_1,"E5、E6、E8、E9、E11、E12加總超過2400者(不含任一題答9797、9898),才需回答此題",,,,,restriction/check/display cue needs rule-specific handling,"E3_1‧檢查題(開放題)您剛回答使用【貼E2答案】因「工作與課業」或「不是工作或課業所需」的上網總時間超過24小時,想請問您原因為何?【E5、E6、E8、E9、E11、E12加總超過2400者(不含任一題答9797、9898),才需回答此題】"
+review,paragraph:925,E3_1,貼E5答案,,,,,cannot map condition atom: 貼E5答案,因「工作與課業」使用手機上網:【貼E5答案】、「不是工作或課業」使用手機上網:【貼E6答案】
+review,paragraph:925,E3_1,貼E6答案,,,,,cannot map condition atom: 貼E6答案,因「工作與課業」使用手機上網:【貼E5答案】、「不是工作或課業」使用手機上網:【貼E6答案】
+review,paragraph:926,E3_1,貼E8答案,,,,,cannot map condition atom: 貼E8答案,因「工作與課業」使用平板上網:【貼E8答案】、「不是工作或課業」使用平板上網:【貼E9答案】
+review,paragraph:926,E3_1,貼E9答案,,,,,cannot map condition atom: 貼E9答案,因「工作與課業」使用平板上網:【貼E8答案】、「不是工作或課業」使用平板上網:【貼E9答案】
+review,paragraph:927,E3_1,貼E11答案,,,,,cannot map condition atom: 貼E11答案,因「工作與課業」使用電腦上網:【貼E11答案】、「不是工作或課業」使用電腦上網:【貼E12答案】
+review,paragraph:927,E3_1,貼E12答案,,,,,cannot map condition atom: 貼E12答案,因「工作與課業」使用電腦上網:【貼E11答案】、「不是工作或課業」使用電腦上網:【貼E12答案】
+apply,paragraph:929,E3,"E1答(01)者,需回答此題",vE1 in 1,vE3,,,,"E3‧請問您一天上網的時間是多少?【數值題,範圍:0001-2359、9797、9898】【E1答(01)者,需回答此題】"
+review,paragraph:931,E3,貼K1答案,,,,,cannot map condition atom: 貼K1答案,即時通訊軟體:【貼K1答案】
+review,paragraph:932,E3,貼K2答案,,,,,cannot map condition atom: 貼K2答案,社群媒體:【貼K2答案】
+review,paragraph:933,E3,貼K3答案,,,,,cannot map condition atom: 貼K3答案,網路影音平台:【貼K3答案】
+apply,paragraph:945,E13,"E1答(01)者,需回答此題",vE1 in 1,"vE13m01,vE13m02,vE13m03,vE13m04,vE13m05,vE13m06,vE13m88",,,,"E13‧請問您上網的原因或動機是什麼呢(包括用【貼題E2】)?(可多選)(卡19)【E1答(01)者,需回答此題】"
+apply,paragraph:947,E14,"E1答(01)者,需回答此題",vE1 in 1,vE14,,,,"E14‧請問您每個月平均在網路上消費(買東西)大概花多少錢?(例如:購物、購買遊戲點數、下載音樂或電影等)【數值題,範圍0-100000,超過最大值則填999991】【E1答(01)者,需回答此題】"
+review,paragraph:953,G7,"不顯示選項編號,選項(01)-(12)隨機出現",,,,,restriction/check/display cue needs rule-specific handling,"G7‧請問您經常透過哪一些社群媒體、入口網站及整合新聞網站來看網路新聞?(可多選) 【訪員讀題完畢後,請將平板轉給受訪者選擇,並由訪員協助點選】【不顯示選項編號,選項(01)-(12)隨機出現】【E1答(01)者,需回答此題】"
+apply,paragraph:953,G7,"E1答(01)者,需回答此題",vE1 in 1,"vG7m01,vG7m02,vG7m03,vG7m04,vG7m05,vG7m06,vG7m07,vG7m08,vG7m09,vG7m10,vG7m11,vG7m12,vG7m88,vG7m90",,,,"G7‧請問您經常透過哪一些社群媒體、入口網站及整合新聞網站來看網路新聞?(可多選) 【訪員讀題完畢後,請將平板轉給受訪者選擇,並由訪員協助點選】【不顯示選項編號,選項(01)-(12)隨機出現】【E1答(01)者,需回答此題】"
+review,paragraph:958,G7,與K2答(90)者互斥,vK2m90 in 1,,,,restriction/check/display cue needs rule-specific handling,□ (01)社群媒體(例如:臉書、Threads、X)【與K2答(90)者互斥】
+review,paragraph:959,G7,與K1答(90)者互斥,vK1m90 in 1,,,,restriction/check/display cue needs rule-specific handling,□ (02)即時通訊軟體(例如:LINE Today、WeChat微信)【與K1答(90)者互斥】
+review,paragraph:976,G8,"不顯示選項編號,選項(01)-(16)隨機出現",,,,,restriction/check/display cue needs rule-specific handling,"G8‧除了電視以外,有些人會透過網站、APP,或YouTube頻道來看電視新聞,那你會透過這些管道來看哪些電視台?(可多選) 【訪員讀題完畢後,請將平板轉給受訪者選擇,並由訪員協助點選】【不顯示選項編號,選項(01)-(16)隨機出現】【E1答(01)者,需回答此題】"
+apply,paragraph:976,G8,"E1答(01)者,需回答此題",vE1 in 1,"vG8m01,vG8m02,vG8m03,vG8m04,vG8m05,vG8m06,vG8m07,vG8m08,vG8m09,vG8m10,vG8m11,vG8m12,vG8m13,vG8m14,vG8m15,vG8m16,vG8m88,vG8m90",,,,"G8‧除了電視以外,有些人會透過網站、APP,或YouTube頻道來看電視新聞,那你會透過這些管道來看哪些電視台?(可多選) 【訪員讀題完畢後,請將平板轉給受訪者選擇,並由訪員協助點選】【不顯示選項編號,選項(01)-(16)隨機出現】【E1答(01)者,需回答此題】"
+review,paragraph:1000,G9,"不顯示選項編號,選項(01)-(13)隨機出現",,,,,restriction/check/display cue needs rule-specific handling,"G9‧那請問您經常透過哪一些電子報網站,或APP來看網路新聞?(可多選) 【訪員讀題完畢後,請將平板轉給受訪者選擇,並由訪員協助點選】【不顯示選項編號,選項(01)-(13)隨機出現】【E1答(01)者,需回答此題】"
+apply,paragraph:1000,G9,"E1答(01)者,需回答此題",vE1 in 1,"vG9m01,vG9m02,vG9m03,vG9m04,vG9m05,vG9m06,vG9m07,vG9m08,vG9m09,vG9m10,vG9m11,vG9m12,vG9m13,vG9m88,vG9m90",,,,"G9‧那請問您經常透過哪一些電子報網站,或APP來看網路新聞?(可多選) 【訪員讀題完畢後,請將平板轉給受訪者選擇,並由訪員協助點選】【不顯示選項編號,選項(01)-(13)隨機出現】【E1答(01)者,需回答此題】"
+review,paragraph:1020,G10,"不顯示選項編號,選項(01)-(19)隨機出現",,,,,restriction/check/display cue needs rule-specific handling,"G10‧那請問您經常透過哪一些獨立媒體及通訊社網站,或APP來看網路新聞?(可多選) 【訪員讀題完畢後,請將平板轉給受訪者選擇,並由訪員協助點選】【不顯示選項編號,選項(01)-(19)隨機出現】【E1答(01)者,需回答此題】"
+apply,paragraph:1020,G10,"E1答(01)者,需回答此題",vE1 in 1,"vG10m01,vG10m02,vG10m03,vG10m04,vG10m05,vG10m06,vG10m07,vG10m08,vG10m09,vG10m10,vG10m11,vG10m12,vG10m13,vG10m14,vG10m15,vG10m16,vG10m17,vG10m18,vG10m19,vG10m88,vG10m90",,,,"G10‧那請問您經常透過哪一些獨立媒體及通訊社網站,或APP來看網路新聞?(可多選) 【訪員讀題完畢後,請將平板轉給受訪者選擇,並由訪員協助點選】【不顯示選項編號,選項(01)-(19)隨機出現】【E1答(01)者,需回答此題】"
+review,paragraph:1044,G11,"不顯示選項編號,選項(01)-(05)隨機出現",,,,,restriction/check/display cue needs rule-specific handling,"G11‧那再請問您經常透過哪一些國際媒體的網站,或APP來看網路新聞?(可多選) 【訪員讀題完畢後,請將平板轉給受訪者選擇,並由訪員協助點選】【不顯示選項編號,選項(01)-(05)隨機出現】【E1答(01)者,需回答此題】"
+apply,paragraph:1044,G11,"E1答(01)者,需回答此題",vE1 in 1,"vG11m01,vG11m02,vG11m03,vG11m04,vG11m05,vG11m88,vG11m90",,,,"G11‧那再請問您經常透過哪一些國際媒體的網站,或APP來看網路新聞?(可多選) 【訪員讀題完畢後,請將平板轉給受訪者選擇,並由訪員協助點選】【不顯示選項編號,選項(01)-(05)隨機出現】【E1答(01)者,需回答此題】"
+review,paragraph:1056,G4,"G7或G8或G9或G10或G11答(01)-(88)者,需答此題",,,,,cannot parse condition atom: G7,"G4‧請問您每週平均有幾天會上網看新聞?【數值題,可輸入小數點,範圍為0.5、1、1.5、2、2.5、3、3.5、4、4.5、5、5.5、6、6.5、7、95、97、98】【G7或G8或G9或G10或G11答(01)-(88)者,需答此題】"
+review,paragraph:1072,G5,"G7或G8或G9或G10或G11答(01)-(88)者,需答此題",,,,,cannot parse condition atom: G7,"G5‧在您有上網看新聞的那一天,您一整天大概會看多久?【數值題,範圍:0001-2359、9797、9898】【G7或G8或G9或G10或G11答(01)-(88)者,需答此題】"
+apply,paragraph:1099,B2,"B1答0者,不需回答此題",vB1 in 0,,vB2,,,"B2‧在您有看電視的星期一到星期五,您一整天大概會看多久?【數值題,範圍:0001-2359、9797、9898】【B1答0者,不需回答此題】"
+apply,paragraph:1123,B4,"B3答0者,不需回答此題",vB3 in 0,,vB4,,,"B4‧請問星期六和星期日有看電視的那一天,您一整天大概會看多久?【數值題,範圍:0001-2359、9797、9898】【B3答0者,不需回答此題】"
+review,paragraph:1140,B5,"B1及B3皆答0者,不需答此題",,,,,"cannot parse condition atom: B1及B3皆答0,不","95、97、98】【B1及B3皆答0者,不需答此題】"
+review,paragraph:1153,CKB5,B1+B3+1<B5顯示此題,,,,,restriction/check/display cue needs rule-specific handling,CKB5‧【檢查題】【B1+B3+1<B5顯示此題】
+review,paragraph:1154,CKB5,貼B5答案,,,,,cannot map condition atom: 貼B5答案,"受訪者一週當中看【貼B5答案】天的電視新聞(B5),"
+review,paragraph:1155,CKB5,貼B1答案,,,,,cannot map condition atom: 貼B1答案,超過星期一到星期五看【貼B1答案】天+星期六和星期日看【貼B3答案】天(B3)電視的總和。
+review,paragraph:1155,CKB5,貼B3答案,,,,,cannot map condition atom: 貼B3答案,超過星期一到星期五看【貼B1答案】天+星期六和星期日看【貼B3答案】天(B3)電視的總和。
+apply,paragraph:1165,B6,"B5答0者,不需答此題",vB5 in 0,vB6,,,,"B6‧在您有看電視新聞的那一天,您一整天大概會看多久?【數值題,範圍:0001-2359、9797、9898】【B5答0者,不需答此題】"
+apply,paragraph:1180,B7,"B5答0者,不需答此題",vB5 in 0,vB7,,,,"B7a‧請問您經常看哪幾台電視新聞?(可多選)(卡20)【B5答0者,不需答此題】"
+review,paragraph:1245,B7,"B7a回答(01)-(88)超過2個選項時顯示,並只能選B7a選填的答案",,,,,restriction/check/display cue needs rule-specific handling,"B7‧那請問您最常看其中的哪一台電視新聞?(卡20)【B7a回答(01)-(88)超過2個選項時顯示,並只能選B7a選填的答案】【B7a只選1個選項,不需回答此題】"
+review,paragraph:1245,B7,"B7a只選1個選項,不需回答此題",,,,,cannot parse condition atom: B7a只選1個,"B7‧那請問您最常看其中的哪一台電視新聞?(卡20)【B7a回答(01)-(88)超過2個選項時顯示,並只能選B7a選填的答案】【B7a只選1個選項,不需回答此題】"
+review,paragraph:1312,B8,"B1及B3皆答0者,不需答此題",,,,,"cannot parse condition atom: B1及B3皆答0,不","B8‧最近一個月您經常看下列哪幾種類型的電視節目?(可多選)(卡21)【B1及B3皆答0者,不需答此題】"
+review,paragraph:1317,B8,"B5答0者,與此選項互斥",vB5 in 0,,,,restriction/check/display cue needs rule-specific handling,"□ (01)新聞類(例如:社會新聞、即時新聞、氣象、體育新聞、國際新聞、政治新聞、交通資訊、專題報導)【B5答0者,與此選項互斥】【資料處理:B5答0.5~7天,選項(01)必選】"
+review,paragraph:1317,B8,"資料處理:B5答0.5~7天,選項(01)必選",(vB5>=0.5 & vB5<=7),,,,restriction/check/display cue needs rule-specific handling,"□ (01)新聞類(例如:社會新聞、即時新聞、氣象、體育新聞、國際新聞、政治新聞、交通資訊、專題報導)【B5答0者,與此選項互斥】【資料處理:B5答0.5~7天,選項(01)必選】"
+apply,paragraph:1346,I2,"I1答0者,不需回答此題",vI1 in 0,,vI2,,,"I2‧在您有看戲劇節目的星期一到星期五,您一整天大概會看多久?【數值題,範圍:0001-2359、9797、9898】【I1答0者,不需回答此題】"
+apply,paragraph:1371,I4,"I3答0者,不需回答此題",vI3 in 0,,vI4,,,"I4‧星期六和星期日有看戲劇節目的那一天,您一整天大概會看多久?【數值題,範圍:0001-2359、9797、9898】【I3答0者,不需回答此題】"
+review,paragraph:1381,CKI4,"B8答(03)或(06),且I1與I3皆為0者,需回答此題",,,,,cannot parse condition atom: I1與I3皆為0,"【檢查題】CKI4.請向受訪者說明:【B8答(03)或(06),且I1與I3皆為0者,需回答此題】"
+apply,paragraph:1392,G1,"A09答(01)者,不需回答此題",vA9 in 1,,vG1,,,"G1‧請問您每週平均有幾天會看紙本報紙?【數值題,可輸入小數點,範圍為0、0.5、1、1.5、2、2.5、3、3.5、4、4.5、5、5.5、6、6.5、7、95、97、98】【A09答(01)者,不需回答此題】"
+apply,paragraph:1406,G2,"A09答(01)者,或G1答0者,不需回答此題",(vA9 in 1 | vG1 in 0),,vG2,,,"G2‧在您有看紙本報紙的那一天,您一整天大概會看多久?【數值題,範圍:0001-2359、9797、9898】【A09答(01)者,或G1答0者,不需回答此題】"
+apply,paragraph:1419,G3,"A09答(01)者,或G1答0者,不需回答此題",(vA9 in 1 | vG1 in 0),,"vG3m01,vG3m02,vG3m03,vG3m04,vG3m05,vG3m06,vG3m07,vG3m08,vG3m09,vG3m10,vG3m11,vG3m12,vG3m13,vG3m14,vG3m15,vG3m16,vG3m18,vG3m19,vG3m20,vG3m21,vG3m22,vG3m23,vG3m24,vG3m25,vG3m26,vG3m27,vG3m28,vG3m29,vG3m30,vG3m31,vG3m32,vG3m33,vG3m88",,,"G3‧請問您經常看哪幾份紙本報紙?(可多選) (卡22) 【A09答(01)者,或G1答0者,不需回答此題】"
+apply,paragraph:1457,F0,"A09答(01)者,不需回答此題",vA9 in 1,,vF0,,,"F0‧請問您每個月是否會看紙本雜誌或網路雜誌?【A09答(01)者,不需回答此題】"
+review,paragraph:1462,F0,"E1答(02)、(97)、(98)者,選項互斥","vE1 in 2,97,98",,,,restriction/check/display cue needs rule-specific handling,"□ (02)網路雜誌【E1答(02)、(97)、(98)者,選項互斥】"
+review,paragraph:1463,F0,"E1答(02)、(97)、(98)者,選項互斥","vE1 in 2,97,98",,,,restriction/check/display cue needs rule-specific handling,"□ (89)都有看【E1答(02)、(97)、(98)者,選項互斥】"
+apply,paragraph:1469,F1,"F0答(01)或(89)者,需答此題","vF0 in 1,89",vF1,,,,"F1‧請問您每個月平均有幾天會看紙本雜誌(網路雜誌不算)?【數值題,可輸入小數點,範圍為0.5、1、1.5、...、30、30.5、31、95、97、98】【F0答(01)或(89)者,需答此題】"
+apply,paragraph:1484,F2,"F0答(01)或(89)者,需答此題","vF0 in 1,89",vF2,,,,"F2‧在您有看紙本雜誌(網路雜誌不算)的那一天,您一整天大概會看多久?【數值題,範圍:0001-2359、9797、9898】【F0答(01)或(89)者,需答此題】"
+apply,paragraph:1499,F3,"F0答(02)或(89)者,需答此題","vF0 in 2,89",vF3,,,,"F3‧請問您每個月平均有幾天會在網路上看雜誌?【數值題,可輸入小數點,範圍為0.5、1、1.5、...、30、30.5、31、95、97、98】【F0答(02)或(89)者,需答此題】"
+apply,paragraph:1512,F4,"F0答(02)或(89)者,需答此題","vF0 in 2,89",vF4,,,,"F4‧在您有看網路雜誌的那一天,您一整天大概會看多久?【數值題,範圍:0001-2359、9797、9898】【F0答(02)或(89)者,需答此題】"
+apply,paragraph:1525,F5,"F0答(90)、(97)、(98)者,不需回答此題","vF0 in 90,97,98",,"vF5m01,vF5m02,vF5m03,vF5m04,vF5m05,vF5m06,vF5m07,vF5m08,vF5m88",,,"F5‧您看雜誌(包含紙本和網路雜誌)時,經常看下列哪幾種內容?(可多選) (卡23) 【F0答(90)、(97)、(98)者,不需回答此題】"
+apply,paragraph:1557,C2,"C1答0者,不需回答此題",vC1 in 0,,vC2,,,"C2‧在您有聽廣播的那一天,您一整天大概會聽多久?【數值題,範圍:0001-2359、9797、9898】【C1答0者,不需回答此題】"
+apply,paragraph:1570,C3,"C1答0者,不需回答此題",vC1 in 0,,"vC3m01,vC3m02,vC3m03,vC3m04,vC3m05,vC3m06,vC3m07,vC3m08,vC3m09,vC3m10,vC3m11,vC3m88",,,"C3‧您聽廣播時經常聽或經常聽到以下哪幾種類型的節目?(可多選) (卡24)【C1答0者,不需回答此題】"
+apply,paragraph:1597,J4_2,"A9答(01)者,不需回答此題",vA9 in 1,,vJ4_2,,,"J4_2‧報紙(紙本)新聞可信度有幾分?_______分  □ (997)不知道□ (998)拒答【A9答(01)者,不需回答此題】"
+apply,paragraph:1607,J4_4,"A9答(01)者,不需回答此題",vA9 in 1,,vJ4_4,,,"J4_4‧雜誌(紙本)新聞可信度有幾分?_______分  □ (997)不知道 □ (998)拒答【A9答(01)者,不需回答此題】"
+apply,paragraph:1612,J4_5,"E1答(01)者,需回答此題",vE1 in 1,vJ4_5,,,,"J4_5‧網路新聞可信度有幾分?_______分  □ (997)不知道 □ (998)拒答 【E1答(01)者,需回答此題】"
+apply,paragraph:1618,JB1,"B5答0者,不需答此題",vB5 in 0,"vJB1m01,vJB1m02,vJB1m03,vJB1m04,vJB1m05,vJB1m06,vJB1m07,vJB1m08,vJB1m09,vJB1m10,vJB1m11,vJB1m88,vJB1m90",,,,"JB1‧請問您認為目前臺灣電視新聞節目有下列哪些不好的地方,需要解決?(可多選)(卡26) 【B5答0者,不需答此題】"
+apply,paragraph:1639,JB2,"E1答(01)者,需回答此題",vE1 in 1,"vJB2m01,vJB2m02,vJB2m03,vJB2m04,vJB2m05,vJB2m06,vJB2m07,vJB2m88,vJB2m90",,,,"JB2‧那請問您認為目前台灣網路內容有哪些不好的地方,需要解決?(可多選)(卡27)【E1答(01)者,需回答此題】"
+apply,paragraph:1670,H2,"H1答(997)或(998)者,需回答此題","vH1 in 997,998",vH2,,,,"H2‧那比較接近下面哪個答案?【H1答(997)或(998)者,需回答此題】"
+apply,paragraph:1681,H3,"H1答0者,或H2答(01)者,不需回答此題",(vH1 in 0 | vH2 in 1),,vH3,,,"H3‧那這些與您「面對面」接觸且認識的人裡面,大概有多少跟您很熟?(卡28)【H1答0者,或H2答(01)者,不需回答此題】"
+apply,paragraph:1691,H4,"E1答(01)者,需回答此題",vE1 in 1,vH4,,,,"H4‧請問您平常一天會固定「透過網路」接觸且認識的人有幾位?例如在臉書(Facebook)、LINE、線上遊戲平台互相傳訊息或貼圖,叫得出名字或暱稱才算。【數值題,範圍為0-990、991、997、998】【E1答(01)者,需回答此題】"
+apply,paragraph:1703,H5,"H4答(997)或(998)者,才需回答此題","vH4 in 997,998",vH5,,,,"H5‧那比較接近下面哪個答案?【H4答(997)或(998)者,才需回答此題】"
+apply,paragraph:1714,H6,"H4答0者,或H5答(01)者,不需回答此題",(vH4 in 0 | vH5 in 1),,vH6,,,"H6‧請問這些「透過網路」接觸且認識的人裡面,大概有多少跟您很熟?(卡28)【H4答0者,或H5答(01)者,不需回答此題】"
+review,paragraph:1724,H7,"H1未答0、(997)、(998),且H4未答0、(997)、(998),需答此題",,,,,cannot parse condition atom: H1未答0、(997)、(998),"H7‧您平常一天會固定面對面接觸且認識的人有【貼題H1】人,會透過網路(例如:LINE)接觸且認識的人有【貼題H4】人,請問這兩群人中您會面對面同時也會透過網路接觸且認識的人有幾位?【數值題,範圍為0-990、991、997、998】【H1未答0、(997)、(998),且H4未答0、(997)、(998),需答此題】"
+review,paragraph:1733,H7_1,"H1未答0、(997)、(998),且H5未答(01)、(97)、(98)者,需答此題",,,,,cannot parse condition atom: H1未答0、(997)、(998),"H7_1‧您平常一天會固定面對面接觸且認識的人有【貼題H1】人,會透過網路(例如:LINE)接觸且認識的人有【貼題H5】人,請問這兩群人中您會面對面同時也會透過網路接觸且認識的人有幾位?【數值題,範圍為0-990、991、997、998】【H1未答0、(997)、(998),且H5未答(01)、(97)、(98)者,需答此題】"
+review,paragraph:1742,H7_2,"H2未答(01)、(97)、(98),且H4未答0、(997)、(998),需答此題",,,,,cannot parse condition atom: H2未答(01)、(97)、(98),"H7_2‧您平常一天會固定面對面接觸且認識的人有【貼題H2】人,會透過網路(例如:LINE)接觸且認識的人有【貼題H4】人,請問這兩群人中您會面對面同時也會透過網路接觸且認識的人有幾位?【數值題,範圍為0-990、991、997、998】【H2未答(01)、(97)、(98),且H4未答0、(997)、(998),需答此題】"
+review,paragraph:1752,H7_3,"H2未答(01)、(97)、(98),且H5未答(01)、(97)、(98)者,需答此題",,,,,cannot parse condition atom: H2未答(01)、(97)、(98),"H7_3‧您平常一天會固定面對面接觸且認識的人有【貼題H2】人,會透過網路(例如:LINE)接觸且認識的人有【貼題H5】人,請問這兩群人中您會面對面同時也會透過網路接觸且認識的人有幾位?【數值題,範圍為0-990、991、997、998】【H2未答(01)、(97)、(98),且H5未答(01)、(97)、(98)者,需答此題】"
+review,paragraph:1760,CKH7,"H7填答人數超過H1或H4填答人數,顯示並設定顯示時間",,,,,restriction/check/display cue needs rule-specific handling,"CKH7‧檢查題(顯示題)
+【H7填答人數超過H1或H4填答人數,顯示並設定顯示時間】"
+review,paragraph:1762,CKH7,貼H7答案,,,,,cannot map condition atom: 貼H7答案,"受訪者會面對面同時也會透過網路接觸且認識的有【貼H7答案】人,不應超過之前答平常一天會固定面對面接觸且認識的【貼題H1】人,也不應超過透過網路接觸且認識的【貼題H4】人,請按「上一題」再確認會面對面同時也會透過網路接觸且認識的人數。"
+review,paragraph:1764,CKH7_1,"H7_1填答人數超過H1或H5填答人數,顯示並設定顯示時間",,,,,restriction/check/display cue needs rule-specific handling,"CKH7_1‧檢查題(顯示題)
+【H7_1填答人數超過H1或H5填答人數,顯示並設定顯示時間】"
+review,paragraph:1766,CKH7_1,貼H7_1答案,,,,,cannot map condition atom: 貼H7_1答案,"受訪者會面對面同時也會透過網路接觸且認識的有【貼H7_1答案】人,不應超過之前答平常一天會固定面對面接觸且認識的【貼題H1】人,也不應超過透過網路接觸且認識的【貼題H5】人,請按「上一題」再確認會面對面同時也會透過網路接觸且認識的人數。"
+review,paragraph:1768,CKH7_2,"H7_2填答人數超過H2或H4填答人數,顯示並設定顯示時間",,,,,restriction/check/display cue needs rule-specific handling,"CKH7_2‧檢查題(顯示題)
+【H7_2填答人數超過H2或H4填答人數,顯示並設定顯示時間】"
+review,paragraph:1770,CKH7_2,貼H7_2答案,,,,,cannot map condition atom: 貼H7_2答案,"受訪者會面對面同時也會透過網路接觸且認識的有【貼H7_2答案】人,不應超過之前答平常一天會固定面對面接觸且認識的【貼題H2】人,也不應超過透過網路接觸且認識的【貼題H4】人,請按「上一題」再確認會面對面同時也會透過網路接觸且認識的人數。"
+review,paragraph:1772,CKH7_3,"H7_3填答人數超過H2或H5填答人數,顯示並設定顯示時間",,,,,restriction/check/display cue needs rule-specific handling,"CKH7_3‧檢查題(顯示題)
+【H7_3填答人數超過H2或H5填答人數,顯示並設定顯示時間】"
+review,paragraph:1774,CKH7_3,貼H7_3答案,,,,,cannot map condition atom: 貼H7_3答案,"受訪者會面對面同時也會透過網路接觸且認識的有【貼H7_3答案】人,不應超過之前答平常一天會固定面對面接觸且認識的【貼題H2】人,也不應超過透過網路接觸且認識的【貼題H5】人,請按「上一題」再確認會面對面同時也會透過網路接觸且認識的人數。"
+review,paragraph:1800,M2,"M1答0者,不需回答此題",,,,,cannot map condition atom: M1答0,"M2‧請問您常常在玩的遊戲類型(包含App遊戲)有哪幾種呢?(可多選)(卡29)【M1答0者,不需回答此題】"
+review,paragraph:1822,M3,"不顯示選項編號,選項(01)-(13)隨機出現",,,,,restriction/check/display cue needs rule-specific handling,"M3‧請問您玩電玩遊戲的主要原因或動機是什麼呢?(可多選)【訪員讀題完畢後,請將平板轉給受訪者選擇,並由訪員協助點選】【不顯示選項編號,選項(01)-(13)隨機出現】【M1答0者,不需回答此題】"
+review,paragraph:1822,M3,"M1答0者,不需回答此題",,,,,cannot map condition atom: M1答0,"M3‧請問您玩電玩遊戲的主要原因或動機是什麼呢?(可多選)【訪員讀題完畢後,請將平板轉給受訪者選擇,並由訪員協助點選】【不顯示選項編號,選項(01)-(13)隨機出現】【M1答0者,不需回答此題】"
+review,paragraph:1841,M4,"M1答0者,不需回答此題",,,,,cannot map condition atom: M1答0,"M4-M6‧當您在玩電玩遊戲的時候,請問您同不同意接下來的一些說法?(卡30)【M4至M6請用群組題方式排版】【M1答0者,不需回答此題】"
+apply,paragraph:1883,N24,"O1答(01)-(05)、(88)者,需回答此題","vO1 in 1,2,3,4,5,88",vN24,,,,"N24‧整體而言,您對於您的工作滿不滿意?(卡33) 【O1答(01)-(05)、(88)者,需回答此題】"
+review,paragraph:2006,Q1,"G1回答0者,不需回答此題",,,,,cannot parse condition atom: G1回答0,"Q1. 最近一個月,請問您有多常透過報紙獲得政治或公共事務的訊息呢? (卡40)【G1回答0者,不需回答此題】【A9答(01)不識字者不需回答此題】"
+apply,paragraph:2006,Q1,A9答(01)不識字者不需回答此題,vA9 in 1,,vQ1,,,"Q1. 最近一個月,請問您有多常透過報紙獲得政治或公共事務的訊息呢? (卡40)【G1回答0者,不需回答此題】【A9答(01)不識字者不需回答此題】"
+review,paragraph:2014,Q2,"F0回答90者,不需回答此題",,,,,cannot parse condition atom: F0回答90,"Q2. 最近一個月,請問您有多常透過雜誌獲得政治或公共事務的訊息呢?(卡40)【F0回答90者,不需回答此題】【A9答(01)不識字者不需回答此題】"
+apply,paragraph:2014,Q2,A9答(01)不識字者不需回答此題,vA9 in 1,,vQ2,,,"Q2. 最近一個月,請問您有多常透過雜誌獲得政治或公共事務的訊息呢?(卡40)【F0回答90者,不需回答此題】【A9答(01)不識字者不需回答此題】"
+review,paragraph:2022,Q3,"C1回答0者,不需回答此題",,,,,cannot parse condition atom: C1回答0,"Q3. 最近一個月,請問您有多常透過廣播獲得政治或公共事務的訊息呢? (卡40)【C1回答0者,不需回答此題】"
+review,paragraph:2024,Q3,"C3答(08)者,選項互斥",vC3m08 in 1,,,,restriction/check/display cue needs rule-specific handling,"□(01) 從來沒有【C3答(08)者,選項互斥】"
+review,paragraph:2031,Q4,"B1及B3皆回答0者,不需回答此題",,,,,cannot parse condition atom: B1及B3皆回答0,"Q4. 最近一個月,請問您有多常透過電視獲得政治或公共事務的訊息呢?(卡40)【B1及B3皆回答0者,不需回答此題】"
+review,paragraph:2033,Q4,"B8答(08)者,選項互斥",vB8m08 in 1,,,,restriction/check/display cue needs rule-specific handling,"□(01) 從來沒有【B8答(08)者,選項互斥】"
+apply,paragraph:2039,Q5,"E1答(01)者,需回答此題",vE1 in 1,vQ5,,,,"Q5. 請問您有沒有透過網路接觸到(包括:觀看、瀏覽、點閱或蒐尋)和「政治或公共事務」有關的新聞、訊息或影片?【E1答(01)者,需回答此題】"
+apply,paragraph:2047,Q6,"Q5答(02)、(97)、(98)者,或K2答(90)者,不需答此題","(vQ5 in 2,97,98 | vK2m90 in 1)",vQ6,,,,"社群媒體(如:Threads、臉書Facebook、Instagram、抖音TikTok等)?(卡41)【Q5答(02)、(97)、(98)者,或K2答(90)者,不需答此題】【不須答此題】"
+review,paragraph:2047,Q6,不須答此題,,,,,cannot parse condition atom: 不須答此題,"社群媒體(如:Threads、臉書Facebook、Instagram、抖音TikTok等)?(卡41)【Q5答(02)、(97)、(98)者,或K2答(90)者,不需答此題】【不須答此題】"
+apply,paragraph:2057,Q7,"Q5答(02)、(97)、(98)者,或K3答(90)者,不需答此題","(vQ5 in 2,97,98 | vK3m90 in 1)",vQ7,,,,"影音平台(如:YouTube)?(卡41)【Q5答(02)、(97)、(98)者,或K3答(90)者,不需答此題】"
+apply,paragraph:2066,Q8,"Q5答(02)、(97)、(98)者,或K1答(90)者,不需答此題","(vQ5 in 2,97,98 | vK1m90 in 1)",vQ8,,,,"通訊軟體(如:LINE、FB messenger)?(卡41)【Q5答(02)、(97)、(98)者,或K1答(90)者,不需答此題】"
+review,paragraph:2077,Q9,"Q5答(02)、(97)、(98)者,或G7和G8和G9和G10和G11皆答(90),不需答此題",,,,,"cannot parse condition atom: G7和G8和G9和G10和G11皆答(90),不","新聞網站(如:ETtoday新聞雲、聯合新聞網等)?(卡41)【Q5答(02)、(97)、(98)者,或G7和G8和G9和G10和G11皆答(90),不需答此題】"
+apply,paragraph:2084,Q10,"E1答(01)者,需回答此題",vE1 in 1,vQ10,,,,"Q10. 請問您有沒有透過網路轉貼、轉寄或分享和「政治或公共事務」有關的新聞、訊息或影片?【E1答(01)者,需回答此題】"
+apply,paragraph:2090,CKQ10,"Q5答(02)者,且Q10答(01)者,需回答此題",vQ5 in 2 & vQ10 in 1,vCKQ10,,,,"【檢查題】CKQ10.請向受訪者說明:【Q5答(02)者,且Q10答(01)者,需回答此題】"
+apply,paragraph:2100,Q11,"Q10答(02)、(97)、(98)者,或K2答(90)者,或Q6答(01)者,不需答此題","(vQ10 in 2,97,98 | vK2m90 in 1 | vQ6 in 1)",vQ11,,,,"社群媒體(如:Threads、臉書Facebook、Instagram、抖音TikTok等)?(卡41)【Q10答(02)、(97)、(98)者,或K2答(90)者,或Q6答(01)者,不需答此題】"
+apply,paragraph:2110,Q12,"Q10答(02)、(97)、(98)者,或K3答(90)者,或Q7答(01)者,不需答此題","(vQ10 in 2,97,98 | vK3m90 in 1 | vQ7 in 1)",vQ12,,,,"影音平台(如:YouTube)?(卡41)【Q10答(02)、(97)、(98)者,或K3答(90)者,或Q7答(01)者,不需答此題】"
+apply,paragraph:2119,Q13,"Q10答(02)、(97)、(98)者,或K1答(90)者,或Q8答(01)者,不需答此題","(vQ10 in 2,97,98 | vK1m90 in 1 | vQ8 in 1)",vQ13,,,,"通訊軟體(如:LINE、FB messenger)?(卡41)【Q10答(02)、(97)、(98)者,或K1答(90)者,或Q8答(01)者,不需答此題】"
+review,paragraph:2128,Q14,"Q10答(02)、(97)、(98)者,或G7和G8和G9和G10和G11皆答(90),或Q9答(01)者,不需答此題",,,,,cannot parse condition atom: G7和G8和G9和G10和G11皆答(90),"Q14.請問您多常透過下列網路平台轉貼、轉寄或分享和「政治或公共事務」有關的新聞、訊息或影片? 新聞網站(如:ETtoday新聞雲、聯合新聞網等)?(卡41)【Q10答(02)、(97)、(98)者,或G7和G8和G9和G10和G11皆答(90),或Q9答(01)者,不需答此題】"
+apply,paragraph:2135,Q15,"E1答(01)者,需回答此題",vE1 in 1,vQ15,,,,"Q15. 請問您有沒有透過網路發布或發表「政治或公共事務」相關的訊息(包含製作影片或評論新聞)?【E1答(01)者,需回答此題】"
+apply,paragraph:2142,Q16,"Q15答(02)、(97)、(98)者,或K2答(90)者,不需答此題","(vQ15 in 2,97,98 | vK2m90 in 1)",vQ16,,,,"社群媒體(如:Threads、臉書Facebook、Instagram、抖音TikTok等)?(卡41)【Q15答(02)、(97)、(98)者,或K2答(90)者,不需答此題】"
+apply,paragraph:2152,Q17,"Q15答(02)、(97)、(98)者,或K3答(90)者,不需答此題","(vQ15 in 2,97,98 | vK3m90 in 1)",vQ17,,,,"影音平台(如:YouTube)?(卡41)【Q15答(02)、(97)、(98)者,或K3答(90)者,不需答此題】"
+apply,paragraph:2161,Q18,"Q15答(02)、(97)、(98)者,或K1答(90)者,不需答此題","(vQ15 in 2,97,98 | vK1m90 in 1)",vQ18,,,,"通訊軟體(如:LINE、FB messenger)?(卡41)【Q15答(02)、(97)、(98)者,或K1答(90)者,不需答此題】"
+review,paragraph:2170,Q19,"Q15答(02)、(97)、(98)者,或G7和G8和G9和G10和G11皆答(90),不需答此題",,,,,"cannot parse condition atom: G7和G8和G9和G10和G11皆答(90),不","Q19.請問您多常透過下列網路平台發「政治或公共事務」相關的訊息(包含製作影片或評論新聞)?新聞網站(如:ETtoday新聞雲、聯合新聞網等)?(卡41)【Q15答(02)、(97)、(98)者,或G7和G8和G9和G10和G11皆答(90),不需答此題】"
+review,paragraph:2178,Q20,"B1答0,且B3答0,且E1答(02)者,與選項(01)互斥",vB1 in 0 & vB3 in 0 & vE1 in 2,,,,restriction/check/display cue needs rule-specific handling,"□(01)談話性政論節目(不論是從電視或YouTube上觀看都算)【B1答0,且B3答0,且E1答(02)者,與選項(01)互斥】"
+review,paragraph:2179,Q20,"E1答(02)者,與選項(02)互斥",vE1 in 2,,,,restriction/check/display cue needs rule-specific handling,"□(02)政治人物(是指透過他們YouTube頻道、臉書粉專、IG帳號上的貼文、直播和預錄影片)【E1答(02)者,與選項(02)互斥】"
+review,paragraph:2180,Q20,"E1答(02)者,與選項(03)互斥",vE1 in 2,,,,restriction/check/display cue needs rule-specific handling,"□(03)網紅或公眾人物影片(是指從他們YouTube頻道、臉書粉專、IG帳號、直播與直播結束後的留存影片都算)【E1答(02)者,與選項(03)互斥】"
+review,paragraph:2181,Q20,"E1答(02)者,與選項(04)互斥",vE1 in 2,,,,restriction/check/display cue needs rule-specific handling,"□(04)播客(Podcast)的節目【E1答(02)者,與選項(04)互斥】"
+review,paragraph:2182,Q20,"E1答(02)者,與選項(05)互斥",vE1 in 2,,,,restriction/check/display cue needs rule-specific handling,"□(05)論壇的文章或留言(例如:PTT或Dcard)【E1答(02)者,與選項(05)互斥】"
+apply,paragraph:2189,CKQ20A,"Q5答(02)者,且Q20答(02)~(05)者,需回答此題",vQ5 in 2 & vQ20m02 in 1 | vQ20m03 in 1 | vQ20m04 in 1 | vQ20m05 in 1,vCKQ20A,,,,"【檢查題】CKQ20A.請向受訪者說明:【Q5答(02)者,且Q20答(02)~(05)者,需回答此題】"
+apply,paragraph:2197,CKQ20B,"Q5答(02)者,且Q20答(01)者,且B1答0,且B3答0者,需回答此題",vQ5 in 2 & vQ20m01 in 1 & vB1 in 0 & vB3 in 0,vCKQ20B,,,,"【檢查題】CKQ20B.請向受訪者說明:【Q5答(02)者,且Q20答(01)者,且B1答0,且B3答0者,需回答此題】"
+review,paragraph:2204,Q24,"Q20答(01)者,需回答此題",vQ20m01 in 1,,,,target qid Q24 not found in all sheet,"Q24 請問您每星期大約會看幾個小時的「談話性政論節目」(不論是從電視或YouTube上觀看都算)?【Q20答(01)者,需回答此題】【數值題,小時範圍:0-140、997、998;分鐘範圍:0-59、97、98】"
+review,paragraph:2211,CKQ24,Q24填答0時0分顯示並設定顯示時間,,,,,restriction/check/display cue needs rule-specific handling,"CKQ24 檢查題(顯示題)【Q24填答0時0分顯示並設定顯示時間】
+【請注意】"
+apply,paragraph:2215,Q25,"Q20答(01)者,需回答此題",vQ20m01 in 1,"vQ25m01,vQ25m02,vQ25m03,vQ25m04,vQ25m05,vQ25m06,vQ25m07,vQ25m08,vQ25m09,vQ25m10,vQ25m11,vQ25m12,vQ25m13,vQ25m14,vQ25m15,vQ25m16,vQ25m17,vQ25m18,vQ25m19,vQ25m20,vQ25m21,vQ25m22,vQ25m23,vQ25m24,vQ25m25,vQ25m26,vQ25m27,vQ25m28,vQ25m29,vQ25m30,vQ25m31,vQ25m88",,,,"Q25 請問您最常透過哪些談話性政論節目獲得政治或公共事務相關訊息?(可多選)【Q20答(01)者,需回答此題】 (卡43)"
+review,paragraph:2218,Q21,"Q20答(02)或(03)者,需回答此題",vQ20m02 in 1 | vQ20m03 in 1,,,,target qid Q21 not found in all sheet,"Q21 請問您每星期大約會看幾個小時的「政治人物或政治網紅影片」(不論是從YouTube、臉書、IG都算,包括直播與直播結束後的留存影片)?【Q20答(02)或(03)者,需回答此題】【數值題,小時範圍:0-140、997、998;分鐘範圍:0-59、97、98】"
+review,paragraph:2227,CKQ21,Q21填答0時0分顯示並設定顯示時間,,,,,restriction/check/display cue needs rule-specific handling,CKQ21檢查題(顯示題)【Q21填答0時0分顯示並設定顯示時間】
+apply,paragraph:2233,Q22,"Q20答(02)者,需回答此題",vQ20m02 in 1,"vQ22m01,vQ22m02,vQ22m03,vQ22m04,vQ22m05,vQ22m06,vQ22m07,vQ22m08,vQ22m09,vQ22m10,vQ22m11,vQ22m12,vQ22m13,vQ22m14,vQ22m15,vQ22m16,vQ22m17,vQ22m18,vQ22m19,vQ22m20,vQ22m21,vQ22m22,vQ22m23,vQ22m24,vQ22m25,vQ22m26,vQ22m27,vQ22m28,vQ22m29,vQ22m30,vQ22m31,vQ22m32,vQ22m33,vQ22m34,vQ22m35,vQ22m36,vQ22m37,vQ22m38,vQ22m39,vQ22m40,vQ22m88",,,,"Q22 在以下經常談論政治或公共事務的政治人物中,請問您最常觀看誰的影片或貼文?(是指透過政治人物YouTube頻道、臉書粉專、IG帳號上的貼文、直播和預錄影片)(可多選) 【Q20答(02)者,需回答此題】(卡44)"
+apply,paragraph:2234,Q23,"Q20答(03)者,需回答此題",vQ20m03 in 1,"vQ23m01,vQ23m02,vQ23m03,vQ23m04,vQ23m05,vQ23m06,vQ23m07,vQ23m08,vQ23m09,vQ23m10,vQ23m11,vQ23m12,vQ23m13,vQ23m14,vQ23m15,vQ23m16,vQ23m17,vQ23m18,vQ23m19,vQ23m20,vQ23m21,vQ23m22,vQ23m23,vQ23m24,vQ23m25,vQ23m26,vQ23m27,vQ23m88",,,,"Q23在以下經常談論政治或公共事務的網紅或公眾人物中,請問您最常觀看誰的影片?(可多選) (卡45)【Q20答(03)者,需回答此題】"
+review,paragraph:2236,Q26A,"Q20答(04)者,需回答此題",vQ20m04 in 1,,,,target qid Q26A not found in all sheet,"Q26A請問您每星期大約會聽幾個小時和「政治或公共事務」有關的播客(Podcast)?【Q20答(04)者,需回答此題】【數值題,小時範圍:0-140、997、998;分鐘範圍:0-59、97、98】"
+review,paragraph:2242,CKQ26A,Q26A填答0時0分顯示並設定顯示時間,,,,,restriction/check/display cue needs rule-specific handling,"CKQ26A檢查題(顯示題)【Q26A填答0時0分顯示並設定顯示時間】
+【請注意】"
+apply,paragraph:2246,Q26,"Q20答(04)者,需回答此題",vQ20m04 in 1,"vQ26m01,vQ26m02,vQ26m03,vQ26m04,vQ26m05,vQ26m06,vQ26m07,vQ26m08,vQ26m09,vQ26m10,vQ26m11,vQ26m12,vQ26m13,vQ26m14,vQ26m15,vQ26m16,vQ26m17,vQ26m18,vQ26m19,vQ26m20,vQ26m21,vQ26m22,vQ26m23,vQ26m24,vQ26m25,vQ26m26,vQ26m27,vQ26m28,vQ26m29,vQ26m88",,,,"Q26除了新聞,您最常透過哪些播客(Podcast)節目獲得政治或公共事務相關資訊?(可多選)(卡46)【Q20答(04)者,需回答此題】"
+review,paragraph:2248,Q27,"Q1、Q2、Q3、Q4答(01),且Q5、Q10、Q15答(02),且Q20回答(90)者,不需回答此題",,,,,cannot parse condition atom: Q20回答(90),"Q27請問您想要獲得政治或公共事務相關訊息的原因是什麼?(可多選)(卡47)【Q1、Q2、Q3、Q4答(01),且Q5、Q10、Q15答(02),且Q20回答(90)者,不需回答此題】"
+apply,paragraph:2262,P3_4,"E1答(01)者,需答此題",vE1 in 1,vP3_4,,,,"【譚躍委員】P3_4‧您多常在網路上看到或聽到和您立場不同的政治觀點?【E1答(01)者,需答此題】(卡48)"
+apply,paragraph:2268,CKP3_4,"Q5答(02)者,且P3_4答(02)~(04)者,需回答此題","vQ5 in 2 & vP3_4 in 2,3,4",vCKP3_4,,,,"【檢查題】CKP3_4.請向受訪者說明:【Q5答(02)者,且P3_4答(02)~(04)者,需回答此題】"
+apply,paragraph:2278,P3_5,"K2答(90)、(97)、(98)者,或Q5答(02)者,不需答此題",(vK2m90 in 1 | vQ5 in 2),vP3_5,,,,"【譚躍委員】P3_5‧您使用【K2貼題】時,多常看到或聽到與您立場不同的政治觀點?【K2答(90)、(97)、(98)者,或Q5答(02)者,不需答此題】(卡48)"
+review,paragraph:2285,P3_6,"Q20答(02)、或(03)者,需回答此題",,,,,cannot parse condition atom: (03),"【譚躍委員】P3_6‧您使用意見領袖(例如:政治人物、網紅或公眾人物)的自媒體時,多常看到或聽到與您立場不同的政治觀點?(卡48)【Q20答(02)、或(03)者,需回答此題】"
+apply,paragraph:2332,Q30,"E1答(01)者,需回答此題",vE1 in 1,"vQ30m01,vQ30m02,vQ30m03,vQ30m04,vQ30m05,vQ30m06,vQ30m07,vQ30m08,vQ30m90",,,,"首先針對「網路上」來詢問,請問您最近一年有沒有在網路上做過這些和「政治或公共事務」議題相關的活動?(可多選)(卡50) 【E1答(01)者,需回答此題】"
+review,paragraph:2467,Q43,"受訪者若不是94~96年次者選08,請訪員再確認",,,,,"cannot parse condition atom: 受訪若不是94~96年次選08,請訪員再確認","□(08)當時沒有投票權【受訪者若不是94~96年次者選08,請訪員再確認】【A1答94、95、96者,或A2答(01),只能選此項】"
+review,paragraph:2467,Q43,"A1答94、95、96者,或A2答(01),只能選此項",(vA1 in 94 | vA2 in 1),,,,not an answer-required/not-required cue,"□(08)當時沒有投票權【受訪者若不是94~96年次者選08,請訪員再確認】【A1答94、95、96者,或A2答(01),只能選此項】"
+review,paragraph:2472,Q44,"A1為96者,或A2答(01)者,不需答此題",,,,,cannot parse condition atom: A1為96,"Q44. 今年年底是縣市長選舉,請問如果明天就是投票日,在您戶籍地的縣市長候選人當中,請問您會把票投給哪一黨的候選人?(卡59)【A1為96者,或A2答(01)者,不需答此題】"
+apply,paragraph:2517,Q50,"Q49答(02)、(97)、(98),需答此題","vQ49 in 2,97,98",vQ50,,,,"Q50那相對來說,請問您有沒有稍微偏向支持哪一個政黨?【Q49答(02)、(97)、(98),需答此題】"
+apply,paragraph:2519,Q51,"Q49答(01),或Q50答(01),需答此題",(vQ49 in 1 | vQ50 in 1),vQ51,,,,"Q51請問是哪一個政黨?(卡61) 【Q49答(01),或Q50答(01),需答此題】"
+apply,paragraph:2522,Q52,"Q51答(01) ~ (88),需答此題","vQ51 in 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88",vQ52,,,,"Q52請問,您偏向【貼題Q51】這個政黨的程度是很強,普通,還是有一點?【Q51答(01) ~ (88),需答此題】"
+apply,paragraph:2591,Z2_2,"D1答(03)者,不需答此題",vD1 in 3,vZ2_2,,,,"Z2_2‧為了確保這份問卷資料的品質,我們中心可能會進行簡單的電話複查確認是否確實來做了訪問,可否請您將您的手機號碼告訴我們?【D1答(03)者,不需答此題】"
+review,paragraph:2604,CKZE1,"A09選(01)者,或E1選(02)、(97)、(98),需回答此題",,,,,cannot parse condition atom: A09選(01),"CKZE1‧受訪者不識字或沒有上網行為,不需詢問後續追蹤訪問。【A09選(01)者,或E1選(02)、(97)、(98),需回答此題】"
+review,paragraph:2606,ZE2,"A09選(01)者,或E1選(02)、(97)、(98),不需回答此題",,,,,cannot parse condition atom: A09選(01),"ZE2‧為持續瞭解民眾對傳播媒體、新興媒體及時事議題的看法,未來想繼續邀請您填答我們的網路追蹤問卷。若您現在同意參加,可立即獲得新臺幣100元超商商品卡;未來實際完成問卷填答後,也會另外再贈送超商商品卡做為回饋。您提供的聯絡資料僅供研究聯繫使用,並會依法妥善保管。詳細內容,請參考這份同意書說明。(請訪員拿出追蹤同意書)【A09選(01)者,或E1選(02)、(97)、(98),不需回答此題】(可多選)"
+review,paragraph:2609,ZE2,"D1答(03)者,與選項(02)互斥",vD1 in 3,,,,restriction/check/display cue needs rule-specific handling,"(01) 願意,提供手機號碼【D1答(03)者,與選項(02)互斥】【續答ZE2_2】"
+review,paragraph:2609,ZE2,續答ZE2_2,,,,,cannot parse condition atom: 續答ZE2_2,"(01) 願意,提供手機號碼【D1答(03)者,與選項(02)互斥】【續答ZE2_2】"
+review,paragraph:2610,ZE2,續答ZE2_3,,,,,cannot parse condition atom: 續答ZE2_3,"(02) 願意,提供Email【續答ZE2_3】"
+apply,paragraph:2617,ZE2_1,"ZE2答(01)或(02),需答此題",vZE2m01 in 1 | vZE2m02 in 1,vZE2_1,,,,"___________【ZE2答(01)或(02),需答此題】"
+apply,paragraph:2622,ZE2_2,"ZE2答(01),需答此題",vZE2m01 in 1,vZE2_2,,,,"ZE2_2‧請問您的手機號碼?(請訪員唸出同意書上號碼,確認無誤後鍵入以下欄位)___________【ZE2答(01),需答此題】"
+apply,paragraph:2624,ZE2_3,"ZE2答(02),需答此題",vZE2m02 in 1,vZE2_3,,,,"ZE2_3‧請問您的Email?(請訪員唸出同意書上email,確認無誤後鍵入以下欄位) ___________【ZE2答(02),需答此題】"
+review,table15:5,N38,E1答(02)者選項互斥,vE1 in 2,,,,restriction/check/display cue needs rule-specific handling,□(05)57 爆新聞 | □(16)庶民大頭家(哈遠儀) | □(27)大新聞大爆卦(馬千惠)* / 【E1答(02)者選項互斥】
+review,table15:6,N38,E1答(02)者選項互斥,vE1 in 2,,,,restriction/check/display cue needs rule-specific handling,□(06)新台灣加油(許貴雅) | □(17) 94 要客訴 | □(28)頭條開講(周玉琴)* / 【E1答(02)者選項互斥】
+review,table15:7,N38,E1答(02)者選項互斥,vE1 in 2,,,,restriction/check/display cue needs rule-specific handling,□(07)環球大戰線 | □(18) 狠狠抖內幕 | □(29)國際直球對決(林嘉源)* / 【E1答(02)者選項互斥】
+review,table15:8,N38,E1答(02)者選項互斥,vE1 in 2,,,,restriction/check/display cue needs rule-specific handling,□(08)突發琪想(安幼琪) | □(19)新聞大白話(錢怡君、翟翾) | □(30)前進戰略高地(許甫)* / 【E1答(02)者選項互斥】
+review,table15:9,N38,E1答(02)者選項互斥,vE1 in 2,,,,restriction/check/display cue needs rule-specific handling,□(09)辣晚報 | □(20) 全球大視野 | □(31)週末大爆卦(李珮瑄)* / 【E1答(02)者選項互斥】
