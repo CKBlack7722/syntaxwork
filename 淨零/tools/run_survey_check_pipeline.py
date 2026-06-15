@@ -39,7 +39,7 @@ PROJECTS = {
 
 
 def run_command(args: list[str], cwd: Path = ROOT) -> dict[str, Any]:
-    proc = subprocess.run(args, cwd=str(cwd), text=True, capture_output=True, timeout=120)
+    proc = subprocess.run(args, cwd=str(cwd), text=True, capture_output=True, timeout=240)
     return {
         "args": args,
         "returncode": proc.returncode,
@@ -168,6 +168,46 @@ def run_project(
         )
     )
 
+    numeric_sps = generated / "numeric_checks_generated.sps"
+    numeric_check_report = generated / "numeric_checks_report.json"
+    numeric_check_command = run_command(
+        [
+            sys.executable,
+            str(TOOLS / "generate_numeric_checks.py"),
+            "--workbook",
+            str(workbook),
+            "--output",
+            str(numeric_sps),
+            "--report",
+            str(numeric_check_report),
+        ]
+    )
+    commands.append(numeric_check_command)
+    if numeric_check_command["returncode"] == 0 and numeric_sps.exists():
+        sections.append(numeric_sps)
+    else:
+        unresolved.append({"area": "numeric_to_spss", "message": "Numeric SPSS generation failed or did not produce an output file."})
+
+    open_sps = generated / "open_checks_generated.sps"
+    open_check_report = generated / "open_checks_report.json"
+    open_check_command = run_command(
+        [
+            sys.executable,
+            str(TOOLS / "generate_open_checks.py"),
+            "--workbook",
+            str(workbook),
+            "--output",
+            str(open_sps),
+            "--report",
+            str(open_check_report),
+        ]
+    )
+    commands.append(open_check_command)
+    if open_check_command["returncode"] == 0 and open_sps.exists():
+        sections.append(open_sps)
+    else:
+        unresolved.append({"area": "open_to_spss", "message": "Open-field SPSS generation failed or did not produce an output file."})
+
     multi_sps = generated / "multi_checks_generated.sps"
     multi_report = generated / "multi_checks_report.json"
     multi_compare = generated / "multi_checks_compare.json"
@@ -223,13 +263,34 @@ def run_project(
             )
             commands.append(static_command)
             if static_command["returncode"] == 0:
-                sections.insert(0, logic_sps)
+                sections.append(logic_sps)
             else:
                 unresolved.append({"area": "logic", "message": "Logic syntax was generated but did not pass static checks."})
         else:
             unresolved.append({"area": "logic", "message": "Logic generation failed or did not produce an output file."})
     else:
         unresolved.append({"area": "logic", "message": "Workbook has no 邏輯組 sheet; skipped logic generation."})
+
+    external_sps = generated / "external_check_syntax_generated.sps"
+    external_report = generated / "external_check_syntax_report.json"
+    if has_sheet(workbook, "檢核項目清單"):
+        external_command = run_command(
+            [
+                sys.executable,
+                str(TOOLS / "generate_external_check_spss.py"),
+                "--workbook",
+                str(workbook),
+                "--output",
+                str(external_sps),
+                "--report",
+                str(external_report),
+            ]
+        )
+        commands.append(external_command)
+        if external_command["returncode"] == 0 and external_sps.exists():
+            sections.append(external_sps)
+        else:
+            unresolved.append({"area": "external_checks", "message": "External check syntax generation failed or did not produce an output file."})
 
     combined = generated / "all_checks_generated.sps"
     if sections:
@@ -248,10 +309,6 @@ def run_project(
                 "area": "word_to_open_fields",
                 "message": "Direct Word-to-開放欄位 generation is not implemented yet; current pipeline only records this gap.",
             },
-            {
-                "area": "numeric_to_spss",
-                "message": "Numeric SPSS syntax generation is not yet combined; current pipeline generates r1-r4 proposals for review.",
-            },
         ]
     )
 
@@ -267,12 +324,18 @@ def run_project(
             "precheck_report": str(precheck_report),
             "open_csv": str(open_csv),
             "open_report": str(open_report),
+            "numeric_sps": str(numeric_sps),
+            "numeric_check_report": str(numeric_check_report),
+            "open_sps": str(open_sps),
+            "open_check_report": str(open_check_report),
             "multi_sps": str(multi_sps),
             "multi_report": str(multi_report),
             "multi_compare": str(multi_compare),
             "logic_sps": str(logic_sps) if logic_sps.exists() else "",
             "logic_report": str(logic_report) if logic_report.exists() else "",
             "combined_sps": str(combined) if combined.exists() else "",
+            "external_sps": str(external_sps) if external_sps.exists() else "",
+            "external_report": str(external_report) if external_report.exists() else "",
         },
         "unresolved": unresolved,
     }

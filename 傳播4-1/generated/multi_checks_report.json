@@ -6,7 +6,7 @@
       "row": 2,
       "m": "1101",
       "p": "1101",
-      "display_name": "vK1",
+      "display_name": "K1",
       "group_key": "vK1",
       "vars": [
         "vK1m01",
@@ -33,7 +33,7 @@
       "row": 3,
       "m": "1102",
       "p": "1102",
-      "display_name": "vK2",
+      "display_name": "K2",
       "group_key": "vK2",
       "vars": [
         "vK2m01",
@@ -59,7 +59,7 @@
       "row": 4,
       "m": "1103",
       "p": "1103",
-      "display_name": "vKFB3",
+      "display_name": "KFB3",
       "group_key": "vKFB3",
       "vars": [
         "vKFB3m01",
@@ -89,7 +89,7 @@
       "row": 5,
       "m": "1104",
       "p": "1104",
-      "display_name": "vKFB4",
+      "display_name": "KFB4",
       "group_key": "vKFB4",
       "vars": [
         "vKFB4m01",
@@ -120,7 +120,7 @@
       "row": 6,
       "m": "1105",
       "p": "1105",
-      "display_name": "vKIG3",
+      "display_name": "KIG3",
       "group_key": "vKIG3",
       "vars": [
         "vKIG3m01",
@@ -150,7 +150,7 @@
       "row": 7,
       "m": "1106",
       "p": "1106",
-      "display_name": "vKIG4",
+      "display_name": "KIG4",
       "group_key": "vKIG4",
       "vars": [
         "vKIG4m01",
@@ -177,7 +177,7 @@
       "row": 8,
       "m": "1107",
       "p": "1107",
-      "display_name": "vKTT3",
+      "display_name": "KTT3",
       "group_key": "vKTT3",
       "vars": [
         "vKTT3m01",
@@ -206,7 +206,7 @@
       "row": 9,
       "m": "1108",
       "p": "1108",
-      "display_name": "vKTT4",
+      "display_name": "KTT4",
       "group_key": "vKTT4",
       "vars": [
         "vKTT4m01",
@@ -233,7 +233,7 @@
       "row": 10,
       "m": "1109",
       "p": "1109",
-      "display_name": "vKTT5",
+      "display_name": "KTT5",
       "group_key": "vKTT5",
       "vars": [
         "vKTT5m01",
@@ -258,7 +258,7 @@
       "row": 11,
       "m": "1110",
       "p": "1110",
-      "display_name": "vK3",
+      "display_name": "K3",
       "group_key": "vK3",
       "vars": [
         "vK3m01",
@@ -281,7 +281,7 @@
       "row": 12,
       "m": "1111",
       "p": "1111",
-      "display_name": "vE2",
+      "display_name": "E2",
       "group_key": "vE2",
       "vars": [
         "vE2m01",
@@ -298,7 +298,7 @@
       "row": 13,
       "m": "1112",
       "p": "1112",
-      "display_name": "vE13",
+      "display_name": "E13",
       "group_key": "vE13",
       "vars": [
         "vE13m01",
@@ -317,7 +317,7 @@
       "row": 14,
       "m": "1113",
       "p": "1113",
-      "display_name": "vG7",
+      "display_name": "G7",
       "group_key": "vG7",
       "vars": [
         "vG7m01",
@@ -343,7 +343,7 @@
       "row": 15,
       "m": "1114",
       "p": "1114",
-      "display_name": "vG8",
+      "display_name": "G8",
       "group_key": "vG8",
       "vars": [
         "vG8m01",
@@ -373,7 +373,7 @@
       "row": 16,
       "m": "1115",
       "p": "1115",
-      "display_name": "vG9",
+      "display_name": "G9",
       "group_key": "vG9",
       "vars": [
         "vG9m01",
@@ -400,7 +400,7 @@
       "row": 17,
       "m": "1116",
       "p": "1116",
-      "display_name": "vG10",
+      "display_name": "G10",
       "group_key": "vG10",
       "vars": [
         "vG10m01",
@@ -433,7 +433,7 @@
       "row": 18,
       "m": "1117",
       "p": "1117",
-      "display_name": "vG11",
+      "display_name": "G11",
       "group_key": "vG11",
       "vars": [
         "vG11m01",
@@ -452,7 +452,7 @@
       "row": 19,
       "m": "1118",
       "p": "1118",
-      "display_name": "vB7a",
+      "display_name": "B7a",
       "group_key": "vB7a",
       "vars": [
         "vB7am01",
@@ -519,7 +519,7 @@
       "row": 20,
       "m": "1119",
       "p": "1119",
-      "display_name": "vB8",
+      "display_name": "B8",
       "group_key": "vB8",
       "vars": [
         "vB8m01",
@@ -542,7 +542,7 @@
       "row": 21,
       "m": "1120",
       "p": "1120",
-      "display_name": "vG3",
+      "display_name": "G3",
       "group_key": "vG3",
       "vars": [
         "vG3m01",
@@ -587,7 +587,7 @@
       "row": 22,
       "m": "1121",
       "p": "1121",
-      "display_name": "vF5",
+      "display_name": "F5",
       "group_key": "vF5",
       "vars": [
         "vF5m01",
@@ -608,7 +608,7 @@
       "row": 23,
       "m": "1122",
       "p": "1122",
-      "display_name": "vC3",
+      "display_name": "C3",
       "group_key": "vC3",
       "vars": [
         "vC3m01",
@@ -632,7 +632,7 @@
       "row": 24,
       "m": "1123",
       "p": "1123",
-      "display_name": "vJB1",
+      "display_name": "JB1",
       "group_key": "vJB1",
       "vars": [
         "vJB1m01",
@@ -657,7 +657,7 @@
       "row": 25,
       "m": "1124",
       "p": "1124",
-      "display_name": "vJB2",
+      "display_name": "JB2",
       "group_key": "vJB2",
       "vars": [
         "vJB2m01",
@@ -678,7 +678,7 @@
       "row": 26,
       "m": "1125",
       "p": "1125",
-      "display_name": "vM2",
+      "display_name": "M2",
       "group_key": "vM2",
       "vars": [
         "vM2m01",
@@ -707,7 +707,7 @@
       "row": 27,
       "m": "1126",
       "p": "1126",
-      "display_name": "vM3",
+      "display_name": "M3",
       "group_key": "vM3",
       "vars": [
         "vM3m01",
@@ -733,7 +733,7 @@
       "row": 28,
       "m": "1127",
       "p": "1127",
-      "display_name": "vQ20",
+      "display_name": "Q20",
       "group_key": "vQ20",
       "vars": [
         "vQ20m01",
@@ -753,7 +753,7 @@
       "row": 29,
       "m": "1128",
       "p": "1128",
-      "display_name": "vQ25",
+      "display_name": "Q25",
       "group_key": "vQ25",
       "vars": [
         "vQ25m01",
@@ -797,7 +797,7 @@
       "row": 30,
       "m": "1129",
       "p": "1129",
-      "display_name": "vQ22",
+      "display_name": "Q22",
       "group_key": "vQ22",
       "vars": [
         "vQ22m01",
@@ -850,7 +850,7 @@
       "row": 31,
       "m": "1130",
       "p": "1130",
-      "display_name": "vQ23",
+      "display_name": "Q23",
       "group_key": "vQ23",
       "vars": [
         "vQ23m01",
@@ -885,6 +885,125 @@
       "no_response_codes": [
         "96"
       ]
+    },
+    {
+      "row": 32,
+      "m": "1131",
+      "p": "1131",
+      "display_name": "Q26",
+      "group_key": "vQ26",
+      "vars": [
+        "vQ26m01",
+        "vQ26m02",
+        "vQ26m03",
+        "vQ26m04",
+        "vQ26m05",
+        "vQ26m06",
+        "vQ26m07",
+        "vQ26m08",
+        "vQ26m09",
+        "vQ26m10",
+        "vQ26m11",
+        "vQ26m12",
+        "vQ26m13",
+        "vQ26m14",
+        "vQ26m15",
+        "vQ26m16",
+        "vQ26m17",
+        "vQ26m18",
+        "vQ26m19",
+        "vQ26m20",
+        "vQ26m21",
+        "vQ26m22",
+        "vQ26m23",
+        "vQ26m24",
+        "vQ26m25",
+        "vQ26m26",
+        "vQ26m27",
+        "vQ26m28",
+        "vQ26m29",
+        "vQ26m88"
+      ],
+      "no_response_codes": [
+        "96"
+      ]
+    },
+    {
+      "row": 33,
+      "m": "1132",
+      "p": "1132",
+      "display_name": "Q27",
+      "group_key": "vQ27",
+      "vars": [
+        "vQ27m01",
+        "vQ27m02",
+        "vQ27m03",
+        "vQ27m04",
+        "vQ27m05",
+        "vQ27m06",
+        "vQ27m07",
+        "vQ27m88"
+      ],
+      "no_response_codes": [
+        "96"
+      ]
+    },
+    {
+      "row": 34,
+      "m": "1133",
+      "p": "1133",
+      "display_name": "Q30",
+      "group_key": "vQ30",
+      "vars": [
+        "vQ30m01",
+        "vQ30m02",
+        "vQ30m03",
+        "vQ30m04",
+        "vQ30m05",
+        "vQ30m06",
+        "vQ30m07",
+        "vQ30m08",
+        "vQ30m90"
+      ],
+      "no_response_codes": [
+        "90"
+      ]
+    },
+    {
+      "row": 35,
+      "m": "1134",
+      "p": "1134",
+      "display_name": "Q31",
+      "group_key": "vQ31",
+      "vars": [
+        "vQ31m01",
+        "vQ31m02",
+        "vQ31m03",
+        "vQ31m04",
+        "vQ31m05",
+        "vQ31m06",
+        "vQ31m07",
+        "vQ31m08",
+        "vQ31m90"
+      ],
+      "no_response_codes": [
+        "90"
+      ]
+    },
+    {
+      "row": 36,
+      "m": "1135",
+      "p": "1135",
+      "display_name": "ZE2",
+      "group_key": "vZE2",
+      "vars": [
+        "vZE2m01",
+        "vZE2m02",
+        "vZE2m03"
+      ],
+      "no_response_codes": [
+        "96"
+      ]
     }
   ],
   "mutex_rules": [
@@ -892,7 +1011,7 @@
       "row": 2,
       "m": "1201",
       "p": "1201",
-      "display_name": "vK1",
+      "display_name": "K1",
       "exclusive_code": "90",
       "exclusive_var": "vK1m90",
       "other_vars": [
@@ -917,7 +1036,7 @@
       "row": 3,
       "m": "1202",
       "p": "1202",
-      "display_name": "vK2",
+      "display_name": "K2",
       "exclusive_code": "90",
       "exclusive_var": "vK2m90",
       "other_vars": [
@@ -941,7 +1060,7 @@
       "row": 4,
       "m": "1203",
       "p": "1203",
-      "display_name": "vK3",
+      "display_name": "K3",
       "exclusive_code": "90",
       "exclusive_var": "vK3m90",
       "other_vars": [
@@ -962,7 +1081,7 @@
       "row": 5,
       "m": "1204",
       "p": "1204",
-      "display_name": "vQ20",
+      "display_name": "Q20",
       "exclusive_code": "90",
       "exclusive_var": "vQ20m90",
       "other_vars": [
@@ -975,26 +1094,269 @@
         "vQ20m88"
       ],
       "recovered_from_main": false
+    },
+    {
+      "row": 6,
+      "m": "1205",
+      "p": "1205",
+      "display_name": "Q30",
+      "exclusive_code": "90",
+      "exclusive_var": "vQ30m90",
+      "other_vars": [
+        "vQ30m01",
+        "vQ30m02",
+        "vQ30m03",
+        "vQ30m04",
+        "vQ30m05",
+        "vQ30m06",
+        "vQ30m07",
+        "vQ30m08"
+      ],
+      "recovered_from_main": false
+    },
+    {
+      "row": 7,
+      "m": "1206",
+      "p": "1206",
+      "display_name": "Q31",
+      "exclusive_code": "90",
+      "exclusive_var": "vQ31m90",
+      "other_vars": [
+        "vQ31m01",
+        "vQ31m02",
+        "vQ31m03",
+        "vQ31m04",
+        "vQ31m05",
+        "vQ31m06",
+        "vQ31m07",
+        "vQ31m08"
+      ],
+      "recovered_from_main": false
+    },
+    {
+      "row": 8,
+      "m": "1207",
+      "p": "1207",
+      "display_name": "ZE2",
+      "exclusive_code": "3",
+      "exclusive_var": "vZE2m03",
+      "other_vars": [
+        "vZE2m01",
+        "vZE2m02"
+      ],
+      "recovered_from_main": false
     }
   ],
   "issues": [
     {
-      "level": "error",
-      "sheet": "複選題內_互斥",
+      "level": "warning",
+      "sheet": "複選題1101",
+      "row": 2,
+      "message": "加總程式未使用實際變項清單範圍 vK1m01 to vK1m90；產生器已忽略此公式欄"
+    },
+    {
+      "level": "warning",
+      "sheet": "複選題1101",
+      "row": 3,
+      "message": "加總程式未使用實際變項清單範圍 vK2m01 to vK2m90；產生器已忽略此公式欄"
+    },
+    {
+      "level": "warning",
+      "sheet": "複選題1101",
+      "row": 4,
+      "message": "加總程式未使用實際變項清單範圍 vKFB3m01 to vKFB3m88；產生器已忽略此公式欄"
+    },
+    {
+      "level": "warning",
+      "sheet": "複選題1101",
+      "row": 5,
+      "message": "加總程式未使用實際變項清單範圍 vKFB4m01 to vKFB4m88；產生器已忽略此公式欄"
+    },
+    {
+      "level": "warning",
+      "sheet": "複選題1101",
       "row": 6,
-      "message": "互斥題號 vQ30 找不到對應複選題分組；此列未產生"
+      "message": "加總程式未使用實際變項清單範圍 vKIG3m01 to vKIG3m88；產生器已忽略此公式欄"
     },
     {
-      "level": "error",
-      "sheet": "複選題內_互斥",
+      "level": "warning",
+      "sheet": "複選題1101",
       "row": 7,
-      "message": "互斥題號 vQ31 找不到對應複選題分組；此列未產生"
+      "message": "加總程式未使用實際變項清單範圍 vKIG4m01 to vKIG4m88；產生器已忽略此公式欄"
     },
     {
-      "level": "error",
-      "sheet": "複選題內_互斥",
+      "level": "warning",
+      "sheet": "複選題1101",
       "row": 8,
-      "message": "互斥題號 vZE2 找不到對應複選題分組；此列未產生"
+      "message": "加總程式未使用實際變項清單範圍 vKTT3m01 to vKTT3m88；產生器已忽略此公式欄"
+    },
+    {
+      "level": "warning",
+      "sheet": "複選題1101",
+      "row": 9,
+      "message": "加總程式未使用實際變項清單範圍 vKTT4m01 to vKTT4m88；產生器已忽略此公式欄"
+    },
+    {
+      "level": "warning",
+      "sheet": "複選題1101",
+      "row": 10,
+      "message": "加總程式未使用實際變項清單範圍 vKTT5m01 to vKTT5m88；產生器已忽略此公式欄"
+    },
+    {
+      "level": "warning",
+      "sheet": "複選題1101",
+      "row": 11,
+      "message": "加總程式未使用實際變項清單範圍 vK3m01 to vK3m90；產生器已忽略此公式欄"
+    },
+    {
+      "level": "warning",
+      "sheet": "複選題1101",
+      "row": 12,
+      "message": "加總程式未使用實際變項清單範圍 vE2m01 to vE2m88；產生器已忽略此公式欄"
+    },
+    {
+      "level": "warning",
+      "sheet": "複選題1101",
+      "row": 13,
+      "message": "加總程式未使用實際變項清單範圍 vE13m01 to vE13m88；產生器已忽略此公式欄"
+    },
+    {
+      "level": "warning",
+      "sheet": "複選題1101",
+      "row": 14,
+      "message": "加總程式未使用實際變項清單範圍 vG7m01 to vG7m90；產生器已忽略此公式欄"
+    },
+    {
+      "level": "warning",
+      "sheet": "複選題1101",
+      "row": 15,
+      "message": "加總程式未使用實際變項清單範圍 vG8m01 to vG8m90；產生器已忽略此公式欄"
+    },
+    {
+      "level": "warning",
+      "sheet": "複選題1101",
+      "row": 16,
+      "message": "加總程式未使用實際變項清單範圍 vG9m01 to vG9m90；產生器已忽略此公式欄"
+    },
+    {
+      "level": "warning",
+      "sheet": "複選題1101",
+      "row": 17,
+      "message": "加總程式未使用實際變項清單範圍 vG10m01 to vG10m90；產生器已忽略此公式欄"
+    },
+    {
+      "level": "warning",
+      "sheet": "複選題1101",
+      "row": 18,
+      "message": "加總程式未使用實際變項清單範圍 vG11m01 to vG11m90；產生器已忽略此公式欄"
+    },
+    {
+      "level": "warning",
+      "sheet": "複選題1101",
+      "row": 19,
+      "message": "加總程式未使用實際變項清單範圍 vB7am01 to vB7am88；產生器已忽略此公式欄"
+    },
+    {
+      "level": "warning",
+      "sheet": "複選題1101",
+      "row": 20,
+      "message": "加總程式未使用實際變項清單範圍 vB8m01 to vB8m88；產生器已忽略此公式欄"
+    },
+    {
+      "level": "warning",
+      "sheet": "複選題1101",
+      "row": 21,
+      "message": "加總程式未使用實際變項清單範圍 vG3m01 to vG3m88；產生器已忽略此公式欄"
+    },
+    {
+      "level": "warning",
+      "sheet": "複選題1101",
+      "row": 22,
+      "message": "加總程式未使用實際變項清單範圍 vF5m01 to vF5m88；產生器已忽略此公式欄"
+    },
+    {
+      "level": "warning",
+      "sheet": "複選題1101",
+      "row": 23,
+      "message": "加總程式未使用實際變項清單範圍 vC3m01 to vC3m88；產生器已忽略此公式欄"
+    },
+    {
+      "level": "warning",
+      "sheet": "複選題1101",
+      "row": 24,
+      "message": "加總程式未使用實際變項清單範圍 vJB1m01 to vJB1m90；產生器已忽略此公式欄"
+    },
+    {
+      "level": "warning",
+      "sheet": "複選題1101",
+      "row": 25,
+      "message": "加總程式未使用實際變項清單範圍 vJB2m01 to vJB2m90；產生器已忽略此公式欄"
+    },
+    {
+      "level": "warning",
+      "sheet": "複選題1101",
+      "row": 26,
+      "message": "加總程式未使用實際變項清單範圍 vM2m01 to vM2m88；產生器已忽略此公式欄"
+    },
+    {
+      "level": "warning",
+      "sheet": "複選題1101",
+      "row": 27,
+      "message": "加總程式未使用實際變項清單範圍 vM3m01 to vM3m88；產生器已忽略此公式欄"
+    },
+    {
+      "level": "warning",
+      "sheet": "複選題1101",
+      "row": 28,
+      "message": "加總程式未使用實際變項清單範圍 vQ20m01 to vQ20m90；產生器已忽略此公式欄"
+    },
+    {
+      "level": "warning",
+      "sheet": "複選題1101",
+      "row": 29,
+      "message": "加總程式未使用實際變項清單範圍 vQ25m01 to vQ25m88；產生器已忽略此公式欄"
+    },
+    {
+      "level": "warning",
+      "sheet": "複選題1101",
+      "row": 30,
+      "message": "加總程式未使用實際變項清單範圍 vQ22m01 to vQ22m88；產生器已忽略此公式欄"
+    },
+    {
+      "level": "warning",
+      "sheet": "複選題1101",
+      "row": 31,
+      "message": "加總程式未使用實際變項清單範圍 vQ23m01 to vQ23m88；產生器已忽略此公式欄"
+    },
+    {
+      "level": "warning",
+      "sheet": "複選題1101",
+      "row": 32,
+      "message": "加總程式未使用實際變項清單範圍 vQ26m01 to vQ26m88；產生器已忽略此公式欄"
+    },
+    {
+      "level": "warning",
+      "sheet": "複選題1101",
+      "row": 33,
+      "message": "加總程式未使用實際變項清單範圍 vQ27m01 to vQ27m88；產生器已忽略此公式欄"
+    },
+    {
+      "level": "warning",
+      "sheet": "複選題1101",
+      "row": 34,
+      "message": "加總程式未使用實際變項清單範圍 vQ30m01 to vQ30m90；產生器已忽略此公式欄"
+    },
+    {
+      "level": "warning",
+      "sheet": "複選題1101",
+      "row": 35,
+      "message": "加總程式未使用實際變項清單範圍 vQ31m01 to vQ31m90；產生器已忽略此公式欄"
+    },
+    {
+      "level": "warning",
+      "sheet": "複選題1101",
+      "row": 36,
+      "message": "加總程式未使用實際變項清單範圍 vZE2m01 to vZE2m03；產生器已忽略此公式欄"
     }
   ]
 }

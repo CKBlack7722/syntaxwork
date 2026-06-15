@@ -1,0 +1,37 @@
+﻿project,severity,sheet,row,column,code,message
+消費者2,warning,數值題101-200,1,可輸入小數點,missing_recommended_header,"Recommended header 可輸入小數點 is absent; current tools can continue, but related rules cannot be generated."
+消費者2,warning,數值題101-200,61,range,blank_range_expression,vF1m5 has r1-r4 values but blank range expression; generator will derive it from r1-r4.
+消費者2,warning,數值題101-200,62,range,blank_range_expression,vF1m6 has r1-r4 values but blank range expression; generator will derive it from r1-r4.
+消費者2,warning,數值題101-200,63,range,blank_range_expression,vF1m7 has r1-r4 values but blank range expression; generator will derive it from r1-r4.
+消費者2,warning,數值題101-200,64,range,blank_range_expression,vF1m8 has r1-r4 values but blank range expression; generator will derive it from r1-r4.
+消費者2,warning,數值題101-200,65,range,blank_range_expression,vF1m9 has r1-r4 values but blank range expression; generator will derive it from r1-r4.
+消費者2,warning,數值題101-200,66,range,blank_range_expression,vF1m10 has r1-r4 values but blank range expression; generator will derive it from r1-r4.
+消費者2,warning,數值題101-200,67,range,blank_range_expression,vF1m11 has r1-r4 values but blank range expression; generator will derive it from r1-r4.
+消費者2,warning,數值題101-200,68,range,blank_range_expression,vF1_1 has r1-r4 values but blank range expression; generator will derive it from r1-r4.
+消費者2,warning,數值題101-200,69,range,blank_range_expression,vF1_2 has r1-r4 values but blank range expression; generator will derive it from r1-r4.
+消費者2,warning,數值題101-200,70,range,blank_range_expression,vF1_3 has r1-r4 values but blank range expression; generator will derive it from r1-r4.
+消費者2,warning,數值題101-200,71,range,blank_range_expression,vF2m1 has r1-r4 values but blank range expression; generator will derive it from r1-r4.
+消費者2,warning,數值題101-200,72,range,blank_range_expression,vF2m2 has r1-r4 values but blank range expression; generator will derive it from r1-r4.
+消費者2,warning,數值題101-200,73,range,blank_range_expression,vF2m3 has r1-r4 values but blank range expression; generator will derive it from r1-r4.
+消費者2,warning,數值題101-200,74,range,blank_range_expression,vF2m4 has r1-r4 values but blank range expression; generator will derive it from r1-r4.
+消費者2,warning,數值題101-200,75,range,blank_range_expression,vF2m5 has r1-r4 values but blank range expression; generator will derive it from r1-r4.
+消費者2,warning,數值題101-200,76,range,blank_range_expression,vF2m6 has r1-r4 values but blank range expression; generator will derive it from r1-r4.
+消費者2,warning,數值題101-200,77,range,blank_range_expression,vF2m7 has r1-r4 values but blank range expression; generator will derive it from r1-r4.
+消費者2,warning,數值題101-200,78,range,blank_range_expression,vF2m8 has r1-r4 values but blank range expression; generator will derive it from r1-r4.
+消費者2,warning,數值題101-200,79,range,blank_range_expression,vF2m9 has r1-r4 values but blank range expression; generator will derive it from r1-r4.
+消費者2,warning,數值題101-200,80,range,blank_range_expression,vF2m10 has r1-r4 values but blank range expression; generator will derive it from r1-r4.
+消費者2,warning,數值題101-200,81,range,blank_range_expression,vF2m11 has r1-r4 values but blank range expression; generator will derive it from r1-r4.
+消費者2,warning,數值題101-200,82,range,blank_range_expression,vF3 has r1-r4 values but blank range expression; generator will derive it from r1-r4.
+消費者2,warning,數值題101-200,83,range,blank_range_expression,vF4 has r1-r4 values but blank range expression; generator will derive it from r1-r4.
+消費者2,warning,數值題101-200,84,range,blank_range_expression,vF5 has r1-r4 values but blank range expression; generator will derive it from r1-r4.
+消費者2,warning,數值題101-200,85,range,blank_range_expression,vF6 has r1-r4 values but blank range expression; generator will derive it from r1-r4.
+消費者2,warning,數值題101-200,86,range,blank_range_expression,vF7 has r1-r4 values but blank range expression; generator will derive it from r1-r4.
+消費者2,warning,數值題101-200,87,range,blank_range_expression,vG1 has r1-r4 values but blank range expression; generator will derive it from r1-r4.
+消費者2,warning,數值題101-200,88,range,blank_range_expression,vG2 has r1-r4 values but blank range expression; generator will derive it from r1-r4.
+消費者2,warning,數值題101-200,89,range,blank_range_expression,vG3 has r1-r4 values but blank range expression; generator will derive it from r1-r4.
+消費者2,warning,數值題101-200,90,range,blank_range_expression,vG4 has r1-r4 values but blank range expression; generator will derive it from r1-r4.
+消費者2,warning,數值題101-200,91,range,blank_range_expression,vG5 has r1-r4 values but blank range expression; generator will derive it from r1-r4.
+消費者2,warning,數值題101-200,92,range,blank_range_expression,vG6 has r1-r4 values but blank range expression; generator will derive it from r1-r4.
+消費者2,warning,數值題101-200,93,range,blank_range_expression,vG7 has r1-r4 values but blank range expression; generator will derive it from r1-r4.
+消費者2,warning,數值題101-200,94,range,blank_range_expression,vX1 has r1-r4 values but blank range expression; generator will derive it from r1-r4.
+消費者2,warning,數值題101-200,95,range,blank_range_expression,vEND3 has r1-r4 values but blank range expression; generator will derive it from r1-r4.

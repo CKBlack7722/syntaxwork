@@ -1,4 +1,0 @@
-﻿var,qid,status,reason,source,question_excerpt
-vZA,,manual,no automatic proposal,no numeric range found,
-vCKB5,CKB5,manual,no automatic proposal,no numeric range found,"CKB5‧【檢查題】【B1+B3+1<B5顯示此題】 受訪者一週當中看【貼B5答案】天的電視新聞(B5), 超過星期一到星期五看【貼B1答案】天+星期六和星期日看【貼B3答案】天(B3)電視的總和。 請回「上一題」B5題重新確認看電視新聞天數,或回到B1及B3題重新確認看電視天數。 請重新確認B1、B3及B5題天數 【互斥無法點選,選項號隱藏】 邏輯式備註: 1.B1<=5,B3<=2.B5<=7,B5>B1+B3+1 2.B1=95,B3<=2,B5<=7,B5>B3+1 3.B1<=5,B3=95,B5<=7,B5>B1+1 4.B1=95,B3=95,B5<=7,2<=B5<=7"
-vQ28,Q28,manual,no automatic proposal,no numeric range found,"Q28‧接下來想詢問您,有關與其他人討論政治或公共事務的問題。(例如:吃飯時邊看電視和家人討論物價上漲問題、與網友討論兩岸關係或國際議題(如烏俄戰爭)、向里長反映社區事務等等)"

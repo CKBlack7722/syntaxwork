@@ -1,4 +1,4 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 import argparse
 import csv
@@ -12,6 +12,10 @@ from typing import Any
 
 import openpyxl
 from docx import Document
+from docx.oxml.table import CT_Tbl
+from docx.oxml.text.paragraph import CT_P
+from docx.table import Table
+from docx.text.paragraph import Paragraph
 
 
 SYSTEM_VARS = {
@@ -102,26 +106,64 @@ def qid_candidates(var: str) -> list[str]:
     matrix = re.match(r"^([A-Z]+[0-9]+)S[A-Z0-9_]+$", qid)
     if matrix:
         candidates.append(matrix.group(1))
+        tail = qid.split("S", 1)[1]
+        tail_match = re.match(r"^[A-Z]+([0-9]+)$", tail)
+        prefix_match = re.match(r"^([A-Z]+)", matrix.group(1))
+        if tail_match and prefix_match:
+            candidates.append(prefix_match.group(1) + tail_match.group(1))
     if qid.startswith("CK"):
         candidates.append(qid[2:])
     return list(dict.fromkeys(candidates))
 
 
-def doc_blocks(docx_path: Path) -> dict[str, str]:
+def document_items(docx_path: Path) -> list[tuple[str, str]]:
     doc = Document(docx_path)
-    paras = [norm(p.text) for p in doc.paragraphs if norm(p.text)]
+    items: list[tuple[str, str]] = []
+    for child in doc.element.body.iterchildren():
+        if isinstance(child, CT_P):
+            text = norm(Paragraph(child, doc).text)
+            if text:
+                items.append(("P", text))
+        elif isinstance(child, CT_Tbl):
+            table = Table(child, doc)
+            rows: list[str] = []
+            for row in table.rows:
+                cells = [norm(cell.text).replace("\n", " ") for cell in row.cells]
+                row_text = " / ".join(cell for cell in cells if cell)
+                if row_text:
+                    rows.append(row_text)
+            if rows:
+                items.append(("T", "\n".join(rows)))
+    return items
+
+
+def paragraph_qid(text: str) -> str:
+    compact = norm(text).replace(" ", "")
+    match = re.match(r"^([A-Z]{1,5}[0-9][A-Z0-9_]*)(?=[^A-Z0-9_]|$)", compact)
+    if not match:
+        match = re.search(r"】([A-Z]{1,5}[0-9][A-Z0-9_]*)(?=[^A-Z0-9_]|$)", compact)
+    if not match:
+        match = re.match(r"^([A-Z]{1,5})(?=【|[.．、‧])", compact)
+    return match.group(1).upper() if match else ""
+
+
+def doc_blocks(docx_path: Path) -> dict[str, str]:
+    items = document_items(docx_path)
     starts: list[tuple[int, str]] = []
-    for idx, para in enumerate(paras):
-        compact = para.replace(" ", "")
-        match = re.search(r"(?:^|】)([A-Z]{1,5}[0-9][A-Z0-9_]*)[.‧．、 ]?", compact)
-        if match:
-            starts.append((idx, match.group(1).upper()))
+    for idx, (kind, text) in enumerate(items):
+        if kind != "P":
+            continue
+        qid = paragraph_qid(text)
+        if qid:
+            starts.append((idx, qid))
     blocks: dict[str, str] = {}
     for i, (start, qid) in enumerate(starts):
-        end = starts[i + 1][0] if i + 1 < len(starts) else len(paras)
-        blocks.setdefault(qid, "\n".join(paras[start:end]))
+        end = starts[i + 1][0] if i + 1 < len(starts) else len(items)
+        block_text = "\n".join(text for _, text in items[start:end])
+        blocks.setdefault(qid, block_text)
+        for row_qid in re.findall(r"(?:^|\n)\s*([A-Z]{1,5}[0-9][A-Z0-9_]*)(?=\s*/)", block_text):
+            blocks.setdefault(row_qid.upper(), block_text)
     return blocks
-
 
 def find_block(var: str, blocks: dict[str, str]) -> tuple[str, str]:
     for qid in qid_candidates(var):
@@ -184,9 +226,15 @@ def range_from_explicit_text(text: str) -> tuple[list[str], str]:
 
 def option_codes(block: str) -> list[str]:
     codes = []
-    for code in re.findall(r"[□\(（]\s*(\d{1,6})\s*[）)]", block):
-        if code not in codes:
-            codes.append(code)
+    patterns = [
+        r"[\(（]\s*0*(\d{1,6})\s*[\)）]",
+        r"(?<!\d)0*(\d{1,6})\s*□",
+    ]
+    for pattern in patterns:
+        for code in re.findall(pattern, block):
+            code = normalize_number(code)
+            if code not in codes:
+                codes.append(code)
     return codes
 
 
@@ -218,13 +266,55 @@ def normalize_range_cells(values: list[str]) -> list[str]:
         if value and value not in cleaned:
             cleaned.append(value)
     cleaned.sort(key=range_sort_key)
-    return cleaned[:4]
+    merged: list[str] = []
+    index = 0
+    while index < len(cleaned):
+        current = cleaned[index]
+        current_parts = [part.strip() for part in current.split(",") if part.strip()]
+        if len(current_parts) == 1 and re.fullmatch(r"-?\d+", current_parts[0]):
+            run = [int(current_parts[0])]
+            index += 1
+            while index < len(cleaned):
+                next_parts = [part.strip() for part in cleaned[index].split(",") if part.strip()]
+                if len(next_parts) != 1 or not re.fullmatch(r"-?\d+", next_parts[0]):
+                    break
+                next_value = int(next_parts[0])
+                if next_value != run[-1] + 1:
+                    break
+                run.append(next_value)
+                index += 1
+            if len(run) > 1:
+                merged.append(f"{run[0]},{run[-1]}")
+            else:
+                merged.append(str(run[0]))
+            continue
+        merged.append(current)
+        index += 1
+    return merged[:4]
+
+
+def skip_code_for_width(width: int) -> str:
+    if width <= 1:
+        return "6"
+    return ("9" * (width - 1)) + "6"
+
+
+def is_hidden_ck_check_question(var: str, width: int, block: str) -> bool:
+    return (
+        width >= 2
+        and qid_from_var(var).startswith("CK")
+        and "【檢查題】" in block
+        and "【互斥無法點選" in block
+        and "請重新確認" in block
+    )
 
 
 def infer_values(var: str, width: int, block: str, special_ranges: dict[str, str], multi_vars: set[str], date_range: str) -> tuple[list[str], str, str]:
     lower = var.lower()
     if lower == "va3":
         return ["1,21", "97,98"], "force_apply", "project rule: vA3 normal range plus continuous special codes"
+    if is_hidden_ck_check_question(var, width, block):
+        return [skip_code_for_width(width)], "force_apply", "hidden CK check question skip code"
     if lower in SYSTEM_VARS:
         return [], "manual", "system variable"
     if width == 14:
@@ -263,6 +353,9 @@ def compare(existing: list[str], proposed: list[str], status: str) -> tuple[str,
     padded = (proposed + ["", "", "", ""])[:4]
     if existing == padded:
         return "match", ""
+    normalized_existing = (normalize_range_cells(existing) + ["", "", "", ""])[:4]
+    if normalized_existing == padded:
+        return "format_apply", "same values; merge contiguous singleton r-cells"
     if existing[0] == padded[0] and existing[1:] != padded[1:]:
         return "range_match_special_diff", "r1 matches; r2-r4 differ"
     if any(existing):
@@ -331,7 +424,7 @@ def apply(workbook_path: Path, proposals: list[NumericProposal]) -> dict[str, An
     h = headers(ws)
     written = 0
     for proposal in proposals:
-        if proposal.status not in {"apply", "match", "range_match_special_diff", "force_apply"}:
+        if proposal.status not in {"apply", "match", "format_apply", "force_apply"}:
             continue
         values = [proposal.proposed_r1, proposal.proposed_r2, proposal.proposed_r3, proposal.proposed_r4]
         if not values[0]:
@@ -371,3 +464,4 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
+

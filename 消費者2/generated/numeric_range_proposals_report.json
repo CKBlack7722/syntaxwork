@@ -1,0 +1,362 @@
+{
+  "summary": {
+    "workbook": "Z:\\AIWork\\syntaxwork\\消費者2\\檢核程式套印-台灣消費者2.xlsx",
+    "docx": "Z:\\AIWork\\syntaxwork\\消費者2\\2026年6月問卷題目0604_網路.docx",
+    "numeric_sheet": "數值題101-200",
+    "question_blocks": 64,
+    "rows": 94,
+    "confidence_counts": {
+      "high": 51,
+      "medium": 29,
+      "manual": 14
+    },
+    "exact_counts": {
+      "r1": 77,
+      "r1_r4": 65
+    }
+  },
+  "manual_review": [
+    {
+      "var": "vC1U4",
+      "existing": [
+        "3,999",
+        "9999999996",
+        "",
+        ""
+      ],
+      "proposed": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "source": "no block",
+      "note": "needs parent-question mapping or manual review",
+      "compare_status": "manual",
+      "mismatch_reason": "no automatic proposal",
+      "matched_question": ""
+    },
+    {
+      "var": "vC1U4R",
+      "existing": [
+        "1,2",
+        "96",
+        "",
+        ""
+      ],
+      "proposed": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "source": "no block",
+      "note": "needs parent-question mapping or manual review",
+      "compare_status": "manual",
+      "mismatch_reason": "no automatic proposal",
+      "matched_question": ""
+    },
+    {
+      "var": "vC1D1",
+      "existing": [
+        "-100000,0.49999",
+        "9999999996",
+        "",
+        ""
+      ],
+      "proposed": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "source": "no block",
+      "note": "needs parent-question mapping or manual review",
+      "compare_status": "manual",
+      "mismatch_reason": "no automatic proposal",
+      "matched_question": ""
+    },
+    {
+      "var": "vC1D1R",
+      "existing": [
+        "1,2",
+        "96",
+        "",
+        ""
+      ],
+      "proposed": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "source": "no block",
+      "note": "needs parent-question mapping or manual review",
+      "compare_status": "manual",
+      "mismatch_reason": "no automatic proposal",
+      "matched_question": ""
+    },
+    {
+      "var": "vC2",
+      "existing": [
+        "1,7",
+        "96",
+        "",
+        ""
+      ],
+      "proposed": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "source": "no block",
+      "note": "needs parent-question mapping or manual review",
+      "compare_status": "manual",
+      "mismatch_reason": "no automatic proposal",
+      "matched_question": ""
+    },
+    {
+      "var": "vC2U7",
+      "existing": [
+        "3,999",
+        "9999999996",
+        "",
+        ""
+      ],
+      "proposed": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "source": "no block",
+      "note": "needs parent-question mapping or manual review",
+      "compare_status": "manual",
+      "mismatch_reason": "no automatic proposal",
+      "matched_question": ""
+    },
+    {
+      "var": "vC2U7R",
+      "existing": [
+        "1,2",
+        "96",
+        "",
+        ""
+      ],
+      "proposed": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "source": "no block",
+      "note": "needs parent-question mapping or manual review",
+      "compare_status": "manual",
+      "mismatch_reason": "no automatic proposal",
+      "matched_question": ""
+    },
+    {
+      "var": "vC2D1",
+      "existing": [
+        "-100000,0.49999",
+        "9999999996",
+        "",
+        ""
+      ],
+      "proposed": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "source": "no block",
+      "note": "needs parent-question mapping or manual review",
+      "compare_status": "manual",
+      "mismatch_reason": "no automatic proposal",
+      "matched_question": ""
+    },
+    {
+      "var": "vC2D1R",
+      "existing": [
+        "1,2",
+        "96",
+        "",
+        ""
+      ],
+      "proposed": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "source": "no block",
+      "note": "needs parent-question mapping or manual review",
+      "compare_status": "manual",
+      "mismatch_reason": "no automatic proposal",
+      "matched_question": ""
+    },
+    {
+      "var": "vD1D5",
+      "existing": [
+        "20,999999",
+        "9999996",
+        "",
+        ""
+      ],
+      "proposed": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "source": "no block",
+      "note": "needs parent-question mapping or manual review",
+      "compare_status": "manual",
+      "mismatch_reason": "no automatic proposal",
+      "matched_question": ""
+    },
+    {
+      "var": "vD1U5",
+      "existing": [
+        "20,999999",
+        "9999996",
+        "",
+        ""
+      ],
+      "proposed": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "source": "no block",
+      "note": "needs parent-question mapping or manual review",
+      "compare_status": "manual",
+      "mismatch_reason": "no automatic proposal",
+      "matched_question": ""
+    },
+    {
+      "var": "vF3",
+      "existing": [
+        "1,3",
+        "",
+        "",
+        ""
+      ],
+      "proposed": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "source": "no block",
+      "note": "needs parent-question mapping or manual review",
+      "compare_status": "manual",
+      "mismatch_reason": "no automatic proposal",
+      "matched_question": ""
+    },
+    {
+      "var": "vG4",
+      "existing": [
+        "0,999999",
+        "",
+        "",
+        ""
+      ],
+      "proposed": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "source": "no explicit range or option span",
+      "note": "",
+      "compare_status": "manual",
+      "mismatch_reason": "no automatic proposal",
+      "matched_question": "G4"
+    },
+    {
+      "var": "vG7",
+      "existing": [
+        "0,999999",
+        "",
+        "",
+        ""
+      ],
+      "proposed": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "source": "no explicit range or option span",
+      "note": "",
+      "compare_status": "manual",
+      "mismatch_reason": "no automatic proposal",
+      "matched_question": "G7"
+    }
+  ],
+  "mismatches": [
+    {
+      "var": "vC1U",
+      "existing": [
+        "1,4",
+        "96",
+        "",
+        ""
+      ],
+      "proposed": [
+        "1,5",
+        "96",
+        "",
+        ""
+      ],
+      "confidence": "medium",
+      "source": "option-code span",
+      "note": "optional question; inferred special code by value digit width",
+      "compare_status": "mismatch",
+      "mismatch_reason": "Word option span includes codes that Excel excludes or stores as special code"
+    },
+    {
+      "var": "vC1D",
+      "existing": [
+        "1,4",
+        "96",
+        "",
+        ""
+      ],
+      "proposed": [
+        "1,3",
+        "96",
+        "",
+        ""
+      ],
+      "confidence": "medium",
+      "source": "option-code span",
+      "note": "optional question; inferred special code by value digit width",
+      "compare_status": "mismatch",
+      "mismatch_reason": "Word option span includes codes that Excel excludes or stores as special code"
+    },
+    {
+      "var": "vD1",
+      "existing": [
+        "1,3",
+        "7",
+        "96",
+        ""
+      ],
+      "proposed": [
+        "1,7",
+        "96",
+        "",
+        ""
+      ],
+      "confidence": "medium",
+      "source": "option-code span",
+      "note": "optional question; inferred special code by value digit width",
+      "compare_status": "mismatch",
+      "mismatch_reason": "Word option span includes codes that Excel excludes or stores as special code"
+    }
+  ]
+}

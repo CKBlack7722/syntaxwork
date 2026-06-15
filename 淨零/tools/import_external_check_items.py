@@ -206,6 +206,36 @@ def parse_q_internet_all_never(desc: str) -> tuple[str, str]:
     return "", ""
 
 
+def parse_time_sum_exceeds_reference(desc: str) -> tuple[str, str]:
+    match = re.search(
+        r"(v[A-Za-z0-9_]+)、(v[A-Za-z0-9_]+).*?時間相加大於(v[A-Za-z0-9_]+)的時間(\d+)小時",
+        desc,
+    )
+    if not match:
+        return "", ""
+    left, right, ref, hours = match.groups()
+    delta = int(hours) * 100
+    return f"({left}+{right})>({ref}+{delta})", "HHMM pair sum exceeds reference by hours"
+
+
+def parse_score_option_confirmation(desc: str) -> tuple[str, str]:
+    match = re.search(
+        r"(Q\d+|P\d+_\d+)答(\d+)分者,在(Q\d+|P\d+_\d+)答\((\d+)\)",
+        desc,
+    )
+    if match:
+        score_qid, score, option_qid, option = match.groups()
+        return f"v{score_qid}={int(score)} & v{option_qid}={int(option)}", "score and option confirmation"
+    match = re.search(
+        r"(Q\d+|P\d+_\d+)答\((\d+)\).*?,(Q\d+|P\d+_\d+)答(\d+)分者",
+        desc,
+    )
+    if match:
+        option_qid, option, score_qid, score = match.groups()
+        return f"v{option_qid}={int(option)} & v{score_qid}={int(score)}", "option and score confirmation"
+    return "", ""
+
+
 def is_hhmm_time_var(var_name: str, specs: dict[str, VarSpec]) -> bool:
     spec = specs.get(var_name)
     return bool(spec and spec.is_numeric and spec.width == 5)
@@ -254,6 +284,8 @@ def propose_condition(desc: str, vars_text: str, note: str, var_names: set[str])
         lambda: parse_h_contact_unknown(desc),
         lambda: parse_k_tiktok(desc, var_names),
         lambda: parse_q_internet_all_never(desc),
+        lambda: parse_time_sum_exceeds_reference(desc),
+        lambda: parse_score_option_confirmation(desc),
         lambda: parse_threshold_hours(desc, vars_list),
         lambda: parse_greater_than_people(desc, vars_list),
     ]

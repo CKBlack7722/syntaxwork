@@ -1,0 +1,127 @@
+{
+  "workbook": "Z:\\AIWork\\syntaxwork\\消費者2\\檢核程式套印-台灣消費者2.xlsx",
+  "output": "Z:\\AIWork\\syntaxwork\\消費者2\\generated\\multi_checks_generated.sps",
+  "questions": [
+    {
+      "row": 2,
+      "m": "251",
+      "p": "251",
+      "display_name": "F1",
+      "group_key": "vF1",
+      "vars": [
+        "vF1m1",
+        "vF1m2",
+        "vF1m3",
+        "vF1m4",
+        "vF1m5",
+        "vF1m6",
+        "vF1m7",
+        "vF1m8",
+        "vF1m9",
+        "vF1m10",
+        "vF1m11"
+      ],
+      "no_response_codes": [
+        "96"
+      ]
+    },
+    {
+      "row": 3,
+      "m": "252",
+      "p": "252",
+      "display_name": "F2",
+      "group_key": "vF2",
+      "vars": [
+        "vF2m1",
+        "vF2m2",
+        "vF2m3",
+        "vF2m4",
+        "vF2m5",
+        "vF2m6",
+        "vF2m7",
+        "vF2m8",
+        "vF2m9",
+        "vF2m10",
+        "vF2m11"
+      ],
+      "no_response_codes": [
+        "96"
+      ]
+    }
+  ],
+  "mutex_rules": [
+    {
+      "row": 2,
+      "m": "253",
+      "p": "253",
+      "display_name": "F2",
+      "exclusive_code": "10",
+      "exclusive_var": "vF2m10",
+      "other_vars": [
+        "vF2m1",
+        "vF2m2",
+        "vF2m3",
+        "vF2m4",
+        "vF2m5",
+        "vF2m6",
+        "vF2m7",
+        "vF2m8",
+        "vF2m9"
+      ],
+      "recovered_from_main": false
+    }
+  ],
+  "issues": [],
+  "compare": {
+    "reference_lines": 38,
+    "generated_lines": 36,
+    "normalized_equal": false,
+    "diff": [
+      "--- reference",
+      "+++ generated",
+      "@@ -1,18 +1,15 @@",
+      " **3.複選題檢核.",
+      "-* vf1 f2 組合.",
+      "+* f1 f2 組合.",
+      " string f1 f2 (a600).",
+      "-compute f1 = rtrim(ltrim(concat(\"vf1m1=\",string(vf1m1,f2),\" , \",\"vf1m2=\",string(vf1m2,f2),\" , \",\"vf1m3=\",string(vf1m3,f2)",
+      "-,\", \",\"vf1m4=\",string(vf1m4,f2),\" , \",\"vf1m5=\",string(vf1m5,f2),\" , \",\"vf1m6=\",string(vf1m6,f2),\" , \",\"vf1m7=\",string(vf1m7,f2)",
+      "-,\" , \",\"vf1m8=\",string(vf1m8,f2),\" , \",\"vf1m9=\",string(vf1m9,f2),\" , \",\"vf1m10=\",string(vf1m10,f2),\" , \",\"vf1m11=\",string(vf1m11,f2)))).",
+      "-compute f2 = rtrim(ltrim(concat(\"vf2m1=\",string(vf2m1,f2),\" , \",\"vf2m2=\",string(vf2m2,f2),\" , \",\"vf2m3=\",string(vf2m3,f2)",
+      "-,\", \",\"vf2m4=\",string(vf2m4,f2),\" , \",\"vf2m5=\",string(vf2m5,f2),\" , \",\"vf2m6=\",string(vf2m6,f2),\" , \",\"vf2m7=\",string(vf2m7,f2)",
+      "-,\" , \",\"vf2m8=\",string(vf2m8,f2),\" , \",\"vf2m9=\",string(vf2m9,f2),\" , \",\"vf2m10=\",string(vf2m10,f2),\" , \",\"vf2m11=\",string(vf2m11,f2)))).",
+      "+compute f1 = rtrim(ltrim(concat(\"vf1m1=\",string(vf1m1,f2),\" , \",\"vf1m2=\",string(vf1m2,f2),\" , \",\"vf1m3=\",string(vf1m3,f2),\" , \",\"vf1m4=\",string(vf1m4,f2),\" , \",\"vf1m5=\",string(vf1m5,f2),\" , \",\"vf1m6=\",string(vf1m6,f2),\" , \",\"vf1m7=\",string(vf1m7,f2),\" , \",\"vf1m8=\",string(vf1m8,f2),\" , \",\"vf1m9=\",string(vf1m9,f2),\" , \",\"vf1m10=\",string(vf1m10,f2),\" , \",\"vf1m11=\",string(vf1m11,f2)))).",
+      "+compute f2 = rtrim(ltrim(concat(\"vf2m1=\",string(vf2m1,f2),\" , \",\"vf2m2=\",string(vf2m2,f2),\" , \",\"vf2m3=\",string(vf2m3,f2),\" , \",\"vf2m4=\",string(vf2m4,f2),\" , \",\"vf2m5=\",string(vf2m5,f2),\" , \",\"vf2m6=\",string(vf2m6,f2),\" , \",\"vf2m7=\",string(vf2m7,f2),\" , \",\"vf2m8=\",string(vf2m8,f2),\" , \",\"vf2m9=\",string(vf2m9,f2),\" , \",\"vf2m10=\",string(vf2m10,f2),\" , \",\"vf2m11=\",string(vf2m11,f2)))).",
+      " *f1.",
+      " vector a=vf1m1 to vf1m11.",
+      " compute #f1zero = (sum(vf1m1 to vf1m11) = 0).",
+      " loop #i=1 to 10.",
+      " do if (any(a(#i),0,1) & any(a(#i+1),96))",
+      "-| (any(a(#i),96) and not any(a(#i+1),96))| #f1zero=1.",
+      "+| (any(a(#i),96) and not any(a(#i+1),96))",
+      "+| #f1zero=1.",
+      " compute m251=rtrim(ltrim(f1)).",
+      " compute p251=\"f1至少選1項或選特殊碼應一致\".",
+      " end if.",
+      "@@ -23,7 +20,8 @@",
+      " compute #f2zero = (sum(vf2m1 to vf2m11) = 0).",
+      " loop #i=1 to 10.",
+      " do if (any(a(#i),0,1) & any(a(#i+1),96))",
+      "-| (any(a(#i),96) and not any(a(#i+1),96))| #f2zero=1.",
+      "+| (any(a(#i),96) and not any(a(#i+1),96))",
+      "+| #f2zero=1.",
+      " compute m252=rtrim(ltrim(f2)).",
+      " compute p252=\"f2至少選1項或選特殊碼應一致\".",
+      " end if.",
+      "@@ -33,6 +31,6 @@",
+      " *f2=10 複選題內互斥.",
+      " do if any(vf2m10,1) & any(1,vf2m1 to vf2m9).",
+      " compute m253=rtrim(ltrim(f2)).",
+      "-compute p253=\"vf2(10)複選題選項應互斥\".",
+      "+compute p253=\"f2(10)複選題選項應互斥\".",
+      " end if.",
+      " exec."
+    ],
+    "diff_truncated": false
+  }
+}

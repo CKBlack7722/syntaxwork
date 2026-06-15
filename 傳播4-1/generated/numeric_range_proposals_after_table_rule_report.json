@@ -1,0 +1,23 @@
+{
+  "counts": {
+    "match": 786,
+    "force_apply": 8,
+    "manual": 5,
+    "mismatch": 6,
+    "range_match_special_diff": 2
+  },
+  "sources": {
+    "option code span": 137,
+    "explicit numeric range": 54,
+    "project rule: vA3 normal range plus continuous special codes": 1,
+    "city code rule": 1,
+    "town code list": 1,
+    "no numeric range found": 5,
+    "multiple-response binary": 586,
+    "hidden CK check question skip code": 7,
+    "configured date range": 7,
+    "hour-minute hour part": 4,
+    "hour-minute minute part": 4
+  },
+  "output_csv": "傳播4-1\\generated\\numeric_range_proposals_after_table_rule.csv"
+}

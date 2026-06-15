@@ -1,0 +1,172 @@
+{
+  "workbook": "Z:\\AIWork\\syntaxwork\\淨零\\檢核程式套印-淨零.xlsx",
+  "output": "Z:\\AIWork\\syntaxwork\\淨零\\generated\\multi_checks_generated.sps",
+  "questions": [
+    {
+      "row": 2,
+      "m": "301",
+      "p": "301",
+      "display_name": "v45",
+      "group_key": "v45",
+      "vars": [
+        "v45m01",
+        "v45m02",
+        "v45m03",
+        "v45m04",
+        "v45m05",
+        "v45m06",
+        "v45m07"
+      ],
+      "no_response_codes": [
+        "96"
+      ]
+    },
+    {
+      "row": 3,
+      "m": "302",
+      "p": "302",
+      "display_name": "v46",
+      "group_key": "v46",
+      "vars": [
+        "v46m01",
+        "v46m02",
+        "v46m03",
+        "v46m04",
+        "v46m05",
+        "v46m06",
+        "v46m07"
+      ],
+      "no_response_codes": [
+        "96"
+      ]
+    },
+    {
+      "row": 4,
+      "m": "303",
+      "p": "303",
+      "display_name": "v48",
+      "group_key": "v48",
+      "vars": [
+        "v48m01",
+        "v48m02",
+        "v48m03",
+        "v48m04",
+        "v48m05",
+        "v48m06",
+        "v48m07"
+      ],
+      "no_response_codes": [
+        "96"
+      ]
+    }
+  ],
+  "mutex_rules": [
+    {
+      "row": 2,
+      "m": "304",
+      "p": "304",
+      "display_name": "v45",
+      "exclusive_code": "7",
+      "exclusive_var": "v45m07",
+      "other_vars": [
+        "v45m01",
+        "v45m02",
+        "v45m03",
+        "v45m04",
+        "v45m05",
+        "v45m06"
+      ],
+      "recovered_from_main": false
+    },
+    {
+      "row": 3,
+      "m": "305",
+      "p": "305",
+      "display_name": "v46",
+      "exclusive_code": "7",
+      "exclusive_var": "v46m07",
+      "other_vars": [
+        "v46m01",
+        "v46m02",
+        "v46m03",
+        "v46m04",
+        "v46m05",
+        "v46m06"
+      ],
+      "recovered_from_main": false
+    },
+    {
+      "row": 4,
+      "m": "306",
+      "p": "306",
+      "display_name": "v48",
+      "exclusive_code": "7",
+      "exclusive_var": "v48m07",
+      "other_vars": [
+        "v48m01",
+        "v48m02",
+        "v48m03",
+        "v48m04",
+        "v48m05",
+        "v48m06"
+      ],
+      "recovered_from_main": false
+    }
+  ],
+  "issues": [],
+  "compare": {
+    "reference_lines": 61,
+    "generated_lines": 61,
+    "normalized_equal": false,
+    "diff": [
+      "--- reference",
+      "+++ generated",
+      "@@ -1,18 +1,16 @@",
+      " **3.複選題檢核.",
+      "-* vq24 組合.",
+      "+* v45 v46 v48 組合.",
+      " string v45 v46 v48 (a600).",
+      "-compute v45 = rtrim(ltrim(concat(\"v45m01=\",string(v45m01,f2),\" , \",\"v45m02=\",string(v45m02,f2),\" , \",\"v45m03=\",string(v45m03,f2),\" , \",\"v45m04=\",string(v45m04,f2),\" , \",\"v45m05=\",string(v45m05,f2),\" , \",\"v45m06=\",string(v45m06,f2)",
+      "-,\" , \",\"v45m07=\",string(v45m07,f2)))).",
+      "-compute v46 = rtrim(ltrim(concat(\"v46m01=\",string(v46m01,f2),\" , \",\"v46m02=\",string(v46m02,f2),\" , \",\"v46m03=\",string(v46m03,f2),\" , \",\"v46m04=\",string(v46m04,f2),\" , \",\"v46m05=\",string(v46m05,f2),\" , \",\"v46m06=\",string(v46m06,f2)",
+      "-,\" , \",\"v46m07=\",string(v46m07,f2)))).",
+      "-compute v48 = rtrim(ltrim(concat(\"v48m01=\",string(v48m01,f2),\" , \",\"v48m02=\",string(v48m02,f2),\" , \",\"v48m03=\",string(v48m03,f2),\" , \",\"v48m04=\",string(v48m04,f2),\" , \",\"v48m05=\",string(v48m05,f2),\" , \",\"v48m06=\",string(v48m06,f2)",
+      "-,\" , \",\"v48m07=\",string(v48m07,f2)))).",
+      "+compute v45 = rtrim(ltrim(concat(\"v45m01=\",string(v45m01,f2),\" , \",\"v45m02=\",string(v45m02,f2),\" , \",\"v45m03=\",string(v45m03,f2),\" , \",\"v45m04=\",string(v45m04,f2),\" , \",\"v45m05=\",string(v45m05,f2),\" , \",\"v45m06=\",string(v45m06,f2),\" , \",\"v45m07=\",string(v45m07,f2)))).",
+      "+compute v46 = rtrim(ltrim(concat(\"v46m01=\",string(v46m01,f2),\" , \",\"v46m02=\",string(v46m02,f2),\" , \",\"v46m03=\",string(v46m03,f2),\" , \",\"v46m04=\",string(v46m04,f2),\" , \",\"v46m05=\",string(v46m05,f2),\" , \",\"v46m06=\",string(v46m06,f2),\" , \",\"v46m07=\",string(v46m07,f2)))).",
+      "+compute v48 = rtrim(ltrim(concat(\"v48m01=\",string(v48m01,f2),\" , \",\"v48m02=\",string(v48m02,f2),\" , \",\"v48m03=\",string(v48m03,f2),\" , \",\"v48m04=\",string(v48m04,f2),\" , \",\"v48m05=\",string(v48m05,f2),\" , \",\"v48m06=\",string(v48m06,f2),\" , \",\"v48m07=\",string(v48m07,f2)))).",
+      " *v45.",
+      " vector a=v45m01 to v45m07.",
+      " compute #45zero = (sum(v45m01 to v45m07) = 0).",
+      " loop #i=1 to 6.",
+      " do if (any(a(#i),0,1) & any(a(#i+1),96))",
+      "-| (any(a(#i),96) and not any(a(#i+1),96))|#45zero =1.",
+      "+| (any(a(#i),96) and not any(a(#i+1),96))",
+      "+| #45zero=1.",
+      " compute m301=rtrim(ltrim(v45)).",
+      " compute p301=\"v45至少選1項或選特殊碼應一致\".",
+      " end if.",
+      "@@ -23,7 +21,8 @@",
+      " compute #46zero = (sum(v46m01 to v46m07) = 0).",
+      " loop #i=1 to 6.",
+      " do if (any(a(#i),0,1) & any(a(#i+1),96))",
+      "-| (any(a(#i),96) and not any(a(#i+1),96))| #46zero =1.",
+      "+| (any(a(#i),96) and not any(a(#i+1),96))",
+      "+| #46zero=1.",
+      " compute m302=rtrim(ltrim(v46)).",
+      " compute p302=\"v46至少選1項或選特殊碼應一致\".",
+      " end if.",
+      "@@ -34,7 +33,8 @@",
+      " compute #48zero = (sum(v48m01 to v48m07) = 0).",
+      " loop #i=1 to 6.",
+      " do if (any(a(#i),0,1) & any(a(#i+1),96))",
+      "-| (any(a(#i),96) and not any(a(#i+1),96))|#48zero =1.",
+      "+| (any(a(#i),96) and not any(a(#i+1),96))",
+      "+| #48zero=1.",
+      " compute m303=rtrim(ltrim(v48)).",
+      " compute p303=\"v48至少選1項或選特殊碼應一致\".",
+      " end if."
+    ],
+    "diff_truncated": false
+  }
+}

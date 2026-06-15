@@ -1,0 +1,27 @@
+{
+  "rules": 53,
+  "skipped": 4,
+  "skipped_rows": [
+    {
+      "row": 26,
+      "var": "vE3_1",
+      "reason": "cannot infer parent/range"
+    },
+    {
+      "row": 56,
+      "var": "vZE2_1",
+      "reason": "cannot infer parent/range"
+    },
+    {
+      "row": 57,
+      "var": "vZE2_2",
+      "reason": "cannot infer parent/range"
+    },
+    {
+      "row": 58,
+      "var": "vZE2_3",
+      "reason": "cannot infer parent/range"
+    }
+  ],
+  "output": "傳播4-1\\generated\\open_checks_generated.sps"
+}

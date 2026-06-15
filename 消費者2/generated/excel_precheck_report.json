@@ -1,0 +1,342 @@
+{
+  "summary": {
+    "workbook": "Z:\\AIWork\\syntaxwork\\消費者2\\檢核程式套印-台灣消費者2.xlsx",
+    "sheets": {
+      "numeric": "數值題101-200",
+      "open": "開放欄位201-250",
+      "multi": "複選題_251-300",
+      "mutex": "複選題內_互斥",
+      "multi_vars": "複選題變項清單",
+      "logic": "邏輯組"
+    },
+    "issue_counts": {
+      "warning": 36
+    }
+  },
+  "issues": [
+    {
+      "project": "消費者2",
+      "severity": "warning",
+      "sheet": "數值題101-200",
+      "row": "1",
+      "column": "可輸入小數點",
+      "code": "missing_recommended_header",
+      "message": "Recommended header 可輸入小數點 is absent; current tools can continue, but related rules cannot be generated."
+    },
+    {
+      "project": "消費者2",
+      "severity": "warning",
+      "sheet": "數值題101-200",
+      "row": "61",
+      "column": "range",
+      "code": "blank_range_expression",
+      "message": "vF1m5 has r1-r4 values but blank range expression; generator will derive it from r1-r4."
+    },
+    {
+      "project": "消費者2",
+      "severity": "warning",
+      "sheet": "數值題101-200",
+      "row": "62",
+      "column": "range",
+      "code": "blank_range_expression",
+      "message": "vF1m6 has r1-r4 values but blank range expression; generator will derive it from r1-r4."
+    },
+    {
+      "project": "消費者2",
+      "severity": "warning",
+      "sheet": "數值題101-200",
+      "row": "63",
+      "column": "range",
+      "code": "blank_range_expression",
+      "message": "vF1m7 has r1-r4 values but blank range expression; generator will derive it from r1-r4."
+    },
+    {
+      "project": "消費者2",
+      "severity": "warning",
+      "sheet": "數值題101-200",
+      "row": "64",
+      "column": "range",
+      "code": "blank_range_expression",
+      "message": "vF1m8 has r1-r4 values but blank range expression; generator will derive it from r1-r4."
+    },
+    {
+      "project": "消費者2",
+      "severity": "warning",
+      "sheet": "數值題101-200",
+      "row": "65",
+      "column": "range",
+      "code": "blank_range_expression",
+      "message": "vF1m9 has r1-r4 values but blank range expression; generator will derive it from r1-r4."
+    },
+    {
+      "project": "消費者2",
+      "severity": "warning",
+      "sheet": "數值題101-200",
+      "row": "66",
+      "column": "range",
+      "code": "blank_range_expression",
+      "message": "vF1m10 has r1-r4 values but blank range expression; generator will derive it from r1-r4."
+    },
+    {
+      "project": "消費者2",
+      "severity": "warning",
+      "sheet": "數值題101-200",
+      "row": "67",
+      "column": "range",
+      "code": "blank_range_expression",
+      "message": "vF1m11 has r1-r4 values but blank range expression; generator will derive it from r1-r4."
+    },
+    {
+      "project": "消費者2",
+      "severity": "warning",
+      "sheet": "數值題101-200",
+      "row": "68",
+      "column": "range",
+      "code": "blank_range_expression",
+      "message": "vF1_1 has r1-r4 values but blank range expression; generator will derive it from r1-r4."
+    },
+    {
+      "project": "消費者2",
+      "severity": "warning",
+      "sheet": "數值題101-200",
+      "row": "69",
+      "column": "range",
+      "code": "blank_range_expression",
+      "message": "vF1_2 has r1-r4 values but blank range expression; generator will derive it from r1-r4."
+    },
+    {
+      "project": "消費者2",
+      "severity": "warning",
+      "sheet": "數值題101-200",
+      "row": "70",
+      "column": "range",
+      "code": "blank_range_expression",
+      "message": "vF1_3 has r1-r4 values but blank range expression; generator will derive it from r1-r4."
+    },
+    {
+      "project": "消費者2",
+      "severity": "warning",
+      "sheet": "數值題101-200",
+      "row": "71",
+      "column": "range",
+      "code": "blank_range_expression",
+      "message": "vF2m1 has r1-r4 values but blank range expression; generator will derive it from r1-r4."
+    },
+    {
+      "project": "消費者2",
+      "severity": "warning",
+      "sheet": "數值題101-200",
+      "row": "72",
+      "column": "range",
+      "code": "blank_range_expression",
+      "message": "vF2m2 has r1-r4 values but blank range expression; generator will derive it from r1-r4."
+    },
+    {
+      "project": "消費者2",
+      "severity": "warning",
+      "sheet": "數值題101-200",
+      "row": "73",
+      "column": "range",
+      "code": "blank_range_expression",
+      "message": "vF2m3 has r1-r4 values but blank range expression; generator will derive it from r1-r4."
+    },
+    {
+      "project": "消費者2",
+      "severity": "warning",
+      "sheet": "數值題101-200",
+      "row": "74",
+      "column": "range",
+      "code": "blank_range_expression",
+      "message": "vF2m4 has r1-r4 values but blank range expression; generator will derive it from r1-r4."
+    },
+    {
+      "project": "消費者2",
+      "severity": "warning",
+      "sheet": "數值題101-200",
+      "row": "75",
+      "column": "range",
+      "code": "blank_range_expression",
+      "message": "vF2m5 has r1-r4 values but blank range expression; generator will derive it from r1-r4."
+    },
+    {
+      "project": "消費者2",
+      "severity": "warning",
+      "sheet": "數值題101-200",
+      "row": "76",
+      "column": "range",
+      "code": "blank_range_expression",
+      "message": "vF2m6 has r1-r4 values but blank range expression; generator will derive it from r1-r4."
+    },
+    {
+      "project": "消費者2",
+      "severity": "warning",
+      "sheet": "數值題101-200",
+      "row": "77",
+      "column": "range",
+      "code": "blank_range_expression",
+      "message": "vF2m7 has r1-r4 values but blank range expression; generator will derive it from r1-r4."
+    },
+    {
+      "project": "消費者2",
+      "severity": "warning",
+      "sheet": "數值題101-200",
+      "row": "78",
+      "column": "range",
+      "code": "blank_range_expression",
+      "message": "vF2m8 has r1-r4 values but blank range expression; generator will derive it from r1-r4."
+    },
+    {
+      "project": "消費者2",
+      "severity": "warning",
+      "sheet": "數值題101-200",
+      "row": "79",
+      "column": "range",
+      "code": "blank_range_expression",
+      "message": "vF2m9 has r1-r4 values but blank range expression; generator will derive it from r1-r4."
+    },
+    {
+      "project": "消費者2",
+      "severity": "warning",
+      "sheet": "數值題101-200",
+      "row": "80",
+      "column": "range",
+      "code": "blank_range_expression",
+      "message": "vF2m10 has r1-r4 values but blank range expression; generator will derive it from r1-r4."
+    },
+    {
+      "project": "消費者2",
+      "severity": "warning",
+      "sheet": "數值題101-200",
+      "row": "81",
+      "column": "range",
+      "code": "blank_range_expression",
+      "message": "vF2m11 has r1-r4 values but blank range expression; generator will derive it from r1-r4."
+    },
+    {
+      "project": "消費者2",
+      "severity": "warning",
+      "sheet": "數值題101-200",
+      "row": "82",
+      "column": "range",
+      "code": "blank_range_expression",
+      "message": "vF3 has r1-r4 values but blank range expression; generator will derive it from r1-r4."
+    },
+    {
+      "project": "消費者2",
+      "severity": "warning",
+      "sheet": "數值題101-200",
+      "row": "83",
+      "column": "range",
+      "code": "blank_range_expression",
+      "message": "vF4 has r1-r4 values but blank range expression; generator will derive it from r1-r4."
+    },
+    {
+      "project": "消費者2",
+      "severity": "warning",
+      "sheet": "數值題101-200",
+      "row": "84",
+      "column": "range",
+      "code": "blank_range_expression",
+      "message": "vF5 has r1-r4 values but blank range expression; generator will derive it from r1-r4."
+    },
+    {
+      "project": "消費者2",
+      "severity": "warning",
+      "sheet": "數值題101-200",
+      "row": "85",
+      "column": "range",
+      "code": "blank_range_expression",
+      "message": "vF6 has r1-r4 values but blank range expression; generator will derive it from r1-r4."
+    },
+    {
+      "project": "消費者2",
+      "severity": "warning",
+      "sheet": "數值題101-200",
+      "row": "86",
+      "column": "range",
+      "code": "blank_range_expression",
+      "message": "vF7 has r1-r4 values but blank range expression; generator will derive it from r1-r4."
+    },
+    {
+      "project": "消費者2",
+      "severity": "warning",
+      "sheet": "數值題101-200",
+      "row": "87",
+      "column": "range",
+      "code": "blank_range_expression",
+      "message": "vG1 has r1-r4 values but blank range expression; generator will derive it from r1-r4."
+    },
+    {
+      "project": "消費者2",
+      "severity": "warning",
+      "sheet": "數值題101-200",
+      "row": "88",
+      "column": "range",
+      "code": "blank_range_expression",
+      "message": "vG2 has r1-r4 values but blank range expression; generator will derive it from r1-r4."
+    },
+    {
+      "project": "消費者2",
+      "severity": "warning",
+      "sheet": "數值題101-200",
+      "row": "89",
+      "column": "range",
+      "code": "blank_range_expression",
+      "message": "vG3 has r1-r4 values but blank range expression; generator will derive it from r1-r4."
+    },
+    {
+      "project": "消費者2",
+      "severity": "warning",
+      "sheet": "數值題101-200",
+      "row": "90",
+      "column": "range",
+      "code": "blank_range_expression",
+      "message": "vG4 has r1-r4 values but blank range expression; generator will derive it from r1-r4."
+    },
+    {
+      "project": "消費者2",
+      "severity": "warning",
+      "sheet": "數值題101-200",
+      "row": "91",
+      "column": "range",
+      "code": "blank_range_expression",
+      "message": "vG5 has r1-r4 values but blank range expression; generator will derive it from r1-r4."
+    },
+    {
+      "project": "消費者2",
+      "severity": "warning",
+      "sheet": "數值題101-200",
+      "row": "92",
+      "column": "range",
+      "code": "blank_range_expression",
+      "message": "vG6 has r1-r4 values but blank range expression; generator will derive it from r1-r4."
+    },
+    {
+      "project": "消費者2",
+      "severity": "warning",
+      "sheet": "數值題101-200",
+      "row": "93",
+      "column": "range",
+      "code": "blank_range_expression",
+      "message": "vG7 has r1-r4 values but blank range expression; generator will derive it from r1-r4."
+    },
+    {
+      "project": "消費者2",
+      "severity": "warning",
+      "sheet": "數值題101-200",
+      "row": "94",
+      "column": "range",
+      "code": "blank_range_expression",
+      "message": "vX1 has r1-r4 values but blank range expression; generator will derive it from r1-r4."
+    },
+    {
+      "project": "消費者2",
+      "severity": "warning",
+      "sheet": "數值題101-200",
+      "row": "95",
+      "column": "range",
+      "code": "blank_range_expression",
+      "message": "vEND3 has r1-r4 values but blank range expression; generator will derive it from r1-r4."
+    }
+  ]
+}

@@ -2346,9 +2346,12 @@ EXECUTE.
 **3.複選題檢核.
 * vQ24 組合.
 STRING v45 v46 v48 (A600).
-COMPUTE v45 = Rtrim(Ltrim(concat("v45m01=",string(v45m01,f2)," , ","v45m02=",string(v45m02,f2)," , ","v45m03=",string(v45m03,f2)," , ","v45m04=",string(v45m04,f2)," , ","v45m05=",string(v45m05,f2)," , ","v45m06=",string(v45m06,f2)))).
-COMPUTE v46 = Rtrim(Ltrim(concat("v46m01=",string(v46m01,f2)," , ","v46m02=",string(v46m02,f2)," , ","v46m03=",string(v46m03,f2)," , ","v46m04=",string(v46m04,f2)," , ","v46m05=",string(v46m05,f2)," , ","v46m06=",string(v46m06,f2)))).
-COMPUTE v48 = Rtrim(Ltrim(concat("v48m01=",string(v48m01,f2)," , ","v48m02=",string(v48m02,f2)," , ","v48m03=",string(v48m03,f2)," , ","v48m04=",string(v48m04,f2)," , ","v48m05=",string(v48m05,f2)," , ","v48m06=",string(v48m06,f2)))).
+COMPUTE v45 = Rtrim(Ltrim(concat("v45m01=",string(v45m01,f2)," , ","v45m02=",string(v45m02,f2)," , ","v45m03=",string(v45m03,f2)," , ","v45m04=",string(v45m04,f2)," , ","v45m05=",string(v45m05,f2)," , ","v45m06=",string(v45m06,f2)
+    ," , ","v45m07=",string(v45m07,f2)))).
+COMPUTE v46 = Rtrim(Ltrim(concat("v46m01=",string(v46m01,f2)," , ","v46m02=",string(v46m02,f2)," , ","v46m03=",string(v46m03,f2)," , ","v46m04=",string(v46m04,f2)," , ","v46m05=",string(v46m05,f2)," , ","v46m06=",string(v46m06,f2)
+    ," , ","v46m07=",string(v46m07,f2)))).
+COMPUTE v48 = Rtrim(Ltrim(concat("v48m01=",string(v48m01,f2)," , ","v48m02=",string(v48m02,f2)," , ","v48m03=",string(v48m03,f2)," , ","v48m04=",string(v48m04,f2)," , ","v48m05=",string(v48m05,f2)," , ","v48m06=",string(v48m06,f2)
+    ," , ","v48m07=",string(v48m07,f2)))).
 
 *v45.
 vector a=v45m01 to v45m07.

@@ -1,7 +1,7 @@
 {
   "note": "Compare predicates only. Ignore m/p id differences and displayed mXXX field differences.",
   "generated_rule_count": 85,
-  "existing_logic_do_if_count": null,
+  "existing_logic_do_if_count": 87,
   "matched_count": 0,
   "unmatched_count": 85,
   "generated_rules": [
@@ -476,44 +476,44 @@
       "condition": "vc1u=4",
       "mode": "required",
       "targets": [
-        "vC1U5"
+        "vC1U4"
       ],
       "limits": [],
-      "check": "any(1,vc1u5_96)",
-      "predicate": "vc1u=4&any(1,vc1u5_96)"
+      "check": "any(1,vc1u4_96)",
+      "predicate": "vc1u=4&any(1,vc1u4_96)"
     },
     {
       "m": "344",
       "condition": "vc1u<4",
       "mode": "forbidden",
       "targets": [
-        "vC1U5"
+        "vC1U4"
       ],
       "limits": [],
-      "check": "any(0,vc1u5_96)",
-      "predicate": "vc1u<4&any(0,vc1u5_96)"
+      "check": "any(0,vc1u4_96)",
+      "predicate": "vc1u<4&any(0,vc1u4_96)"
     },
     {
       "m": "345",
       "condition": "vc1u5>=50&vc1u5<9999999996",
       "mode": "required",
       "targets": [
-        "vC1U5R"
+        "vC1U4R"
       ],
       "limits": [],
-      "check": "any(1,vc1u5r_96)",
-      "predicate": "vc1u5>=50&vc1u5<9999999996&any(1,vc1u5r_96)"
+      "check": "any(1,vc1u4r_96)",
+      "predicate": "vc1u5>=50&vc1u5<9999999996&any(1,vc1u4r_96)"
     },
     {
       "m": "346",
       "condition": "vc1u5<50|vc1u5=9999999996",
       "mode": "forbidden",
       "targets": [
-        "vC1U5R"
+        "vC1U4R"
       ],
       "limits": [],
-      "check": "any(0,vc1u5r_96)",
-      "predicate": "vc1u5<50|vc1u5=9999999996&any(0,vc1u5r_96)"
+      "check": "any(0,vc1u4r_96)",
+      "predicate": "vc1u5<50|vc1u5=9999999996&any(0,vc1u4r_96)"
     },
     {
       "m": "347",
@@ -949,12 +949,213 @@
   ],
   "logic_sheet_normalization": {
     "corrected_count": 0,
-    "unresolved_count": 0,
+    "unresolved_count": 4,
     "corrected": [],
-    "unresolved": []
+    "unresolved": [
+      {
+        "row": 46,
+        "column": "條件",
+        "token": "vC1U5",
+        "context": "條件"
+      },
+      {
+        "row": 46,
+        "column": "條件",
+        "token": "vC1U5",
+        "context": "條件"
+      },
+      {
+        "row": 47,
+        "column": "條件",
+        "token": "vC1U5",
+        "context": "條件"
+      },
+      {
+        "row": 47,
+        "column": "條件",
+        "token": "vC1U5",
+        "context": "條件"
+      }
+    ]
   },
-  "existing_do_ifs": null,
-  "existing_normalized_do_ifs": [],
+  "existing_do_ifs": [
+    "do if (vG0city=29) & any(1,vEND1_96).",
+    "do if (vG0city~=29) & any(0,vEND1_96).",
+    "do if ((vA1+vA2+vA3+vA4+vA5+vA6)>vA7) & (any(1,vA7R_96) | any(1,vB7R_96)).",
+    "do if ((vA1+vA2+vA3+vA4+vA5+vA6)<=vA7) & (any(0,vA7R_96) | any(0,vB7R_96)).",
+    "do if ((vA1+vA2+vA3+vA4+vA5+vA6)>(vA7R*1.1)) & any(1,vEND2_96).",
+    "do if ((vA1+vA2+vA3+vA4+vA5+vA6)<=(vA7R*1.1)) & any(0,vEND2_96).",
+    "do if (vB1=1) & any(1,vB1U_96).",
+    "do if (vB1~=1) & any(0,vB1U_96).",
+    "do if (vB1=2) & any(1,vB1D_96).",
+    "do if (vB1~=2) & any(0,vB1D_96).",
+    "do if (vB2=1) & any(1,vB2U_96).",
+    "do if (vB2~=1) & any(0,vB2U_96).",
+    "do if (vB2=2) & any(1,vB2D_96).",
+    "do if (vB2~=2) & any(0,vB2D_96).",
+    "do if (vB3=1) & any(1,vB3U_96).",
+    "do if (vB3~=1) & any(0,vB3U_96).",
+    "do if (vB3=2) & any(1,vB3D_96).",
+    "do if (vB3~=2) & any(0,vB3D_96).",
+    "do if (vB4=1) & any(1,vB4U_96).",
+    "do if (vB4~=1) & any(0,vB4U_96).",
+    "do if (vB4=2) & any(1,vB4D_96).",
+    "do if (vB4~=2) & any(0,vB4D_96).",
+    "do if (vB5=1) & any(1,vB5U_96).",
+    "do if (vB5~=1) & any(0,vB5U_96).",
+    "do if (vB5=2) & any(1,vB5D_96).",
+    "do if (vB5~=2) & any(0,vB5D_96).",
+    "do if (vB6=1) & any(1,vB6U_96).",
+    "do if (vB6~=1) & any(0,vB6U_96).",
+    "do if (vB6=2) & any(1,vB6D_96).",
+    "do if (vB6~=2) & any(0,vB6D_96).",
+    "do if (vB7=1) & any(1,vB7U_96).",
+    "do if (vB7~=1) & any(0,vB7U_96).",
+    "do if (vB7=2) & any(1,vB7D_96).",
+    "do if (vB7~=2) & any(0,vB7D_96).",
+    "do if (vB7R=1) & any(1,vB7UR_96).",
+    "do if (vB7R~=1) & any(0,vB7UR_96).",
+    "do if (vB7R=2) & any(1,vB7DR_96).",
+    "do if (vB7R~=2) & any(0,vB7DR_96).",
+    "do if (vC1=1) & (any(1,vC1U_96) | any(1,vC3_96)).",
+    "do if (vC1~=1) & (any(0,vC1U_96) | any(0,vC3_96)).",
+    "do if (vC1=2) & any(1,vC1D_96).",
+    "do if (vC1~=2) & any(0,vC1D_96).",
+    "do if (vC1U=4) & any(1,vC1U4_96).",
+    "do if (vC1U<4) & any(0,vC1U4_96).",
+    "do if (vC1U4>=50 & vC1U4<9999999996) & any(1,vC1U4R_96).",
+    "do if (vC1U4<50 | vC1U4=9999999996) & any(0,vC1U4R_96).",
+    "do if (vC1D=1) & any(1,vC1D1_96).",
+    "do if (vC1D~=1) & any(0,vC1D1_96).",
+    "do if (vC1D1<=0) & any(1,vC1D1R_96).",
+    "do if (vC1D1>0 & vC1D1<0.5) & any(0,vC1D1R_96).",
+    "do if (vC2=7) & any(1,vC2U7_96).",
+    "do if (vC2<7) & any(0,vC2U7_96).",
+    "do if (vC2U7>=50 & vC2U7<999996) & any(1,vC2U7R_96).",
+    "do if (vC2U7<50 | vC2U7=999996) & any(0,vC2U7R_96).",
+    "do if (vC2=1) & any(1,vC2D1_96).",
+    "do if (vC2>1) & any(0,vC2D1_96).",
+    "do if (vC2D1<=0) & any(1,vC2D1R_96).",
+    "do if (vC2D1>0) & any(0,vC2D1R_96).",
+    "do if (vD1=1) & any(1,vD1D_96).",
+    "do if (vD1~=1) & any(0,vD1D_96).",
+    "do if (vD1=2) & any(1,vD1U_96).",
+    "do if (vD1~=2) & any(0,vD1U_96).",
+    "do if (vD1D=5) & any(1,vD1D5_96).",
+    "do if (vD1D~=5) & any(0,vD1D5_96).",
+    "do if (vD1U=5) & any(1,vD1U5_96).",
+    "do if (vD1U~=5) & any(0,vD1U5_96).",
+    "do if (vF1m3=1) & any(1,vF1_1_96).",
+    "do if (vF1m3=0) & any(0,vF1_1_96).",
+    "do if (vF1m4=1) & (any(1,vF1_2_96) | any(1,vF1_3_96)).",
+    "do if (vF1m4=0) & (any(0,vF1_2_96) | any(0,vF1_3_96)).",
+    "do if (vA1=0) & any(vB1,2).",
+    "do if (vB1=2) & vB1D>vA1.",
+    "do if (vA2=0) & any(vB2,2).",
+    "do if (vB2=2) & vB2D>vA2.",
+    "do if (vA3=0) & any(vB3,2).",
+    "do if (vB3=2) & vB3D>vA3.",
+    "do if (vA4=0) & any(vB4,2).",
+    "do if (vB4=2) & vB4D>vA4.",
+    "do if (vA5=0) & any(vB5,2).",
+    "do if (vB5=2) & vB5D>vA5.",
+    "do if (vA6=0) & any(vB6,2).",
+    "do if (vB6=2) & vB6D>vA6.",
+    "do if (vA7=0) & any(vB7,2).",
+    "do if (vB7=2) & vB7D>vA7.",
+    "do if (vB7R=2) & vB7DR>vA7R.",
+    "do if  ((range(vG2,3,6)&any(edu2026,2,3))|(range(vG2,4,6) & any(edu2026,4))|(any(vG2,6)&any(edu2026,5))) & CKgender=0 & CKbirth=0 & CKedu=1.",
+    "do if  ((range(vG2,3,6)&any(edu2026,2,3))|(range(vG2,4,6) & any(edu2026,4))|(any(vG2,6)&any(edu2026,5))) & (CKgender=1 or CKbirth=1) & CKedu=1."
+  ],
+  "existing_normalized_do_ifs": [
+    "(vg0city=29)&any(1,vend1_96)",
+    "(vg0city!=29)&any(0,vend1_96)",
+    "((va1+va2+va3+va4+va5+va6)>va7)&(any(1,va7r_96)|any(1,vb7r_96))",
+    "((va1+va2+va3+va4+va5+va6)<=va7)&(any(0,va7r_96)|any(0,vb7r_96))",
+    "((va1+va2+va3+va4+va5+va6)>(va7r*1.1))&any(1,vend2_96)",
+    "((va1+va2+va3+va4+va5+va6)<=(va7r*1.1))&any(0,vend2_96)",
+    "(vb1=1)&any(1,vb1u_96)",
+    "(vb1!=1)&any(0,vb1u_96)",
+    "(vb1=2)&any(1,vb1d_96)",
+    "(vb1!=2)&any(0,vb1d_96)",
+    "(vb2=1)&any(1,vb2u_96)",
+    "(vb2!=1)&any(0,vb2u_96)",
+    "(vb2=2)&any(1,vb2d_96)",
+    "(vb2!=2)&any(0,vb2d_96)",
+    "(vb3=1)&any(1,vb3u_96)",
+    "(vb3!=1)&any(0,vb3u_96)",
+    "(vb3=2)&any(1,vb3d_96)",
+    "(vb3!=2)&any(0,vb3d_96)",
+    "(vb4=1)&any(1,vb4u_96)",
+    "(vb4!=1)&any(0,vb4u_96)",
+    "(vb4=2)&any(1,vb4d_96)",
+    "(vb4!=2)&any(0,vb4d_96)",
+    "(vb5=1)&any(1,vb5u_96)",
+    "(vb5!=1)&any(0,vb5u_96)",
+    "(vb5=2)&any(1,vb5d_96)",
+    "(vb5!=2)&any(0,vb5d_96)",
+    "(vb6=1)&any(1,vb6u_96)",
+    "(vb6!=1)&any(0,vb6u_96)",
+    "(vb6=2)&any(1,vb6d_96)",
+    "(vb6!=2)&any(0,vb6d_96)",
+    "(vb7=1)&any(1,vb7u_96)",
+    "(vb7!=1)&any(0,vb7u_96)",
+    "(vb7=2)&any(1,vb7d_96)",
+    "(vb7!=2)&any(0,vb7d_96)",
+    "(vb7r=1)&any(1,vb7ur_96)",
+    "(vb7r!=1)&any(0,vb7ur_96)",
+    "(vb7r=2)&any(1,vb7dr_96)",
+    "(vb7r!=2)&any(0,vb7dr_96)",
+    "(vc1=1)&(any(1,vc1u_96)|any(1,vc3_96))",
+    "(vc1!=1)&(any(0,vc1u_96)|any(0,vc3_96))",
+    "(vc1=2)&any(1,vc1d_96)",
+    "(vc1!=2)&any(0,vc1d_96)",
+    "(vc1u=4)&any(1,vc1u4_96)",
+    "(vc1u<4)&any(0,vc1u4_96)",
+    "(vc1u4>=50&vc1u4<9999999996)&any(1,vc1u4r_96)",
+    "(vc1u4<50|vc1u4=9999999996)&any(0,vc1u4r_96)",
+    "(vc1d=1)&any(1,vc1d1_96)",
+    "(vc1d!=1)&any(0,vc1d1_96)",
+    "(vc1d1<=0)&any(1,vc1d1r_96)",
+    "(vc1d1>0&vc1d1<0.5)&any(0,vc1d1r_96)",
+    "(vc2=7)&any(1,vc2u7_96)",
+    "(vc2<7)&any(0,vc2u7_96)",
+    "(vc2u7>=50&vc2u7<999996)&any(1,vc2u7r_96)",
+    "(vc2u7<50|vc2u7=999996)&any(0,vc2u7r_96)",
+    "(vc2=1)&any(1,vc2d1_96)",
+    "(vc2>1)&any(0,vc2d1_96)",
+    "(vc2d1<=0)&any(1,vc2d1r_96)",
+    "(vc2d1>0)&any(0,vc2d1r_96)",
+    "(vd1=1)&any(1,vd1d_96)",
+    "(vd1!=1)&any(0,vd1d_96)",
+    "(vd1=2)&any(1,vd1u_96)",
+    "(vd1!=2)&any(0,vd1u_96)",
+    "(vd1d=5)&any(1,vd1d5_96)",
+    "(vd1d!=5)&any(0,vd1d5_96)",
+    "(vd1u=5)&any(1,vd1u5_96)",
+    "(vd1u!=5)&any(0,vd1u5_96)",
+    "(vf1m3=1)&any(1,vf1_1_96)",
+    "(vf1m3=0)&any(0,vf1_1_96)",
+    "(vf1m4=1)&(any(1,vf1_2_96)|any(1,vf1_3_96))",
+    "(vf1m4=0)&(any(0,vf1_2_96)|any(0,vf1_3_96))",
+    "(va1=0)&any(vb1,2)",
+    "(vb1=2)&vb1d>va1",
+    "(va2=0)&any(vb2,2)",
+    "(vb2=2)&vb2d>va2",
+    "(va3=0)&any(vb3,2)",
+    "(vb3=2)&vb3d>va3",
+    "(va4=0)&any(vb4,2)",
+    "(vb4=2)&vb4d>va4",
+    "(va5=0)&any(vb5,2)",
+    "(vb5=2)&vb5d>va5",
+    "(va6=0)&any(vb6,2)",
+    "(vb6=2)&vb6d>va6",
+    "(va7=0)&any(vb7,2)",
+    "(vb7=2)&vb7d>va7",
+    "(vb7r=2)&vb7dr>va7r",
+    "((range(vg2,3,6)&any(edu2026,2,3))|(range(vg2,4,6)&any(edu2026,4))|(any(vg2,6)&any(edu2026,5)))&ckgender=0&ckbirth=0&ckedu=1",
+    "((range(vg2,3,6)&any(edu2026,2,3))|(range(vg2,4,6)&any(edu2026,4))|(any(vg2,6)&any(edu2026,5)))&(ckgender=1orckbirth=1)&ckedu=1"
+  ],
   "review": [
     {
       "m": "301",
@@ -1427,10 +1628,10 @@
       "condition": "vc1u=4",
       "mode": "required",
       "targets": [
-        "vC1U5"
+        "vC1U4"
       ],
-      "expected_check": "any(1,vc1u5_96)",
-      "generated_predicate": "vc1u=4&any(1,vc1u5_96)",
+      "expected_check": "any(1,vc1u4_96)",
+      "generated_predicate": "vc1u=4&any(1,vc1u4_96)",
       "matched_existing_do_if": false
     },
     {
@@ -1438,10 +1639,10 @@
       "condition": "vc1u<4",
       "mode": "forbidden",
       "targets": [
-        "vC1U5"
+        "vC1U4"
       ],
-      "expected_check": "any(0,vc1u5_96)",
-      "generated_predicate": "vc1u<4&any(0,vc1u5_96)",
+      "expected_check": "any(0,vc1u4_96)",
+      "generated_predicate": "vc1u<4&any(0,vc1u4_96)",
       "matched_existing_do_if": false
     },
     {
@@ -1449,10 +1650,10 @@
       "condition": "vc1u5>=50&vc1u5<9999999996",
       "mode": "required",
       "targets": [
-        "vC1U5R"
+        "vC1U4R"
       ],
-      "expected_check": "any(1,vc1u5r_96)",
-      "generated_predicate": "vc1u5>=50&vc1u5<9999999996&any(1,vc1u5r_96)",
+      "expected_check": "any(1,vc1u4r_96)",
+      "generated_predicate": "vc1u5>=50&vc1u5<9999999996&any(1,vc1u4r_96)",
       "matched_existing_do_if": false
     },
     {
@@ -1460,10 +1661,10 @@
       "condition": "vc1u5<50|vc1u5=9999999996",
       "mode": "forbidden",
       "targets": [
-        "vC1U5R"
+        "vC1U4R"
       ],
-      "expected_check": "any(0,vc1u5r_96)",
-      "generated_predicate": "vc1u5<50|vc1u5=9999999996&any(0,vc1u5r_96)",
+      "expected_check": "any(0,vc1u4r_96)",
+      "generated_predicate": "vc1u5<50|vc1u5=9999999996&any(0,vc1u4r_96)",
       "matched_existing_do_if": false
     },
     {

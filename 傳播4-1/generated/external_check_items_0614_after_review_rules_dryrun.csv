@@ -1,0 +1,48 @@
+﻿source_table,source_row,number,qid,vars,description,note,condition,extra_vars,status,reason
+0,1,1,"sel_gen,O1","sel_gen,vO1","受訪者為女性,但vO1工作狀況選(12)服義務役或(13)服(研發)替代役。",*品管項目,"sel_gen=2 & any(vO1,12,13)",,auto,female military-service option
+1,1,1,"A1,A2,A3,A9","vA1,vA2,vA3,vA9","57年施行九年國民義務教育,出生年在57年次以後(57歲及以下),且為台灣出生者(vA3選1-22、97、98),於vA9教育程度,不應為(01)不識字、(02)自修/小學 | (年齡計算以114年減出生年)。",*品管項目,"vA1>=57 & any(vA3,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,97,98) & any(vA9,1,2)",,auto,education by birth year
+1,2,2,"A1,A2,A9","vA1,vA2,vA9","出生年超過民國92年次(未滿22歲者),vA9教育程度不應為(07)碩士、(08)博士 | (年齡計算以114年減出生年)。",*品管項目,"vA1>92 & any(vA9,7,8)",,auto,education too high by birth year
+1,3,3,B2,vB2,"vB2看電視的平常日(週一到週五),一整天看超過12小時,列出確認。",,"not(any(vB2,9797,9898)) & vB2>1200",,auto,single HHMM threshold
+1,4,4,B4,vB4,"vB4有看電視的週六或週日,一整天看超過12小時,列出確認。",,"not(any(vB4,9797,9898)) & vB4>1200",,auto,single HHMM threshold
+1,5,5,B6,vB6,"vB6看電視新聞的那一天,一整天看超過12小時,列出確認。",,"not(any(vB6,9797,9898)) & vB6>1200",,auto,single HHMM threshold
+1,6,6,C2,vC2,"vC2有聽廣播的那一天,一整天聽超過12小時,列出確認。",,"not(any(vC2,9797,9898)) & vC2>1200",,auto,single HHMM threshold
+1,7,7,D3,vD3,"vD3有用手機的那一天,一整天用超過16小時,列出確認。",,"not(any(vD3,9797,9898)) & vD3>1600",,auto,single HHMM threshold
+1,8,8,"E5,E8,E11","vE5,vE8,vE11","各項裝置(手機、平板及電腦)因工作與課業而上網的時間相加超過16小時,列出確認。",列出E5~E12加總合計時數、該檢核項的合計時數、以及vE5 | ~vE12共計6變項資料。,"not(any(vE5,9797,9898)) & not(any(vE8,9797,9898)) & not(any(vE11,9797,9898)) & ((trunc(vE5/100)*60 + mod(vE5,100)) + (trunc(vE8/100)*60 + mod(vE8,100)) + (trunc(vE11/100)*60 + mod(vE11,100)))>960","sumE5_E12_min,sumE5_E8_E11_min,vE5,vE6,vE8,vE9,vE11,vE12",auto,summed HHMM threshold
+1,9,9,"E5,E8,E11","vE6,vE9,vE12","各項裝置(手機、平板及電腦)非因工作與課業而上網的時間相加超過16小時,列出確認。",列出E5~E12加總合計時數、該檢核項的合計時數、以及vE5 | ~vE12共計6變項資料。,"not(any(vE6,9797,9898)) & not(any(vE9,9797,9898)) & not(any(vE12,9797,9898)) & ((trunc(vE6/100)*60 + mod(vE6,100)) + (trunc(vE9/100)*60 + mod(vE9,100)) + (trunc(vE12/100)*60 + mod(vE12,100)))>960","sumE5_E12_min,sumE6_E9_E12_min,vE5,vE6,vE8,vE9,vE11,vE12",auto,summed HHMM threshold
+1,10,10,"E5,E6","vE5,vE6",vE5、vE6使用手機上網的時間相加超過16小時。,列出E5~E12加總合計時數、該檢核項的合計時數、以及vE5 | ~vE12共計6變項資料。,"not(any(vE5,9797,9898)) & not(any(vE6,9797,9898)) & ((trunc(vE5/100)*60 + mod(vE5,100)) + (trunc(vE6/100)*60 + mod(vE6,100)))>960","sumE5_E12_min,sumE5_E6_min,vE5,vE6,vE8,vE9,vE11,vE12",auto,summed HHMM threshold
+1,11,11,"E8,E9","vE8,vE9",vE8、vE9使用平板上網的時間相加超過16小時。,列出E5~E12加總合計時數、該檢核項的合計時數、以及vE5 | ~vE12共計6變項資料。,"not(any(vE8,9797,9898)) & not(any(vE9,9797,9898)) & ((trunc(vE8/100)*60 + mod(vE8,100)) + (trunc(vE9/100)*60 + mod(vE9,100)))>960","sumE5_E12_min,sumE8_E9_min,vE5,vE6,vE8,vE9,vE11,vE12",auto,summed HHMM threshold
+1,12,12,"E11,E12","vE11,vE12",vE11、vE12使用電腦上網的時間相加超過16小時。,列出E5~E12加總合計時數、該檢核項的合計時數、以及vE5 | ~vE12共計6變項資料。,"not(any(vE11,9797,9898)) & not(any(vE12,9797,9898)) & ((trunc(vE11/100)*60 + mod(vE11,100)) + (trunc(vE12/100)*60 + mod(vE12,100)))>960","sumE5_E12_min,sumE11_E12_min,vE5,vE6,vE8,vE9,vE11,vE12",auto,summed HHMM threshold
+1,13,13,"E5,E6,D3","vE5,vE6,vD3","vE5、vE6使用手機上網的時間相加大於vD3的時間2小時,列出確認。",另列出合計時數,(vE5+vE6)>(vD3+200),,auto,HHMM pair sum exceeds reference by hours
+1,14,14,E14,vE14,"vE14平均每月在網路上消費(買東西)超過O5收入題,列出確認。",,,,review,income category mapping needed
+1,15,15,F2,vF2,"vF2有讀雜誌(紙本),一整天看超過5小時,列出確認。",,"not(any(vF2,9797,9898)) & vF2>500",,auto,single HHMM threshold
+1,16,16,F4,vF4,"vF4有讀雜誌(網路),一整天看超過5小時,列出確認。",,"not(any(vF4,9797,9898)) & vF4>500",,auto,single HHMM threshold
+1,17,17,G2,vG2,"vG2有讀報紙(紙本),一整天看超過5小時,列出確認。",,"not(any(vG2,9797,9898)) & vG2>500",,auto,single HHMM threshold
+1,18,18,G5,vG5,"vG5有上網看新聞的那一天,一整天看超過5小時,列出確認。",,"not(any(vG5,9797,9898)) & vG5>500",,auto,single HHMM threshold
+1,19,19,"H1,H4,H7","vH1,vH4,vH7","vH1「面對面」接觸人數回答0~990且vH4「網路上」接觸人數回答0~990,在vH7「面對面」且「網路上」接觸的人數卻回答(997)不知道。",*品管項目,"range(vH1,0,990) & range(vH4,0,990) & vH7=997",,auto,known H1/H4 but H7 unknown
+1,20,20,"H7,H7_1,H7_2,H7_3","vH7,vH7_1,vH7_2,vH7_3","vH7-vH7_3平常一天「面對面」且「網路上」接觸的人數超過30人,列出確認。",,"(not(any(vH7,991,997,998)) & vH7>30) | (not(any(vH7_1,991,997,998)) & vH7_1>30) | (not(any(vH7_2,991,997,998)) & vH7_2>30) | (not(any(vH7_3,991,997,998)) & vH7_3>30)",,auto,people-count threshold
+1,21,21,Q24,vQ24g1,"vQ24看談話性政論節目,每星期看超過35小時,列出確認。",,"not(any(vQ24g1,997,998)) & vQ24g1>35",,auto,single hour-part threshold
+1,22,22,Q21,vQ21g1,"vQ21看政治人物或政治網紅影片,每星期看超過35小時,列出確認。",,"not(any(vQ21g1,997,998)) & vQ21g1>35",,auto,single hour-part threshold
+1,23,23,Q26A,vQ26Ag1,"vQ26A聽政治或公共事務播客,每星期聽超過35小時,列出確認。",,"not(any(vQ26Ag1,997,998)) & vQ26Ag1>35",,auto,single hour-part threshold
+1,24,24,Q28,vQ28,"vQ28經常一起討論政治或公共事務的人數超過50人,列出確認。",,"(not(any(vQ28,991,997,998)) & vQ28>50)",,auto,people-count threshold
+1,25,25,H8,vH8,"vH8經常會一起討論「個人」問題或心事的人超過50人,列出確認。",,"(not(any(vH8,991,997,998)) & vH8>50)",,auto,people-count threshold
+1,26,26,I2,vI2,"vI2看戲劇節目的平常日(週一到週五),一整天看超過12小時,列出確認。",,"not(any(vI2,9797,9898)) & vI2>1200",,auto,single HHMM threshold
+1,27,27,I4,vI4,"vI4看戲劇節目的週六或週日,一整天看超過12小時,列出確認。",,"not(any(vI4,9797,9898)) & vI4>1200",,auto,single HHMM threshold
+1,28,28,KFB2,vKFB2,"vKFB2有使用臉書,一整天用超過16小時,列出確認。",,"not(any(vKFB2,9797,9898)) & vKFB2>1600",,auto,single HHMM threshold
+1,29,29,KIG2,vKIG2,"vKIG2有使用IG,一整天用超過16小時,列出確認。",,"not(any(vKIG2,9797,9898)) & vKIG2>1600",,auto,single HHMM threshold
+1,30,30,KLI2,vKLI2,"vKLI2有使用LINE,一整天用超過16小時,列出確認。",,"not(any(vKLI2,9797,9898)) & vKLI2>1600",,auto,single HHMM threshold
+1,31,31,KTT2,vKTT2,"vKTT2有使用抖音(TikTok),一整天用超過16小時,列出確認。",,"not(any(vKTT2,9797,9898)) & vKTT2>1600",,auto,single HHMM threshold
+1,32,32,KYT2,vKYT2,"vKYT2有使用YouTube,一整天用超過16小時,列出確認。",,"not(any(vKYT2,9797,9898)) & vKYT2>1600",,auto,single HHMM threshold
+1,33,33,P5_2,vP5_2,"vP5_2有使用Threads,一整天用超過16小時,列出確認。",,"not(any(vP5_2,9797,9898)) & vP5_2>1600",,auto,single HHMM threshold
+1,34,34,M1,"vM1g01,vM1g02",vM1玩電玩遊戲一週超過64小時列出確認。,,"not(any(vM1g01,9797,9898)) & not(any(vM1g02,9797,9898)) & ((trunc(vM1g01/100)*60 + mod(vM1g01,100)) + (trunc(vM1g02/100)*60 + mod(vM1g02,100)))>3840",,auto,summed HHMM threshold
+1,35,35,"vA1,O1","vA1,vO1","出生年超過民國74年次(未滿40歲者),vO1目前工作不應為(09)已經退休 | (年齡計算以114減出生年)。",,vA1>74 & vO1=9,,auto,retirement by birth year
+1,36,36,Z2_1,"vZ2_1g1,vZ2_1g2","1.市話號碼長度為9碼(北北基、台中、南投以外縣市電話),前兩碼應為03、05、06、07、08或前三碼為047、048。 | 2.市話號碼長度為10碼(北北基、台中、南投電話),前兩碼應為02或前三碼為042、043、049。 | 3.市話號碼不可重複。 | 4.分機號碼長度超過4碼,列出確認。 | 5.市話號碼不應該為系統範例電話0227887792或0212345678。",*品管項目,,,review,string or duplicate validation needs dedicated rule
+1,37,37,"Z2_2,ZE2_1","vZ2_2,vZE2_1",1.手機號碼長度應為10碼且前兩碼應為09。 | 2.手機號碼不可重複。 | 3.手機號碼不應該為0912345678。,*品管項目,,,review,string or duplicate validation needs dedicated rule
+1,38,38,ZE2_3,vZE2_3,1.Email的@為全形。 | 2.Email帳號長度<=2。 | 3.Email網域長度<=4或不在網域清單內。 | 4.Email不可有特殊符號。 | 5.Email不可重複。,*品管項目,,,review,string or duplicate validation needs dedicated rule
+1,39,39,"K1,KTT4","vK1m11,vKTT4m13,vKTT4m14","K1有選(11)抖音,KTT4非選(97)不知道(98)拒答者,沒有選(13)分享或轉貼、轉寄影片,也沒有選(14)傳送訊息或視訊",計畫小組要求列出 | 列出Q11題答案協助檢核參考,vK1m11=1 & vKTT4m13~=1 & vKTT4m14~=1,,auto,multiple-response missing related TikTok actions
+1,40,40,"Q5,Q6,Q7,Q8,Q9","vQ5,vQ6,vQ7,vQ8,vQ9","Q5答有透過網路接觸到政治消息,但Q6-Q9皆回答(01)從來沒有",計畫小組要求列出,vQ5=1 & vQ6=1 & vQ7=1 & vQ8=1 & vQ9=1,,auto,internet political news contradiction
+1,41,41,"Q10,Q11,Q12,Q13,Q14","vQ10,vQ11,vQ12,vQ13,vQ14","Q10答有透過網路轉貼或分享政治消息,但Q11-Q14皆回答(01)從來沒有",計畫小組要求列出,vQ10=1 & vQ11=1 & vQ12=1 & vQ13=1 & vQ14=1,,auto,internet political sharing contradiction
+1,42,42,"Q47,Q51","vQ47,vQ51","Q47答0分者,在Q51答(01)國民黨,請列出檢核。","TCS4-1計畫小組要求列出,不會進行補問",vQ47=0 & vQ51=1,,auto,score and option confirmation
+1,43,43,"Q48,Q51","vQ48,vQ51","Q48答0分者,在Q51答(02)民進黨,請列出檢核。","TCS4-1計畫小組要求列出,不會進行補問",vQ48=0 & vQ51=2,,auto,score and option confirmation
+1,44,44,"Q62,Q51","vQ62,vQ51","Q62答0分者,在Q51答(08)台灣民眾黨,請列出檢核。","TCS4-1計畫小組要求列出,不會進行補問",vQ62=0 & vQ51=8,,auto,score and option confirmation
+1,45,45,"Q53,P3_1","vQ53,vP3_1","Q53答(01)儘快統一者,P3_1答0分者,請列出檢核。","TCS4-1計畫小組要求列出,不會進行補問",vQ53=1 & vP3_1=0,,auto,option and score confirmation
+1,46,46,"Q53,P3_1","vQ53,vP3_1","Q53答(02)儘快宣佈獨立,P3_1答10分者,請列出檢核。","TCS4-1計畫小組要求列出,不會進行補問",vQ53=2 & vP3_1=10,,auto,option and score confirmation

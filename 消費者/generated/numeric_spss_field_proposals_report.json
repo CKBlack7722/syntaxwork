@@ -1,0 +1,86 @@
+{
+  "summary": {
+    "rows": 59,
+    "status": {
+      "match": 54,
+      "review": 5
+    }
+  },
+  "review": [
+    {
+      "row": "3",
+      "var": "vEND1",
+      "existing_in_or_not": "range",
+      "proposed_in_or_not": "any",
+      "existing_range": "range(vEND1,99969696969696,99969696969696)",
+      "proposed_range": "any(vEND1,99969696969696)",
+      "alternative_range": "range(vEND1,99969696969696,99969696969696)",
+      "existing_decimal_check": "",
+      "proposed_decimal_check": "",
+      "decimal_note": "",
+      "status": "review",
+      "mismatch_reason": "in_or_not differs; range differs",
+      "question_excerpt": ""
+    },
+    {
+      "row": "4",
+      "var": "v1",
+      "existing_in_or_not": "range",
+      "proposed_in_or_not": "any",
+      "existing_range": "range(v1,1,1)",
+      "proposed_range": "any(v1,1)",
+      "alternative_range": "range(v1,1,1)",
+      "existing_decimal_check": "",
+      "proposed_decimal_check": "",
+      "decimal_note": "",
+      "status": "review",
+      "mismatch_reason": "in_or_not differs; range differs",
+      "question_excerpt": ""
+    },
+    {
+      "row": "10",
+      "var": "vEND2",
+      "existing_in_or_not": "range",
+      "proposed_in_or_not": "any",
+      "existing_range": "range(vEND2,99969696969696,99969696969696)",
+      "proposed_range": "any(vEND2,99969696969696)",
+      "alternative_range": "range(vEND2,99969696969696,99969696969696)",
+      "existing_decimal_check": "",
+      "proposed_decimal_check": "",
+      "decimal_note": "",
+      "status": "review",
+      "mismatch_reason": "in_or_not differs; range differs",
+      "question_excerpt": ""
+    },
+    {
+      "row": "32",
+      "var": "vQ17_1A",
+      "existing_in_or_not": "range",
+      "proposed_in_or_not": "range",
+      "existing_range": "range(vQ17_1A,3,999,9999996,9999996)",
+      "proposed_range": "(range(vQ17_1A,3,999,9999996,9999996) & mod(vQ17_1A*100,1)=0)",
+      "alternative_range": "(range(vQ17_1A,3,999) | range(vQ17_1A,9999996,9999996))",
+      "existing_decimal_check": "",
+      "proposed_decimal_check": "&mod(vQ17_1A*100,1)=0",
+      "decimal_note": "allow up to 2 decimal places",
+      "status": "review",
+      "mismatch_reason": "range differs; decimal check missing/differs",
+      "question_excerpt": "Q17_1A您上一題勾選預期一年後,消費者物價指數相較這一兩個月,會「上升至3.00%(含)以上」,請問是上升至多少%呢? (可輸入至小數點2位)[Q17_1選(4)顯示此題]上升至____%CK17_1A115年1、2月平均消費者物價指數比去年同期上漲幅度為1.23%,而您預期一年後將上升至(貼Q17_1A的答案)%。請確認您的回答是否與您的想法相符,或是輸入有誤。[Q17_1A大於等於50顯示CK17_1A,不到50則跳至Q18](1) 輸入正確,與我的想法相符(2) 輸入錯誤,正確應為上升至___% (請填數字)"
+    },
+    {
+      "row": "36",
+      "var": "vQ17_2A",
+      "existing_in_or_not": "range",
+      "proposed_in_or_not": "range",
+      "existing_range": "range(vQ17_2A,2,100,96,96)",
+      "proposed_range": "(range(vQ17_2A,2,100,96,96) & mod(vQ17_2A*100,1)=0)",
+      "alternative_range": "(range(vQ17_2A,2,100) | range(vQ17_2A,96,96))",
+      "existing_decimal_check": "",
+      "proposed_decimal_check": "&mod(vQ17_2A*100,1)=0",
+      "decimal_note": "allow up to 2 decimal places",
+      "status": "review",
+      "mismatch_reason": "range differs; decimal check missing/differs",
+      "question_excerpt": "Q17_2A您上一題勾選預期一年後,消費者物價指數相較這一兩個月,會「下降至低於0.5%」,請問為多少%呢?(可輸入至小數點2位)[Q17_2選(1)顯示此題,範圍設定小於0.5]下降至____%CK17_2A115年1、2月平均消費者物價指數比去年同期上漲幅度為1.23%,而您預期一年後將下降至(貼Q17_2A的答案)%。請確認您的回答是否與您的想法相符,或是輸入有誤。[Q17_2A為0%或負值,顯示CK17_2A,正值則跳至Q19](1) 輸入正確,與我的想法相符(2) 輸入錯誤,正確應下降至___% (請填數字,可輸入至小數點2位)"
+    }
+  ]
+}

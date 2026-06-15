@@ -1,0 +1,242 @@
+{
+  "summary": {
+    "workbook": "Z:\\AIWork\\syntaxwork\\消費者\\檢核程式套印-台灣消費者.xlsx",
+    "docx": "Z:\\AIWork\\syntaxwork\\消費者\\問卷_第一期.docx",
+    "numeric_sheet": "數值題101-200",
+    "question_blocks": 58,
+    "rows": 59,
+    "confidence_counts": {
+      "high": 29,
+      "medium": 25,
+      "manual": 5
+    },
+    "exact_counts": {
+      "r1": 48,
+      "r1_r4": 37
+    }
+  },
+  "manual_review": [
+    {
+      "var": "vCK17_1A",
+      "existing": [
+        "1,2",
+        "96",
+        "",
+        ""
+      ],
+      "proposed": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "source": "no explicit range or option span",
+      "note": "",
+      "compare_status": "manual",
+      "mismatch_reason": "no automatic proposal",
+      "matched_question": "CK17_1A"
+    },
+    {
+      "var": "vCK17_2A",
+      "existing": [
+        "1,2",
+        "96",
+        "",
+        ""
+      ],
+      "proposed": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "source": "no explicit range or option span",
+      "note": "",
+      "compare_status": "manual",
+      "mismatch_reason": "no automatic proposal",
+      "matched_question": "CK17_2A"
+    },
+    {
+      "var": "vQ20_1A",
+      "existing": [
+        "0.3,10",
+        "96",
+        "",
+        ""
+      ],
+      "proposed": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "source": "no block",
+      "note": "needs parent-question mapping or manual review",
+      "compare_status": "manual",
+      "mismatch_reason": "no automatic proposal",
+      "matched_question": ""
+    },
+    {
+      "var": "vQ20_2A",
+      "existing": [
+        "0.3,2.091",
+        "96",
+        "",
+        ""
+      ],
+      "proposed": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "source": "no block",
+      "note": "needs parent-question mapping or manual review",
+      "compare_status": "manual",
+      "mismatch_reason": "no automatic proposal",
+      "matched_question": ""
+    },
+    {
+      "var": "vQ23",
+      "existing": [
+        "1,10000",
+        "999996",
+        "",
+        ""
+      ],
+      "proposed": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "source": "no explicit range or option span",
+      "note": "",
+      "compare_status": "manual",
+      "mismatch_reason": "no automatic proposal",
+      "matched_question": "Q23"
+    }
+  ],
+  "mismatches": [
+    {
+      "var": "vQ17_1",
+      "existing": [
+        "1,4",
+        "96",
+        "",
+        ""
+      ],
+      "proposed": [
+        "1,5",
+        "96",
+        "",
+        ""
+      ],
+      "confidence": "medium",
+      "source": "option-code span",
+      "note": "optional question; inferred special code by value digit width",
+      "compare_status": "mismatch",
+      "mismatch_reason": "Word option span includes codes that Excel excludes or stores as special code"
+    },
+    {
+      "var": "vQ17_1A",
+      "existing": [
+        "3,999",
+        "9999996",
+        "",
+        ""
+      ],
+      "proposed": [
+        "4",
+        "96",
+        "",
+        ""
+      ],
+      "confidence": "medium",
+      "source": "option-code span",
+      "note": "optional question; inferred special code by value digit width",
+      "compare_status": "mismatch",
+      "mismatch_reason": "Word option span includes codes that Excel excludes or stores as special code"
+    },
+    {
+      "var": "vQ17_2A",
+      "existing": [
+        "2,100",
+        "96",
+        "",
+        ""
+      ],
+      "proposed": [
+        "-100000,0.49999",
+        "9999996",
+        "",
+        ""
+      ],
+      "confidence": "medium",
+      "source": "explicit upper-bound range",
+      "note": "optional question; inferred special code by value digit width",
+      "compare_status": "mismatch",
+      "mismatch_reason": "Word explicit range differs from current Excel rule"
+    },
+    {
+      "var": "vQ20_1",
+      "existing": [
+        "1,5",
+        "96",
+        "",
+        ""
+      ],
+      "proposed": [
+        "1,4",
+        "96",
+        "",
+        ""
+      ],
+      "confidence": "medium",
+      "source": "option-code span",
+      "note": "optional question; inferred special code by value digit width",
+      "compare_status": "mismatch",
+      "mismatch_reason": "Word option span includes codes that Excel excludes or stores as special code"
+    },
+    {
+      "var": "vQ20_2",
+      "existing": [
+        "1,5",
+        "96",
+        "",
+        ""
+      ],
+      "proposed": [
+        "1,4",
+        "96",
+        "",
+        ""
+      ],
+      "confidence": "medium",
+      "source": "option-code span",
+      "note": "optional question; inferred special code by value digit width",
+      "compare_status": "mismatch",
+      "mismatch_reason": "Word option span includes codes that Excel excludes or stores as special code"
+    },
+    {
+      "var": "vQ25",
+      "existing": [
+        "1,3",
+        "7",
+        "",
+        ""
+      ],
+      "proposed": [
+        "1,7",
+        "96",
+        "",
+        ""
+      ],
+      "confidence": "medium",
+      "source": "option-code span",
+      "note": "optional question; inferred special code by value digit width",
+      "compare_status": "mismatch",
+      "mismatch_reason": "Word option span includes codes that Excel excludes or stores as special code"
+    }
+  ]
+}

@@ -1,5 +1,6 @@
-* Encoding: UTF-8.
+﻿* Encoding: UTF-8.
 **LOGIC GROUP CHECKS.
+* SYNTAXWORK_BEGIN_LOGIC.
 * logic check show vA0.
 do if (vG0city=29) & any(1,vA0_96).
 compute m301=concat("vG0city=",string(vG0city,n2),",vA0=",string(vA0,n2)).
@@ -338,28 +339,28 @@ compute m342=concat("vC1=",string(vC1,n2),",vC1D=",string(vC1D,n2)).
 compute p342="vC1~=2，不應答vC1D而答".
 end if.
 
-* logic check show vC1U5.
-do if (vC1U=4) & any(1,vC1U5_96).
-compute m343=concat("vC1U=",string(vC1U,n2),",vC1U5=",string(vC1U5,n10)).
-compute p343="vC1U=4，應答vC1U5而未答".
+* logic check show vC1U4.
+do if (vC1U=4) & any(1,vC1U4_96).
+compute m343=concat("vC1U=",string(vC1U,n2),",vC1U4=",string(vC1U4,n10)).
+compute p343="vC1U=4，應答vC1U4而未答".
 end if.
 
-* logic check hide vC1U5.
-do if (vC1U<4) & any(0,vC1U5_96).
-compute m344=concat("vC1U=",string(vC1U,n2),",vC1U5=",string(vC1U5,n10)).
-compute p344="vC1U<4，不應答vC1U5而答".
+* logic check hide vC1U4.
+do if (vC1U<4) & any(0,vC1U4_96).
+compute m344=concat("vC1U=",string(vC1U,n2),",vC1U4=",string(vC1U4,n10)).
+compute p344="vC1U<4，不應答vC1U4而答".
 end if.
 
-* logic check show vC1U5R.
-do if (vC1U5>=50 & vC1U5<9999999996) & any(1,vC1U5R_96).
-compute m345=concat("vC1U5=",string(vC1U5,n10),",vC1U5R=",string(vC1U5R,n2)).
-compute p345="vC1U5>=50 & vC1U5<9999999996，應答vC1U5R而未答".
+* logic check show vC1U4R.
+do if (vC1U5>=50 & vC1U5<9999999996) & any(1,vC1U4R_96).
+compute m345=concat("vC1U5=",string(vC1U5,n2),",vC1U4R=",string(vC1U4R,n2)).
+compute p345="vC1U5>=50 & vC1U5<9999999996，應答vC1U4R而未答".
 end if.
 
-* logic check hide vC1U5R.
-do if (vC1U5<50 | vC1U5=9999999996) & any(0,vC1U5R_96).
-compute m346=concat("vC1U5=",string(vC1U5,n10),",vC1U5R=",string(vC1U5R,n2)).
-compute p346="vC1U5<50 | vC1U5=9999999996，不應答vC1U5R而答".
+* logic check hide vC1U4R.
+do if (vC1U5<50 | vC1U5=9999999996) & any(0,vC1U4R_96).
+compute m346=concat("vC1U5=",string(vC1U5,n2),",vC1U4R=",string(vC1U4R,n2)).
+compute p346="vC1U5<50 | vC1U5=9999999996，不應答vC1U4R而答".
 end if.
 
 * logic check show vC1D1.
@@ -388,49 +389,49 @@ end if.
 
 * logic check show vC2U7.
 do if (vC2=7) & any(1,vC2U7_96).
-compute m351=concat("vC2=",string(vC2,n2),",vC2U7=",string(vC2U7,n6)).
+compute m351=concat("vC2=",string(vC2,n2),",vC2U7=",string(vC2U7,n10)).
 compute p351="vC2=7，應答vC2U7而未答".
 end if.
 
 * logic check hide vC2U7.
 do if (vC2<7) & any(0,vC2U7_96).
-compute m352=concat("vC2=",string(vC2,n2),",vC2U7=",string(vC2U7,n6)).
+compute m352=concat("vC2=",string(vC2,n2),",vC2U7=",string(vC2U7,n10)).
 compute p352="vC2<7，不應答vC2U7而答".
 end if.
 
 * logic check show vC2U7R.
 do if (vC2U7>=50 & vC2U7<999996) & any(1,vC2U7R_96).
-compute m353=concat("vC2U7=",string(vC2U7,n6),",vC2U7R=",string(vC2U7R,n2)).
+compute m353=concat("vC2U7=",string(vC2U7,n10),",vC2U7R=",string(vC2U7R,n2)).
 compute p353="vC2U7>=50 & vC2U7<999996，應答vC2U7R而未答".
 end if.
 
 * logic check hide vC2U7R.
 do if (vC2U7<50 | vC2U7=999996) & any(0,vC2U7R_96).
-compute m354=concat("vC2U7=",string(vC2U7,n6),",vC2U7R=",string(vC2U7R,n2)).
+compute m354=concat("vC2U7=",string(vC2U7,n10),",vC2U7R=",string(vC2U7R,n2)).
 compute p354="vC2U7<50 | vC2U7=999996，不應答vC2U7R而答".
 end if.
 
 * logic check show vC2D1.
 do if (vC2=1) & any(1,vC2D1_96).
-compute m355=concat("vC2=",string(vC2,n2),",vC2D1=",string(vC2D1,n6)).
+compute m355=concat("vC2=",string(vC2,n2),",vC2D1=",string(vC2D1,n10)).
 compute p355="vC2=1，應答vC2D1而未答".
 end if.
 
 * logic check hide vC2D1.
 do if (vC2>1) & any(0,vC2D1_96).
-compute m356=concat("vC2=",string(vC2,n2),",vC2D1=",string(vC2D1,n6)).
+compute m356=concat("vC2=",string(vC2,n2),",vC2D1=",string(vC2D1,n10)).
 compute p356="vC2>1，不應答vC2D1而答".
 end if.
 
 * logic check show vC2D1R.
 do if (vC2D1<=0) & any(1,vC2D1R_96).
-compute m357=concat("vC2D1=",string(vC2D1,n6),",vC2D1R=",string(vC2D1R,n2)).
+compute m357=concat("vC2D1=",string(vC2D1,n10),",vC2D1R=",string(vC2D1R,n2)).
 compute p357="vC2D1<=0，應答vC2D1R而未答".
 end if.
 
 * logic check hide vC2D1R.
 do if (vC2D1>0) & any(0,vC2D1R_96).
-compute m358=concat("vC2D1=",string(vC2D1,n6),",vC2D1R=",string(vC2D1R,n2)).
+compute m358=concat("vC2D1=",string(vC2D1,n10),",vC2D1R=",string(vC2D1R,n2)).
 compute p358="vC2D1>0，不應答vC2D1R而答".
 end if.
 
@@ -460,25 +461,25 @@ end if.
 
 * logic check show vD1D5.
 do if (vD1D=5) & any(1,vD1D5_96).
-compute m363=concat("vD1D=",string(vD1D,n2),",vD1D5=",string(vD1D5,n7)).
+compute m363=concat("vD1D=",string(vD1D,n2),",vD1D5=",string(vD1D5,n10)).
 compute p363="vD1D=5，應答vD1D5而未答".
 end if.
 
 * logic check hide vD1D5.
 do if (vD1D~=5) & any(0,vD1D5_96).
-compute m364=concat("vD1D=",string(vD1D,n2),",vD1D5=",string(vD1D5,n7)).
+compute m364=concat("vD1D=",string(vD1D,n2),",vD1D5=",string(vD1D5,n10)).
 compute p364="vD1D~=5，不應答vD1D5而答".
 end if.
 
 * logic check show vD1U5.
 do if (vD1U=5) & any(1,vD1U5_96).
-compute m365=concat("vD1U=",string(vD1U,n2),",vD1U5=",string(vD1U5,n7)).
+compute m365=concat("vD1U=",string(vD1U,n2),",vD1U5=",string(vD1U5,n10)).
 compute p365="vD1U=5，應答vD1U5而未答".
 end if.
 
 * logic check hide vD1U5.
 do if (vD1U~=5) & any(0,vD1U5_96).
-compute m366=concat("vD1U=",string(vD1U,n2),",vD1U5=",string(vD1U5,n7)).
+compute m366=concat("vD1U=",string(vD1U,n2),",vD1U5=",string(vD1U5,n10)).
 compute p366="vD1U~=5，不應答vD1U5而答".
 end if.
 
@@ -665,3 +666,5 @@ compute m385=concat(
 ).
 compute p385="vB7R=2，vB7DR應<=vA7R".
 end if.
+
+* SYNTAXWORK_END_LOGIC.

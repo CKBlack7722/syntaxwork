@@ -1,0 +1,1102 @@
+{
+  "run_at": "2026-06-15T12:37:59",
+  "projects": [
+    {
+      "project": "消費者",
+      "commands": [
+        {
+          "args": [
+            "C:\\Users\\user\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+            "Z:\\AIWork\\syntaxwork\\淨零\\tools\\validate_excel_structure.py",
+            "--project",
+            "消費者",
+            "--workbook",
+            "Z:\\AIWork\\syntaxwork\\消費者\\檢核程式套印-台灣消費者.xlsx",
+            "--output-csv",
+            "Z:\\AIWork\\syntaxwork\\消費者\\generated\\excel_precheck.csv",
+            "--report",
+            "Z:\\AIWork\\syntaxwork\\消費者\\generated\\excel_precheck_report.json"
+          ],
+          "returncode": 0,
+          "stdout": "消費者 {}",
+          "stderr": ""
+        },
+        {
+          "args": [
+            "C:\\Users\\user\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+            "Z:\\AIWork\\syntaxwork\\淨零\\tools\\generate_numeric_range_proposals.py",
+            "--workbook",
+            "Z:\\AIWork\\syntaxwork\\消費者\\檢核程式套印-台灣消費者.xlsx",
+            "--docx",
+            "Z:\\AIWork\\syntaxwork\\消費者\\問卷_第一期.docx",
+            "--output-csv",
+            "Z:\\AIWork\\syntaxwork\\消費者\\generated\\numeric_range_proposals.csv",
+            "--report",
+            "Z:\\AIWork\\syntaxwork\\消費者\\generated\\numeric_range_proposals_report.json"
+          ],
+          "returncode": 0,
+          "stdout": "rows: 59\nconfidence: {'high': 29, 'medium': 25, 'manual': 5}\nexact r1: 48\nexact r1-r4: 37",
+          "stderr": ""
+        },
+        {
+          "args": [
+            "C:\\Users\\user\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+            "Z:\\AIWork\\syntaxwork\\淨零\\tools\\generate_numeric_spss_field_proposals.py",
+            "--workbook",
+            "Z:\\AIWork\\syntaxwork\\消費者\\檢核程式套印-台灣消費者.xlsx",
+            "--docx",
+            "Z:\\AIWork\\syntaxwork\\消費者\\問卷_第一期.docx",
+            "--output-csv",
+            "Z:\\AIWork\\syntaxwork\\消費者\\generated\\numeric_spss_field_proposals.csv",
+            "--report",
+            "Z:\\AIWork\\syntaxwork\\消費者\\generated\\numeric_spss_field_proposals_report.json"
+          ],
+          "returncode": 0,
+          "stdout": "{'rows': 59, 'status': {'match': 54, 'review': 5}}",
+          "stderr": ""
+        },
+        {
+          "args": [
+            "C:\\Users\\user\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+            "Z:\\AIWork\\syntaxwork\\淨零\\tools\\generate_open_field_proposals.py",
+            "--workbook",
+            "Z:\\AIWork\\syntaxwork\\消費者\\檢核程式套印-台灣消費者.xlsx",
+            "--docx",
+            "Z:\\AIWork\\syntaxwork\\消費者\\問卷_第一期.docx",
+            "--output-csv",
+            "Z:\\AIWork\\syntaxwork\\消費者\\generated\\open_field_proposals.csv",
+            "--report",
+            "Z:\\AIWork\\syntaxwork\\消費者\\generated\\open_field_proposals_report.json"
+          ],
+          "returncode": 0,
+          "stdout": "rows: 4\nsummary: {'existing_rows': 4, 'proposed_rows': 4, 'status': {'match': 4}, 'question_blocks': 39}",
+          "stderr": ""
+        },
+        {
+          "args": [
+            "C:\\Users\\user\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+            "Z:\\AIWork\\syntaxwork\\淨零\\tools\\generate_numeric_checks.py",
+            "--workbook",
+            "Z:\\AIWork\\syntaxwork\\消費者\\檢核程式套印-台灣消費者.xlsx",
+            "--output",
+            "Z:\\AIWork\\syntaxwork\\消費者\\generated\\numeric_checks_generated.sps",
+            "--report",
+            "Z:\\AIWork\\syntaxwork\\消費者\\generated\\numeric_checks_report.json"
+          ],
+          "returncode": 0,
+          "stdout": "{\"rules\": 59, \"skipped\": 0, \"skipped_rows\": [], \"output\": \"Z:\\\\AIWork\\\\syntaxwork\\\\消費者\\\\generated\\\\numeric_checks_generated.sps\"}",
+          "stderr": ""
+        },
+        {
+          "args": [
+            "C:\\Users\\user\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+            "Z:\\AIWork\\syntaxwork\\淨零\\tools\\generate_open_checks.py",
+            "--workbook",
+            "Z:\\AIWork\\syntaxwork\\消費者\\檢核程式套印-台灣消費者.xlsx",
+            "--output",
+            "Z:\\AIWork\\syntaxwork\\消費者\\generated\\open_checks_generated.sps",
+            "--report",
+            "Z:\\AIWork\\syntaxwork\\消費者\\generated\\open_checks_report.json"
+          ],
+          "returncode": 0,
+          "stdout": "{\"rules\": 4, \"skipped\": 0, \"skipped_rows\": [], \"output\": \"Z:\\\\AIWork\\\\syntaxwork\\\\消費者\\\\generated\\\\open_checks_generated.sps\"}",
+          "stderr": ""
+        },
+        {
+          "args": [
+            "C:\\Users\\user\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+            "Z:\\AIWork\\syntaxwork\\淨零\\tools\\generate_multi_checks.py",
+            "--workbook",
+            "Z:\\AIWork\\syntaxwork\\消費者\\檢核程式套印-台灣消費者.xlsx",
+            "--output",
+            "Z:\\AIWork\\syntaxwork\\消費者\\generated\\multi_checks_generated.sps",
+            "--report",
+            "Z:\\AIWork\\syntaxwork\\消費者\\generated\\multi_checks_report.json",
+            "--reference-syntax",
+            "Z:\\AIWork\\syntaxwork\\消費者\\1資料處理及檢核.sps",
+            "--compare-output",
+            "Z:\\AIWork\\syntaxwork\\消費者\\generated\\multi_checks_compare.json"
+          ],
+          "returncode": 0,
+          "stdout": "multi questions: 1\nmutex rules: 1\nissues: 0\ncompare normalized_equal: False\ncompare reference_lines: 23\ncompare generated_lines: 23",
+          "stderr": ""
+        },
+        {
+          "args": [
+            "C:\\Users\\user\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+            "Z:\\AIWork\\syntaxwork\\淨零\\tools\\build_spss_checks.py",
+            "--output",
+            "Z:\\AIWork\\syntaxwork\\消費者\\generated\\all_checks_generated.sps",
+            "--section",
+            "Z:\\AIWork\\syntaxwork\\消費者\\generated\\numeric_checks_generated.sps",
+            "--section",
+            "Z:\\AIWork\\syntaxwork\\消費者\\generated\\open_checks_generated.sps",
+            "--section",
+            "Z:\\AIWork\\syntaxwork\\消費者\\generated\\multi_checks_generated.sps"
+          ],
+          "returncode": 0,
+          "stdout": "sections: 3\noutput: Z:\\AIWork\\syntaxwork\\消費者\\generated\\all_checks_generated.sps",
+          "stderr": ""
+        }
+      ],
+      "outputs": {
+        "numeric_csv": "Z:\\AIWork\\syntaxwork\\消費者\\generated\\numeric_range_proposals.csv",
+        "numeric_report": "Z:\\AIWork\\syntaxwork\\消費者\\generated\\numeric_range_proposals_report.json",
+        "numeric_spss_csv": "Z:\\AIWork\\syntaxwork\\消費者\\generated\\numeric_spss_field_proposals.csv",
+        "numeric_spss_report": "Z:\\AIWork\\syntaxwork\\消費者\\generated\\numeric_spss_field_proposals_report.json",
+        "precheck_csv": "Z:\\AIWork\\syntaxwork\\消費者\\generated\\excel_precheck.csv",
+        "precheck_report": "Z:\\AIWork\\syntaxwork\\消費者\\generated\\excel_precheck_report.json",
+        "open_csv": "Z:\\AIWork\\syntaxwork\\消費者\\generated\\open_field_proposals.csv",
+        "open_report": "Z:\\AIWork\\syntaxwork\\消費者\\generated\\open_field_proposals_report.json",
+        "numeric_sps": "Z:\\AIWork\\syntaxwork\\消費者\\generated\\numeric_checks_generated.sps",
+        "numeric_check_report": "Z:\\AIWork\\syntaxwork\\消費者\\generated\\numeric_checks_report.json",
+        "open_sps": "Z:\\AIWork\\syntaxwork\\消費者\\generated\\open_checks_generated.sps",
+        "open_check_report": "Z:\\AIWork\\syntaxwork\\消費者\\generated\\open_checks_report.json",
+        "multi_sps": "Z:\\AIWork\\syntaxwork\\消費者\\generated\\multi_checks_generated.sps",
+        "multi_report": "Z:\\AIWork\\syntaxwork\\消費者\\generated\\multi_checks_report.json",
+        "multi_compare": "Z:\\AIWork\\syntaxwork\\消費者\\generated\\multi_checks_compare.json",
+        "logic_sps": "",
+        "logic_report": "",
+        "combined_sps": "Z:\\AIWork\\syntaxwork\\消費者\\generated\\all_checks_generated.sps",
+        "external_sps": "",
+        "external_report": ""
+      },
+      "unresolved": [
+        {
+          "area": "logic",
+          "message": "Workbook has no 邏輯組 sheet; skipped logic generation."
+        },
+        {
+          "area": "word_to_logic",
+          "message": "Direct Word-to-邏輯組 generation is not implemented yet; current logic generation uses Excel 邏輯組."
+        },
+        {
+          "area": "word_to_open_fields",
+          "message": "Direct Word-to-開放欄位 generation is not implemented yet; current pipeline only records this gap."
+        }
+      ],
+      "numeric_summary": {
+        "rows": 59,
+        "compare_status": {
+          "match": 37,
+          "range_match_special_diff": 11,
+          "mismatch": 6,
+          "manual": 5
+        }
+      },
+      "numeric_spss_summary": {
+        "rows": 59,
+        "status": {
+          "match": 54,
+          "review": 5
+        }
+      },
+      "precheck_summary": {
+        "workbook": "Z:\\AIWork\\syntaxwork\\消費者\\檢核程式套印-台灣消費者.xlsx",
+        "sheets": {
+          "numeric": "數值題101-200",
+          "open": "開放欄位201-300",
+          "multi": "複選題_301-400",
+          "mutex": "複選題內_互斥",
+          "multi_vars": "複選題變項清單",
+          "logic": null
+        },
+        "issue_counts": {}
+      },
+      "open_summary": {
+        "rows": 4,
+        "status": {
+          "match": 4
+        }
+      },
+      "multi_summary": {
+        "workbook": "Z:\\AIWork\\syntaxwork\\消費者\\檢核程式套印-台灣消費者.xlsx",
+        "output": "Z:\\AIWork\\syntaxwork\\消費者\\generated\\multi_checks_generated.sps",
+        "questions": [
+          {
+            "row": 2,
+            "m": "301",
+            "p": "301",
+            "display_name": "Q24",
+            "group_key": "vQ24",
+            "vars": [
+              "vQ24m1",
+              "vQ24m2",
+              "vQ24m3",
+              "vQ24m4",
+              "vQ24m5",
+              "vQ24m6"
+            ],
+            "no_response_codes": [
+              "96"
+            ]
+          }
+        ],
+        "mutex_rules": [
+          {
+            "row": 2,
+            "m": "302",
+            "p": "302",
+            "display_name": "Q24",
+            "exclusive_code": "1",
+            "exclusive_var": "vQ24m1",
+            "other_vars": [
+              "vQ24m2",
+              "vQ24m3",
+              "vQ24m4",
+              "vQ24m5",
+              "vQ24m6"
+            ],
+            "recovered_from_main": false
+          }
+        ],
+        "issues": [],
+        "compare": {
+          "reference_lines": 23,
+          "generated_lines": 23,
+          "normalized_equal": false,
+          "diff": [
+            "--- reference",
+            "+++ generated",
+            "@@ -1,5 +1,5 @@",
+            " **3.複選題檢核.",
+            "-* vq24 組合.",
+            "+* q24 組合.",
+            " string q24 (a600).",
+            " compute q24 = rtrim(ltrim(concat(\"vq24m1=\",string(vq24m1,f2),\" , \",\"vq24m2=\",string(vq24m2,f2),\" , \",\"vq24m3=\",string(vq24m3,f2),\" , \",\"vq24m4=\",string(vq24m4,f2),\" , \",\"vq24m5=\",string(vq24m5,f2),\" , \",\"vq24m6=\",string(vq24m6,f2)))).",
+            " *q24.",
+            "@@ -7,10 +7,10 @@",
+            " compute #q24zero = (sum(vq24m1 to vq24m6) = 0).",
+            " loop #i=1 to 5.",
+            " do if (any(a(#i),0,1) & any(a(#i+1),96))",
+            "-| (any(a(#i),96) and not any(a(#i+1),96))|#q24zero=1.",
+            "+| (any(a(#i),96) and not any(a(#i+1),96))",
+            "+| #q24zero=1.",
+            " compute m301=rtrim(ltrim(q24)).",
+            " compute p301=\"q24至少選1項或選特殊碼應一致\".",
+            "-break.",
+            " end if.",
+            " end loop.",
+            " exec.",
+            "@@ -18,6 +18,6 @@",
+            " *q24=1 複選題內互斥.",
+            " do if any(vq24m1,1) & any(1,vq24m2 to vq24m6).",
+            " compute m302=rtrim(ltrim(q24)).",
+            "-compute p302= \"q24複選題選項應互斥\".",
+            "+compute p302=\"q24(1)複選題選項應互斥\".",
+            " end if.",
+            " exec."
+          ],
+          "diff_truncated": false
+        }
+      }
+    },
+    {
+      "project": "消費者2",
+      "commands": [
+        {
+          "args": [
+            "C:\\Users\\user\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+            "Z:\\AIWork\\syntaxwork\\淨零\\tools\\validate_excel_structure.py",
+            "--project",
+            "消費者2",
+            "--workbook",
+            "Z:\\AIWork\\syntaxwork\\消費者2\\檢核程式套印-台灣消費者2.xlsx",
+            "--output-csv",
+            "Z:\\AIWork\\syntaxwork\\消費者2\\generated\\excel_precheck.csv",
+            "--report",
+            "Z:\\AIWork\\syntaxwork\\消費者2\\generated\\excel_precheck_report.json"
+          ],
+          "returncode": 0,
+          "stdout": "消費者2 {'warning': 36}",
+          "stderr": ""
+        },
+        {
+          "args": [
+            "C:\\Users\\user\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+            "Z:\\AIWork\\syntaxwork\\淨零\\tools\\generate_numeric_range_proposals.py",
+            "--workbook",
+            "Z:\\AIWork\\syntaxwork\\消費者2\\檢核程式套印-台灣消費者2.xlsx",
+            "--docx",
+            "Z:\\AIWork\\syntaxwork\\消費者2\\2026年6月問卷題目0604_網路.docx",
+            "--output-csv",
+            "Z:\\AIWork\\syntaxwork\\消費者2\\generated\\numeric_range_proposals.csv",
+            "--report",
+            "Z:\\AIWork\\syntaxwork\\消費者2\\generated\\numeric_range_proposals_report.json"
+          ],
+          "returncode": 0,
+          "stdout": "rows: 94\nconfidence: {'high': 51, 'medium': 29, 'manual': 14}\nexact r1: 77\nexact r1-r4: 65",
+          "stderr": ""
+        },
+        {
+          "args": [
+            "C:\\Users\\user\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+            "Z:\\AIWork\\syntaxwork\\淨零\\tools\\generate_numeric_spss_field_proposals.py",
+            "--workbook",
+            "Z:\\AIWork\\syntaxwork\\消費者2\\檢核程式套印-台灣消費者2.xlsx",
+            "--docx",
+            "Z:\\AIWork\\syntaxwork\\消費者2\\2026年6月問卷題目0604_網路.docx",
+            "--output-csv",
+            "Z:\\AIWork\\syntaxwork\\消費者2\\generated\\numeric_spss_field_proposals.csv",
+            "--report",
+            "Z:\\AIWork\\syntaxwork\\消費者2\\generated\\numeric_spss_field_proposals_report.json"
+          ],
+          "returncode": 0,
+          "stdout": "{'rows': 94, 'status': {'match': 50, 'review': 44}}",
+          "stderr": ""
+        },
+        {
+          "args": [
+            "C:\\Users\\user\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+            "Z:\\AIWork\\syntaxwork\\淨零\\tools\\generate_open_field_proposals.py",
+            "--workbook",
+            "Z:\\AIWork\\syntaxwork\\消費者2\\檢核程式套印-台灣消費者2.xlsx",
+            "--docx",
+            "Z:\\AIWork\\syntaxwork\\消費者2\\2026年6月問卷題目0604_網路.docx",
+            "--output-csv",
+            "Z:\\AIWork\\syntaxwork\\消費者2\\generated\\open_field_proposals.csv",
+            "--report",
+            "Z:\\AIWork\\syntaxwork\\消費者2\\generated\\open_field_proposals_report.json"
+          ],
+          "returncode": 0,
+          "stdout": "rows: 6\nsummary: {'existing_rows': 6, 'proposed_rows': 6, 'status': {'match': 6}, 'question_blocks': 63}",
+          "stderr": ""
+        },
+        {
+          "args": [
+            "C:\\Users\\user\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+            "Z:\\AIWork\\syntaxwork\\淨零\\tools\\generate_numeric_checks.py",
+            "--workbook",
+            "Z:\\AIWork\\syntaxwork\\消費者2\\檢核程式套印-台灣消費者2.xlsx",
+            "--output",
+            "Z:\\AIWork\\syntaxwork\\消費者2\\generated\\numeric_checks_generated.sps",
+            "--report",
+            "Z:\\AIWork\\syntaxwork\\消費者2\\generated\\numeric_checks_report.json"
+          ],
+          "returncode": 0,
+          "stdout": "{\"rules\": 94, \"skipped\": 0, \"skipped_rows\": [], \"output\": \"Z:\\\\AIWork\\\\syntaxwork\\\\消費者2\\\\generated\\\\numeric_checks_generated.sps\"}",
+          "stderr": ""
+        },
+        {
+          "args": [
+            "C:\\Users\\user\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+            "Z:\\AIWork\\syntaxwork\\淨零\\tools\\generate_open_checks.py",
+            "--workbook",
+            "Z:\\AIWork\\syntaxwork\\消費者2\\檢核程式套印-台灣消費者2.xlsx",
+            "--output",
+            "Z:\\AIWork\\syntaxwork\\消費者2\\generated\\open_checks_generated.sps",
+            "--report",
+            "Z:\\AIWork\\syntaxwork\\消費者2\\generated\\open_checks_report.json"
+          ],
+          "returncode": 0,
+          "stdout": "{\"rules\": 6, \"skipped\": 0, \"skipped_rows\": [], \"output\": \"Z:\\\\AIWork\\\\syntaxwork\\\\消費者2\\\\generated\\\\open_checks_generated.sps\"}",
+          "stderr": ""
+        },
+        {
+          "args": [
+            "C:\\Users\\user\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+            "Z:\\AIWork\\syntaxwork\\淨零\\tools\\generate_multi_checks.py",
+            "--workbook",
+            "Z:\\AIWork\\syntaxwork\\消費者2\\檢核程式套印-台灣消費者2.xlsx",
+            "--output",
+            "Z:\\AIWork\\syntaxwork\\消費者2\\generated\\multi_checks_generated.sps",
+            "--report",
+            "Z:\\AIWork\\syntaxwork\\消費者2\\generated\\multi_checks_report.json",
+            "--reference-syntax",
+            "Z:\\AIWork\\syntaxwork\\消費者2\\01資料處理檢核_第二期.sps",
+            "--compare-output",
+            "Z:\\AIWork\\syntaxwork\\消費者2\\generated\\multi_checks_compare.json"
+          ],
+          "returncode": 0,
+          "stdout": "multi questions: 2\nmutex rules: 1\nissues: 0\ncompare normalized_equal: False\ncompare reference_lines: 38\ncompare generated_lines: 36",
+          "stderr": ""
+        },
+        {
+          "args": [
+            "C:\\Users\\user\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+            "Z:\\AIWork\\syntaxwork\\淨零\\tools\\generate_logic_checks.py",
+            "--workbook",
+            "Z:\\AIWork\\syntaxwork\\消費者2\\檢核程式套印-台灣消費者2.xlsx",
+            "--existing-sps",
+            "Z:\\AIWork\\syntaxwork\\消費者2\\01資料處理檢核_第二期.sps",
+            "--output",
+            "Z:\\AIWork\\syntaxwork\\消費者2\\generated\\logic_checks_generated.sps",
+            "--report",
+            "Z:\\AIWork\\syntaxwork\\消費者2\\generated\\logic_checks_report.txt"
+          ],
+          "returncode": 0,
+          "stdout": "wrote Z:\\AIWork\\syntaxwork\\消費者2\\generated\\logic_checks_generated.sps\nwrote Z:\\AIWork\\syntaxwork\\消費者2\\generated\\logic_checks_report.txt\nrules: 85\nlogic sheet corrections: 0\nlogic sheet unresolved: 4",
+          "stderr": ""
+        },
+        {
+          "args": [
+            "C:\\Users\\user\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+            "Z:\\AIWork\\syntaxwork\\淨零\\tools\\static_check_generated_logic.py",
+            "--syntax",
+            "Z:\\AIWork\\syntaxwork\\消費者2\\generated\\logic_checks_generated.sps"
+          ],
+          "returncode": 0,
+          "stdout": "STATIC CHECK PASSED\nlogic do if: 85\ncompute m: 85\ncompute p: 85\nm/p ids: 301-385",
+          "stderr": ""
+        },
+        {
+          "args": [
+            "C:\\Users\\user\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+            "Z:\\AIWork\\syntaxwork\\淨零\\tools\\build_spss_checks.py",
+            "--output",
+            "Z:\\AIWork\\syntaxwork\\消費者2\\generated\\all_checks_generated.sps",
+            "--section",
+            "Z:\\AIWork\\syntaxwork\\消費者2\\generated\\numeric_checks_generated.sps",
+            "--section",
+            "Z:\\AIWork\\syntaxwork\\消費者2\\generated\\open_checks_generated.sps",
+            "--section",
+            "Z:\\AIWork\\syntaxwork\\消費者2\\generated\\multi_checks_generated.sps",
+            "--section",
+            "Z:\\AIWork\\syntaxwork\\消費者2\\generated\\logic_checks_generated.sps"
+          ],
+          "returncode": 0,
+          "stdout": "sections: 4\noutput: Z:\\AIWork\\syntaxwork\\消費者2\\generated\\all_checks_generated.sps",
+          "stderr": ""
+        }
+      ],
+      "outputs": {
+        "numeric_csv": "Z:\\AIWork\\syntaxwork\\消費者2\\generated\\numeric_range_proposals.csv",
+        "numeric_report": "Z:\\AIWork\\syntaxwork\\消費者2\\generated\\numeric_range_proposals_report.json",
+        "numeric_spss_csv": "Z:\\AIWork\\syntaxwork\\消費者2\\generated\\numeric_spss_field_proposals.csv",
+        "numeric_spss_report": "Z:\\AIWork\\syntaxwork\\消費者2\\generated\\numeric_spss_field_proposals_report.json",
+        "precheck_csv": "Z:\\AIWork\\syntaxwork\\消費者2\\generated\\excel_precheck.csv",
+        "precheck_report": "Z:\\AIWork\\syntaxwork\\消費者2\\generated\\excel_precheck_report.json",
+        "open_csv": "Z:\\AIWork\\syntaxwork\\消費者2\\generated\\open_field_proposals.csv",
+        "open_report": "Z:\\AIWork\\syntaxwork\\消費者2\\generated\\open_field_proposals_report.json",
+        "numeric_sps": "Z:\\AIWork\\syntaxwork\\消費者2\\generated\\numeric_checks_generated.sps",
+        "numeric_check_report": "Z:\\AIWork\\syntaxwork\\消費者2\\generated\\numeric_checks_report.json",
+        "open_sps": "Z:\\AIWork\\syntaxwork\\消費者2\\generated\\open_checks_generated.sps",
+        "open_check_report": "Z:\\AIWork\\syntaxwork\\消費者2\\generated\\open_checks_report.json",
+        "multi_sps": "Z:\\AIWork\\syntaxwork\\消費者2\\generated\\multi_checks_generated.sps",
+        "multi_report": "Z:\\AIWork\\syntaxwork\\消費者2\\generated\\multi_checks_report.json",
+        "multi_compare": "Z:\\AIWork\\syntaxwork\\消費者2\\generated\\multi_checks_compare.json",
+        "logic_sps": "Z:\\AIWork\\syntaxwork\\消費者2\\generated\\logic_checks_generated.sps",
+        "logic_report": "Z:\\AIWork\\syntaxwork\\消費者2\\generated\\logic_checks_report.txt",
+        "combined_sps": "Z:\\AIWork\\syntaxwork\\消費者2\\generated\\all_checks_generated.sps",
+        "external_sps": "",
+        "external_report": ""
+      },
+      "unresolved": [
+        {
+          "area": "word_to_logic",
+          "message": "Direct Word-to-邏輯組 generation is not implemented yet; current logic generation uses Excel 邏輯組."
+        },
+        {
+          "area": "word_to_open_fields",
+          "message": "Direct Word-to-開放欄位 generation is not implemented yet; current pipeline only records this gap."
+        }
+      ],
+      "numeric_summary": {
+        "rows": 94,
+        "compare_status": {
+          "match": 65,
+          "range_match_special_diff": 12,
+          "mismatch": 3,
+          "manual": 14
+        }
+      },
+      "numeric_spss_summary": {
+        "rows": 94,
+        "status": {
+          "match": 50,
+          "review": 44
+        }
+      },
+      "precheck_summary": {
+        "workbook": "Z:\\AIWork\\syntaxwork\\消費者2\\檢核程式套印-台灣消費者2.xlsx",
+        "sheets": {
+          "numeric": "數值題101-200",
+          "open": "開放欄位201-250",
+          "multi": "複選題_251-300",
+          "mutex": "複選題內_互斥",
+          "multi_vars": "複選題變項清單",
+          "logic": "邏輯組"
+        },
+        "issue_counts": {
+          "warning": 36
+        }
+      },
+      "open_summary": {
+        "rows": 6,
+        "status": {
+          "match": 6
+        }
+      },
+      "multi_summary": {
+        "workbook": "Z:\\AIWork\\syntaxwork\\消費者2\\檢核程式套印-台灣消費者2.xlsx",
+        "output": "Z:\\AIWork\\syntaxwork\\消費者2\\generated\\multi_checks_generated.sps",
+        "questions": [
+          {
+            "row": 2,
+            "m": "251",
+            "p": "251",
+            "display_name": "F1",
+            "group_key": "vF1",
+            "vars": [
+              "vF1m1",
+              "vF1m2",
+              "vF1m3",
+              "vF1m4",
+              "vF1m5",
+              "vF1m6",
+              "vF1m7",
+              "vF1m8",
+              "vF1m9",
+              "vF1m10",
+              "vF1m11"
+            ],
+            "no_response_codes": [
+              "96"
+            ]
+          },
+          {
+            "row": 3,
+            "m": "252",
+            "p": "252",
+            "display_name": "F2",
+            "group_key": "vF2",
+            "vars": [
+              "vF2m1",
+              "vF2m2",
+              "vF2m3",
+              "vF2m4",
+              "vF2m5",
+              "vF2m6",
+              "vF2m7",
+              "vF2m8",
+              "vF2m9",
+              "vF2m10",
+              "vF2m11"
+            ],
+            "no_response_codes": [
+              "96"
+            ]
+          }
+        ],
+        "mutex_rules": [
+          {
+            "row": 2,
+            "m": "253",
+            "p": "253",
+            "display_name": "F2",
+            "exclusive_code": "10",
+            "exclusive_var": "vF2m10",
+            "other_vars": [
+              "vF2m1",
+              "vF2m2",
+              "vF2m3",
+              "vF2m4",
+              "vF2m5",
+              "vF2m6",
+              "vF2m7",
+              "vF2m8",
+              "vF2m9"
+            ],
+            "recovered_from_main": false
+          }
+        ],
+        "issues": [],
+        "compare": {
+          "reference_lines": 38,
+          "generated_lines": 36,
+          "normalized_equal": false,
+          "diff": [
+            "--- reference",
+            "+++ generated",
+            "@@ -1,18 +1,15 @@",
+            " **3.複選題檢核.",
+            "-* vf1 f2 組合.",
+            "+* f1 f2 組合.",
+            " string f1 f2 (a600).",
+            "-compute f1 = rtrim(ltrim(concat(\"vf1m1=\",string(vf1m1,f2),\" , \",\"vf1m2=\",string(vf1m2,f2),\" , \",\"vf1m3=\",string(vf1m3,f2)",
+            "-,\", \",\"vf1m4=\",string(vf1m4,f2),\" , \",\"vf1m5=\",string(vf1m5,f2),\" , \",\"vf1m6=\",string(vf1m6,f2),\" , \",\"vf1m7=\",string(vf1m7,f2)",
+            "-,\" , \",\"vf1m8=\",string(vf1m8,f2),\" , \",\"vf1m9=\",string(vf1m9,f2),\" , \",\"vf1m10=\",string(vf1m10,f2),\" , \",\"vf1m11=\",string(vf1m11,f2)))).",
+            "-compute f2 = rtrim(ltrim(concat(\"vf2m1=\",string(vf2m1,f2),\" , \",\"vf2m2=\",string(vf2m2,f2),\" , \",\"vf2m3=\",string(vf2m3,f2)",
+            "-,\", \",\"vf2m4=\",string(vf2m4,f2),\" , \",\"vf2m5=\",string(vf2m5,f2),\" , \",\"vf2m6=\",string(vf2m6,f2),\" , \",\"vf2m7=\",string(vf2m7,f2)",
+            "-,\" , \",\"vf2m8=\",string(vf2m8,f2),\" , \",\"vf2m9=\",string(vf2m9,f2),\" , \",\"vf2m10=\",string(vf2m10,f2),\" , \",\"vf2m11=\",string(vf2m11,f2)))).",
+            "+compute f1 = rtrim(ltrim(concat(\"vf1m1=\",string(vf1m1,f2),\" , \",\"vf1m2=\",string(vf1m2,f2),\" , \",\"vf1m3=\",string(vf1m3,f2),\" , \",\"vf1m4=\",string(vf1m4,f2),\" , \",\"vf1m5=\",string(vf1m5,f2),\" , \",\"vf1m6=\",string(vf1m6,f2),\" , \",\"vf1m7=\",string(vf1m7,f2),\" , \",\"vf1m8=\",string(vf1m8,f2),\" , \",\"vf1m9=\",string(vf1m9,f2),\" , \",\"vf1m10=\",string(vf1m10,f2),\" , \",\"vf1m11=\",string(vf1m11,f2)))).",
+            "+compute f2 = rtrim(ltrim(concat(\"vf2m1=\",string(vf2m1,f2),\" , \",\"vf2m2=\",string(vf2m2,f2),\" , \",\"vf2m3=\",string(vf2m3,f2),\" , \",\"vf2m4=\",string(vf2m4,f2),\" , \",\"vf2m5=\",string(vf2m5,f2),\" , \",\"vf2m6=\",string(vf2m6,f2),\" , \",\"vf2m7=\",string(vf2m7,f2),\" , \",\"vf2m8=\",string(vf2m8,f2),\" , \",\"vf2m9=\",string(vf2m9,f2),\" , \",\"vf2m10=\",string(vf2m10,f2),\" , \",\"vf2m11=\",string(vf2m11,f2)))).",
+            " *f1.",
+            " vector a=vf1m1 to vf1m11.",
+            " compute #f1zero = (sum(vf1m1 to vf1m11) = 0).",
+            " loop #i=1 to 10.",
+            " do if (any(a(#i),0,1) & any(a(#i+1),96))",
+            "-| (any(a(#i),96) and not any(a(#i+1),96))| #f1zero=1.",
+            "+| (any(a(#i),96) and not any(a(#i+1),96))",
+            "+| #f1zero=1.",
+            " compute m251=rtrim(ltrim(f1)).",
+            " compute p251=\"f1至少選1項或選特殊碼應一致\".",
+            " end if.",
+            "@@ -23,7 +20,8 @@",
+            " compute #f2zero = (sum(vf2m1 to vf2m11) = 0).",
+            " loop #i=1 to 10.",
+            " do if (any(a(#i),0,1) & any(a(#i+1),96))",
+            "-| (any(a(#i),96) and not any(a(#i+1),96))| #f2zero=1.",
+            "+| (any(a(#i),96) and not any(a(#i+1),96))",
+            "+| #f2zero=1.",
+            " compute m252=rtrim(ltrim(f2)).",
+            " compute p252=\"f2至少選1項或選特殊碼應一致\".",
+            " end if.",
+            "@@ -33,6 +31,6 @@",
+            " *f2=10 複選題內互斥.",
+            " do if any(vf2m10,1) & any(1,vf2m1 to vf2m9).",
+            " compute m253=rtrim(ltrim(f2)).",
+            "-compute p253=\"vf2(10)複選題選項應互斥\".",
+            "+compute p253=\"f2(10)複選題選項應互斥\".",
+            " end if.",
+            " exec."
+          ],
+          "diff_truncated": false
+        }
+      }
+    },
+    {
+      "project": "淨零",
+      "commands": [
+        {
+          "args": [
+            "C:\\Users\\user\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+            "Z:\\AIWork\\syntaxwork\\淨零\\tools\\validate_excel_structure.py",
+            "--project",
+            "淨零",
+            "--workbook",
+            "Z:\\AIWork\\syntaxwork\\淨零\\檢核程式套印-淨零.xlsx",
+            "--output-csv",
+            "Z:\\AIWork\\syntaxwork\\淨零\\generated\\excel_precheck.csv",
+            "--report",
+            "Z:\\AIWork\\syntaxwork\\淨零\\generated\\excel_precheck_report.json"
+          ],
+          "returncode": 0,
+          "stdout": "淨零 {'warning': 4}",
+          "stderr": ""
+        },
+        {
+          "args": [
+            "C:\\Users\\user\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+            "Z:\\AIWork\\syntaxwork\\淨零\\tools\\generate_numeric_range_proposals.py",
+            "--workbook",
+            "Z:\\AIWork\\syntaxwork\\淨零\\檢核程式套印-淨零.xlsx",
+            "--docx",
+            "Z:\\AIWork\\syntaxwork\\淨零\\2025 淨零與能源安全問卷_問卷0511.docx",
+            "--output-csv",
+            "Z:\\AIWork\\syntaxwork\\淨零\\generated\\numeric_range_proposals.csv",
+            "--report",
+            "Z:\\AIWork\\syntaxwork\\淨零\\generated\\numeric_range_proposals_report.json"
+          ],
+          "returncode": 0,
+          "stdout": "rows: 123\nconfidence: {'high': 38, 'medium': 78, 'manual': 7}\nexact r1: 116\nexact r1-r4: 112",
+          "stderr": ""
+        },
+        {
+          "args": [
+            "C:\\Users\\user\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+            "Z:\\AIWork\\syntaxwork\\淨零\\tools\\generate_numeric_spss_field_proposals.py",
+            "--workbook",
+            "Z:\\AIWork\\syntaxwork\\淨零\\檢核程式套印-淨零.xlsx",
+            "--docx",
+            "Z:\\AIWork\\syntaxwork\\淨零\\2025 淨零與能源安全問卷_問卷0511.docx",
+            "--output-csv",
+            "Z:\\AIWork\\syntaxwork\\淨零\\generated\\numeric_spss_field_proposals.csv",
+            "--report",
+            "Z:\\AIWork\\syntaxwork\\淨零\\generated\\numeric_spss_field_proposals_report.json"
+          ],
+          "returncode": 0,
+          "stdout": "{'rows': 123, 'status': {'match': 120, 'review': 3}}",
+          "stderr": ""
+        },
+        {
+          "args": [
+            "C:\\Users\\user\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+            "Z:\\AIWork\\syntaxwork\\淨零\\tools\\generate_open_field_proposals.py",
+            "--workbook",
+            "Z:\\AIWork\\syntaxwork\\淨零\\檢核程式套印-淨零.xlsx",
+            "--docx",
+            "Z:\\AIWork\\syntaxwork\\淨零\\2025 淨零與能源安全問卷_問卷0511.docx",
+            "--output-csv",
+            "Z:\\AIWork\\syntaxwork\\淨零\\generated\\open_field_proposals.csv",
+            "--report",
+            "Z:\\AIWork\\syntaxwork\\淨零\\generated\\open_field_proposals_report.json"
+          ],
+          "returncode": 0,
+          "stdout": "rows: 28\nsummary: {'existing_rows': 28, 'proposed_rows': 28, 'status': {'match': 27, 'mismatch': 1}, 'question_blocks': 80}",
+          "stderr": ""
+        },
+        {
+          "args": [
+            "C:\\Users\\user\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+            "Z:\\AIWork\\syntaxwork\\淨零\\tools\\generate_numeric_checks.py",
+            "--workbook",
+            "Z:\\AIWork\\syntaxwork\\淨零\\檢核程式套印-淨零.xlsx",
+            "--output",
+            "Z:\\AIWork\\syntaxwork\\淨零\\generated\\numeric_checks_generated.sps",
+            "--report",
+            "Z:\\AIWork\\syntaxwork\\淨零\\generated\\numeric_checks_report.json"
+          ],
+          "returncode": 0,
+          "stdout": "{\"rules\": 123, \"skipped\": 0, \"skipped_rows\": [], \"output\": \"Z:\\\\AIWork\\\\syntaxwork\\\\淨零\\\\generated\\\\numeric_checks_generated.sps\"}",
+          "stderr": ""
+        },
+        {
+          "args": [
+            "C:\\Users\\user\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+            "Z:\\AIWork\\syntaxwork\\淨零\\tools\\generate_open_checks.py",
+            "--workbook",
+            "Z:\\AIWork\\syntaxwork\\淨零\\檢核程式套印-淨零.xlsx",
+            "--output",
+            "Z:\\AIWork\\syntaxwork\\淨零\\generated\\open_checks_generated.sps",
+            "--report",
+            "Z:\\AIWork\\syntaxwork\\淨零\\generated\\open_checks_report.json"
+          ],
+          "returncode": 0,
+          "stdout": "{\"rules\": 28, \"skipped\": 0, \"skipped_rows\": [], \"output\": \"Z:\\\\AIWork\\\\syntaxwork\\\\淨零\\\\generated\\\\open_checks_generated.sps\"}",
+          "stderr": ""
+        },
+        {
+          "args": [
+            "C:\\Users\\user\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+            "Z:\\AIWork\\syntaxwork\\淨零\\tools\\generate_multi_checks.py",
+            "--workbook",
+            "Z:\\AIWork\\syntaxwork\\淨零\\檢核程式套印-淨零.xlsx",
+            "--output",
+            "Z:\\AIWork\\syntaxwork\\淨零\\generated\\multi_checks_generated.sps",
+            "--report",
+            "Z:\\AIWork\\syntaxwork\\淨零\\generated\\multi_checks_report.json",
+            "--reference-syntax",
+            "Z:\\AIWork\\syntaxwork\\淨零\\1資料處理及檢核_淨零.sps",
+            "--compare-output",
+            "Z:\\AIWork\\syntaxwork\\淨零\\generated\\multi_checks_compare.json"
+          ],
+          "returncode": 0,
+          "stdout": "multi questions: 3\nmutex rules: 3\nissues: 0\ncompare normalized_equal: False\ncompare reference_lines: 61\ncompare generated_lines: 61",
+          "stderr": ""
+        },
+        {
+          "args": [
+            "C:\\Users\\user\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+            "Z:\\AIWork\\syntaxwork\\淨零\\tools\\generate_logic_checks.py",
+            "--workbook",
+            "Z:\\AIWork\\syntaxwork\\淨零\\檢核程式套印-淨零.xlsx",
+            "--existing-sps",
+            "Z:\\AIWork\\syntaxwork\\淨零\\1資料處理及檢核_淨零.sps",
+            "--output",
+            "Z:\\AIWork\\syntaxwork\\淨零\\generated\\logic_checks_generated.sps",
+            "--report",
+            "Z:\\AIWork\\syntaxwork\\淨零\\generated\\logic_checks_report.txt"
+          ],
+          "returncode": 0,
+          "stdout": "wrote Z:\\AIWork\\syntaxwork\\淨零\\generated\\logic_checks_generated.sps\nwrote Z:\\AIWork\\syntaxwork\\淨零\\generated\\logic_checks_report.txt\nrules: 20\nlogic sheet corrections: 0\nlogic sheet unresolved: 10",
+          "stderr": ""
+        },
+        {
+          "args": [
+            "C:\\Users\\user\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+            "Z:\\AIWork\\syntaxwork\\淨零\\tools\\static_check_generated_logic.py",
+            "--syntax",
+            "Z:\\AIWork\\syntaxwork\\淨零\\generated\\logic_checks_generated.sps"
+          ],
+          "returncode": 0,
+          "stdout": "STATIC CHECK PASSED\nlogic do if: 20\ncompute m: 20\ncompute p: 20\nm/p ids: 350-369",
+          "stderr": ""
+        },
+        {
+          "args": [
+            "C:\\Users\\user\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+            "Z:\\AIWork\\syntaxwork\\淨零\\tools\\build_spss_checks.py",
+            "--output",
+            "Z:\\AIWork\\syntaxwork\\淨零\\generated\\all_checks_generated.sps",
+            "--section",
+            "Z:\\AIWork\\syntaxwork\\淨零\\generated\\numeric_checks_generated.sps",
+            "--section",
+            "Z:\\AIWork\\syntaxwork\\淨零\\generated\\open_checks_generated.sps",
+            "--section",
+            "Z:\\AIWork\\syntaxwork\\淨零\\generated\\multi_checks_generated.sps",
+            "--section",
+            "Z:\\AIWork\\syntaxwork\\淨零\\generated\\logic_checks_generated.sps"
+          ],
+          "returncode": 0,
+          "stdout": "sections: 4\noutput: Z:\\AIWork\\syntaxwork\\淨零\\generated\\all_checks_generated.sps",
+          "stderr": ""
+        }
+      ],
+      "outputs": {
+        "numeric_csv": "Z:\\AIWork\\syntaxwork\\淨零\\generated\\numeric_range_proposals.csv",
+        "numeric_report": "Z:\\AIWork\\syntaxwork\\淨零\\generated\\numeric_range_proposals_report.json",
+        "numeric_spss_csv": "Z:\\AIWork\\syntaxwork\\淨零\\generated\\numeric_spss_field_proposals.csv",
+        "numeric_spss_report": "Z:\\AIWork\\syntaxwork\\淨零\\generated\\numeric_spss_field_proposals_report.json",
+        "precheck_csv": "Z:\\AIWork\\syntaxwork\\淨零\\generated\\excel_precheck.csv",
+        "precheck_report": "Z:\\AIWork\\syntaxwork\\淨零\\generated\\excel_precheck_report.json",
+        "open_csv": "Z:\\AIWork\\syntaxwork\\淨零\\generated\\open_field_proposals.csv",
+        "open_report": "Z:\\AIWork\\syntaxwork\\淨零\\generated\\open_field_proposals_report.json",
+        "numeric_sps": "Z:\\AIWork\\syntaxwork\\淨零\\generated\\numeric_checks_generated.sps",
+        "numeric_check_report": "Z:\\AIWork\\syntaxwork\\淨零\\generated\\numeric_checks_report.json",
+        "open_sps": "Z:\\AIWork\\syntaxwork\\淨零\\generated\\open_checks_generated.sps",
+        "open_check_report": "Z:\\AIWork\\syntaxwork\\淨零\\generated\\open_checks_report.json",
+        "multi_sps": "Z:\\AIWork\\syntaxwork\\淨零\\generated\\multi_checks_generated.sps",
+        "multi_report": "Z:\\AIWork\\syntaxwork\\淨零\\generated\\multi_checks_report.json",
+        "multi_compare": "Z:\\AIWork\\syntaxwork\\淨零\\generated\\multi_checks_compare.json",
+        "logic_sps": "Z:\\AIWork\\syntaxwork\\淨零\\generated\\logic_checks_generated.sps",
+        "logic_report": "Z:\\AIWork\\syntaxwork\\淨零\\generated\\logic_checks_report.txt",
+        "combined_sps": "Z:\\AIWork\\syntaxwork\\淨零\\generated\\all_checks_generated.sps",
+        "external_sps": "",
+        "external_report": ""
+      },
+      "unresolved": [
+        {
+          "area": "word_to_logic",
+          "message": "Direct Word-to-邏輯組 generation is not implemented yet; current logic generation uses Excel 邏輯組."
+        },
+        {
+          "area": "word_to_open_fields",
+          "message": "Direct Word-to-開放欄位 generation is not implemented yet; current pipeline only records this gap."
+        }
+      ],
+      "numeric_summary": {
+        "rows": 123,
+        "compare_status": {
+          "match": 112,
+          "manual": 7,
+          "range_match_special_diff": 4
+        }
+      },
+      "numeric_spss_summary": {
+        "rows": 123,
+        "status": {
+          "match": 120,
+          "review": 3
+        }
+      },
+      "precheck_summary": {
+        "workbook": "Z:\\AIWork\\syntaxwork\\淨零\\檢核程式套印-淨零.xlsx",
+        "sheets": {
+          "numeric": "數值題101-250",
+          "open": "開放欄位251-300",
+          "multi": "複選題_301-400",
+          "mutex": "複選題內_互斥",
+          "multi_vars": "複選題變項清單",
+          "logic": "邏輯組"
+        },
+        "issue_counts": {
+          "warning": 4
+        }
+      },
+      "open_summary": {
+        "rows": 28,
+        "status": {
+          "match": 27,
+          "mismatch": 1
+        }
+      },
+      "multi_summary": {
+        "workbook": "Z:\\AIWork\\syntaxwork\\淨零\\檢核程式套印-淨零.xlsx",
+        "output": "Z:\\AIWork\\syntaxwork\\淨零\\generated\\multi_checks_generated.sps",
+        "questions": [
+          {
+            "row": 2,
+            "m": "301",
+            "p": "301",
+            "display_name": "v45",
+            "group_key": "v45",
+            "vars": [
+              "v45m01",
+              "v45m02",
+              "v45m03",
+              "v45m04",
+              "v45m05",
+              "v45m06",
+              "v45m07"
+            ],
+            "no_response_codes": [
+              "96"
+            ]
+          },
+          {
+            "row": 3,
+            "m": "302",
+            "p": "302",
+            "display_name": "v46",
+            "group_key": "v46",
+            "vars": [
+              "v46m01",
+              "v46m02",
+              "v46m03",
+              "v46m04",
+              "v46m05",
+              "v46m06",
+              "v46m07"
+            ],
+            "no_response_codes": [
+              "96"
+            ]
+          },
+          {
+            "row": 4,
+            "m": "303",
+            "p": "303",
+            "display_name": "v48",
+            "group_key": "v48",
+            "vars": [
+              "v48m01",
+              "v48m02",
+              "v48m03",
+              "v48m04",
+              "v48m05",
+              "v48m06",
+              "v48m07"
+            ],
+            "no_response_codes": [
+              "96"
+            ]
+          }
+        ],
+        "mutex_rules": [
+          {
+            "row": 2,
+            "m": "304",
+            "p": "304",
+            "display_name": "v45",
+            "exclusive_code": "7",
+            "exclusive_var": "v45m07",
+            "other_vars": [
+              "v45m01",
+              "v45m02",
+              "v45m03",
+              "v45m04",
+              "v45m05",
+              "v45m06"
+            ],
+            "recovered_from_main": false
+          },
+          {
+            "row": 3,
+            "m": "305",
+            "p": "305",
+            "display_name": "v46",
+            "exclusive_code": "7",
+            "exclusive_var": "v46m07",
+            "other_vars": [
+              "v46m01",
+              "v46m02",
+              "v46m03",
+              "v46m04",
+              "v46m05",
+              "v46m06"
+            ],
+            "recovered_from_main": false
+          },
+          {
+            "row": 4,
+            "m": "306",
+            "p": "306",
+            "display_name": "v48",
+            "exclusive_code": "7",
+            "exclusive_var": "v48m07",
+            "other_vars": [
+              "v48m01",
+              "v48m02",
+              "v48m03",
+              "v48m04",
+              "v48m05",
+              "v48m06"
+            ],
+            "recovered_from_main": false
+          }
+        ],
+        "issues": [],
+        "compare": {
+          "reference_lines": 61,
+          "generated_lines": 61,
+          "normalized_equal": false,
+          "diff": [
+            "--- reference",
+            "+++ generated",
+            "@@ -1,18 +1,16 @@",
+            " **3.複選題檢核.",
+            "-* vq24 組合.",
+            "+* v45 v46 v48 組合.",
+            " string v45 v46 v48 (a600).",
+            "-compute v45 = rtrim(ltrim(concat(\"v45m01=\",string(v45m01,f2),\" , \",\"v45m02=\",string(v45m02,f2),\" , \",\"v45m03=\",string(v45m03,f2),\" , \",\"v45m04=\",string(v45m04,f2),\" , \",\"v45m05=\",string(v45m05,f2),\" , \",\"v45m06=\",string(v45m06,f2)",
+            "-,\" , \",\"v45m07=\",string(v45m07,f2)))).",
+            "-compute v46 = rtrim(ltrim(concat(\"v46m01=\",string(v46m01,f2),\" , \",\"v46m02=\",string(v46m02,f2),\" , \",\"v46m03=\",string(v46m03,f2),\" , \",\"v46m04=\",string(v46m04,f2),\" , \",\"v46m05=\",string(v46m05,f2),\" , \",\"v46m06=\",string(v46m06,f2)",
+            "-,\" , \",\"v46m07=\",string(v46m07,f2)))).",
+            "-compute v48 = rtrim(ltrim(concat(\"v48m01=\",string(v48m01,f2),\" , \",\"v48m02=\",string(v48m02,f2),\" , \",\"v48m03=\",string(v48m03,f2),\" , \",\"v48m04=\",string(v48m04,f2),\" , \",\"v48m05=\",string(v48m05,f2),\" , \",\"v48m06=\",string(v48m06,f2)",
+            "-,\" , \",\"v48m07=\",string(v48m07,f2)))).",
+            "+compute v45 = rtrim(ltrim(concat(\"v45m01=\",string(v45m01,f2),\" , \",\"v45m02=\",string(v45m02,f2),\" , \",\"v45m03=\",string(v45m03,f2),\" , \",\"v45m04=\",string(v45m04,f2),\" , \",\"v45m05=\",string(v45m05,f2),\" , \",\"v45m06=\",string(v45m06,f2),\" , \",\"v45m07=\",string(v45m07,f2)))).",
+            "+compute v46 = rtrim(ltrim(concat(\"v46m01=\",string(v46m01,f2),\" , \",\"v46m02=\",string(v46m02,f2),\" , \",\"v46m03=\",string(v46m03,f2),\" , \",\"v46m04=\",string(v46m04,f2),\" , \",\"v46m05=\",string(v46m05,f2),\" , \",\"v46m06=\",string(v46m06,f2),\" , \",\"v46m07=\",string(v46m07,f2)))).",
+            "+compute v48 = rtrim(ltrim(concat(\"v48m01=\",string(v48m01,f2),\" , \",\"v48m02=\",string(v48m02,f2),\" , \",\"v48m03=\",string(v48m03,f2),\" , \",\"v48m04=\",string(v48m04,f2),\" , \",\"v48m05=\",string(v48m05,f2),\" , \",\"v48m06=\",string(v48m06,f2),\" , \",\"v48m07=\",string(v48m07,f2)))).",
+            " *v45.",
+            " vector a=v45m01 to v45m07.",
+            " compute #45zero = (sum(v45m01 to v45m07) = 0).",
+            " loop #i=1 to 6.",
+            " do if (any(a(#i),0,1) & any(a(#i+1),96))",
+            "-| (any(a(#i),96) and not any(a(#i+1),96))|#45zero =1.",
+            "+| (any(a(#i),96) and not any(a(#i+1),96))",
+            "+| #45zero=1.",
+            " compute m301=rtrim(ltrim(v45)).",
+            " compute p301=\"v45至少選1項或選特殊碼應一致\".",
+            " end if.",
+            "@@ -23,7 +21,8 @@",
+            " compute #46zero = (sum(v46m01 to v46m07) = 0).",
+            " loop #i=1 to 6.",
+            " do if (any(a(#i),0,1) & any(a(#i+1),96))",
+            "-| (any(a(#i),96) and not any(a(#i+1),96))| #46zero =1.",
+            "+| (any(a(#i),96) and not any(a(#i+1),96))",
+            "+| #46zero=1.",
+            " compute m302=rtrim(ltrim(v46)).",
+            " compute p302=\"v46至少選1項或選特殊碼應一致\".",
+            " end if.",
+            "@@ -34,7 +33,8 @@",
+            " compute #48zero = (sum(v48m01 to v48m07) = 0).",
+            " loop #i=1 to 6.",
+            " do if (any(a(#i),0,1) & any(a(#i+1),96))",
+            "-| (any(a(#i),96) and not any(a(#i+1),96))|#48zero =1.",
+            "+| (any(a(#i),96) and not any(a(#i+1),96))",
+            "+| #48zero=1.",
+            " compute m303=rtrim(ltrim(v48)).",
+            " compute p303=\"v48至少選1項或選特殊碼應一致\".",
+            " end if."
+          ],
+          "diff_truncated": false
+        }
+      }
+    }
+  ],
+  "global_outputs": {
+    "questionnaire_completeness_json": "Z:\\AIWork\\syntaxwork\\generated\\questionnaire_completeness_report.json",
+    "questionnaire_completeness_csv": "Z:\\AIWork\\syntaxwork\\generated\\questionnaire_completeness_report.csv",
+    "numeric_mismatch_review": "Z:\\AIWork\\syntaxwork\\generated\\numeric_range_mismatch_review.csv",
+    "open_field_mismatch_review": "Z:\\AIWork\\syntaxwork\\generated\\open_field_mismatch_review.csv",
+    "numeric_spss_field_review": "Z:\\AIWork\\syntaxwork\\generated\\numeric_spss_field_review.csv"
+  },
+  "global_commands": [
+    {
+      "args": [
+        "C:\\Users\\user\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "Z:\\AIWork\\syntaxwork\\淨零\\tools\\compare_questionnaire_completeness.py",
+        "--project",
+        "消費者",
+        "Z:\\AIWork\\syntaxwork\\消費者\\檢核程式套印-台灣消費者.xlsx",
+        "Z:\\AIWork\\syntaxwork\\消費者\\問卷_第一期.docx",
+        "--project",
+        "消費者2",
+        "Z:\\AIWork\\syntaxwork\\消費者2\\檢核程式套印-台灣消費者2.xlsx",
+        "Z:\\AIWork\\syntaxwork\\消費者2\\2026年6月問卷題目0604_網路.docx",
+        "--project",
+        "淨零",
+        "Z:\\AIWork\\syntaxwork\\淨零\\檢核程式套印-淨零.xlsx",
+        "Z:\\AIWork\\syntaxwork\\淨零\\2025 淨零與能源安全問卷_問卷0511.docx",
+        "--output-json",
+        "Z:\\AIWork\\syntaxwork\\generated\\questionnaire_completeness_report.json",
+        "--output-csv",
+        "Z:\\AIWork\\syntaxwork\\generated\\questionnaire_completeness_report.csv"
+      ],
+      "returncode": 0,
+      "stdout": "消費者: word=54 excel=52 covered=46 missing=8 extra=6\n消費者2: word=63 excel=76 covered=63 missing=0 extra=13\n淨零: word=82 excel=95 covered=80 missing=2 extra=15",
+      "stderr": ""
+    }
+  ]
+}

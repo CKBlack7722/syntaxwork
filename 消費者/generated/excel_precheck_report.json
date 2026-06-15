@@ -1,0 +1,15 @@
+{
+  "summary": {
+    "workbook": "Z:\\AIWork\\syntaxwork\\消費者\\檢核程式套印-台灣消費者.xlsx",
+    "sheets": {
+      "numeric": "數值題101-200",
+      "open": "開放欄位201-300",
+      "multi": "複選題_301-400",
+      "mutex": "複選題內_互斥",
+      "multi_vars": "複選題變項清單",
+      "logic": null
+    },
+    "issue_counts": {}
+  },
+  "issues": []
+}

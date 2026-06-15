@@ -54,6 +54,13 @@ def headers(ws: openpyxl.worksheet.worksheet.Worksheet) -> dict[str, int]:
     }
 
 
+def resolved_mp_value(ws: openpyxl.worksheet.worksheet.Worksheet, h: dict[str, int], row_idx: int, col_name: str) -> str:
+    value = cell_text(ws.cell(row_idx, h[col_name]).value)
+    if value.startswith("="):
+        return cell_text(ws.cell(row_idx, h["m"]).value)
+    return value
+
+
 def split_vars(value: object) -> list[str]:
     if value is None:
         return []
@@ -63,6 +70,19 @@ def split_vars(value: object) -> list[str]:
         if clean and clean not in result:
             result.append(clean)
     return result
+
+
+def normalize_condition(condition: str, specs: dict[str, VarSpec]) -> str:
+    def replace_token(match: re.Match[str]) -> str:
+        token = match.group(0)
+        if token in specs or token.lower() in RESERVED_WORDS:
+            return token
+        prefixed = f"v{token}"
+        if prefixed in specs:
+            return prefixed
+        return token
+
+    return re.sub(r"\b(?!v\b)[A-Z][A-Za-z0-9_]*\b", replace_token, condition)
 
 
 def load_var_specs(workbook_path: Path) -> dict[str, VarSpec]:
@@ -115,7 +135,7 @@ def render_compute_m(m_id: str, vars_to_show: list[str], specs: dict[str, VarSpe
 
 
 def condition_vars(condition: str, specs: dict[str, VarSpec]) -> list[str]:
-    names = re.findall(r"\b[A-Za-z_][A-Za-z0-9_]*\b", condition)
+    names = re.findall(r"\b[A-Za-z_][A-Za-z0-9_]*\b", normalize_condition(condition, specs))
     result: list[str] = []
     for name in names:
         if name.lower() in RESERVED_WORDS or name.isdigit():
@@ -194,7 +214,7 @@ def render_aggregate_computes(vars_to_show: list[str], specs: dict[str, VarSpec]
 
 
 def load_rules(workbook_path: Path) -> tuple[list[ExternalCheckRule], list[dict[str, Any]]]:
-    wb = openpyxl.load_workbook(workbook_path, data_only=True, read_only=True)
+    wb = openpyxl.load_workbook(workbook_path, data_only=False, read_only=True)
     if SHEET_NAME not in wb.sheetnames:
         return [], [{"severity": "error", "row": "", "reason": f"missing sheet {SHEET_NAME}"}]
     ws = wb[SHEET_NAME]
@@ -206,8 +226,8 @@ def load_rules(workbook_path: Path) -> tuple[list[ExternalCheckRule], list[dict[
     rules: list[ExternalCheckRule] = []
     skipped: list[dict[str, Any]] = []
     for row_idx in range(2, ws.max_row + 1):
-        m = cell_text(ws.cell(row_idx, h["m"]).value)
-        p = cell_text(ws.cell(row_idx, h["p"]).value)
+        m = resolved_mp_value(ws, h, row_idx, "m")
+        p = resolved_mp_value(ws, h, row_idx, "p")
         qid = cell_text(ws.cell(row_idx, h["題號"]).value)
         vars_text = cell_text(ws.cell(row_idx, h["變項名稱"]).value)
         desc = cell_text(ws.cell(row_idx, h["檢核說明"]).value)
@@ -227,13 +247,14 @@ def load_rules(workbook_path: Path) -> tuple[list[ExternalCheckRule], list[dict[
 
 
 def render_rule(rule: ExternalCheckRule, specs: dict[str, VarSpec]) -> str:
-    listed_vars = unique(condition_vars(rule.condition, specs) + split_vars(rule.vars_text) + split_vars(rule.extra_vars))
+    condition = normalize_condition(rule.condition, specs)
+    listed_vars = unique(split_vars(rule.vars_text) + split_vars(rule.extra_vars) + condition_vars(condition, specs))
     lines = [
         f"* external check row {rule.row}: {rule.qid}.",
     ]
     lines.extend(render_aggregate_computes(listed_vars, specs))
     lines.extend([
-        f"do if {rule.condition}.",
+        f"do if {condition}.",
     ])
     lines.extend(render_compute_m(rule.m, listed_vars, specs))
     lines.extend(
@@ -259,7 +280,7 @@ def render_spss(rules: list[ExternalCheckRule], specs: dict[str, VarSpec]) -> st
 
 
 def duplicate_mp_report(workbook_path: Path, rules: list[ExternalCheckRule]) -> list[dict[str, Any]]:
-    wb = openpyxl.load_workbook(workbook_path, data_only=True, read_only=True)
+    wb = openpyxl.load_workbook(workbook_path, data_only=False, read_only=True)
     seen: dict[tuple[str, str], str] = {}
     issues: list[dict[str, Any]] = []
     for sheet_name in wb.sheetnames:
@@ -273,7 +294,7 @@ def duplicate_mp_report(workbook_path: Path, rules: list[ExternalCheckRule]) -> 
             for col_name in ("m", "p"):
                 if col_name not in h:
                     continue
-                value = cell_text(ws.cell(row_idx, h[col_name]).value)
+                value = resolved_mp_value(ws, h, row_idx, col_name)
                 if not value:
                     continue
                 key = (col_name, value)

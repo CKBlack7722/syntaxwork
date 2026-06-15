@@ -11,7 +11,8 @@ from typing import Any
 import openpyxl
 
 
-NUMERIC_REQUIRED = ["m", "p", "var", "變項屬性", "寬度", "可輸入小數點", "in_or_not", "r1", "r2", "r3", "r4", "range"]
+NUMERIC_REQUIRED = ["m", "p", "var", "變項屬性", "寬度", "in_or_not", "r1", "r2", "r3", "r4"]
+NUMERIC_RECOMMENDED = ["可輸入小數點", "range"]
 OPEN_REQUIRED = ["m", "p", "var", "變項屬性", "寬度", "是否複選", "題號", "題號變項名稱", "選項數值", "var2_new", "range_new", "n"]
 MULTI_REQUIRED = ["m", "p", "題號", "寬度", "選項編號_起", "選項編號_迄", "選項數量", "互斥選項", "迴圈進行次數"]
 MUTEX_REQUIRED = ["m", "p", "題號", "寬度", "互斥選項"]
@@ -204,10 +205,10 @@ def check_numeric(project: str, wb: openpyxl.Workbook, sheet_name: str) -> list[
             issues.append(issue(project, "error", sheet_name, row_index, "變項屬性", "invalid_numeric_kind", f"{var} should be 數值."))
         if not width.isdigit():
             issues.append(issue(project, "error", sheet_name, row_index, "寬度", "invalid_width", f"{var} width should be numeric."))
-        if r_values and mode not in {"any", "range"}:
+        if r_values and mode and mode not in {"any", "range"}:
             issues.append(issue(project, "error", sheet_name, row_index, "in_or_not", "invalid_in_or_not", f"{var} in_or_not should be any or range when r1-r4 has values."))
         if r_values and not range_expr:
-            issues.append(issue(project, "error", sheet_name, row_index, "range", "blank_range_expression", f"{var} has r1-r4 values but blank range expression."))
+            issues.append(issue(project, "warning", sheet_name, row_index, "range", "blank_range_expression", f"{var} has r1-r4 values but blank range expression; generator will derive it from r1-r4."))
         if range_expr and not range_expr.startswith("=") and not re.search(r"\b(any|range)\s*\(", range_expr, flags=re.IGNORECASE):
             issues.append(issue(project, "warning", sheet_name, row_index, "range", "range_expression_review", f"{var} range expression does not contain any(...) or range(...)."))
         for col in ("r1", "r2", "r3", "r4"):
@@ -293,7 +294,7 @@ def validate(project: str, workbook_path: Path) -> tuple[list[Issue], dict[str, 
 
     for sheet_name, required, recommended in [
         ("all", ALL_REQUIRED, []),
-        (numeric_sheet, NUMERIC_REQUIRED, []),
+        (numeric_sheet, NUMERIC_REQUIRED, NUMERIC_RECOMMENDED),
         (open_sheet, OPEN_REQUIRED, []),
         (multi_sheet, MULTI_REQUIRED, []),
         (mutex_sheet, MUTEX_REQUIRED, []),
