@@ -1,0 +1,4 @@
+interface:
+  display_name: "Syntaxwork Logic Groups"
+  short_description: "Fill logic-group Excel sheets from questionnaire Word files."
+  default_prompt: "Use $syntaxwork-logic-groups to extract logic-group rows from a questionnaire into Syntaxwork Excel."

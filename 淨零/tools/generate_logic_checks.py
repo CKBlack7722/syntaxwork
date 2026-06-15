@@ -56,7 +56,7 @@ def load_var_specs(workbook_path: Path) -> dict[str, VarSpec]:
     return specs
 
 
-RESERVED_WORDS = {"and", "or", "not", "any", "range", "sys", "in"}
+RESERVED_WORDS = {"and", "or", "not", "any", "range", "sys", "in", "mod", "trunc"}
 
 
 def normalize_var_name(name: str, specs: dict[str, VarSpec]) -> tuple[str, bool, bool]:
@@ -188,7 +188,7 @@ def load_logic_rules(workbook_path: Path) -> list[LogicRule]:
     ws = wb["邏輯組"]
     rules: list[LogicRule] = []
     for row in ws.iter_rows(min_row=2, values_only=True):
-        m, p, condition, required, forbidden, limit = row[:6]
+        m, p, condition, required, forbidden, limit = (row[:6] + (None,) * 6)[:6]
         if not m or not any(v not in (None, "") for v in [condition, required, forbidden, limit]):
             continue
         p_value = p if p not in (None, "") else m
@@ -314,6 +314,14 @@ def render_show_hide_rule(rule: LogicRule, specs: dict[str, VarSpec]) -> str:
 
 def parse_limit(limit: str) -> tuple[str, str, str]:
     match = re.match(
+        r"^(?P<var>[A-Za-z_][A-Za-z0-9_]*)\s+minute_tens\s+(?P<op>not\s+in|in)\s+(?P<rhs>.+)$",
+        limit,
+        flags=re.IGNORECASE,
+    )
+    if match:
+        return match.group("var"), f"minute_tens {' '.join(match.group('op').lower().split())}", match.group("rhs").strip()
+
+    match = re.match(
         r"^(?P<var>[A-Za-z_][A-Za-z0-9_]*)\s+(?P<op>not\s+in|in)\s+(?P<rhs>.+)$",
         limit,
         flags=re.IGNORECASE,
@@ -339,6 +347,10 @@ def rhs_vars(rhs: str) -> tuple[str, ...]:
 
 
 def invert_limit_to_violation(var_name: str, op: str, rhs: str) -> str:
+    if op == "minute_tens not in":
+        return f"any(mod(trunc({var_name}/10),10),{','.join(expand_values(rhs))})"
+    if op == "minute_tens in":
+        return f"not any(mod(trunc({var_name}/10),10),{','.join(expand_values(rhs))})"
     if op == "not in":
         return f"any({var_name},{','.join(expand_values(rhs))})"
     if op == "in":
@@ -357,6 +369,10 @@ def invert_limit_to_violation(var_name: str, op: str, rhs: str) -> str:
 def limit_message(limit: str, condition_raw: str) -> str:
     prefix = f"{condition_raw}，" if condition_raw else ""
     var_name, op, rhs = parse_limit(limit)
+    if op == "minute_tens not in":
+        return f"{prefix}{var_name}第3碼不可為{rhs}"
+    if op == "minute_tens in":
+        return f"{prefix}{var_name}第3碼應為{rhs}"
     if op == "not in":
         return f"{prefix}{var_name}不可為{rhs}"
     if op == "in":
@@ -389,15 +405,38 @@ def render_spss(rules: list[LogicRule], specs: dict[str, VarSpec]) -> str:
     blocks = [
         "* Encoding: UTF-8.",
         "**LOGIC GROUP CHECKS.",
+        "* SYNTAXWORK_BEGIN_LOGIC.",
     ]
     blocks.extend(render_rule(rule, specs) for rule in rules)
+    blocks.append("* SYNTAXWORK_END_LOGIC.")
     return "\n".join(blocks).rstrip() + "\n"
 
 
-def extract_existing_logic(sps_path: Path) -> list[str]:
+def extract_existing_logic(sps_path: Path) -> list[str] | None:
     text = sps_path.read_text(encoding="utf-8-sig")
-    start = text.index("**4.邏輯檢核.")
-    end = text.index("*檢核項目清單.", start)
+    marker_match = re.search(
+        r"\*\s*SYNTAXWORK_BEGIN_LOGIC\.\s*(.*?)\*\s*SYNTAXWORK_END_LOGIC\.",
+        text,
+        flags=re.IGNORECASE | re.DOTALL,
+    )
+    if marker_match:
+        section = marker_match.group(1)
+        return [
+            line.strip()
+            for line in section.splitlines()
+            if line.strip().lower().startswith("do if ") and "!i" not in line
+        ]
+
+    try:
+        start = text.index("**4.邏輯檢核.")
+    except ValueError:
+        return None
+    end_candidates = [
+        pos
+        for marker in ("*檢核項目清單.", "\n**5.", "\n**ss", "\n***************************************************************.")
+        if (pos := text.find(marker, start + 1)) != -1
+    ]
+    end = min(end_candidates) if end_candidates else len(text)
     return [
         line.strip()
         for line in text[start:end].splitlines()
@@ -501,7 +540,7 @@ def main() -> None:
     rules = load_logic_rules(workbook_path)
 
     output_path.parent.mkdir(parents=True, exist_ok=True)
-    output_path.write_text(render_spss(rules, specs), encoding="utf-8")
+    output_path.write_text(render_spss(rules, specs), encoding="utf-8-sig")
     existing_do_ifs = extract_existing_logic(existing_sps_path) if existing_sps_path and existing_sps_path.exists() else None
     write_compare_report(report_path, rules, specs, existing_do_ifs, normalization)
 

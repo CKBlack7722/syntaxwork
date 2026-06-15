@@ -150,6 +150,83 @@ p
 
 其中 `顯示名稱` 可用於錯誤訊息，例如 `Q24`；實際處理變項仍以 `複選題變項清單` 為準。
 
+### 3. 複選題工具目前狀態
+
+新增工具：
+
+```text
+淨零/tools/generate_multi_checks.py
+淨零/tools/build_spss_checks.py
+```
+
+`generate_multi_checks.py` 只產生 `**3.複選題檢核.` 與 `**3.1複選互斥邏輯.` 區塊。設計原則是：
+
+- 實際 SPSS 變項一律以 `複選題變項清單` 為準，不用 `題號 + m + 編號` 猜測。
+- `複選題_...` 工作表提供 m/p、顯示題號、無反應碼、是否檢查至少一項、是否檢查 96 一致。
+- `複選題內_互斥` 工作表提供互斥選項與其他選項範圍。
+- `加總程式`、`程式1` 等舊公式欄目前只作為人工參考；若與實際變項清單不一致，產生器會在 report 裡警告但不採用。
+
+`build_spss_checks.py` 會把已確認的分段輸出合併成單一 `.sps`。目前已可合併：
+
+```text
+邏輯組
+複選題
+```
+
+未來處理數值題、開放欄位時，建議也先各自產生單一區塊並通過人工比對，再用 `build_spss_checks.py` 加到同一個最終 `.sps`。
+
+目前產出檔：
+
+```text
+消費者2/generated/multi_checks_generated.sps
+消費者2/generated/all_checks_generated.sps
+淨零/generated/multi_checks_generated.sps
+淨零/generated/all_checks_generated.sps
+```
+
+目前 Excel 填寫注意事項：
+
+- `消費者2` 的 `複選題內_互斥` 第 2 列 `互斥選項` 填 `100`，但實際變項是 `vF2m10`，建議改成 `10`。
+- `淨零` 的 `複選題_301-400` 加總程式仍寫成 `v45m1 to v45m7` 等，但實際變項是 `v45m01 to v45m07`；此欄可改正或留空，產生器不依賴它。
+- `淨零` 的 `複選題內_互斥` 第 4 列題號填 `47`，但實際應是 `48`，否則無法產生 `v48` 的互斥檢核。
+
+### 4. 數值題 r1-r4 建議值工具目前狀態
+
+新增工具：
+
+```text
+淨零/tools/generate_numeric_range_proposals.py
+淨零/tools/compare_questionnaire_completeness.py
+```
+
+目前先產生建議值與比對報告，不直接覆蓋 Excel：
+
+```text
+generated/numeric_range_proposals_all_projects.xlsx
+generated/numeric_range_mismatch_review.csv
+消費者/generated/numeric_range_proposals.csv
+消費者2/generated/numeric_range_proposals.csv
+淨零/generated/numeric_range_proposals.csv
+```
+
+目前穩定規則：
+
+- Word 題文有 `範圍設定 x-y` 時，推 `r1=x,y`。
+- Word 題文有 `填答範圍設定大於等於 x` 時，推 `r1=x,999999999`。
+- 選項題用 `(01)...(05)` 推選項範圍。
+- 數值不變時用單一值，例如 `1`，不用 `1,1`。
+- 變項名稱包含 `city` 的數值變項先統一推 `r1=1,29`。
+- `複選題變項清單` 中的展開變項推 `r1=0,1`；消費者/消費者2 的非補零 m1 格式另推 `r2=96`，淨零 m01 格式目前不推 `96`。
+- 消費者類增加/減少金額題推 `r2=9999999996`。
+- 非必答題若可推定有效值範圍，依有效值最大位數推 special code，例如個位數 -> `96`、兩位數 -> `996`、三位數 -> `9996`，並放在 r1-r4 下一個空欄。
+- 日期欄若 13 位且像西元年月日時分秒，補成 14 位；例如消費者2 `2026062900000` -> `20260629000000`。
+
+目前仍需人工或規則決策：
+
+- Word 選項包含特殊選項，但 Excel 將特殊選項放在 r2/r3，而非納入 r1，例如 `D1`、`Q25`。
+- Word 明確範圍與 Excel 既有規則不同，例如 `CKQ4` 題文寫大於等於 1，但 Excel 既有是 `0,999999999`。
+- 系統日期、END 題、行政區碼、父題衍生題仍留空或人工判定。
+
 ## 常用指令
 
 產生消費者2邏輯組語法：
@@ -189,4 +266,273 @@ git pull
 PROJECT_NOTES.md
 ```
 
+## 2026-06-13 loop engineering pipeline run
+
+本輪目標：以 `消費者`、`消費者2`、`淨零` 為基底，建立可重跑的問卷檢核產線，先用現有 Excel + Word + 既有 SPSS 語法比對，逐段產出邏輯組、複選題、數值題 r1-r4 提案，最後把已完成的語法 section 合併成單一 `.sps`。
+
+新增/調整工具：
+
+```text
+淨零/tools/run_survey_check_pipeline.py
+淨零/tools/generate_logic_checks.py
+```
+
+本輪修正：
+
+- `generate_logic_checks.py` 讀取 `邏輯組` 時，若 Excel 某列少於 6 欄，改成自動補空欄，避免因空白尾欄中斷整個專案。
+- `run_survey_check_pipeline.py` 串接三個資料夾流程，並在每個子步驟設定 timeout。若某個 section 失敗，不會把不存在的 `.sps` 放入合併清單。
+- `run_survey_check_pipeline.py` 已把既有 SPSS 語法檔傳給邏輯組工具，讓邏輯組也能做實際語法比對。
+- pipeline 目前仍不改動問卷 Word 本身；Word 無法判定的項目先記錄到 review CSV。
+
+本輪輸出：
+
+```text
+generated/pipeline_run_report.json
+generated/questionnaire_completeness_report.csv
+generated/questionnaire_completeness_report.json
+generated/numeric_range_mismatch_review.csv
+消費者/generated/all_checks_generated.sps
+消費者2/generated/all_checks_generated.sps
+淨零/generated/all_checks_generated.sps
+```
+
+三個資料夾皆已成功產生單一合併 `.sps`。目前合併內容只包含已完成的邏輯組與複選題 section；數值題與開放欄位仍先做資料填寫/比對，尚未正式轉成 SPSS section。
+
+數值題 r1-r4 本輪比對摘要：
+
+- `消費者`：59 列，match 34、manual 8、mismatch 7、range_match_special_diff 10。
+- `消費者2`：94 列，match 61、manual 15、mismatch 6、range_match_special_diff 12。
+- `淨零`：123 列，match 104、manual 14、mismatch 1、range_match_special_diff 4。
+
+需要使用者裁決的主要 mismatch：
+
+- `消費者 vCKQ4`：Word 明寫大於等於 1，Excel 目前為 `0,999999999`。需確認 CK/併回題是否允許 0，或應依 Word 改為 `1,999999999` 加特殊碼。
+- `消費者 vQ17_1/vQ17_1A/vQ17_2A/vQ20_1/vQ20_2/vQ25`：Word 選項範圍與 Excel 把部分值排除或放 special code 的做法不同。
+- `消費者2 vEND1/vEND3`：Excel 日期上限少一個 0，工具已提案補為 14 位時間戳。使用者已確認 `vEND1` 是填寫錯誤，`vEND3` 建議同規則檢查。
+- `消費者2 vA0`：Excel 看起來像日期範圍，Word 對應到單一選項值 `1`，需確認變項用途或 Excel 是否放錯。
+- `消費者2 vC1U/vC1D/vD1`：Word 選項與 Excel special code 拆分不同，需人工確認哪些選項是有效值、哪些是特殊碼。
+- `淨零 v42`：Word 出現 `(00)`，工具提案 `0,6`；Excel 目前為 `1,6`，需確認 0 是否為有效答案。
+
+目前 manual 類型主要分三種：
+
+- END 題時間戳：需要專案正式訪問期間規則，才能自動填範圍。
+- 題號衍生變項沒有直接問卷 block：例如 `C1U4R`、`33_1` 等，需建立 parent-question mapping 規則。
+- 行政區/鄉鎮代碼：例如 `vZ1town/vZ2town/vZ3town`，需要專案代碼表。
+
+下一步建議：
+
+1. 先由使用者裁決上述 mismatch，尤其是 Word 明寫範圍但 Excel 另有例外的題目。
+2. 把 END 日期規則、parent-question mapping、行政區代碼表做成可設定規則。
+3. 再進入數值題 SPSS section 生成，最後和現有 `all_checks_generated.sps` 合併成完整單一檔。
+
 再繼續下一階段。
+
+## 2026-06-13 follow-up: date range and logic markers
+
+使用者已修正：
+
+- `消費者 vCKQ4` Excel 範圍。
+- `消費者2` 日期上限補 0。
+- `消費者2 vA0`。
+- `淨零 v42`。
+- `淨零` 複選題既有語法。
+
+本輪工具調整：
+
+- `generate_numeric_range_proposals.py` 新增寬度 14 日期時間規則：只要 Excel `all` sheet 內是數值型、寬度為 14，即視為日期時間範圍欄位，不再只靠 `END` 變項名稱判斷。
+- `generate_numeric_range_proposals.py` 新增 `--date-start` / `--date-end`。支援 `YYYYMMDD`、`YYYY-MM-DD`、`YYYYMMDDHHMMSS`；未填時分秒會補 `000000`。例：`2026-06-09` -> `20260609000000`。
+- `run_survey_check_pipeline.py` 同步支援 `--date-start` / `--date-end`，未傳入時維持使用 Excel 既有 r1 進行比對。
+- `generate_logic_checks.py` 產出的邏輯組 section 加入機器標記：
+  - `* SYNTAXWORK_BEGIN_LOGIC.`
+  - `* SYNTAXWORK_END_LOGIC.`
+- 既有 SPSS 邏輯抽取會優先使用上述 marker；舊檔沒有 marker 時，fallback 使用 `**4.邏輯檢核.` 到下一個段落/分隔線。
+
+本輪驗證：
+
+- 單案小測：`消費者2` 使用 `--date-start 2026-06-09 --date-end 20260629`，`vEND1/vEND2/vEND3` 均產出 `20260609000000,20260629000000`。
+- 全量 pipeline 成功，所有 command return code 皆為 0。
+- 數值題摘要：
+  - `消費者`：59 列，match 37、manual 5、mismatch 6、range_match_special_diff 11。
+  - `消費者2`：94 列，match 65、manual 14、mismatch 3、range_match_special_diff 12。
+  - `淨零`：123 列，match 112、manual 7、mismatch 0、range_match_special_diff 4。
+- 邏輯組：
+  - `淨零`：generated 20、existing 20、matched 20、unmatched 0。
+  - `消費者2`：generated 85、existing 87、matched 0；此案的既有語法可抽到 `DO IF`，但與 Excel 生成規則尚未對齊，需後續看邏輯組內容/既有語法差異。
+
+剩餘待確認：
+
+- `淨零` 複選題差異：格式差異之外，`複選題內_互斥` 第 4 列目前寫互斥題號 `47`，工具找不到對應複選題分組；既有語法有 `v48=7` 互斥檢核。建議確認 Excel 該列是否應改為 `48`。
+- 剩餘數值題 mismatch 皆為 Word 選項範圍與 Excel special code/有效值拆分差異：
+  - `消費者 vQ17_1/vQ17_1A/vQ17_2A/vQ20_1/vQ20_2/vQ25`
+  - `消費者2 vC1U/vC1D/vD1`
+- manual 類型仍集中在 parent-question mapping、無明確範圍的題目，以及行政區/鄉鎮代碼表。
+
+## 2026-06-13 follow-up: open-field Word-to-Excel validation
+
+使用者已修正：
+
+- `淨零` 的 `複選題內_互斥` 第 4 列由 `47` 改為 `48`。
+- `消費者2` 既有語法已先手動加入 `SYNTAXWORK_BEGIN_LOGIC` / `SYNTAXWORK_END_LOGIC` marker。
+
+本輪定位：
+
+- `SYNTAXWORK_BEGIN_*` / `SYNTAXWORK_END_*` marker 未來應由最終語法合併程式自動加入各 section。
+- 如果使用者手動完成某段 SPSS 語法，只需進行比對，可讓使用者自行加入 marker，程式優先用 marker 抽取比對。
+- 開放欄位本階段只做 Word -> Excel 提案/比對，不產生 SPSS 語法。
+
+新增工具：
+
+```text
+淨零/tools/generate_open_field_proposals.py
+```
+
+工具規則：
+
+- 從 `.docx` 內部 XML 抽取全文，可處理一般段落外的 Word 文字。
+- 依問卷題號切成 blocks，支援 `Q17_1A`、`CK17_1A`、`C1U5R`、`71_2` 等複雜題號。
+- 自動抓選項文字中的 `請說明`、`請填`、`請註明`、`說明百分比`，以及 `其他/其它 + 底線`。
+- 支援未標號但可由跳答標記計算的其他欄位，例如 `v70o10`。
+- 支援結構化文字子欄位，例如 `v71_2s1` 到 `v71_2s4`。
+- 支援確認題 remap，例如：
+  - `vQ17_1Ao2` -> `vCK17_1Ao2`
+  - `vC1U5o2` -> `vC1U5Ro2`
+- city open field 的 `29` / `ot` 視為專案慣例差異，比對時以既有 Excel var 為準。
+
+pipeline 更新：
+
+- `run_survey_check_pipeline.py` 已加入開放欄位步驟。
+- 每個 project 會輸出：
+
+```text
+<project>/generated/open_field_proposals.csv
+<project>/generated/open_field_proposals_report.json
+```
+
+- 全域彙整非 match：
+
+```text
+generated/open_field_mismatch_review.csv
+```
+
+本輪驗證：
+
+- `消費者`：開放欄位 4/4 match。
+- `消費者2`：開放欄位 6/6 match。
+- `淨零`：開放欄位 28/28 match。
+- `generated/open_field_mismatch_review.csv` 目前 0 筆。
+- `淨零` 複選題：Excel 第 4 列改成 `48` 後，工具 issues 已為空，reference/generated 都是 61 行；目前 `normalized_equal=False` 只剩註解文字與換行/空白格式差，非實質規則缺漏。
+
+下一步建議：
+
+1. 強化複選題語法 normalizer，忽略註解文字、換行與空白差異，讓格式差不再被當成內容差。
+2. 回到數值題剩餘 mismatch / special code 差異，確認使用者規則後再進 SPSS section 生成。
+3. 開始規劃最終合併 `.sps` 的 section marker：`NUMERIC`、`OPEN_FIELD`、`MULTI`、`LOGIC` 等。
+
+## 2026-06-13 follow-up: Excel precheck before conversion
+
+使用者確認方向：
+
+- 目前 Word -> Excel 的邏輯組、複選題、開放欄位在三個基準案已可處理。
+- 剩餘主要是數值題 mismatch / special code 差異。
+- 在 Excel -> SPSS 前需要前置檢查，避免欄位缺漏、公式錯誤或錯置造成語法生成錯誤。
+
+新增工具：
+
+```text
+淨零/tools/validate_excel_structure.py
+```
+
+pipeline 更新：
+
+- `run_survey_check_pipeline.py` 已在每個 project 開始處先跑 Excel precheck。
+- 目前 precheck 不阻斷後續流程；若有 error，會寫入 report 的 `precheck_summary`，並在 project `unresolved` 記錄 `excel_precheck`。
+- 每個 project 會輸出：
+
+```text
+<project>/generated/excel_precheck.csv
+<project>/generated/excel_precheck_report.json
+```
+
+目前檢查項目：
+
+- 必要 sheet 是否存在：`all`、數值題、開放欄位、複選題、複選題內互斥、複選題變項清單；有 `邏輯組` 則檢查邏輯組。
+- 必要欄位是否存在。
+- `m` 是否為數字、是否重複。
+- `var` / `變項名稱` 是否重複。
+- 公式錯誤：`#VALUE!`、`#REF!`、`#NAME?`、`#N/A`、`#DIV/0!`。
+- 數值題：`變項屬性=數值`、`寬度` 為數字、`r1~r4` 格式。
+- 開放欄位：`變項屬性=字串`、`寬度=150`、`是否複選` 為 0/1。
+- 複選題：主表題號是否可對到 `複選題變項清單`。
+- 邏輯組：必要欄位 `m/p/條件/應答/不應答`；`限制` 目前列為 recommended。
+
+目前三案 precheck 結果：
+
+- `消費者`：0 error / 0 warning。
+- `消費者2`：0 error / 0 warning。
+- `淨零`：20 error / 4 warning。
+
+淨零 error：
+
+- `開放欄位251-300` 第 21-24 列，也就是 `v71_2s1` 到 `v71_2s4`。
+- 這四列的 `題號`、`題號變項名稱`、`選項數值`、`range_new`、`n` 目前為 `#VALUE!`。
+- Word -> Excel 比對已能判定這四列並 match，但若未來 Excel -> SPSS 使用這些輔助欄位，建議修正 Excel 公式或改由程式補齊。
+
+淨零 warning：
+
+- `邏輯組` 缺 recommended 欄位 `限制`。目前工具可繼續，但未來若要由 Excel 產生限制類邏輯，建議保留此欄。
+- `vZ1town/vZ2town/vZ3town` 的 `r1` 是長代碼清單，格式不屬於簡單 `min,max`；這屬於行政區代碼表，應保留為專案代碼表/清單型檢核。
+
+欄位責任分工暫定：
+
+- 使用者/模板先提供：`all` sheet 的 `變項名稱/變項屬性/寬度`，以及各類 sheet 的基本 `m/p/var` 或題號列。這是像「欄位骨架」。
+- 程式可由 Word 自動填/比對：數值題 `r1~r4` 提案、開放欄位列、複選題主表/互斥表、邏輯組基本規則。
+- 使用者需判定或提供規則：數值題 special code 是否應存在、必答/非必答、行政區 town code 表、複雜題目 parent mapping、問卷語意無法單靠規則判斷的例外。
+- 程式最終生成：各 section SPSS 語法，以及最終合併 `.sps` 的 section marker。
+
+## 2026-06-15 follow-up: survey-to-Excel skills and updated check items
+
+本輪使用者確認：
+
+- 傳播4-1 開放欄位 `vQ22o88`、`vQ27o88`、`vQ51o88` 都是 Word 選項列表/表格中的 `(88)其他/其它,請說明` 類型。
+- 開放欄位可用選項內 `其他`、`其它` 搭配 `請說明` 或底線作為基本判斷。
+- `vA5town` 長代碼清單正確。
+- `vE3_1` 寬度 6000、`vZE2_1/vZE2_2` 寬度 30、`vZE2_3` 寬度 900 正確；寬度以 `all` sheet 為準，不需列入例外規則。
+
+已處理：
+
+- 新增並驗證五個 questionnaire -> Excel 主 skill：
+  - `.codex/skills/syntaxwork-logic-groups`
+  - `.codex/skills/syntaxwork-multi-response`
+  - `.codex/skills/syntaxwork-numeric-fields`
+  - `.codex/skills/syntaxwork-open-fields`
+  - `.codex/skills/syntaxwork-check-items`
+- `syntaxwork-open-fields` 已補上 `其他/其它` 判斷，以及複選開放欄位如 `vQ22o88` 應對到母選項變項 `vQ22m88` 的規則。
+- `generate_open_field_proposals.py` 已修正：
+  - 若 Excel 公式欄沒有快取值，依 `var` 與 `是否複選` 推導 `題號/選項數值/var2_new/range_new/n` 供比對。
+  - 複選開放欄位的 `qvar` 改推為 `v<題號>m<選項值>`。
+- 開放欄位重新比對後，指定三筆 `vQ22o88/vQ27o88/vQ51o88` 已從 mismatch 變成 match。
+- 更新後的資料檢核項目 Word：`傳播調查資料庫第四期第一次正式_資料檢核項目0614.docx`。
+  - dry-run 匯入結果：47 列。
+  - 自動條件：37 列。
+  - review：10 列。
+  - 已產生 CSV/report：`傳播4-1/generated/external_check_items_0614.csv`、`傳播4-1/generated/external_check_items_0614_report.json`。
+
+原始 workbook 狀態：
+
+- `傳播4-1/檢核程式套印-傳播4-1.xlsx` 當時被 Excel 鎖定，旁邊有 `~$檢核程式套印-傳播4-1.xlsx`。
+- 因鎖定，未能直接寫回原始 workbook。
+- 已產生可比對副本：
+  - `傳播4-1/generated/檢核程式套印-傳播4-1.external0614.updated.xlsx`
+- 副本已成功寫入 `檢核項目清單`。
+
+檢核項目清單 remaining review 類型：
+
+- `E5,E6,D3` 手機上網時間合計大於總時間 2 小時：可後續補時間加總差距規則。
+- `E14` 網路消費大於 `O5` 收入：需要收入級距對應表。
+- `Z2_1/Z2_2/ZE2_1/ZE2_3` 電話、手機、Email：需要字串格式、重複值、網域清單等專門規則。
+- `Q47/Q48/Q62/Q53` 搭配 `Q51/P3_1` 的 0 分與政黨/統獨立場列出確認：語意穩定，後續可補自動轉換規則。
+
+skill 適用性觀察：
+
+- 五個主 skill 可用且已通過 quick validation。
+- `.codex/skills/syntaxwork-external-checks` 與 `syntaxwork-check-items` 功能重疊；後續建議以 `syntaxwork-check-items` 作為五大主流程之一，`syntaxwork-external-checks` 只保留為舊名稱/相容參考，避免流程分歧。

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Syntaxwork Open Fields"
+  short_description: "Fill open-field Excel sheets from questionnaire Word files."
+  default_prompt: "Use $syntaxwork-open-fields to infer open-field validation rows from questionnaire options."

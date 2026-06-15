@@ -1,0 +1,4 @@
+interface:
+  display_name: "Syntaxwork Numeric Fields"
+  short_description: "Fill numeric-field range columns from questionnaire Word files."
+  default_prompt: "Use $syntaxwork-numeric-fields to infer numeric ranges and special codes from a questionnaire."

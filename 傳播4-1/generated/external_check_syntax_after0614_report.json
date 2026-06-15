@@ -1,0 +1,291 @@
+{
+  "rules": 0,
+  "skipped": 47,
+  "duplicate_mp_issues": 0,
+  "skipped_rows": [
+    {
+      "severity": "warning",
+      "row": 2,
+      "qid": "sel_gen,O1",
+      "reason": "blank m or p"
+    },
+    {
+      "severity": "warning",
+      "row": 3,
+      "qid": "A1,A2,A3,A9",
+      "reason": "blank m or p"
+    },
+    {
+      "severity": "warning",
+      "row": 4,
+      "qid": "A1,A2,A9",
+      "reason": "blank m or p"
+    },
+    {
+      "severity": "warning",
+      "row": 5,
+      "qid": "B2",
+      "reason": "blank m or p"
+    },
+    {
+      "severity": "warning",
+      "row": 6,
+      "qid": "B4",
+      "reason": "blank m or p"
+    },
+    {
+      "severity": "warning",
+      "row": 7,
+      "qid": "B6",
+      "reason": "blank m or p"
+    },
+    {
+      "severity": "warning",
+      "row": 8,
+      "qid": "C2",
+      "reason": "blank m or p"
+    },
+    {
+      "severity": "warning",
+      "row": 9,
+      "qid": "D3",
+      "reason": "blank m or p"
+    },
+    {
+      "severity": "warning",
+      "row": 10,
+      "qid": "E5,E8,E11",
+      "reason": "blank m or p"
+    },
+    {
+      "severity": "warning",
+      "row": 11,
+      "qid": "E5,E8,E11",
+      "reason": "blank m or p"
+    },
+    {
+      "severity": "warning",
+      "row": 12,
+      "qid": "E5,E6",
+      "reason": "blank m or p"
+    },
+    {
+      "severity": "warning",
+      "row": 13,
+      "qid": "E8,E9",
+      "reason": "blank m or p"
+    },
+    {
+      "severity": "warning",
+      "row": 14,
+      "qid": "E11,E12",
+      "reason": "blank m or p"
+    },
+    {
+      "severity": "warning",
+      "row": 15,
+      "qid": "E5,E6,D3",
+      "reason": "blank condition"
+    },
+    {
+      "severity": "warning",
+      "row": 16,
+      "qid": "E14",
+      "reason": "blank condition"
+    },
+    {
+      "severity": "warning",
+      "row": 17,
+      "qid": "F2",
+      "reason": "blank m or p"
+    },
+    {
+      "severity": "warning",
+      "row": 18,
+      "qid": "F4",
+      "reason": "blank m or p"
+    },
+    {
+      "severity": "warning",
+      "row": 19,
+      "qid": "G2",
+      "reason": "blank m or p"
+    },
+    {
+      "severity": "warning",
+      "row": 20,
+      "qid": "G5",
+      "reason": "blank m or p"
+    },
+    {
+      "severity": "warning",
+      "row": 21,
+      "qid": "H1,H4,H7",
+      "reason": "blank m or p"
+    },
+    {
+      "severity": "warning",
+      "row": 22,
+      "qid": "H7,H7_1,H7_2,H7_3",
+      "reason": "blank m or p"
+    },
+    {
+      "severity": "warning",
+      "row": 23,
+      "qid": "Q24",
+      "reason": "blank m or p"
+    },
+    {
+      "severity": "warning",
+      "row": 24,
+      "qid": "Q21",
+      "reason": "blank m or p"
+    },
+    {
+      "severity": "warning",
+      "row": 25,
+      "qid": "Q26A",
+      "reason": "blank m or p"
+    },
+    {
+      "severity": "warning",
+      "row": 26,
+      "qid": "Q28",
+      "reason": "blank m or p"
+    },
+    {
+      "severity": "warning",
+      "row": 27,
+      "qid": "H8",
+      "reason": "blank m or p"
+    },
+    {
+      "severity": "warning",
+      "row": 28,
+      "qid": "I2",
+      "reason": "blank m or p"
+    },
+    {
+      "severity": "warning",
+      "row": 29,
+      "qid": "I4",
+      "reason": "blank m or p"
+    },
+    {
+      "severity": "warning",
+      "row": 30,
+      "qid": "KFB2",
+      "reason": "blank m or p"
+    },
+    {
+      "severity": "warning",
+      "row": 31,
+      "qid": "KIG2",
+      "reason": "blank m or p"
+    },
+    {
+      "severity": "warning",
+      "row": 32,
+      "qid": "KLI2",
+      "reason": "blank m or p"
+    },
+    {
+      "severity": "warning",
+      "row": 33,
+      "qid": "KTT2",
+      "reason": "blank m or p"
+    },
+    {
+      "severity": "warning",
+      "row": 34,
+      "qid": "KYT2",
+      "reason": "blank m or p"
+    },
+    {
+      "severity": "warning",
+      "row": 35,
+      "qid": "P5_2",
+      "reason": "blank m or p"
+    },
+    {
+      "severity": "warning",
+      "row": 36,
+      "qid": "M1",
+      "reason": "blank m or p"
+    },
+    {
+      "severity": "warning",
+      "row": 37,
+      "qid": "vA1,O1",
+      "reason": "blank m or p"
+    },
+    {
+      "severity": "warning",
+      "row": 38,
+      "qid": "Z2_1",
+      "reason": "blank condition"
+    },
+    {
+      "severity": "warning",
+      "row": 39,
+      "qid": "Z2_2,ZE2_1",
+      "reason": "blank condition"
+    },
+    {
+      "severity": "warning",
+      "row": 40,
+      "qid": "ZE2_3",
+      "reason": "blank condition"
+    },
+    {
+      "severity": "warning",
+      "row": 41,
+      "qid": "K1,KTT4",
+      "reason": "blank m or p"
+    },
+    {
+      "severity": "warning",
+      "row": 42,
+      "qid": "Q5,Q6,Q7,Q8,Q9",
+      "reason": "blank m or p"
+    },
+    {
+      "severity": "warning",
+      "row": 43,
+      "qid": "Q10,Q11,Q12,Q13,Q14",
+      "reason": "blank m or p"
+    },
+    {
+      "severity": "warning",
+      "row": 44,
+      "qid": "Q47,Q51",
+      "reason": "blank condition"
+    },
+    {
+      "severity": "warning",
+      "row": 45,
+      "qid": "Q48,Q51",
+      "reason": "blank condition"
+    },
+    {
+      "severity": "warning",
+      "row": 46,
+      "qid": "Q62,Q51",
+      "reason": "blank condition"
+    },
+    {
+      "severity": "warning",
+      "row": 47,
+      "qid": "Q53,P3_1",
+      "reason": "blank condition"
+    },
+    {
+      "severity": "warning",
+      "row": 48,
+      "qid": "Q53,P3_1",
+      "reason": "blank condition"
+    }
+  ],
+  "duplicate_mp": [],
+  "output": "傳播4-1\\generated\\external_check_syntax_after0614.sps"
+}

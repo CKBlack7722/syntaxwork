@@ -1,0 +1,19 @@
+{
+  "rows": 47,
+  "counts": {
+    "auto": 37,
+    "review": 10
+  },
+  "output_csv": "傳播4-1\\generated\\external_check_items_0614_dryrun.csv",
+  "sheet": "檢核項目清單",
+  "headers": [
+    "m",
+    "p",
+    "題號",
+    "變項名稱",
+    "檢核說明",
+    "備註",
+    "條件",
+    "額外列出變項"
+  ]
+}

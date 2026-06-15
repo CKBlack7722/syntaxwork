@@ -1,0 +1,4 @@
+interface:
+  display_name: "Syntaxwork Multi Response"
+  short_description: "Fill multiple-response Excel sheets."
+  default_prompt: "Use $syntaxwork-multi-response to compare multiple-response variables with a questionnaire and fill Excel."

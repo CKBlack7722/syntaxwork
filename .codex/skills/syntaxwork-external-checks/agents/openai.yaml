@@ -1,0 +1,7 @@
+interface:
+  display_name: "Syntaxwork External Checks"
+  short_description: "Import extra check items to SPSS."
+  default_prompt: "Use $syntaxwork-external-checks to import a 資料檢核項目 Word table into Excel and generate reviewable SPSS syntax."
+
+policy:
+  allow_implicit_invocation: true

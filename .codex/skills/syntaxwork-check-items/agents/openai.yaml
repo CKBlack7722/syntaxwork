@@ -1,0 +1,4 @@
+interface:
+  display_name: "Syntaxwork Check Items"
+  short_description: "Import project-specific check-item Word tables into Excel."
+  default_prompt: "Use $syntaxwork-check-items to import project-specific check item tables into Syntaxwork Excel."
