@@ -1,0 +1,10 @@
+{
+  "multi_rule_count": 0,
+  "mutex_rule_count": 0,
+  "warnings": [
+    "missing sheet: 複選題_301-400",
+    "row 2: variable not in 複選題變項清單: vF2m100, vF2m01, vF2m09"
+  ],
+  "multi_rules": [],
+  "mutex_rules": []
+}

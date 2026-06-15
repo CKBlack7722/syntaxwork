@@ -1,0 +1,33 @@
+{
+  "multi_rule_count": 1,
+  "mutex_rule_count": 1,
+  "warnings": [],
+  "multi_rules": [
+    {
+      "m": "301",
+      "p": "301",
+      "question_id": "Q24",
+      "group": "vQ24",
+      "vars": [
+        "vQ24m1",
+        "vQ24m2",
+        "vQ24m3",
+        "vQ24m4",
+        "vQ24m5",
+        "vQ24m6"
+      ]
+    }
+  ],
+  "mutex_rules": [
+    {
+      "m": "302",
+      "p": "302",
+      "question_id": "Q24",
+      "group": "vQ24",
+      "exclusive_option": "1",
+      "exclusive_var": "vQ24m1",
+      "other_start_var": "vQ24m2",
+      "other_end_var": "vQ24m6"
+    }
+  ]
+}

@@ -1,0 +1,84 @@
+{
+  "multi_rule_count": 3,
+  "mutex_rule_count": 3,
+  "warnings": [],
+  "multi_rules": [
+    {
+      "m": "301",
+      "p": "301",
+      "question_id": "v45",
+      "group": "v45",
+      "vars": [
+        "v45m01",
+        "v45m02",
+        "v45m03",
+        "v45m04",
+        "v45m05",
+        "v45m06",
+        "v45m07"
+      ]
+    },
+    {
+      "m": "302",
+      "p": "302",
+      "question_id": "v46",
+      "group": "v46",
+      "vars": [
+        "v46m01",
+        "v46m02",
+        "v46m03",
+        "v46m04",
+        "v46m05",
+        "v46m06",
+        "v46m07"
+      ]
+    },
+    {
+      "m": "303",
+      "p": "303",
+      "question_id": "v48",
+      "group": "v48",
+      "vars": [
+        "v48m01",
+        "v48m02",
+        "v48m03",
+        "v48m04",
+        "v48m05",
+        "v48m06",
+        "v48m07"
+      ]
+    }
+  ],
+  "mutex_rules": [
+    {
+      "m": "304",
+      "p": "304",
+      "question_id": "v45",
+      "group": "v45",
+      "exclusive_option": "7",
+      "exclusive_var": "v45m07",
+      "other_start_var": "v45m01",
+      "other_end_var": "v45m06"
+    },
+    {
+      "m": "305",
+      "p": "305",
+      "question_id": "v46",
+      "group": "v46",
+      "exclusive_option": "7",
+      "exclusive_var": "v46m07",
+      "other_start_var": "v46m01",
+      "other_end_var": "v46m06"
+    },
+    {
+      "m": "306",
+      "p": "306",
+      "question_id": "v48",
+      "group": "v48",
+      "exclusive_option": "7",
+      "exclusive_var": "v48m07",
+      "other_start_var": "v48m01",
+      "other_end_var": "v48m06"
+    }
+  ]
+}

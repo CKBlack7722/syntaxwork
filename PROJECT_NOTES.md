@@ -121,6 +121,35 @@ vQ24m1 to vQ24m6
 淨零/tools/generate_multi_checks.py
 ```
 
+目前已建立第一版工具：
+
+```text
+淨零/tools/generate_multi_checks.py
+```
+
+已試跑：
+
+```text
+淨零/generated/multi_checks_generated.sps
+淨零/generated/multi_checks_report.json
+消費者/generated/multi_checks_generated.sps
+消費者/generated/multi_checks_report.json
+消費者2/generated/multi_checks_generated.sps
+消費者2/generated/multi_checks_report.json
+```
+
+目前結果：
+
+- `淨零`: 產生 3 組複選題檢核、3 組互斥檢核，無 warning。
+- `消費者`: 產生 1 組複選題檢核、1 組互斥檢核，無 warning。
+- `消費者2`: 尚不能完整產生；缺 `複選題_301-400` sheet，且 `複選題內_互斥` 的 `F2` 對不到 `複選題變項清單` 內的 `vF1m...` 分組。
+
+第一版工具與既有語法的差異：
+
+- 舊版淨零語法的顯示字串只列 `v45m01` 到 `v45m06`，但檢核實際使用 `v45m01` 到 `v45m07`。
+- 新工具會在顯示字串列出整組複選變項，例如 `v45m01` 到 `v45m07`，方便人工查錯。
+- 檢核條件本身維持功能等價。
+
 建議資料來源：
 
 - `複選題_301-400`: 定義 m/p、題號、選項範圍、特殊碼、互斥選項。
