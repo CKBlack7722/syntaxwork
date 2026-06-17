@@ -3,2049 +3,3175 @@
 * SYNTAXWORK_BEGIN_LOGIC.
 * logic check show vA2.
 do if (any(vA1,997,998)) & any(1,vA2_96).
-compute m1501=concat("vA1=",string(vA1,n4),",vA2=",string(vA2,n2)).
-compute p1501="vA1 in 997,998，應答vA2而未答".
+compute m1301=concat("vA1=",string(vA1,n4),",vA2=",string(vA2,n2)).
+compute p1301="vA1 in 997,998，應答vA2而未答".
+compute s1301=1.
+end if.
+
+* logic check show vA2.
+do if (any(vA1,997,998)) & any(1,vA2_96).
+compute m1302=concat("vA1=",string(vA1,n4),",vA2=",string(vA2,n2)).
+compute p1302="vA1 in 997 | vA1 in 998，應答vA2而未答".
+compute s1302=1.
+end if.
+
+* logic check hide vA2.
+do if (not any(vA1,997,998)) & any(0,vA2_96).
+compute m1303=concat("vA1=",string(vA1,n4),",vA2=",string(vA2,n2)).
+compute p1303="vA1~=997 & vA1~=998，不應答vA2而答".
+compute s1303=1.
+end if.
+
+* logic check hide vQ44.
+do if (any(vA1,96) | any(vA2,1)) & any(0,vQ44_96).
+compute m1304=concat("vA1=",string(vA1,n4),",vA2=",string(vA2,n2),",vQ44=",string(vQ44,n2)).
+compute p1304="vA1 in 96 | vA2 in 1，不應答vQ44而答".
+compute s1304=1.
+end if.
+
+* logic check show vQ44.
+do if (vA1~=96 & vA2~=1) & any(1,vQ44_96).
+compute m1305=concat("vA1=",string(vA1,n4),",vA2=",string(vA2,n2),",vQ44=",string(vQ44,n2)).
+compute p1305="vA1~=96 & vA2~=1，應答vQ44而未答".
+compute s1305=1.
 end if.
 
 * logic check hide vA5city,vA5town.
 do if (any(vA4,1,97,98)) & (any(0,vA5city_96) | any(0,vA5town_96)).
-compute m1502=concat(
-  "vA4=",
-  string(vA4,n2),
-  ",vA5city=",
-  string(vA5city,n2),
-  ",vA5town=",
-  string(vA5town,n4)
-).
-compute p1502="vA4 in 1,97,98，不應答vA5city,vA5town而答".
+compute m1306=concat("vA4=",string(vA4,n2),",vA5city=",string(vA5city,n2),",vA5town=",string(vA5town,n4)).
+compute p1306="vA4 in 1,97,98，不應答vA5city,vA5town而答".
+compute s1306=1.
 end if.
 
-* logic check show vO2.
-do if (any(vO1,1,2,3,4,5,88)) & any(1,vO2_96).
-compute m1503=concat("vO1=",string(vO1,n2),",vO2=",string(vO2,n2)).
-compute p1503="vO1 in 1,2,3,4,5,88，應答vO2而未答".
+* logic check hide vA5city,vA5town.
+do if (any(vA4,1,97,98)) & (any(0,vA5city_96) | any(0,vA5town_96)).
+compute m1307=concat("vA4=",string(vA4,n2),",vA5city=",string(vA5city,n2),",vA5town=",string(vA5town,n4)).
+compute p1307="vA4 in 1 | vA4 in 97 | vA4 in 98，不應答vA5city,vA5town而答".
+compute s1307=1.
 end if.
 
-* logic check show vO3.
-do if (any(vO1,1,2,3,4,5,88)) & any(1,vO3_96).
-compute m1504=concat("vO1=",string(vO1,n2),",vO3=",string(vO3,n2)).
-compute p1504="vO1 in 1,2,3,4,5,88，應答vO3而未答".
-end if.
-
-* logic check show vO4.
-do if (any(vO1,1,2,3,4,5,88)& any(vO3,3,4,5,6,1,88)) & any(1,vO4_96).
-compute m1505=concat(
-  "vO1=",
-  string(vO1,n2),
-  ",vO3=",
-  string(vO3,n2),
-  ",vO4=",
-  string(vO4,n5)
-).
-compute p1505="vO1 in 1,2,3,4,5,88 & vO3 in 3,4,5,6,1,88，應答vO4而未答".
-end if.
-
-* logic check show vD2.
-do if (any(vD1,1,2)) & any(1,vD2_96).
-compute m1506=concat("vD1=",string(vD1,n2),",vD2=",string(vD2,n4)).
-compute p1506="vD1 in 1,2，應答vD2而未答".
-end if.
-
-* logic check show vD3.
-do if (any(vD1,1,2)) & any(1,vD3_96).
-compute m1507=concat("vD1=",string(vD1,n2),",vD3=",string(vD3,n5)).
-compute p1507="vD1 in 1,2，應答vD3而未答".
-end if.
-
-* logic check show vD4sD4,vD4sD5,vD4sD6,vD4sD7,vD4sD8.
-do if (any(vD1,1,2)) & (any(1,vD4sD4_96) | any(1,vD4sD5_96) | any(1,vD4sD6_96) | any(1,vD4sD7_96) | any(1,vD4sD8_96)).
-compute m1508=concat(
-  "vD1=",
-  string(vD1,n2),
-  ",vD4sD4=",
-  string(vD4sD4,n2),
-  ",vD4sD5=",
-  string(vD4sD5,n2),
-  ",vD4sD6=",
-  string(vD4sD6,n2),
-  ",vD4sD7=",
-  string(vD4sD7,n2),
-  ",vD4sD8=",
-  string(vD4sD8,n2)
-).
-compute p1508="vD1 in 1,2，應答vD4sD4,vD4sD5,vD4sD6,vD4sD7,vD4sD8而未答".
-end if.
-
-* logic check show vE17.
-do if ((any(vK1m01,1)| any(vK2m13,1))) & any(1,vE17_96).
-compute m1509=concat(
-  "vK1m01=",
-  string(vK1m01,n2),
-  ",vK2m13=",
-  string(vK2m13,n2),
-  ",vE17=",
-  string(vE17,n2)
-).
-compute p1509="(vK1m01 in 1 | vK2m13 in 1)，應答vE17而未答".
-end if.
-
-* logic check show vKLI1.
-do if ((any(vK1m01,1)| any(vK2m13,1))) & any(1,vKLI1_96).
-compute m1510=concat(
-  "vK1m01=",
-  string(vK1m01,n2),
-  ",vK2m13=",
-  string(vK2m13,n2),
-  ",vKLI1=",
-  string(vKLI1,n4)
-).
-compute p1510="(vK1m01 in 1 | vK2m13 in 1)，應答vKLI1而未答".
-end if.
-
-* logic check show vKLI2.
-do if ((any(vK1m01,1)| any(vK2m13,1))) & any(1,vKLI2_96).
-compute m1511=concat(
-  "vK1m01=",
-  string(vK1m01,n2),
-  ",vK2m13=",
-  string(vK2m13,n2),
-  ",vKLI2=",
-  string(vKLI2,n5)
-).
-compute p1511="(vK1m01 in 1 | vK2m13 in 1)，應答vKLI2而未答".
-end if.
-
-* logic check show vKFB1.
-do if ((any(vK1m02,1)| any(vK2m01,1))) & any(1,vKFB1_96).
-compute m1512=concat(
-  "vK1m02=",
-  string(vK1m02,n2),
-  ",vK2m01=",
-  string(vK2m01,n2),
-  ",vKFB1=",
-  string(vKFB1,n4)
-).
-compute p1512="(vK1m02 in 1 | vK2m01 in 1)，應答vKFB1而未答".
-end if.
-
-* logic check show vKFB2.
-do if ((any(vK1m02,1)| any(vK2m01,1))) & any(1,vKFB2_96).
-compute m1513=concat(
-  "vK1m02=",
-  string(vK1m02,n2),
-  ",vK2m01=",
-  string(vK2m01,n2),
-  ",vKFB2=",
-  string(vKFB2,n5)
-).
-compute p1513="(vK1m02 in 1 | vK2m01 in 1)，應答vKFB2而未答".
-end if.
-
-* logic check show vKFB3m01,vKFB3m02,vKFB3m03,vKFB3m04,vKFB3m05,vKFB3m06,vKFB3m07,vKFB3m08,vKFB3m09,vKFB3m10,vKFB3m11,vKFB3m12,vKFB3m13,vKFB3m14,vKFB3m15,vKFB3m16,vKFB3m17,vKFB3m88.
-do if ((any(vK1m02,1)| any(vK2m01,1))) & (any(1,vKFB3m01_96) | any(1,vKFB3m02_96) | any(1,vKFB3m03_96) | any(1,vKFB3m04_96) | any(1,vKFB3m05_96) | any(1,vKFB3m06_96) | any(1,vKFB3m07_96) | any(1,vKFB3m08_96) | any(1,vKFB3m09_96) | any(1,vKFB3m10_96) | any(1,vKFB3m11_96) | any(1,vKFB3m12_96) | any(1,vKFB3m13_96) | any(1,vKFB3m14_96) | any(1,vKFB3m15_96) | any(1,vKFB3m16_96) | any(1,vKFB3m17_96) | any(1,vKFB3m88_96)).
-compute m1514=concat(
-  "vK1m02=",
-  string(vK1m02,n2),
-  ",vK2m01=",
-  string(vK2m01,n2),
-  ",vKFB3m01=",
-  string(vKFB3m01,n2),
-  ",vKFB3m02=",
-  string(vKFB3m02,n2),
-  ",vKFB3m03=",
-  string(vKFB3m03,n2),
-  ",vKFB3m04=",
-  string(vKFB3m04,n2),
-  ",vKFB3m05=",
-  string(vKFB3m05,n2),
-  ",vKFB3m06=",
-  string(vKFB3m06,n2),
-  ",vKFB3m07=",
-  string(vKFB3m07,n2),
-  ",vKFB3m08=",
-  string(vKFB3m08,n2),
-  ",vKFB3m09=",
-  string(vKFB3m09,n2),
-  ",vKFB3m10=",
-  string(vKFB3m10,n2),
-  ",vKFB3m11=",
-  string(vKFB3m11,n2),
-  ",vKFB3m12=",
-  string(vKFB3m12,n2),
-  ",vKFB3m13=",
-  string(vKFB3m13,n2),
-  ",vKFB3m14=",
-  string(vKFB3m14,n2),
-  ",vKFB3m15=",
-  string(vKFB3m15,n2),
-  ",vKFB3m16=",
-  string(vKFB3m16,n2),
-  ",vKFB3m17=",
-  string(vKFB3m17,n2),
-  ",vKFB3m88=",
-  string(vKFB3m88,n2)
-).
-compute p1514="(vK1m02 in 1 | vK2m01 in 1)，應答vKFB3m01,vKFB3m02,vKFB3m03,vKFB3m04,vKFB3m05,vKFB3m06,vKFB3m07,vKFB3m08,vKFB3m09,vKFB3m10,vKFB3m11,vKFB3m12,vKFB3m13,vKFB3m14,vKFB3m15,vKFB3m16,vKFB3m17,vKFB3m88而未答".
-end if.
-
-* logic check show vKFB4m01,vKFB4m02,vKFB4m03,vKFB4m04,vKFB4m05,vKFB4m06,vKFB4m07,vKFB4m08,vKFB4m09,vKFB4m10,vKFB4m11,vKFB4m12,vKFB4m13,vKFB4m14,vKFB4m15,vKFB4m16,vKFB4m17,vKFB4m18,vKFB4m88.
-do if ((any(vK1m02,1)| any(vK2m01,1))) & (any(1,vKFB4m01_96) | any(1,vKFB4m02_96) | any(1,vKFB4m03_96) | any(1,vKFB4m04_96) | any(1,vKFB4m05_96) | any(1,vKFB4m06_96) | any(1,vKFB4m07_96) | any(1,vKFB4m08_96) | any(1,vKFB4m09_96) | any(1,vKFB4m10_96) | any(1,vKFB4m11_96) | any(1,vKFB4m12_96) | any(1,vKFB4m13_96) | any(1,vKFB4m14_96) | any(1,vKFB4m15_96) | any(1,vKFB4m16_96) | any(1,vKFB4m17_96) | any(1,vKFB4m18_96) | any(1,vKFB4m88_96)).
-compute m1515=concat(
-  "vK1m02=",
-  string(vK1m02,n2),
-  ",vK2m01=",
-  string(vK2m01,n2),
-  ",vKFB4m01=",
-  string(vKFB4m01,n2),
-  ",vKFB4m02=",
-  string(vKFB4m02,n2),
-  ",vKFB4m03=",
-  string(vKFB4m03,n2),
-  ",vKFB4m04=",
-  string(vKFB4m04,n2),
-  ",vKFB4m05=",
-  string(vKFB4m05,n2),
-  ",vKFB4m06=",
-  string(vKFB4m06,n2),
-  ",vKFB4m07=",
-  string(vKFB4m07,n2),
-  ",vKFB4m08=",
-  string(vKFB4m08,n2),
-  ",vKFB4m09=",
-  string(vKFB4m09,n2),
-  ",vKFB4m10=",
-  string(vKFB4m10,n2),
-  ",vKFB4m11=",
-  string(vKFB4m11,n2),
-  ",vKFB4m12=",
-  string(vKFB4m12,n2),
-  ",vKFB4m13=",
-  string(vKFB4m13,n2),
-  ",vKFB4m14=",
-  string(vKFB4m14,n2),
-  ",vKFB4m15=",
-  string(vKFB4m15,n2),
-  ",vKFB4m16=",
-  string(vKFB4m16,n2),
-  ",vKFB4m17=",
-  string(vKFB4m17,n2),
-  ",vKFB4m18=",
-  string(vKFB4m18,n2),
-  ",vKFB4m88=",
-  string(vKFB4m88,n2)
-).
-compute p1515="(vK1m02 in 1 | vK2m01 in 1)，應答vKFB4m01,vKFB4m02,vKFB4m03,vKFB4m04,vKFB4m05,vKFB4m06,vKFB4m07,vKFB4m08,vKFB4m09,vKFB4m10,vKFB4m11,vKFB4m12,vKFB4m13,vKFB4m14,vKFB4m15,vKFB4m16,vKFB4m17,vKFB4m18,vKFB4m88而未答".
-end if.
-
-* logic check show vKIG1.
-do if ((any(vK1m03,1)| any(vK2m02,1))) & any(1,vKIG1_96).
-compute m1516=concat(
-  "vK1m03=",
-  string(vK1m03,n2),
-  ",vK2m02=",
-  string(vK2m02,n2),
-  ",vKIG1=",
-  string(vKIG1,n4)
-).
-compute p1516="(vK1m03 in 1 | vK2m02 in 1)，應答vKIG1而未答".
-end if.
-
-* logic check show vKIG2.
-do if ((any(vK1m03,1)| any(vK2m02,1))) & any(1,vKIG2_96).
-compute m1517=concat(
-  "vK1m03=",
-  string(vK1m03,n2),
-  ",vK2m02=",
-  string(vK2m02,n2),
-  ",vKIG2=",
-  string(vKIG2,n5)
-).
-compute p1517="(vK1m03 in 1 | vK2m02 in 1)，應答vKIG2而未答".
-end if.
-
-* logic check show vKIG3m01,vKIG3m02,vKIG3m03,vKIG3m04,vKIG3m05,vKIG3m06,vKIG3m07,vKIG3m08,vKIG3m09,vKIG3m10,vKIG3m11,vKIG3m12,vKIG3m13,vKIG3m14,vKIG3m15,vKIG3m16,vKIG3m17,vKIG3m88.
-do if ((any(vK1m03,1)| any(vK2m02,1))) & (any(1,vKIG3m01_96) | any(1,vKIG3m02_96) | any(1,vKIG3m03_96) | any(1,vKIG3m04_96) | any(1,vKIG3m05_96) | any(1,vKIG3m06_96) | any(1,vKIG3m07_96) | any(1,vKIG3m08_96) | any(1,vKIG3m09_96) | any(1,vKIG3m10_96) | any(1,vKIG3m11_96) | any(1,vKIG3m12_96) | any(1,vKIG3m13_96) | any(1,vKIG3m14_96) | any(1,vKIG3m15_96) | any(1,vKIG3m16_96) | any(1,vKIG3m17_96) | any(1,vKIG3m88_96)).
-compute m1518=concat(
-  "vK1m03=",
-  string(vK1m03,n2),
-  ",vK2m02=",
-  string(vK2m02,n2),
-  ",vKIG3m01=",
-  string(vKIG3m01,n2),
-  ",vKIG3m02=",
-  string(vKIG3m02,n2),
-  ",vKIG3m03=",
-  string(vKIG3m03,n2),
-  ",vKIG3m04=",
-  string(vKIG3m04,n2),
-  ",vKIG3m05=",
-  string(vKIG3m05,n2),
-  ",vKIG3m06=",
-  string(vKIG3m06,n2),
-  ",vKIG3m07=",
-  string(vKIG3m07,n2),
-  ",vKIG3m08=",
-  string(vKIG3m08,n2),
-  ",vKIG3m09=",
-  string(vKIG3m09,n2),
-  ",vKIG3m10=",
-  string(vKIG3m10,n2),
-  ",vKIG3m11=",
-  string(vKIG3m11,n2),
-  ",vKIG3m12=",
-  string(vKIG3m12,n2),
-  ",vKIG3m13=",
-  string(vKIG3m13,n2),
-  ",vKIG3m14=",
-  string(vKIG3m14,n2),
-  ",vKIG3m15=",
-  string(vKIG3m15,n2),
-  ",vKIG3m16=",
-  string(vKIG3m16,n2),
-  ",vKIG3m17=",
-  string(vKIG3m17,n2),
-  ",vKIG3m88=",
-  string(vKIG3m88,n2)
-).
-compute p1518="(vK1m03 in 1 | vK2m02 in 1)，應答vKIG3m01,vKIG3m02,vKIG3m03,vKIG3m04,vKIG3m05,vKIG3m06,vKIG3m07,vKIG3m08,vKIG3m09,vKIG3m10,vKIG3m11,vKIG3m12,vKIG3m13,vKIG3m14,vKIG3m15,vKIG3m16,vKIG3m17,vKIG3m88而未答".
-end if.
-
-* logic check show vKIG4m01,vKIG4m02,vKIG4m03,vKIG4m04,vKIG4m05,vKIG4m06,vKIG4m07,vKIG4m08,vKIG4m09,vKIG4m10,vKIG4m11,vKIG4m12,vKIG4m13,vKIG4m14,vKIG4m88.
-do if ((any(vK1m03,1)| any(vK2m02,1))) & (any(1,vKIG4m01_96) | any(1,vKIG4m02_96) | any(1,vKIG4m03_96) | any(1,vKIG4m04_96) | any(1,vKIG4m05_96) | any(1,vKIG4m06_96) | any(1,vKIG4m07_96) | any(1,vKIG4m08_96) | any(1,vKIG4m09_96) | any(1,vKIG4m10_96) | any(1,vKIG4m11_96) | any(1,vKIG4m12_96) | any(1,vKIG4m13_96) | any(1,vKIG4m14_96) | any(1,vKIG4m88_96)).
-compute m1519=concat(
-  "vK1m03=",
-  string(vK1m03,n2),
-  ",vK2m02=",
-  string(vK2m02,n2),
-  ",vKIG4m01=",
-  string(vKIG4m01,n2),
-  ",vKIG4m02=",
-  string(vKIG4m02,n2),
-  ",vKIG4m03=",
-  string(vKIG4m03,n2),
-  ",vKIG4m04=",
-  string(vKIG4m04,n2),
-  ",vKIG4m05=",
-  string(vKIG4m05,n2),
-  ",vKIG4m06=",
-  string(vKIG4m06,n2),
-  ",vKIG4m07=",
-  string(vKIG4m07,n2),
-  ",vKIG4m08=",
-  string(vKIG4m08,n2),
-  ",vKIG4m09=",
-  string(vKIG4m09,n2),
-  ",vKIG4m10=",
-  string(vKIG4m10,n2),
-  ",vKIG4m11=",
-  string(vKIG4m11,n2),
-  ",vKIG4m12=",
-  string(vKIG4m12,n2),
-  ",vKIG4m13=",
-  string(vKIG4m13,n2),
-  ",vKIG4m14=",
-  string(vKIG4m14,n2),
-  ",vKIG4m88=",
-  string(vKIG4m88,n2)
-).
-compute p1519="(vK1m03 in 1 | vK2m02 in 1)，應答vKIG4m01,vKIG4m02,vKIG4m03,vKIG4m04,vKIG4m05,vKIG4m06,vKIG4m07,vKIG4m08,vKIG4m09,vKIG4m10,vKIG4m11,vKIG4m12,vKIG4m13,vKIG4m14,vKIG4m88而未答".
-end if.
-
-* logic check show vKTT1.
-do if ((any(vK1m11,1)| any(vK2m07,1))) & any(1,vKTT1_96).
-compute m1520=concat(
-  "vK1m11=",
-  string(vK1m11,n2),
-  ",vK2m07=",
-  string(vK2m07,n2),
-  ",vKTT1=",
-  string(vKTT1,n4)
-).
-compute p1520="(vK1m11 in 1 | vK2m07 in 1)，應答vKTT1而未答".
-end if.
-
-* logic check show vKTT2.
-do if ((any(vK1m11,1)| any(vK2m07,1))) & any(1,vKTT2_96).
-compute m1521=concat(
-  "vK1m11=",
-  string(vK1m11,n2),
-  ",vK2m07=",
-  string(vK2m07,n2),
-  ",vKTT2=",
-  string(vKTT2,n5)
-).
-compute p1521="(vK1m11 in 1 | vK2m07 in 1)，應答vKTT2而未答".
-end if.
-
-* logic check show vKTT3m01,vKTT3m02,vKTT3m03,vKTT3m04,vKTT3m05,vKTT3m06,vKTT3m07,vKTT3m08,vKTT3m09,vKTT3m10,vKTT3m11,vKTT3m12,vKTT3m13,vKTT3m14,vKTT3m15,vKTT3m16,vKTT3m88.
-do if ((any(vK1m11,1)| any(vK2m07,1))) & (any(1,vKTT3m01_96) | any(1,vKTT3m02_96) | any(1,vKTT3m03_96) | any(1,vKTT3m04_96) | any(1,vKTT3m05_96) | any(1,vKTT3m06_96) | any(1,vKTT3m07_96) | any(1,vKTT3m08_96) | any(1,vKTT3m09_96) | any(1,vKTT3m10_96) | any(1,vKTT3m11_96) | any(1,vKTT3m12_96) | any(1,vKTT3m13_96) | any(1,vKTT3m14_96) | any(1,vKTT3m15_96) | any(1,vKTT3m16_96) | any(1,vKTT3m88_96)).
-compute m1522=concat(
-  "vK1m11=",
-  string(vK1m11,n2),
-  ",vK2m07=",
-  string(vK2m07,n2),
-  ",vKTT3m01=",
-  string(vKTT3m01,n2),
-  ",vKTT3m02=",
-  string(vKTT3m02,n2),
-  ",vKTT3m03=",
-  string(vKTT3m03,n2),
-  ",vKTT3m04=",
-  string(vKTT3m04,n2),
-  ",vKTT3m05=",
-  string(vKTT3m05,n2),
-  ",vKTT3m06=",
-  string(vKTT3m06,n2),
-  ",vKTT3m07=",
-  string(vKTT3m07,n2),
-  ",vKTT3m08=",
-  string(vKTT3m08,n2),
-  ",vKTT3m09=",
-  string(vKTT3m09,n2),
-  ",vKTT3m10=",
-  string(vKTT3m10,n2),
-  ",vKTT3m11=",
-  string(vKTT3m11,n2),
-  ",vKTT3m12=",
-  string(vKTT3m12,n2),
-  ",vKTT3m13=",
-  string(vKTT3m13,n2),
-  ",vKTT3m14=",
-  string(vKTT3m14,n2),
-  ",vKTT3m15=",
-  string(vKTT3m15,n2),
-  ",vKTT3m16=",
-  string(vKTT3m16,n2),
-  ",vKTT3m88=",
-  string(vKTT3m88,n2)
-).
-compute p1522="(vK1m11 in 1 | vK2m07 in 1)，應答vKTT3m01,vKTT3m02,vKTT3m03,vKTT3m04,vKTT3m05,vKTT3m06,vKTT3m07,vKTT3m08,vKTT3m09,vKTT3m10,vKTT3m11,vKTT3m12,vKTT3m13,vKTT3m14,vKTT3m15,vKTT3m16,vKTT3m88而未答".
-end if.
-
-* logic check show vKTT4m01,vKTT4m02,vKTT4m03,vKTT4m04,vKTT4m05,vKTT4m06,vKTT4m07,vKTT4m08,vKTT4m09,vKTT4m10,vKTT4m11,vKTT4m12,vKTT4m13,vKTT4m14,vKTT4m88.
-do if ((any(vK1m11,1)| any(vK2m07,1))) & (any(1,vKTT4m01_96) | any(1,vKTT4m02_96) | any(1,vKTT4m03_96) | any(1,vKTT4m04_96) | any(1,vKTT4m05_96) | any(1,vKTT4m06_96) | any(1,vKTT4m07_96) | any(1,vKTT4m08_96) | any(1,vKTT4m09_96) | any(1,vKTT4m10_96) | any(1,vKTT4m11_96) | any(1,vKTT4m12_96) | any(1,vKTT4m13_96) | any(1,vKTT4m14_96) | any(1,vKTT4m88_96)).
-compute m1523=concat(
-  "vK1m11=",
-  string(vK1m11,n2),
-  ",vK2m07=",
-  string(vK2m07,n2),
-  ",vKTT4m01=",
-  string(vKTT4m01,n2),
-  ",vKTT4m02=",
-  string(vKTT4m02,n2),
-  ",vKTT4m03=",
-  string(vKTT4m03,n2),
-  ",vKTT4m04=",
-  string(vKTT4m04,n2),
-  ",vKTT4m05=",
-  string(vKTT4m05,n2),
-  ",vKTT4m06=",
-  string(vKTT4m06,n2),
-  ",vKTT4m07=",
-  string(vKTT4m07,n2),
-  ",vKTT4m08=",
-  string(vKTT4m08,n2),
-  ",vKTT4m09=",
-  string(vKTT4m09,n2),
-  ",vKTT4m10=",
-  string(vKTT4m10,n2),
-  ",vKTT4m11=",
-  string(vKTT4m11,n2),
-  ",vKTT4m12=",
-  string(vKTT4m12,n2),
-  ",vKTT4m13=",
-  string(vKTT4m13,n2),
-  ",vKTT4m14=",
-  string(vKTT4m14,n2),
-  ",vKTT4m88=",
-  string(vKTT4m88,n2)
-).
-compute p1523="(vK1m11 in 1 | vK2m07 in 1)，應答vKTT4m01,vKTT4m02,vKTT4m03,vKTT4m04,vKTT4m05,vKTT4m06,vKTT4m07,vKTT4m08,vKTT4m09,vKTT4m10,vKTT4m11,vKTT4m12,vKTT4m13,vKTT4m14,vKTT4m88而未答".
-end if.
-
-* logic check show vKTT5m01,vKTT5m02,vKTT5m03,vKTT5m04,vKTT5m05,vKTT5m06,vKTT5m07,vKTT5m08,vKTT5m09,vKTT5m10,vKTT5m11,vKTT5m12,vKTT5m88.
-do if ((any(vK1m11,1)| any(vK2m07,1))) & (any(1,vKTT5m01_96) | any(1,vKTT5m02_96) | any(1,vKTT5m03_96) | any(1,vKTT5m04_96) | any(1,vKTT5m05_96) | any(1,vKTT5m06_96) | any(1,vKTT5m07_96) | any(1,vKTT5m08_96) | any(1,vKTT5m09_96) | any(1,vKTT5m10_96) | any(1,vKTT5m11_96) | any(1,vKTT5m12_96) | any(1,vKTT5m88_96)).
-compute m1524=concat(
-  "vK1m11=",
-  string(vK1m11,n2),
-  ",vK2m07=",
-  string(vK2m07,n2),
-  ",vKTT5m01=",
-  string(vKTT5m01,n2),
-  ",vKTT5m02=",
-  string(vKTT5m02,n2),
-  ",vKTT5m03=",
-  string(vKTT5m03,n2),
-  ",vKTT5m04=",
-  string(vKTT5m04,n2),
-  ",vKTT5m05=",
-  string(vKTT5m05,n2),
-  ",vKTT5m06=",
-  string(vKTT5m06,n2),
-  ",vKTT5m07=",
-  string(vKTT5m07,n2),
-  ",vKTT5m08=",
-  string(vKTT5m08,n2),
-  ",vKTT5m09=",
-  string(vKTT5m09,n2),
-  ",vKTT5m10=",
-  string(vKTT5m10,n2),
-  ",vKTT5m11=",
-  string(vKTT5m11,n2),
-  ",vKTT5m12=",
-  string(vKTT5m12,n2),
-  ",vKTT5m88=",
-  string(vKTT5m88,n2)
-).
-compute p1524="(vK1m11 in 1 | vK2m07 in 1)，應答vKTT5m01,vKTT5m02,vKTT5m03,vKTT5m04,vKTT5m05,vKTT5m06,vKTT5m07,vKTT5m08,vKTT5m09,vKTT5m10,vKTT5m11,vKTT5m12,vKTT5m88而未答".
-end if.
-
-* logic check show vP5_1.
-do if ((any(vK1m13,1)| any(vK2m11,1))) & any(1,vP5_1_96).
-compute m1525=concat(
-  "vK1m13=",
-  string(vK1m13,n2),
-  ",vK2m11=",
-  string(vK2m11,n2),
-  ",vP5_1=",
-  string(vP5_1,n4)
-).
-compute p1525="(vK1m13 in 1 | vK2m11 in 1)，應答vP5_1而未答".
-end if.
-
-* logic check show vP5_2.
-do if ((any(vK1m13,1)| any(vK2m11,1))) & any(1,vP5_2_96).
-compute m1526=concat(
-  "vK1m13=",
-  string(vK1m13,n2),
-  ",vK2m11=",
-  string(vK2m11,n2),
-  ",vP5_2=",
-  string(vP5_2,n5)
-).
-compute p1526="(vK1m13 in 1 | vK2m11 in 1)，應答vP5_2而未答".
-end if.
-
-* logic check show vE18.
-do if (any(vK3m01,1)) & any(1,vE18_96).
-compute m1527=concat("vK3m01=",string(vK3m01,n2),",vE18=",string(vE18,n2)).
-compute p1527="vK3m01 in 1，應答vE18而未答".
-end if.
-
-* logic check show vKYT1.
-do if (any(vK3m01,1)) & any(1,vKYT1_96).
-compute m1528=concat("vK3m01=",string(vK3m01,n2),",vKYT1=",string(vKYT1,n4)).
-compute p1528="vK3m01 in 1，應答vKYT1而未答".
-end if.
-
-* logic check show vKYT2.
-do if (any(vK3m01,1)) & any(1,vKYT2_96).
-compute m1529=concat("vK3m01=",string(vK3m01,n2),",vKYT2=",string(vKYT2,n5)).
-compute p1529="vK3m01 in 1，應答vKYT2而未答".
-end if.
-
-* logic check show vE2m01,vE2m02,vE2m03,vE2m04,vE2m88.
-do if (any(vE1,1)) & (any(1,vE2m01_96) | any(1,vE2m02_96) | any(1,vE2m03_96) | any(1,vE2m04_96) | any(1,vE2m88_96)).
-compute m1530=concat(
-  "vE1=",
-  string(vE1,n2),
-  ",vE2m01=",
-  string(vE2m01,n2),
-  ",vE2m02=",
-  string(vE2m02,n2),
-  ",vE2m03=",
-  string(vE2m03,n2),
-  ",vE2m04=",
-  string(vE2m04,n2),
-  ",vE2m88=",
-  string(vE2m88,n2)
-).
-compute p1530="vE1 in 1，應答vE2m01,vE2m02,vE2m03,vE2m04,vE2m88而未答".
-end if.
-
-* logic check show vE4.
-do if ((any(vE2m01,1)| any(vE17,1)| any(vE18,1))) & any(1,vE4_96).
-compute m1531=concat(
-  "vE2m01=",
-  string(vE2m01,n2),
-  ",vE17=",
-  string(vE17,n2),
-  ",vE18=",
-  string(vE18,n2),
-  ",vE4=",
-  string(vE4,n4)
-).
-compute p1531="(vE2m01 in 1 | vE17 in 1 | vE18 in 1)，應答vE4而未答".
-end if.
-
-* logic check show vE5.
-do if ((any(vE2m01,1)| any(vE17,1)| any(vE18,1))) & any(1,vE5_96).
-compute m1532=concat(
-  "vE2m01=",
-  string(vE2m01,n2),
-  ",vE17=",
-  string(vE17,n2),
-  ",vE18=",
-  string(vE18,n2),
-  ",vE5=",
-  string(vE5,n5)
-).
-compute p1532="(vE2m01 in 1 | vE17 in 1 | vE18 in 1)，應答vE5而未答".
-end if.
-
-* logic check show vE5.
-do if ((any(vO1_1,1,2,3,4,88)| any(vO1,1,2,3,4,5,12,13,14,88))) & any(1,vE5_96).
-compute m1533=concat(
-  "vO1_1=",
-  string(vO1_1,n2),
-  ",vO1=",
-  string(vO1,n2),
-  ",vE5=",
-  string(vE5,n5)
-).
-compute p1533="(vO1_1 in 1,2,3,4,88 | vO1 in 1,2,3,4,5,12,13,14,88)，應答vE5而未答".
-end if.
-
-* logic check show vE6.
-do if ((any(vE2m01,1)| any(vE17,1)| any(vE18,1))) & any(1,vE6_96).
-compute m1534=concat(
-  "vE2m01=",
-  string(vE2m01,n2),
-  ",vE17=",
-  string(vE17,n2),
-  ",vE18=",
-  string(vE18,n2),
-  ",vE6=",
-  string(vE6,n5)
-).
-compute p1534="(vE2m01 in 1 | vE17 in 1 | vE18 in 1)，應答vE6而未答".
-end if.
-
-* logic check show vE7.
-do if ((any(vE2m02,1)| any(vE17,2)| any(vE18,2))) & any(1,vE7_96).
-compute m1535=concat(
-  "vE2m02=",
-  string(vE2m02,n2),
-  ",vE17=",
-  string(vE17,n2),
-  ",vE18=",
-  string(vE18,n2),
-  ",vE7=",
-  string(vE7,n4)
-).
-compute p1535="(vE2m02 in 1 | vE17 in 2 | vE18 in 2)，應答vE7而未答".
-end if.
-
-* logic check show vE8.
-do if ((any(vE2m02,1)| any(vE17,2)| any(vE18,2))) & any(1,vE8_96).
-compute m1536=concat(
-  "vE2m02=",
-  string(vE2m02,n2),
-  ",vE17=",
-  string(vE17,n2),
-  ",vE18=",
-  string(vE18,n2),
-  ",vE8=",
-  string(vE8,n5)
-).
-compute p1536="(vE2m02 in 1 | vE17 in 2 | vE18 in 2)，應答vE8而未答".
-end if.
-
-* logic check show vE8.
-do if ((any(vO1_1,1,2,3,4,88)| any(vO1,1,2,3,4,5,12,13,14,88))) & any(1,vE8_96).
-compute m1537=concat(
-  "vO1_1=",
-  string(vO1_1,n2),
-  ",vO1=",
-  string(vO1,n2),
-  ",vE8=",
-  string(vE8,n5)
-).
-compute p1537="(vO1_1 in 1,2,3,4,88 | vO1 in 1,2,3,4,5,12,13,14,88)，應答vE8而未答".
-end if.
-
-* logic check show vE9.
-do if ((any(vE2m02,1)| any(vE17,2)| any(vE18,2))) & any(1,vE9_96).
-compute m1538=concat(
-  "vE2m02=",
-  string(vE2m02,n2),
-  ",vE17=",
-  string(vE17,n2),
-  ",vE18=",
-  string(vE18,n2),
-  ",vE9=",
-  string(vE9,n5)
-).
-compute p1538="(vE2m02 in 1 | vE17 in 2 | vE18 in 2)，應答vE9而未答".
-end if.
-
-* logic check show vE10.
-do if ((any(vE2m03,1)| any(vE17,3)| any(vE18,3))) & any(1,vE10_96).
-compute m1539=concat(
-  "vE2m03=",
-  string(vE2m03,n2),
-  ",vE17=",
-  string(vE17,n2),
-  ",vE18=",
-  string(vE18,n2),
-  ",vE10=",
-  string(vE10,n4)
-).
-compute p1539="(vE2m03 in 1 | vE17 in 3 | vE18 in 3)，應答vE10而未答".
-end if.
-
-* logic check show vE11.
-do if ((any(vE2m03,1)| any(vE17,3)| any(vE18,3))) & any(1,vE11_96).
-compute m1540=concat(
-  "vE2m03=",
-  string(vE2m03,n2),
-  ",vE17=",
-  string(vE17,n2),
-  ",vE18=",
-  string(vE18,n2),
-  ",vE11=",
-  string(vE11,n5)
-).
-compute p1540="(vE2m03 in 1 | vE17 in 3 | vE18 in 3)，應答vE11而未答".
-end if.
-
-* logic check show vE11.
-do if ((any(vO1_1,1,2,3,4,88)| any(vO1,1,2,3,4,5,12,13,14,88))) & any(1,vE11_96).
-compute m1541=concat(
-  "vO1_1=",
-  string(vO1_1,n2),
-  ",vO1=",
-  string(vO1,n2),
-  ",vE11=",
-  string(vE11,n5)
-).
-compute p1541="(vO1_1 in 1,2,3,4,88 | vO1 in 1,2,3,4,5,12,13,14,88)，應答vE11而未答".
-end if.
-
-* logic check show vE12.
-do if ((any(vE2m03,1)| any(vE17,3)| any(vE18,3))) & any(1,vE12_96).
-compute m1542=concat(
-  "vE2m03=",
-  string(vE2m03,n2),
-  ",vE17=",
-  string(vE17,n2),
-  ",vE18=",
-  string(vE18,n2),
-  ",vE12=",
-  string(vE12,n5)
-).
-compute p1542="(vE2m03 in 1 | vE17 in 3 | vE18 in 3)，應答vE12而未答".
-end if.
-
-* logic check show vE3.
-do if (any(vE1,1)) & any(1,vE3_96).
-compute m1543=concat("vE1=",string(vE1,n2),",vE3=",string(vE3,n5)).
-compute p1543="vE1 in 1，應答vE3而未答".
-end if.
-
-* logic check show vE13m01,vE13m02,vE13m03,vE13m04,vE13m05,vE13m06,vE13m88.
-do if (any(vE1,1)) & (any(1,vE13m01_96) | any(1,vE13m02_96) | any(1,vE13m03_96) | any(1,vE13m04_96) | any(1,vE13m05_96) | any(1,vE13m06_96) | any(1,vE13m88_96)).
-compute m1544=concat(
-  "vE1=",
-  string(vE1,n2),
-  ",vE13m01=",
-  string(vE13m01,n2),
-  ",vE13m02=",
-  string(vE13m02,n2),
-  ",vE13m03=",
-  string(vE13m03,n2),
-  ",vE13m04=",
-  string(vE13m04,n2),
-  ",vE13m05=",
-  string(vE13m05,n2),
-  ",vE13m06=",
-  string(vE13m06,n2),
-  ",vE13m88=",
-  string(vE13m88,n2)
-).
-compute p1544="vE1 in 1，應答vE13m01,vE13m02,vE13m03,vE13m04,vE13m05,vE13m06,vE13m88而未答".
-end if.
-
-* logic check show vE14.
-do if (any(vE1,1)) & any(1,vE14_96).
-compute m1545=concat("vE1=",string(vE1,n2),",vE14=",string(vE14,n7)).
-compute p1545="vE1 in 1，應答vE14而未答".
-end if.
-
-* logic check show vG7m01,vG7m02,vG7m03,vG7m04,vG7m05,vG7m06,vG7m07,vG7m08,vG7m09,vG7m10,vG7m11,vG7m12,vG7m88,vG7m90.
-do if (any(vE1,1)) & (any(1,vG7m01_96) | any(1,vG7m02_96) | any(1,vG7m03_96) | any(1,vG7m04_96) | any(1,vG7m05_96) | any(1,vG7m06_96) | any(1,vG7m07_96) | any(1,vG7m08_96) | any(1,vG7m09_96) | any(1,vG7m10_96) | any(1,vG7m11_96) | any(1,vG7m12_96) | any(1,vG7m88_96) | any(1,vG7m90_96)).
-compute m1546=concat(
-  "vE1=",
-  string(vE1,n2),
-  ",vG7m01=",
-  string(vG7m01,n2),
-  ",vG7m02=",
-  string(vG7m02,n2),
-  ",vG7m03=",
-  string(vG7m03,n2),
-  ",vG7m04=",
-  string(vG7m04,n2),
-  ",vG7m05=",
-  string(vG7m05,n2),
-  ",vG7m06=",
-  string(vG7m06,n2),
-  ",vG7m07=",
-  string(vG7m07,n2),
-  ",vG7m08=",
-  string(vG7m08,n2),
-  ",vG7m09=",
-  string(vG7m09,n2),
-  ",vG7m10=",
-  string(vG7m10,n2),
-  ",vG7m11=",
-  string(vG7m11,n2),
-  ",vG7m12=",
-  string(vG7m12,n2),
-  ",vG7m88=",
-  string(vG7m88,n2),
-  ",vG7m90=",
-  string(vG7m90,n2)
-).
-compute p1546="vE1 in 1，應答vG7m01,vG7m02,vG7m03,vG7m04,vG7m05,vG7m06,vG7m07,vG7m08,vG7m09,vG7m10,vG7m11,vG7m12,vG7m88,vG7m90而未答".
-end if.
-
-* logic check show vG8m01,vG8m02,vG8m03,vG8m04,vG8m05,vG8m06,vG8m07,vG8m08,vG8m09,vG8m10,vG8m11,vG8m12,vG8m13,vG8m14,vG8m15,vG8m16,vG8m88,vG8m90.
-do if (any(vE1,1)) & (any(1,vG8m01_96) | any(1,vG8m02_96) | any(1,vG8m03_96) | any(1,vG8m04_96) | any(1,vG8m05_96) | any(1,vG8m06_96) | any(1,vG8m07_96) | any(1,vG8m08_96) | any(1,vG8m09_96) | any(1,vG8m10_96) | any(1,vG8m11_96) | any(1,vG8m12_96) | any(1,vG8m13_96) | any(1,vG8m14_96) | any(1,vG8m15_96) | any(1,vG8m16_96) | any(1,vG8m88_96) | any(1,vG8m90_96)).
-compute m1547=concat(
-  "vE1=",
-  string(vE1,n2),
-  ",vG8m01=",
-  string(vG8m01,n2),
-  ",vG8m02=",
-  string(vG8m02,n2),
-  ",vG8m03=",
-  string(vG8m03,n2),
-  ",vG8m04=",
-  string(vG8m04,n2),
-  ",vG8m05=",
-  string(vG8m05,n2),
-  ",vG8m06=",
-  string(vG8m06,n2),
-  ",vG8m07=",
-  string(vG8m07,n2),
-  ",vG8m08=",
-  string(vG8m08,n2),
-  ",vG8m09=",
-  string(vG8m09,n2),
-  ",vG8m10=",
-  string(vG8m10,n2),
-  ",vG8m11=",
-  string(vG8m11,n2),
-  ",vG8m12=",
-  string(vG8m12,n2),
-  ",vG8m13=",
-  string(vG8m13,n2),
-  ",vG8m14=",
-  string(vG8m14,n2),
-  ",vG8m15=",
-  string(vG8m15,n2),
-  ",vG8m16=",
-  string(vG8m16,n2),
-  ",vG8m88=",
-  string(vG8m88,n2),
-  ",vG8m90=",
-  string(vG8m90,n2)
-).
-compute p1547="vE1 in 1，應答vG8m01,vG8m02,vG8m03,vG8m04,vG8m05,vG8m06,vG8m07,vG8m08,vG8m09,vG8m10,vG8m11,vG8m12,vG8m13,vG8m14,vG8m15,vG8m16,vG8m88,vG8m90而未答".
-end if.
-
-* logic check show vG9m01,vG9m02,vG9m03,vG9m04,vG9m05,vG9m06,vG9m07,vG9m08,vG9m09,vG9m10,vG9m11,vG9m12,vG9m13,vG9m88,vG9m90.
-do if (any(vE1,1)) & (any(1,vG9m01_96) | any(1,vG9m02_96) | any(1,vG9m03_96) | any(1,vG9m04_96) | any(1,vG9m05_96) | any(1,vG9m06_96) | any(1,vG9m07_96) | any(1,vG9m08_96) | any(1,vG9m09_96) | any(1,vG9m10_96) | any(1,vG9m11_96) | any(1,vG9m12_96) | any(1,vG9m13_96) | any(1,vG9m88_96) | any(1,vG9m90_96)).
-compute m1548=concat(
-  "vE1=",
-  string(vE1,n2),
-  ",vG9m01=",
-  string(vG9m01,n2),
-  ",vG9m02=",
-  string(vG9m02,n2),
-  ",vG9m03=",
-  string(vG9m03,n2),
-  ",vG9m04=",
-  string(vG9m04,n2),
-  ",vG9m05=",
-  string(vG9m05,n2),
-  ",vG9m06=",
-  string(vG9m06,n2),
-  ",vG9m07=",
-  string(vG9m07,n2),
-  ",vG9m08=",
-  string(vG9m08,n2),
-  ",vG9m09=",
-  string(vG9m09,n2),
-  ",vG9m10=",
-  string(vG9m10,n2),
-  ",vG9m11=",
-  string(vG9m11,n2),
-  ",vG9m12=",
-  string(vG9m12,n2),
-  ",vG9m13=",
-  string(vG9m13,n2),
-  ",vG9m88=",
-  string(vG9m88,n2),
-  ",vG9m90=",
-  string(vG9m90,n2)
-).
-compute p1548="vE1 in 1，應答vG9m01,vG9m02,vG9m03,vG9m04,vG9m05,vG9m06,vG9m07,vG9m08,vG9m09,vG9m10,vG9m11,vG9m12,vG9m13,vG9m88,vG9m90而未答".
-end if.
-
-* logic check show vG10m01,vG10m02,vG10m03,vG10m04,vG10m05,vG10m06,vG10m07,vG10m08,vG10m09,vG10m10,vG10m11,vG10m12,vG10m13,vG10m14,vG10m15,vG10m16,vG10m17,vG10m18,vG10m19,vG10m88,vG10m90.
-do if (any(vE1,1)) & (any(1,vG10m01_96) | any(1,vG10m02_96) | any(1,vG10m03_96) | any(1,vG10m04_96) | any(1,vG10m05_96) | any(1,vG10m06_96) | any(1,vG10m07_96) | any(1,vG10m08_96) | any(1,vG10m09_96) | any(1,vG10m10_96) | any(1,vG10m11_96) | any(1,vG10m12_96) | any(1,vG10m13_96) | any(1,vG10m14_96) | any(1,vG10m15_96) | any(1,vG10m16_96) | any(1,vG10m17_96) | any(1,vG10m18_96) | any(1,vG10m19_96) | any(1,vG10m88_96) | any(1,vG10m90_96)).
-compute m1549=concat(
-  "vE1=",
-  string(vE1,n2),
-  ",vG10m01=",
-  string(vG10m01,n2),
-  ",vG10m02=",
-  string(vG10m02,n2),
-  ",vG10m03=",
-  string(vG10m03,n2),
-  ",vG10m04=",
-  string(vG10m04,n2),
-  ",vG10m05=",
-  string(vG10m05,n2),
-  ",vG10m06=",
-  string(vG10m06,n2),
-  ",vG10m07=",
-  string(vG10m07,n2),
-  ",vG10m08=",
-  string(vG10m08,n2),
-  ",vG10m09=",
-  string(vG10m09,n2),
-  ",vG10m10=",
-  string(vG10m10,n2),
-  ",vG10m11=",
-  string(vG10m11,n2),
-  ",vG10m12=",
-  string(vG10m12,n2),
-  ",vG10m13=",
-  string(vG10m13,n2),
-  ",vG10m14=",
-  string(vG10m14,n2),
-  ",vG10m15=",
-  string(vG10m15,n2),
-  ",vG10m16=",
-  string(vG10m16,n2),
-  ",vG10m17=",
-  string(vG10m17,n2),
-  ",vG10m18=",
-  string(vG10m18,n2),
-  ",vG10m19=",
-  string(vG10m19,n2),
-  ",vG10m88=",
-  string(vG10m88,n2),
-  ",vG10m90=",
-  string(vG10m90,n2)
-).
-compute p1549="vE1 in 1，應答vG10m01,vG10m02,vG10m03,vG10m04,vG10m05,vG10m06,vG10m07,vG10m08,vG10m09,vG10m10,vG10m11,vG10m12,vG10m13,vG10m14,vG10m15,vG10m16,vG10m17,vG10m18,vG10m19,vG10m88,vG10m90而未答".
-end if.
-
-* logic check show vG11m01,vG11m02,vG11m03,vG11m04,vG11m05,vG11m88,vG11m90.
-do if (any(vE1,1)) & (any(1,vG11m01_96) | any(1,vG11m02_96) | any(1,vG11m03_96) | any(1,vG11m04_96) | any(1,vG11m05_96) | any(1,vG11m88_96) | any(1,vG11m90_96)).
-compute m1550=concat(
-  "vE1=",
-  string(vE1,n2),
-  ",vG11m01=",
-  string(vG11m01,n2),
-  ",vG11m02=",
-  string(vG11m02,n2),
-  ",vG11m03=",
-  string(vG11m03,n2),
-  ",vG11m04=",
-  string(vG11m04,n2),
-  ",vG11m05=",
-  string(vG11m05,n2),
-  ",vG11m88=",
-  string(vG11m88,n2),
-  ",vG11m90=",
-  string(vG11m90,n2)
-).
-compute p1550="vE1 in 1，應答vG11m01,vG11m02,vG11m03,vG11m04,vG11m05,vG11m88,vG11m90而未答".
-end if.
-
-* logic check hide vB2.
-do if (any(vB1,0)) & any(0,vB2_96).
-compute m1551=concat("vB1=",string(vB1,n4),",vB2=",string(vB2,n5)).
-compute p1551="vB1 in 0，不應答vB2而答".
-end if.
-
-* logic check hide vB4.
-do if (any(vB3,0)) & any(0,vB4_96).
-compute m1552=concat("vB3=",string(vB3,n4),",vB4=",string(vB4,n5)).
-compute p1552="vB3 in 0，不應答vB4而答".
-end if.
-
-* logic check show vB6.
-do if (any(vB5,0)) & any(1,vB6_96).
-compute m1553=concat("vB5=",string(vB5,n4),",vB6=",string(vB6,n5)).
-compute p1553="vB5 in 0，應答vB6而未答".
-end if.
-
-* logic check show vB7.
-do if (any(vB5,0)) & any(1,vB7_96).
-compute m1554=concat("vB5=",string(vB5,n4),",vB7=",string(vB7,n2)).
-compute p1554="vB5 in 0，應答vB7而未答".
-end if.
-
-* logic check hide vI2.
-do if (any(vI1,0)) & any(0,vI2_96).
-compute m1555=concat("vI1=",string(vI1,n4),",vI2=",string(vI2,n5)).
-compute p1555="vI1 in 0，不應答vI2而答".
-end if.
-
-* logic check hide vI4.
-do if (any(vI3,0)) & any(0,vI4_96).
-compute m1556=concat("vI3=",string(vI3,n4),",vI4=",string(vI4,n5)).
-compute p1556="vI3 in 0，不應答vI4而答".
+* logic check show vA5city,vA5town.
+do if (not any(vA4,1,97,98)) & (any(1,vA5city_96) | any(1,vA5town_96)).
+compute m1308=concat("vA4=",string(vA4,n2),",vA5city=",string(vA5city,n2),",vA5town=",string(vA5town,n4)).
+compute p1308="vA4~=1 & vA4~=97 & vA4~=98，應答vA5city,vA5town而未答".
+compute s1308=1.
 end if.
 
 * logic check hide vG1.
 do if (any(vA9,1)) & any(0,vG1_96).
-compute m1557=concat("vA9=",string(vA9,n2),",vG1=",string(vG1,n4)).
-compute p1557="vA9 in 1，不應答vG1而答".
+compute m1309=concat("vA9=",string(vA9,n2),",vG1=",string(vG1,n4)).
+compute p1309="vA9 in 1，不應答vG1而答".
+compute s1309=1.
 end if.
 
 * logic check hide vG2.
-do if ((any(vA9,1)| any(vG1,0))) & any(0,vG2_96).
-compute m1558=concat(
-  "vA9=",
-  string(vA9,n2),
-  ",vG1=",
-  string(vG1,n4),
-  ",vG2=",
-  string(vG2,n5)
-).
-compute p1558="(vA9 in 1 | vG1 in 0)，不應答vG2而答".
+do if ((any(vA9,1) | any(vG1,0))) & any(0,vG2_96).
+compute m1310=concat("vA9=",string(vA9,n2),",vG1=",string(vG1,n4),",vG2=",string(vG2,n5)).
+compute p1310="(vA9 in 1 | vG1 in 0)，不應答vG2而答".
+compute s1310=1.
 end if.
 
-* logic check hide vG3m01,vG3m02,vG3m03,vG3m04,vG3m05,vG3m06,vG3m07,vG3m08,vG3m09,vG3m10,vG3m11,vG3m12,vG3m13,vG3m14,vG3m15,vG3m16,vG3m18,vG3m19,vG3m20,vG3m21,vG3m22,vG3m23,vG3m24,vG3m25,vG3m26,vG3m27,vG3m28,vG3m29,vG3m30,vG3m31,vG3m32,vG3m33,vG3m88.
-do if ((any(vA9,1)| any(vG1,0))) & (any(0,vG3m01_96) | any(0,vG3m02_96) | any(0,vG3m03_96) | any(0,vG3m04_96) | any(0,vG3m05_96) | any(0,vG3m06_96) | any(0,vG3m07_96) | any(0,vG3m08_96) | any(0,vG3m09_96) | any(0,vG3m10_96) | any(0,vG3m11_96) | any(0,vG3m12_96) | any(0,vG3m13_96) | any(0,vG3m14_96) | any(0,vG3m15_96) | any(0,vG3m16_96) | any(0,vG3m18_96) | any(0,vG3m19_96) | any(0,vG3m20_96) | any(0,vG3m21_96) | any(0,vG3m22_96) | any(0,vG3m23_96) | any(0,vG3m24_96) | any(0,vG3m25_96) | any(0,vG3m26_96) | any(0,vG3m27_96) | any(0,vG3m28_96) | any(0,vG3m29_96) | any(0,vG3m30_96) | any(0,vG3m31_96) | any(0,vG3m32_96) | any(0,vG3m33_96) | any(0,vG3m88_96)).
-compute m1559=concat(
-  "vA9=",
-  string(vA9,n2),
-  ",vG1=",
-  string(vG1,n4),
-  ",vG3m01=",
-  string(vG3m01,n2),
-  ",vG3m02=",
-  string(vG3m02,n2),
-  ",vG3m03=",
-  string(vG3m03,n2),
-  ",vG3m04=",
-  string(vG3m04,n2),
-  ",vG3m05=",
-  string(vG3m05,n2),
-  ",vG3m06=",
-  string(vG3m06,n2),
-  ",vG3m07=",
-  string(vG3m07,n2),
-  ",vG3m08=",
-  string(vG3m08,n2),
-  ",vG3m09=",
-  string(vG3m09,n2),
-  ",vG3m10=",
-  string(vG3m10,n2),
-  ",vG3m11=",
-  string(vG3m11,n2),
-  ",vG3m12=",
-  string(vG3m12,n2),
-  ",vG3m13=",
-  string(vG3m13,n2),
-  ",vG3m14=",
-  string(vG3m14,n2),
-  ",vG3m15=",
-  string(vG3m15,n2),
-  ",vG3m16=",
-  string(vG3m16,n2),
-  ",vG3m18=",
-  string(vG3m18,n2),
-  ",vG3m19=",
-  string(vG3m19,n2),
-  ",vG3m20=",
-  string(vG3m20,n2),
-  ",vG3m21=",
-  string(vG3m21,n2),
-  ",vG3m22=",
-  string(vG3m22,n2),
-  ",vG3m23=",
-  string(vG3m23,n2),
-  ",vG3m24=",
-  string(vG3m24,n2),
-  ",vG3m25=",
-  string(vG3m25,n2),
-  ",vG3m26=",
-  string(vG3m26,n2),
-  ",vG3m27=",
-  string(vG3m27,n2),
-  ",vG3m28=",
-  string(vG3m28,n2),
-  ",vG3m29=",
-  string(vG3m29,n2),
-  ",vG3m30=",
-  string(vG3m30,n2),
-  ",vG3m31=",
-  string(vG3m31,n2),
-  ",vG3m32=",
-  string(vG3m32,n2),
-  ",vG3m33=",
-  string(vG3m33,n2),
-  ",vG3m88=",
-  string(vG3m88,n2)
+* logic check hide vG3m01,vG3m02,vG3m03,vG3m04,vG3m05,vG3m06,vG3m07,vG3m08,vG3m09,vG3m10,vG3m11,vG3m12,vG3m13,vG3m14,vG3m15,vG3m16,vG3m18,vG3m19,vG3m20,vG3m21.
+* vG3m22,vG3m23,vG3m24,vG3m25,vG3m26,vG3m27,vG3m28,vG3m29,vG3m30,vG3m31,vG3m32,vG3m33,vG3m88.
+do if ((any(vA9 , 1) | any(vG1 , 0))) & (any(0 , vG3m01_96) | any(0 , vG3m02_96) | any(0 , vG3m03_96) | any(0 , vG3m04_96) | any(0 , vG3m05_96) | any(0
+, vG3m06_96) | any(0 , vG3m07_96) | any(0 , vG3m08_96) | any(0 , vG3m09_96) | any(0 , vG3m10_96) | any(0 , vG3m11_96) | any(0 , vG3m12_96) | any(0 , vG3m13_96)
+| any(0 , vG3m14_96) | any(0 , vG3m15_96) | any(0 , vG3m16_96) | any(0 , vG3m18_96) | any(0 , vG3m19_96) | any(0 , vG3m20_96) | any(0 , vG3m21_96) | any(0
+, vG3m22_96) | any(0 , vG3m23_96) | any(0 , vG3m24_96) | any(0 , vG3m25_96) | any(0 , vG3m26_96) | any(0 , vG3m27_96) | any(0 , vG3m28_96) | any(0 , vG3m29_96)
+| any(0 , vG3m30_96) | any(0 , vG3m31_96) | any(0 , vG3m32_96) | any(0 , vG3m33_96) | any(0 , vG3m88_96)).
+compute m1311=concat(
+  "vA9=", string(vA9,n2), ",vG1=", string(vG1,n4), ",vG3m01=", string(vG3m01,n2), ",vG3m02=", string(vG3m02,n2), ",vG3m03=", string(vG3m03,n2), ",vG3m04=",
+  string(vG3m04,n2), ",vG3m05=", string(vG3m05,n2), ",vG3m06=", string(vG3m06,n2), ",vG3m07=", string(vG3m07,n2), ",vG3m08=", string(vG3m08,n2), ",vG3m09=",
+  string(vG3m09,n2), ",vG3m10=", string(vG3m10,n2), ",vG3m11=", string(vG3m11,n2), ",vG3m12=", string(vG3m12,n2), ",vG3m13=", string(vG3m13,n2), ",vG3m14=",
+  string(vG3m14,n2), ",vG3m15=", string(vG3m15,n2), ",vG3m16=", string(vG3m16,n2), ",vG3m18=", string(vG3m18,n2), ",vG3m19=", string(vG3m19,n2), ",vG3m20=",
+  string(vG3m20,n2), ",vG3m21=", string(vG3m21,n2), ",vG3m22=", string(vG3m22,n2), ",vG3m23=", string(vG3m23,n2), ",vG3m24=", string(vG3m24,n2), ",vG3m25=",
+  string(vG3m25,n2), ",vG3m26=", string(vG3m26,n2), ",vG3m27=", string(vG3m27,n2), ",vG3m28=", string(vG3m28,n2), ",vG3m29=", string(vG3m29,n2), ",vG3m30=",
+  string(vG3m30,n2), ",vG3m31=", string(vG3m31,n2), ",vG3m32=", string(vG3m32,n2), ",vG3m33=", string(vG3m33,n2), ",vG3m88=", string(vG3m88,n2)
 ).
-compute p1559="(vA9 in 1 | vG1 in 0)，不應答vG3m01,vG3m02,vG3m03,vG3m04,vG3m05,vG3m06,vG3m07,vG3m08,vG3m09,vG3m10,vG3m11,vG3m12,vG3m13,vG3m14,vG3m15,vG3m16,vG3m18,vG3m19,vG3m20,vG3m21,vG3m22,vG3m23,vG3m24,vG3m25,vG3m26,vG3m27,vG3m28,vG3m29,vG3m30,vG3m31,vG3m32,vG3m33,vG3m88而答".
+compute p1311=concat(
+  "(vA9 in 1 | vG1 in 0)，不應答vG3m01,vG3m02,vG3m03,vG3m04,vG3m05,vG3m06,vG3m07,vG3m08,vG3m09,vG3m10,vG3m1",
+  "1,vG3m12,vG3m13,vG3m14,vG3m15,vG3m16,vG3m18,vG3m19,vG3m20,vG3m21,vG3m22,vG3m23,vG3m24,vG3m25,vG3m26,",
+  "vG3m27,vG3m28,vG3m29,vG3m30,vG3m31,vG3m32,vG3m33,vG3m88而答"
+).
+compute s1311=1.
 end if.
 
 * logic check hide vF0.
 do if (any(vA9,1)) & any(0,vF0_96).
-compute m1560=concat("vA9=",string(vA9,n2),",vF0=",string(vF0,n2)).
-compute p1560="vA9 in 1，不應答vF0而答".
-end if.
-
-* logic check show vF1.
-do if (any(vF0,1,89)) & any(1,vF1_96).
-compute m1561=concat("vF0=",string(vF0,n2),",vF1=",string(vF1,n5)).
-compute p1561="vF0 in 1,89，應答vF1而未答".
-end if.
-
-* logic check show vF2.
-do if (any(vF0,1,89)) & any(1,vF2_96).
-compute m1562=concat("vF0=",string(vF0,n2),",vF2=",string(vF2,n5)).
-compute p1562="vF0 in 1,89，應答vF2而未答".
-end if.
-
-* logic check show vF3.
-do if (any(vF0,2,89)) & any(1,vF3_96).
-compute m1563=concat("vF0=",string(vF0,n2),",vF3=",string(vF3,n5)).
-compute p1563="vF0 in 2,89，應答vF3而未答".
-end if.
-
-* logic check show vF4.
-do if (any(vF0,2,89)) & any(1,vF4_96).
-compute m1564=concat("vF0=",string(vF0,n2),",vF4=",string(vF4,n5)).
-compute p1564="vF0 in 2,89，應答vF4而未答".
-end if.
-
-* logic check hide vF5m01,vF5m02,vF5m03,vF5m04,vF5m05,vF5m06,vF5m07,vF5m08,vF5m88.
-do if (any(vF0,90,97,98)) & (any(0,vF5m01_96) | any(0,vF5m02_96) | any(0,vF5m03_96) | any(0,vF5m04_96) | any(0,vF5m05_96) | any(0,vF5m06_96) | any(0,vF5m07_96) | any(0,vF5m08_96) | any(0,vF5m88_96)).
-compute m1565=concat(
-  "vF0=",
-  string(vF0,n2),
-  ",vF5m01=",
-  string(vF5m01,n2),
-  ",vF5m02=",
-  string(vF5m02,n2),
-  ",vF5m03=",
-  string(vF5m03,n2),
-  ",vF5m04=",
-  string(vF5m04,n2),
-  ",vF5m05=",
-  string(vF5m05,n2),
-  ",vF5m06=",
-  string(vF5m06,n2),
-  ",vF5m07=",
-  string(vF5m07,n2),
-  ",vF5m08=",
-  string(vF5m08,n2),
-  ",vF5m88=",
-  string(vF5m88,n2)
-).
-compute p1565="vF0 in 90,97,98，不應答vF5m01,vF5m02,vF5m03,vF5m04,vF5m05,vF5m06,vF5m07,vF5m08,vF5m88而答".
-end if.
-
-* logic check hide vC2.
-do if (any(vC1,0)) & any(0,vC2_96).
-compute m1566=concat("vC1=",string(vC1,n4),",vC2=",string(vC2,n5)).
-compute p1566="vC1 in 0，不應答vC2而答".
-end if.
-
-* logic check hide vC3m01,vC3m02,vC3m03,vC3m04,vC3m05,vC3m06,vC3m07,vC3m08,vC3m09,vC3m10,vC3m11,vC3m88.
-do if (any(vC1,0)) & (any(0,vC3m01_96) | any(0,vC3m02_96) | any(0,vC3m03_96) | any(0,vC3m04_96) | any(0,vC3m05_96) | any(0,vC3m06_96) | any(0,vC3m07_96) | any(0,vC3m08_96) | any(0,vC3m09_96) | any(0,vC3m10_96) | any(0,vC3m11_96) | any(0,vC3m88_96)).
-compute m1567=concat(
-  "vC1=",
-  string(vC1,n4),
-  ",vC3m01=",
-  string(vC3m01,n2),
-  ",vC3m02=",
-  string(vC3m02,n2),
-  ",vC3m03=",
-  string(vC3m03,n2),
-  ",vC3m04=",
-  string(vC3m04,n2),
-  ",vC3m05=",
-  string(vC3m05,n2),
-  ",vC3m06=",
-  string(vC3m06,n2),
-  ",vC3m07=",
-  string(vC3m07,n2),
-  ",vC3m08=",
-  string(vC3m08,n2),
-  ",vC3m09=",
-  string(vC3m09,n2),
-  ",vC3m10=",
-  string(vC3m10,n2),
-  ",vC3m11=",
-  string(vC3m11,n2),
-  ",vC3m88=",
-  string(vC3m88,n2)
-).
-compute p1567="vC1 in 0，不應答vC3m01,vC3m02,vC3m03,vC3m04,vC3m05,vC3m06,vC3m07,vC3m08,vC3m09,vC3m10,vC3m11,vC3m88而答".
+compute m1312=concat("vA9=",string(vA9,n2),",vF0=",string(vF0,n2)).
+compute p1312="vA9 in 1，不應答vF0而答".
+compute s1312=1.
 end if.
 
 * logic check hide vJ4_2.
 do if (any(vA9,1)) & any(0,vJ4_2_96).
-compute m1568=concat("vA9=",string(vA9,n2),",vJ4_2=",string(vJ4_2,n4)).
-compute p1568="vA9 in 1，不應答vJ4_2而答".
+compute m1313=concat("vA9=",string(vA9,n2),",vJ4_2=",string(vJ4_2,n4)).
+compute p1313="vA9 in 1，不應答vJ4_2而答".
+compute s1313=1.
 end if.
 
 * logic check hide vJ4_4.
 do if (any(vA9,1)) & any(0,vJ4_4_96).
-compute m1569=concat("vA9=",string(vA9,n2),",vJ4_4=",string(vJ4_4,n4)).
-compute p1569="vA9 in 1，不應答vJ4_4而答".
+compute m1314=concat("vA9=",string(vA9,n2),",vJ4_4=",string(vJ4_4,n4)).
+compute p1314="vA9 in 1，不應答vJ4_4而答".
+compute s1314=1.
 end if.
 
-* logic check show vJ4_5.
-do if (any(vE1,1)) & any(1,vJ4_5_96).
-compute m1570=concat("vE1=",string(vE1,n2),",vJ4_5=",string(vJ4_5,n4)).
-compute p1570="vE1 in 1，應答vJ4_5而未答".
+* logic check hide vQ1.
+do if (any(vG1,0) | any(vA9,1)) & any(0,vQ1_96).
+compute m1315=concat("vG1=",string(vG1,n4),",vA9=",string(vA9,n2),",vQ1=",string(vQ1,n2)).
+compute p1315="vG1 in 0 | vA9 in 1，不應答vQ1而答".
+compute s1315=1.
 end if.
 
-* logic check show vJB1m01,vJB1m02,vJB1m03,vJB1m04,vJB1m05,vJB1m06,vJB1m07,vJB1m08,vJB1m09,vJB1m10,vJB1m11,vJB1m88,vJB1m90.
-do if (any(vB5,0)) & (any(1,vJB1m01_96) | any(1,vJB1m02_96) | any(1,vJB1m03_96) | any(1,vJB1m04_96) | any(1,vJB1m05_96) | any(1,vJB1m06_96) | any(1,vJB1m07_96) | any(1,vJB1m08_96) | any(1,vJB1m09_96) | any(1,vJB1m10_96) | any(1,vJB1m11_96) | any(1,vJB1m88_96) | any(1,vJB1m90_96)).
-compute m1571=concat(
-  "vB5=",
-  string(vB5,n4),
-  ",vJB1m01=",
-  string(vJB1m01,n2),
-  ",vJB1m02=",
-  string(vJB1m02,n2),
-  ",vJB1m03=",
-  string(vJB1m03,n2),
-  ",vJB1m04=",
-  string(vJB1m04,n2),
-  ",vJB1m05=",
-  string(vJB1m05,n2),
-  ",vJB1m06=",
-  string(vJB1m06,n2),
-  ",vJB1m07=",
-  string(vJB1m07,n2),
-  ",vJB1m08=",
-  string(vJB1m08,n2),
-  ",vJB1m09=",
-  string(vJB1m09,n2),
-  ",vJB1m10=",
-  string(vJB1m10,n2),
-  ",vJB1m11=",
-  string(vJB1m11,n2),
-  ",vJB1m88=",
-  string(vJB1m88,n2),
-  ",vJB1m90=",
-  string(vJB1m90,n2)
+* logic check hide vQ2.
+do if (any(vF0,90) | any(vA9,1)) & any(0,vQ2_96).
+compute m1316=concat("vF0=",string(vF0,n2),",vA9=",string(vA9,n2),",vQ2=",string(vQ2,n2)).
+compute p1316="vF0 in 90 | vA9 in 1，不應答vQ2而答".
+compute s1316=1.
+end if.
+
+* logic check show vG1.
+do if (vA9~=1) & any(1,vG1_96).
+compute m1317=concat("vA9=",string(vA9,n2),",vG1=",string(vG1,n4)).
+compute p1317="vA9~=1，應答vG1而未答".
+compute s1317=1.
+end if.
+
+* logic check hide vG2.
+do if (any(vA9,1) | any(vG1,0)) & any(0,vG2_96).
+compute m1318=concat("vA9=",string(vA9,n2),",vG1=",string(vG1,n4),",vG2=",string(vG2,n5)).
+compute p1318="vA9 in 1 | vG1 in 0，不應答vG2而答".
+compute s1318=1.
+end if.
+
+* logic check show vG2.
+do if (vA9~=1 & vG1~=0) & any(1,vG2_96).
+compute m1319=concat("vA9=",string(vA9,n2),",vG1=",string(vG1,n4),",vG2=",string(vG2,n5)).
+compute p1319="vA9~=1 & vG1~=0，應答vG2而未答".
+compute s1319=1.
+end if.
+
+* logic check hide vG3m01,vG3m02,vG3m03,vG3m04,vG3m05,vG3m06,vG3m07,vG3m08,vG3m09,vG3m10,vG3m11,vG3m12,vG3m13,vG3m14,vG3m15,vG3m16,vG3m18,vG3m19,vG3m20,vG3m21.
+* vG3m22,vG3m23,vG3m24,vG3m25,vG3m26,vG3m27,vG3m28,vG3m29,vG3m30,vG3m31,vG3m32,vG3m33,vG3m88.
+do if (any(vA9 , 1) | any(vG1 , 0)) & (any(0 , vG3m01_96) | any(0 , vG3m02_96) | any(0 , vG3m03_96) | any(0 , vG3m04_96) | any(0 , vG3m05_96) | any(0
+, vG3m06_96) | any(0 , vG3m07_96) | any(0 , vG3m08_96) | any(0 , vG3m09_96) | any(0 , vG3m10_96) | any(0 , vG3m11_96) | any(0 , vG3m12_96) | any(0 , vG3m13_96)
+| any(0 , vG3m14_96) | any(0 , vG3m15_96) | any(0 , vG3m16_96) | any(0 , vG3m18_96) | any(0 , vG3m19_96) | any(0 , vG3m20_96) | any(0 , vG3m21_96) | any(0
+, vG3m22_96) | any(0 , vG3m23_96) | any(0 , vG3m24_96) | any(0 , vG3m25_96) | any(0 , vG3m26_96) | any(0 , vG3m27_96) | any(0 , vG3m28_96) | any(0 , vG3m29_96)
+| any(0 , vG3m30_96) | any(0 , vG3m31_96) | any(0 , vG3m32_96) | any(0 , vG3m33_96) | any(0 , vG3m88_96)).
+compute m1320=concat(
+  "vA9=", string(vA9,n2), ",vG1=", string(vG1,n4), ",vG3m01=", string(vG3m01,n2), ",vG3m02=", string(vG3m02,n2), ",vG3m03=", string(vG3m03,n2), ",vG3m04=",
+  string(vG3m04,n2), ",vG3m05=", string(vG3m05,n2), ",vG3m06=", string(vG3m06,n2), ",vG3m07=", string(vG3m07,n2), ",vG3m08=", string(vG3m08,n2), ",vG3m09=",
+  string(vG3m09,n2), ",vG3m10=", string(vG3m10,n2), ",vG3m11=", string(vG3m11,n2), ",vG3m12=", string(vG3m12,n2), ",vG3m13=", string(vG3m13,n2), ",vG3m14=",
+  string(vG3m14,n2), ",vG3m15=", string(vG3m15,n2), ",vG3m16=", string(vG3m16,n2), ",vG3m18=", string(vG3m18,n2), ",vG3m19=", string(vG3m19,n2), ",vG3m20=",
+  string(vG3m20,n2), ",vG3m21=", string(vG3m21,n2), ",vG3m22=", string(vG3m22,n2), ",vG3m23=", string(vG3m23,n2), ",vG3m24=", string(vG3m24,n2), ",vG3m25=",
+  string(vG3m25,n2), ",vG3m26=", string(vG3m26,n2), ",vG3m27=", string(vG3m27,n2), ",vG3m28=", string(vG3m28,n2), ",vG3m29=", string(vG3m29,n2), ",vG3m30=",
+  string(vG3m30,n2), ",vG3m31=", string(vG3m31,n2), ",vG3m32=", string(vG3m32,n2), ",vG3m33=", string(vG3m33,n2), ",vG3m88=", string(vG3m88,n2)
 ).
-compute p1571="vB5 in 0，應答vJB1m01,vJB1m02,vJB1m03,vJB1m04,vJB1m05,vJB1m06,vJB1m07,vJB1m08,vJB1m09,vJB1m10,vJB1m11,vJB1m88,vJB1m90而未答".
-end if.
-
-* logic check show vJB2m01,vJB2m02,vJB2m03,vJB2m04,vJB2m05,vJB2m06,vJB2m07,vJB2m88,vJB2m90.
-do if (any(vE1,1)) & (any(1,vJB2m01_96) | any(1,vJB2m02_96) | any(1,vJB2m03_96) | any(1,vJB2m04_96) | any(1,vJB2m05_96) | any(1,vJB2m06_96) | any(1,vJB2m07_96) | any(1,vJB2m88_96) | any(1,vJB2m90_96)).
-compute m1572=concat(
-  "vE1=",
-  string(vE1,n2),
-  ",vJB2m01=",
-  string(vJB2m01,n2),
-  ",vJB2m02=",
-  string(vJB2m02,n2),
-  ",vJB2m03=",
-  string(vJB2m03,n2),
-  ",vJB2m04=",
-  string(vJB2m04,n2),
-  ",vJB2m05=",
-  string(vJB2m05,n2),
-  ",vJB2m06=",
-  string(vJB2m06,n2),
-  ",vJB2m07=",
-  string(vJB2m07,n2),
-  ",vJB2m88=",
-  string(vJB2m88,n2),
-  ",vJB2m90=",
-  string(vJB2m90,n2)
+compute p1320=concat(
+  "vA9 in 1 | vG1 in 0，不應答vG3m01,vG3m02,vG3m03,vG3m04,vG3m05,vG3m06,vG3m07,vG3m08,vG3m09,vG3m10,vG3m11,",
+  "vG3m12,vG3m13,vG3m14,vG3m15,vG3m16,vG3m18,vG3m19,vG3m20,vG3m21,vG3m22,vG3m23,vG3m24,vG3m25,vG3m26,vG",
+  "3m27,vG3m28,vG3m29,vG3m30,vG3m31,vG3m32,vG3m33,vG3m88而答"
 ).
-compute p1572="vE1 in 1，應答vJB2m01,vJB2m02,vJB2m03,vJB2m04,vJB2m05,vJB2m06,vJB2m07,vJB2m88,vJB2m90而未答".
+compute s1320=1.
 end if.
 
-* logic check show vH2.
-do if (any(vH1,997,998)) & any(1,vH2_96).
-compute m1573=concat("vH1=",string(vH1,n4),",vH2=",string(vH2,n2)).
-compute p1573="vH1 in 997,998，應答vH2而未答".
-end if.
-
-* logic check hide vH3.
-do if ((any(vH1,0)| any(vH2,1))) & any(0,vH3_96).
-compute m1574=concat(
-  "vH1=",
-  string(vH1,n4),
-  ",vH2=",
-  string(vH2,n2),
-  ",vH3=",
-  string(vH3,n2)
+* logic check show vG3m01,vG3m02,vG3m03,vG3m04,vG3m05,vG3m06,vG3m07,vG3m08,vG3m09,vG3m10,vG3m11,vG3m12,vG3m13,vG3m14,vG3m15,vG3m16,vG3m18,vG3m19,vG3m20,vG3m21.
+* vG3m22,vG3m23,vG3m24,vG3m25,vG3m26,vG3m27,vG3m28,vG3m29,vG3m30,vG3m31,vG3m32,vG3m33,vG3m88.
+do if (vA9~=1 & vG1~=0) & (any(1 , vG3m01_96) | any(1 , vG3m02_96) | any(1 , vG3m03_96) | any(1 , vG3m04_96) | any(1 , vG3m05_96) | any(1 , vG3m06_96) | any(1
+, vG3m07_96) | any(1 , vG3m08_96) | any(1 , vG3m09_96) | any(1 , vG3m10_96) | any(1 , vG3m11_96) | any(1 , vG3m12_96) | any(1 , vG3m13_96) | any(1 , vG3m14_96)
+| any(1 , vG3m15_96) | any(1 , vG3m16_96) | any(1 , vG3m18_96) | any(1 , vG3m19_96) | any(1 , vG3m20_96) | any(1 , vG3m21_96) | any(1 , vG3m22_96) | any(1
+, vG3m23_96) | any(1 , vG3m24_96) | any(1 , vG3m25_96) | any(1 , vG3m26_96) | any(1 , vG3m27_96) | any(1 , vG3m28_96) | any(1 , vG3m29_96) | any(1 , vG3m30_96)
+| any(1 , vG3m31_96) | any(1 , vG3m32_96) | any(1 , vG3m33_96) | any(1 , vG3m88_96)).
+compute m1321=concat(
+  "vA9=", string(vA9,n2), ",vG1=", string(vG1,n4), ",vG3m01=", string(vG3m01,n2), ",vG3m02=", string(vG3m02,n2), ",vG3m03=", string(vG3m03,n2), ",vG3m04=",
+  string(vG3m04,n2), ",vG3m05=", string(vG3m05,n2), ",vG3m06=", string(vG3m06,n2), ",vG3m07=", string(vG3m07,n2), ",vG3m08=", string(vG3m08,n2), ",vG3m09=",
+  string(vG3m09,n2), ",vG3m10=", string(vG3m10,n2), ",vG3m11=", string(vG3m11,n2), ",vG3m12=", string(vG3m12,n2), ",vG3m13=", string(vG3m13,n2), ",vG3m14=",
+  string(vG3m14,n2), ",vG3m15=", string(vG3m15,n2), ",vG3m16=", string(vG3m16,n2), ",vG3m18=", string(vG3m18,n2), ",vG3m19=", string(vG3m19,n2), ",vG3m20=",
+  string(vG3m20,n2), ",vG3m21=", string(vG3m21,n2), ",vG3m22=", string(vG3m22,n2), ",vG3m23=", string(vG3m23,n2), ",vG3m24=", string(vG3m24,n2), ",vG3m25=",
+  string(vG3m25,n2), ",vG3m26=", string(vG3m26,n2), ",vG3m27=", string(vG3m27,n2), ",vG3m28=", string(vG3m28,n2), ",vG3m29=", string(vG3m29,n2), ",vG3m30=",
+  string(vG3m30,n2), ",vG3m31=", string(vG3m31,n2), ",vG3m32=", string(vG3m32,n2), ",vG3m33=", string(vG3m33,n2), ",vG3m88=", string(vG3m88,n2)
 ).
-compute p1574="(vH1 in 0 | vH2 in 1)，不應答vH3而答".
-end if.
-
-* logic check show vH4.
-do if (any(vE1,1)) & any(1,vH4_96).
-compute m1575=concat("vE1=",string(vE1,n2),",vH4=",string(vH4,n4)).
-compute p1575="vE1 in 1，應答vH4而未答".
-end if.
-
-* logic check show vH5.
-do if (any(vH4,997,998)) & any(1,vH5_96).
-compute m1576=concat("vH4=",string(vH4,n4),",vH5=",string(vH5,n2)).
-compute p1576="vH4 in 997,998，應答vH5而未答".
-end if.
-
-* logic check hide vH6.
-do if ((any(vH4,0)| any(vH5,1))) & any(0,vH6_96).
-compute m1577=concat(
-  "vH4=",
-  string(vH4,n4),
-  ",vH5=",
-  string(vH5,n2),
-  ",vH6=",
-  string(vH6,n2)
+compute p1321=concat(
+  "vA9~=1 & vG1~=0，應答vG3m01,vG3m02,vG3m03,vG3m04,vG3m05,vG3m06,vG3m07,vG3m08,vG3m09,vG3m10,vG3m11,vG3m1",
+  "2,vG3m13,vG3m14,vG3m15,vG3m16,vG3m18,vG3m19,vG3m20,vG3m21,vG3m22,vG3m23,vG3m24,vG3m25,vG3m26,vG3m27,",
+  "vG3m28,vG3m29,vG3m30,vG3m31,vG3m32,vG3m33,vG3m88而未答"
 ).
-compute p1577="(vH4 in 0 | vH5 in 1)，不應答vH6而答".
+compute s1321=1.
+end if.
+
+* logic check show vF0.
+do if (vA9~=1) & any(1,vF0_96).
+compute m1322=concat("vA9=",string(vA9,n2),",vF0=",string(vF0,n2)).
+compute p1322="vA9~=1，應答vF0而未答".
+compute s1322=1.
+end if.
+
+* logic check show vJ4_2.
+do if (vA9~=1) & any(1,vJ4_2_96).
+compute m1323=concat("vA9=",string(vA9,n2),",vJ4_2=",string(vJ4_2,n4)).
+compute p1323="vA9~=1，應答vJ4_2而未答".
+compute s1323=1.
+end if.
+
+* logic check show vJ4_4.
+do if (vA9~=1) & any(1,vJ4_4_96).
+compute m1324=concat("vA9=",string(vA9,n2),",vJ4_4=",string(vJ4_4,n4)).
+compute p1324="vA9~=1，應答vJ4_4而未答".
+compute s1324=1.
+end if.
+
+* logic check show vQ1.
+do if (vG1~=0 & vA9~=1) & any(1,vQ1_96).
+compute m1325=concat("vG1=",string(vG1,n4),",vA9=",string(vA9,n2),",vQ1=",string(vQ1,n2)).
+compute p1325="vG1~=0 & vA9~=1，應答vQ1而未答".
+compute s1325=1.
+end if.
+
+* logic check show vQ2.
+do if (vF0~=90 & vA9~=1) & any(1,vQ2_96).
+compute m1326=concat("vF0=",string(vF0,n2),",vA9=",string(vA9,n2),",vQ2=",string(vQ2,n2)).
+compute p1326="vF0~=90 & vA9~=1，應答vQ2而未答".
+compute s1326=1.
+end if.
+
+* logic check show vCkZE1.
+do if (any(vA9,1) | any(vE1,2,97,98)) & any(1,vCkZE1_96).
+compute m1327=concat("vA9=",string(vA9,n2),",vE1=",string(vE1,n2),",vCkZE1=",string(vCkZE1,n14)).
+compute p1327="vA9 in 1 | vE1 in 2 | vE1 in 97 | vE1 in 98，應答vCkZE1而未答".
+compute s1327=1.
+end if.
+
+* logic check hide vCkZE1.
+do if (vA9~=1 & not any(vE1,2,97,98)) & any(0,vCkZE1_96).
+compute m1328=concat("vA9=",string(vA9,n2),",vE1=",string(vE1,n2),",vCkZE1=",string(vCkZE1,n14)).
+compute p1328="vA9~=1 & vE1~=2 & vE1~=97 & vE1~=98，不應答vCkZE1而答".
+compute s1328=1.
+end if.
+
+* logic check hide vZE2m01,vZE2m02,vZE2m03.
+do if (any(vA9,1) | any(vE1,2,97,98)) & (any(0,vZE2m01_96) | any(0,vZE2m02_96) | any(0,vZE2m03_96)).
+compute m1329=concat("vA9=",string(vA9,n2),",vE1=",string(vE1,n2),",vZE2m01=",string(vZE2m01,n2),",vZE2m02=",string(vZE2m02,n2),",vZE2m03=",string(vZE2m03,n2)).
+compute p1329="vA9 in 1 | vE1 in 2 | vE1 in 97 | vE1 in 98，不應答vZE2m01,vZE2m02,vZE2m03而答".
+compute s1329=1.
+end if.
+
+* logic check show vZE2m01,vZE2m02,vZE2m03.
+do if (vA9~=1 & not any(vE1,2,97,98)) & (any(1,vZE2m01_96) | any(1,vZE2m02_96) | any(1,vZE2m03_96)).
+compute m1330=concat("vA9=",string(vA9,n2),",vE1=",string(vE1,n2),",vZE2m01=",string(vZE2m01,n2),",vZE2m02=",string(vZE2m02,n2),",vZE2m03=",string(vZE2m03,n2)).
+compute p1330="vA9~=1 & vE1~=2 & vE1~=97 & vE1~=98，應答vZE2m01,vZE2m02,vZE2m03而未答".
+compute s1330=1.
+end if.
+
+* logic check mutex.
+do if (any(vA9,1)) & (any(vO1_1,1)).
+compute m1331=concat("vA9=",string(vA9,n2),",vO1_1=",string(vO1_1,n2)).
+compute p1331="vA9 in 1與互斥條件不應同時成立".
+compute s1331=1.
+end if.
+
+* logic check mutex.
+do if (any(vA9,1)) & (any(vO1_1,2)).
+compute m1332=concat("vA9=",string(vA9,n2),",vO1_1=",string(vO1_1,n2)).
+compute p1332="vA9 in 1與互斥條件不應同時成立".
+compute s1332=1.
+end if.
+
+* logic check mutex.
+do if (any(vA9,1)) & (any(vO1_1,3)).
+compute m1333=concat("vA9=",string(vA9,n2),",vO1_1=",string(vO1_1,n2)).
+compute p1333="vA9 in 1與互斥條件不應同時成立".
+compute s1333=1.
+end if.
+
+* logic check mutex.
+do if (any(vA9,1)) & (any(vO1_1,4)).
+compute m1334=concat("vA9=",string(vA9,n2),",vO1_1=",string(vO1_1,n2)).
+compute p1334="vA9 in 1與互斥條件不應同時成立".
+compute s1334=1.
+end if.
+
+* logic check show vE5.
+do if ((any(vE2m01,1) | any(vE17,1) | any(vE18,1)) & (any(vO1_1,1,2,3,4,88) | any(vO1,1,2,3,4,5,12,13,14,88))) & any(1,vE5_96).
+compute m1335=concat(
+  "vE2m01=", string(vE2m01,n2), ",vE17=", string(vE17,n2), ",vE18=", string(vE18,n2), ",vO1_1=", string(vO1_1,n2), ",vO1=", string(vO1,n2), ",vE5=",
+  string(vE5,n5)
+).
+compute p1335=concat(
+  "(vE2m01 in 1 | vE17 in 1 | vE18 in 1) & (vO1_1 in 1 | vO1_1 in 2 | vO1_1 in 3 | vO1_1 in 4 | vO1_1 i",
+  "n 88 | vO1 in 1 | vO1 in 2 | vO1 in 3 | vO1 in 4 | vO1 in 5 | vO1 in 12 | vO1 in 13 | vO1 in 14 | vO",
+  "1 in 88)，應答vE5而未答"
+).
+compute s1335=1.
+end if.
+
+* logic check show vE8.
+do if ((any(vE2m02,1) | any(vE17,2) | any(vE18,2)) & (any(vO1_1,1,2,3,4,88) | any(vO1,1,2,3,4,5,12,13,14,88))) & any(1,vE8_96).
+compute m1336=concat(
+  "vE2m02=", string(vE2m02,n2), ",vE17=", string(vE17,n2), ",vE18=", string(vE18,n2), ",vO1_1=", string(vO1_1,n2), ",vO1=", string(vO1,n2), ",vE8=",
+  string(vE8,n5)
+).
+compute p1336=concat(
+  "(vE2m02 in 1 | vE17 in 2 | vE18 in 2) & (vO1_1 in 1 | vO1_1 in 2 | vO1_1 in 3 | vO1_1 in 4 | vO1_1 i",
+  "n 88 | vO1 in 1 | vO1 in 2 | vO1 in 3 | vO1 in 4 | vO1 in 5 | vO1 in 12 | vO1 in 13 | vO1 in 14 | vO",
+  "1 in 88)，應答vE8而未答"
+).
+compute s1336=1.
+end if.
+
+* logic check show vE11.
+do if ((any(vE2m03,1) | any(vE17,3) | any(vE18,3)) & (any(vO1_1,1,2,3,4,88) | any(vO1,1,2,3,4,5,12,13,14,88))) & any(1,vE11_96).
+compute m1337=concat(
+  "vE2m03=", string(vE2m03,n2), ",vE17=", string(vE17,n2), ",vE18=", string(vE18,n2), ",vO1_1=", string(vO1_1,n2), ",vO1=", string(vO1,n2), ",vE11=",
+  string(vE11,n5)
+).
+compute p1337=concat(
+  "(vE2m03 in 1 | vE17 in 3 | vE18 in 3) & (vO1_1 in 1 | vO1_1 in 2 | vO1_1 in 3 | vO1_1 in 4 | vO1_1 i",
+  "n 88 | vO1 in 1 | vO1 in 2 | vO1 in 3 | vO1 in 4 | vO1 in 5 | vO1 in 12 | vO1 in 13 | vO1 in 14 | vO",
+  "1 in 88)，應答vE11而未答"
+).
+compute s1337=1.
+end if.
+
+* logic check show vQ6.
+do if (not any(vQ5,2,97,98) & vK2m90~=1) & any(1,vQ6_96).
+compute m1338=concat("vQ5=",string(vQ5,n2),",vK2m90=",string(vK2m90,n2),",vQ6=",string(vQ6,n2)).
+compute p1338="not any(vQ5,2,97,98) & vK2m90~=1，應答vQ6而未答".
+compute s1338=1.
+end if.
+
+* logic check hide vE5.
+do if ((vE2m01~=1 & vE17~=1 & vE18~=1) | (not any(vO1_1,1,2,3,4,88) & not any(vO1,1,2,3,4,5,12,13,14,88))) & any(0,vE5_96).
+compute m1339=concat(
+  "vE2m01=", string(vE2m01,n2), ",vE17=", string(vE17,n2), ",vE18=", string(vE18,n2), ",vO1_1=", string(vO1_1,n2), ",vO1=", string(vO1,n2), ",vE5=",
+  string(vE5,n5)
+).
+compute p1339=concat(
+  "(vE2m01~=1 & vE17~=1 & vE18~=1) | (vO1_1~=1 & vO1_1~=2 & vO1_1~=3 & vO1_1~=4 & vO1_1~=88 & vO1~=1 & ",
+  "vO1~=2 & vO1~=3 & vO1~=4 & vO1~=5 & vO1~=12 & vO1~=13 & vO1~=14 & vO1~=88)，不應答vE5而答"
+).
+compute s1339=1.
+end if.
+
+* logic check show vQ7.
+do if (not any(vQ5,2,97,98) & vK3m90~=1) & any(1,vQ7_96).
+compute m1340=concat("vQ5=",string(vQ5,n2),",vK3m90=",string(vK3m90,n2),",vQ7=",string(vQ7,n2)).
+compute p1340="not any(vQ5,2,97,98) & vK3m90~=1，應答vQ7而未答".
+compute s1340=1.
+end if.
+
+* logic check hide vE8.
+do if ((vE2m02~=1 & vE17~=2 & vE18~=2) | (not any(vO1_1,1,2,3,4,88) & not any(vO1,1,2,3,4,5,12,13,14,88))) & any(0,vE8_96).
+compute m1341=concat(
+  "vE2m02=", string(vE2m02,n2), ",vE17=", string(vE17,n2), ",vE18=", string(vE18,n2), ",vO1_1=", string(vO1_1,n2), ",vO1=", string(vO1,n2), ",vE8=",
+  string(vE8,n5)
+).
+compute p1341=concat(
+  "(vE2m02~=1 & vE17~=2 & vE18~=2) | (vO1_1~=1 & vO1_1~=2 & vO1_1~=3 & vO1_1~=4 & vO1_1~=88 & vO1~=1 & ",
+  "vO1~=2 & vO1~=3 & vO1~=4 & vO1~=5 & vO1~=12 & vO1~=13 & vO1~=14 & vO1~=88)，不應答vE8而答"
+).
+compute s1341=1.
+end if.
+
+* logic check show vQ8.
+do if (not any(vQ5,2,97,98) & vK1m90~=1) & any(1,vQ8_96).
+compute m1342=concat("vQ5=",string(vQ5,n2),",vK1m90=",string(vK1m90,n2),",vQ8=",string(vQ8,n2)).
+compute p1342="not any(vQ5,2,97,98) & vK1m90~=1，應答vQ8而未答".
+compute s1342=1.
+end if.
+
+* logic check hide vE11.
+do if ((vE2m03~=1 & vE17~=3 & vE18~=3) | (not any(vO1_1,1,2,3,4,88) & not any(vO1,1,2,3,4,5,12,13,14,88))) & any(0,vE11_96).
+compute m1343=concat(
+  "vE2m03=", string(vE2m03,n2), ",vE17=", string(vE17,n2), ",vE18=", string(vE18,n2), ",vO1_1=", string(vO1_1,n2), ",vO1=", string(vO1,n2), ",vE11=",
+  string(vE11,n5)
+).
+compute p1343=concat(
+  "(vE2m03~=1 & vE17~=3 & vE18~=3) | (vO1_1~=1 & vO1_1~=2 & vO1_1~=3 & vO1_1~=4 & vO1_1~=88 & vO1~=1 & ",
+  "vO1~=2 & vO1~=3 & vO1~=4 & vO1~=5 & vO1~=12 & vO1~=13 & vO1~=14 & vO1~=88)，不應答vE11而答"
+).
+compute s1343=1.
+end if.
+
+* logic check show vO2.
+do if (any(vO1,1,2,3,4,5,88)) & any(1,vO2_96).
+compute m1344=concat("vO1=",string(vO1,n2),",vO2=",string(vO2,n2)).
+compute p1344="vO1 in 1,2,3,4,5,88，應答vO2而未答".
+compute s1344=1.
+end if.
+
+* logic check show vO3.
+do if (any(vO1,1,2,3,4,5,88)) & any(1,vO3_96).
+compute m1345=concat("vO1=",string(vO1,n2),",vO3=",string(vO3,n2)).
+compute p1345="vO1 in 1,2,3,4,5,88，應答vO3而未答".
+compute s1345=1.
+end if.
+
+* logic check show vO4.
+do if (any(vO1,1,2,3,4,5,88) & any(vO3,3,4,5,6,1,88)) & any(1,vO4_96).
+compute m1346=concat("vO1=",string(vO1,n2),",vO3=",string(vO3,n2),",vO4=",string(vO4,n5)).
+compute p1346="vO1 in 1,2,3,4,5,88 & vO3 in 3,4,5,6,1,88，應答vO4而未答".
+compute s1346=1.
 end if.
 
 * logic check show vN24.
 do if (any(vO1,1,2,3,4,5,88)) & any(1,vN24_96).
-compute m1578=concat("vO1=",string(vO1,n2),",vN24=",string(vN24,n2)).
-compute p1578="vO1 in 1,2,3,4,5,88，應答vN24而未答".
+compute m1347=concat("vO1=",string(vO1,n2),",vN24=",string(vN24,n2)).
+compute p1347="vO1 in 1,2,3,4,5,88，應答vN24而未答".
+compute s1347=1.
 end if.
 
-* logic check hide vQ1.
-do if (any(vA9,1)) & any(0,vQ1_96).
-compute m1579=concat("vA9=",string(vA9,n2),",vQ1=",string(vQ1,n2)).
-compute p1579="vA9 in 1，不應答vQ1而答".
+* logic check show vO2.
+do if (any(vO1,1,2,3,4,5,88)) & any(1,vO2_96).
+compute m1348=concat("vO1=",string(vO1,n2),",vO2=",string(vO2,n2)).
+compute p1348="vO1 in 1 | vO1 in 2 | vO1 in 3 | vO1 in 4 | vO1 in 5 | vO1 in 88，應答vO2而未答".
+compute s1348=1.
 end if.
 
-* logic check hide vQ2.
-do if (any(vA9,1)) & any(0,vQ2_96).
-compute m1580=concat("vA9=",string(vA9,n2),",vQ2=",string(vQ2,n2)).
-compute p1580="vA9 in 1，不應答vQ2而答".
+* logic check hide vO2.
+do if (not any(vO1,1,2,3,4,5,88)) & any(0,vO2_96).
+compute m1349=concat("vO1=",string(vO1,n2),",vO2=",string(vO2,n2)).
+compute p1349="vO1~=1 & vO1~=2 & vO1~=3 & vO1~=4 & vO1~=5 & vO1~=88，不應答vO2而答".
+compute s1349=1.
 end if.
 
-* logic check show vQ5.
-do if (any(vE1,1)) & any(1,vQ5_96).
-compute m1581=concat("vE1=",string(vE1,n2),",vQ5=",string(vQ5,n2)).
-compute p1581="vE1 in 1，應答vQ5而未答".
+* logic check show vO3.
+do if (any(vO1,1,2,3,4,5,88)) & any(1,vO3_96).
+compute m1350=concat("vO1=",string(vO1,n2),",vO3=",string(vO3,n2)).
+compute p1350="vO1 in 1 | vO1 in 2 | vO1 in 3 | vO1 in 4 | vO1 in 5 | vO1 in 88，應答vO3而未答".
+compute s1350=1.
 end if.
 
-* logic check show vQ6.
-do if ((any(vQ5,2,97,98)| any(vK2m90,1))) & any(1,vQ6_96).
-compute m1582=concat(
-  "vQ5=",
-  string(vQ5,n2),
-  ",vK2m90=",
-  string(vK2m90,n2),
-  ",vQ6=",
-  string(vQ6,n2)
+* logic check hide vO3.
+do if (not any(vO1,1,2,3,4,5,88)) & any(0,vO3_96).
+compute m1351=concat("vO1=",string(vO1,n2),",vO3=",string(vO3,n2)).
+compute p1351="vO1~=1 & vO1~=2 & vO1~=3 & vO1~=4 & vO1~=5 & vO1~=88，不應答vO3而答".
+compute s1351=1.
+end if.
+
+* logic check show vN24.
+do if (any(vO1,1,2,3,4,5,88)) & any(1,vN24_96).
+compute m1352=concat("vO1=",string(vO1,n2),",vN24=",string(vN24,n2)).
+compute p1352="vO1 in 1 | vO1 in 2 | vO1 in 3 | vO1 in 4 | vO1 in 5 | vO1 in 88，應答vN24而未答".
+compute s1352=1.
+end if.
+
+* logic check hide vN24.
+do if (not any(vO1,1,2,3,4,5,88)) & any(0,vN24_96).
+compute m1353=concat("vO1=",string(vO1,n2),",vN24=",string(vN24,n2)).
+compute p1353="vO1~=1 & vO1~=2 & vO1~=3 & vO1~=4 & vO1~=5 & vO1~=88，不應答vN24而答".
+compute s1353=1.
+end if.
+
+* logic check show vD2.
+do if (any(vD1,1,2)) & any(1,vD2_96).
+compute m1354=concat("vD1=",string(vD1,n2),",vD2=",string(vD2,n4)).
+compute p1354="vD1 in 1,2，應答vD2而未答".
+compute s1354=1.
+end if.
+
+* logic check show vD3.
+do if (any(vD1,1,2)) & any(1,vD3_96).
+compute m1355=concat("vD1=",string(vD1,n2),",vD3=",string(vD3,n5)).
+compute p1355="vD1 in 1,2，應答vD3而未答".
+compute s1355=1.
+end if.
+
+* logic check show vD4sD4,vD4sD5,vD4sD6,vD4sD7,vD4sD8.
+do if (any(vD1,1,2)) & (any(1,vD4sD4_96) | any(1,vD4sD5_96) | any(1,vD4sD6_96) | any(1,vD4sD7_96) | any(1,vD4sD8_96)).
+compute m1356=concat(
+  "vD1=", string(vD1,n2), ",vD4sD4=", string(vD4sD4,n2), ",vD4sD5=", string(vD4sD5,n2), ",vD4sD6=", string(vD4sD6,n2), ",vD4sD7=", string(vD4sD7,n2),
+  ",vD4sD8=", string(vD4sD8,n2)
 ).
-compute p1582="(vQ5 in 2,97,98 | vK2m90 in 1)，應答vQ6而未答".
-end if.
-
-* logic check show vQ7.
-do if ((any(vQ5,2,97,98)| any(vK3m90,1))) & any(1,vQ7_96).
-compute m1583=concat(
-  "vQ5=",
-  string(vQ5,n2),
-  ",vK3m90=",
-  string(vK3m90,n2),
-  ",vQ7=",
-  string(vQ7,n2)
-).
-compute p1583="(vQ5 in 2,97,98 | vK3m90 in 1)，應答vQ7而未答".
-end if.
-
-* logic check show vQ8.
-do if ((any(vQ5,2,97,98)| any(vK1m90,1))) & any(1,vQ8_96).
-compute m1584=concat(
-  "vQ5=",
-  string(vQ5,n2),
-  ",vK1m90=",
-  string(vK1m90,n2),
-  ",vQ8=",
-  string(vQ8,n2)
-).
-compute p1584="(vQ5 in 2,97,98 | vK1m90 in 1)，應答vQ8而未答".
-end if.
-
-* logic check show vQ10.
-do if (any(vE1,1)) & any(1,vQ10_96).
-compute m1585=concat("vE1=",string(vE1,n2),",vQ10=",string(vQ10,n2)).
-compute p1585="vE1 in 1，應答vQ10而未答".
-end if.
-
-* logic check show vCKQ10.
-do if (any(vQ5,2)& any(vQ10,1)) & any(1,vCKQ10_96).
-compute m1586=concat(
-  "vQ5=",
-  string(vQ5,n2),
-  ",vQ10=",
-  string(vQ10,n2),
-  ",vCKQ10=",
-  string(vCKQ10,n2)
-).
-compute p1586="vQ5 in 2 & vQ10 in 1，應答vCKQ10而未答".
-end if.
-
-* logic check show vQ11.
-do if ((any(vQ10,2,97,98)| any(vK2m90,1)| any(vQ6,1))) & any(1,vQ11_96).
-compute m1587=concat(
-  "vQ10=",
-  string(vQ10,n2),
-  ",vK2m90=",
-  string(vK2m90,n2),
-  ",vQ6=",
-  string(vQ6,n2),
-  ",vQ11=",
-  string(vQ11,n2)
-).
-compute p1587="(vQ10 in 2,97,98 | vK2m90 in 1 | vQ6 in 1)，應答vQ11而未答".
-end if.
-
-* logic check show vQ12.
-do if ((any(vQ10,2,97,98)| any(vK3m90,1)| any(vQ7,1))) & any(1,vQ12_96).
-compute m1588=concat(
-  "vQ10=",
-  string(vQ10,n2),
-  ",vK3m90=",
-  string(vK3m90,n2),
-  ",vQ7=",
-  string(vQ7,n2),
-  ",vQ12=",
-  string(vQ12,n2)
-).
-compute p1588="(vQ10 in 2,97,98 | vK3m90 in 1 | vQ7 in 1)，應答vQ12而未答".
-end if.
-
-* logic check show vQ13.
-do if ((any(vQ10,2,97,98)| any(vK1m90,1)| any(vQ8,1))) & any(1,vQ13_96).
-compute m1589=concat(
-  "vQ10=",
-  string(vQ10,n2),
-  ",vK1m90=",
-  string(vK1m90,n2),
-  ",vQ8=",
-  string(vQ8,n2),
-  ",vQ13=",
-  string(vQ13,n2)
-).
-compute p1589="(vQ10 in 2,97,98 | vK1m90 in 1 | vQ8 in 1)，應答vQ13而未答".
-end if.
-
-* logic check show vQ15.
-do if (any(vE1,1)) & any(1,vQ15_96).
-compute m1590=concat("vE1=",string(vE1,n2),",vQ15=",string(vQ15,n2)).
-compute p1590="vE1 in 1，應答vQ15而未答".
-end if.
-
-* logic check show vQ16.
-do if ((any(vQ15,2,97,98)| any(vK2m90,1))) & any(1,vQ16_96).
-compute m1591=concat(
-  "vQ15=",
-  string(vQ15,n2),
-  ",vK2m90=",
-  string(vK2m90,n2),
-  ",vQ16=",
-  string(vQ16,n2)
-).
-compute p1591="(vQ15 in 2,97,98 | vK2m90 in 1)，應答vQ16而未答".
-end if.
-
-* logic check show vQ17.
-do if ((any(vQ15,2,97,98)| any(vK3m90,1))) & any(1,vQ17_96).
-compute m1592=concat(
-  "vQ15=",
-  string(vQ15,n2),
-  ",vK3m90=",
-  string(vK3m90,n2),
-  ",vQ17=",
-  string(vQ17,n2)
-).
-compute p1592="(vQ15 in 2,97,98 | vK3m90 in 1)，應答vQ17而未答".
-end if.
-
-* logic check show vQ18.
-do if ((any(vQ15,2,97,98)| any(vK1m90,1))) & any(1,vQ18_96).
-compute m1593=concat(
-  "vQ15=",
-  string(vQ15,n2),
-  ",vK1m90=",
-  string(vK1m90,n2),
-  ",vQ18=",
-  string(vQ18,n2)
-).
-compute p1593="(vQ15 in 2,97,98 | vK1m90 in 1)，應答vQ18而未答".
-end if.
-
-* logic check show vCKQ20A.
-do if (any(vQ5,2)& any(vQ20m02,1)| any(vQ20m03,1)| any(vQ20m04,1)| any(vQ20m05,1)) & any(1,vCKQ20A_96).
-compute m1594=concat(
-  "vQ5=",
-  string(vQ5,n2),
-  ",vQ20m02=",
-  string(vQ20m02,n2),
-  ",vQ20m03=",
-  string(vQ20m03,n2),
-  ",vQ20m04=",
-  string(vQ20m04,n2),
-  ",vQ20m05=",
-  string(vQ20m05,n2),
-  ",vCKQ20A=",
-  string(vCKQ20A,n2)
-).
-compute p1594="vQ5 in 2 & vQ20m02 in 1 | vQ20m03 in 1 | vQ20m04 in 1 | vQ20m05 in 1，應答vCKQ20A而未答".
-end if.
-
-* logic check show vCKQ20B.
-do if (any(vQ5,2)& any(vQ20m01,1)& any(vB1,0)& any(vB3,0)) & any(1,vCKQ20B_96).
-compute m1595=concat(
-  "vQ5=",
-  string(vQ5,n2),
-  ",vQ20m01=",
-  string(vQ20m01,n2),
-  ",vB1=",
-  string(vB1,n4),
-  ",vB3=",
-  string(vB3,n4),
-  ",vCKQ20B=",
-  string(vCKQ20B,n2)
-).
-compute p1595="vQ5 in 2 & vQ20m01 in 1 & vB1 in 0 & vB3 in 0，應答vCKQ20B而未答".
-end if.
-
-* logic check show vQ25m01,vQ25m02,vQ25m03,vQ25m04,vQ25m05,vQ25m06,vQ25m07,vQ25m08,vQ25m09,vQ25m10,vQ25m11,vQ25m12,vQ25m13,vQ25m14,vQ25m15,vQ25m16,vQ25m17,vQ25m18,vQ25m19,vQ25m20,vQ25m21,vQ25m22,vQ25m23,vQ25m24,vQ25m25,vQ25m26,vQ25m27,vQ25m28,vQ25m29,vQ25m30,vQ25m31,vQ25m88.
-do if (any(vQ20m01,1)) & (any(1,vQ25m01_96) | any(1,vQ25m02_96) | any(1,vQ25m03_96) | any(1,vQ25m04_96) | any(1,vQ25m05_96) | any(1,vQ25m06_96) | any(1,vQ25m07_96) | any(1,vQ25m08_96) | any(1,vQ25m09_96) | any(1,vQ25m10_96) | any(1,vQ25m11_96) | any(1,vQ25m12_96) | any(1,vQ25m13_96) | any(1,vQ25m14_96) | any(1,vQ25m15_96) | any(1,vQ25m16_96) | any(1,vQ25m17_96) | any(1,vQ25m18_96) | any(1,vQ25m19_96) | any(1,vQ25m20_96) | any(1,vQ25m21_96) | any(1,vQ25m22_96) | any(1,vQ25m23_96) | any(1,vQ25m24_96) | any(1,vQ25m25_96) | any(1,vQ25m26_96) | any(1,vQ25m27_96) | any(1,vQ25m28_96) | any(1,vQ25m29_96) | any(1,vQ25m30_96) | any(1,vQ25m31_96) | any(1,vQ25m88_96)).
-compute m1596=concat(
-  "vQ20m01=",
-  string(vQ20m01,n2),
-  ",vQ25m01=",
-  string(vQ25m01,n2),
-  ",vQ25m02=",
-  string(vQ25m02,n2),
-  ",vQ25m03=",
-  string(vQ25m03,n2),
-  ",vQ25m04=",
-  string(vQ25m04,n2),
-  ",vQ25m05=",
-  string(vQ25m05,n2),
-  ",vQ25m06=",
-  string(vQ25m06,n2),
-  ",vQ25m07=",
-  string(vQ25m07,n2),
-  ",vQ25m08=",
-  string(vQ25m08,n2),
-  ",vQ25m09=",
-  string(vQ25m09,n2),
-  ",vQ25m10=",
-  string(vQ25m10,n2),
-  ",vQ25m11=",
-  string(vQ25m11,n2),
-  ",vQ25m12=",
-  string(vQ25m12,n2),
-  ",vQ25m13=",
-  string(vQ25m13,n2),
-  ",vQ25m14=",
-  string(vQ25m14,n2),
-  ",vQ25m15=",
-  string(vQ25m15,n2),
-  ",vQ25m16=",
-  string(vQ25m16,n2),
-  ",vQ25m17=",
-  string(vQ25m17,n2),
-  ",vQ25m18=",
-  string(vQ25m18,n2),
-  ",vQ25m19=",
-  string(vQ25m19,n2),
-  ",vQ25m20=",
-  string(vQ25m20,n2),
-  ",vQ25m21=",
-  string(vQ25m21,n2),
-  ",vQ25m22=",
-  string(vQ25m22,n2),
-  ",vQ25m23=",
-  string(vQ25m23,n2),
-  ",vQ25m24=",
-  string(vQ25m24,n2),
-  ",vQ25m25=",
-  string(vQ25m25,n2),
-  ",vQ25m26=",
-  string(vQ25m26,n2),
-  ",vQ25m27=",
-  string(vQ25m27,n2),
-  ",vQ25m28=",
-  string(vQ25m28,n2),
-  ",vQ25m29=",
-  string(vQ25m29,n2),
-  ",vQ25m30=",
-  string(vQ25m30,n2),
-  ",vQ25m31=",
-  string(vQ25m31,n2),
-  ",vQ25m88=",
-  string(vQ25m88,n2)
-).
-compute p1596="vQ20m01 in 1，應答vQ25m01,vQ25m02,vQ25m03,vQ25m04,vQ25m05,vQ25m06,vQ25m07,vQ25m08,vQ25m09,vQ25m10,vQ25m11,vQ25m12,vQ25m13,vQ25m14,vQ25m15,vQ25m16,vQ25m17,vQ25m18,vQ25m19,vQ25m20,vQ25m21,vQ25m22,vQ25m23,vQ25m24,vQ25m25,vQ25m26,vQ25m27,vQ25m28,vQ25m29,vQ25m30,vQ25m31,vQ25m88而未答".
-end if.
-
-* logic check show vQ22m01,vQ22m02,vQ22m03,vQ22m04,vQ22m05,vQ22m06,vQ22m07,vQ22m08,vQ22m09,vQ22m10,vQ22m11,vQ22m12,vQ22m13,vQ22m14,vQ22m15,vQ22m16,vQ22m17,vQ22m18,vQ22m19,vQ22m20,vQ22m21,vQ22m22,vQ22m23,vQ22m24,vQ22m25,vQ22m26,vQ22m27,vQ22m28,vQ22m29,vQ22m30,vQ22m31,vQ22m32,vQ22m33,vQ22m34,vQ22m35,vQ22m36,vQ22m37,vQ22m38,vQ22m39,vQ22m40,vQ22m88.
-do if (any(vQ20m02,1)) & (any(1,vQ22m01_96) | any(1,vQ22m02_96) | any(1,vQ22m03_96) | any(1,vQ22m04_96) | any(1,vQ22m05_96) | any(1,vQ22m06_96) | any(1,vQ22m07_96) | any(1,vQ22m08_96) | any(1,vQ22m09_96) | any(1,vQ22m10_96) | any(1,vQ22m11_96) | any(1,vQ22m12_96) | any(1,vQ22m13_96) | any(1,vQ22m14_96) | any(1,vQ22m15_96) | any(1,vQ22m16_96) | any(1,vQ22m17_96) | any(1,vQ22m18_96) | any(1,vQ22m19_96) | any(1,vQ22m20_96) | any(1,vQ22m21_96) | any(1,vQ22m22_96) | any(1,vQ22m23_96) | any(1,vQ22m24_96) | any(1,vQ22m25_96) | any(1,vQ22m26_96) | any(1,vQ22m27_96) | any(1,vQ22m28_96) | any(1,vQ22m29_96) | any(1,vQ22m30_96) | any(1,vQ22m31_96) | any(1,vQ22m32_96) | any(1,vQ22m33_96) | any(1,vQ22m34_96) | any(1,vQ22m35_96) | any(1,vQ22m36_96) | any(1,vQ22m37_96) | any(1,vQ22m38_96) | any(1,vQ22m39_96) | any(1,vQ22m40_96) | any(1,vQ22m88_96)).
-compute m1597=concat(
-  "vQ20m02=",
-  string(vQ20m02,n2),
-  ",vQ22m01=",
-  string(vQ22m01,n2),
-  ",vQ22m02=",
-  string(vQ22m02,n2),
-  ",vQ22m03=",
-  string(vQ22m03,n2),
-  ",vQ22m04=",
-  string(vQ22m04,n2),
-  ",vQ22m05=",
-  string(vQ22m05,n2),
-  ",vQ22m06=",
-  string(vQ22m06,n2),
-  ",vQ22m07=",
-  string(vQ22m07,n2),
-  ",vQ22m08=",
-  string(vQ22m08,n2),
-  ",vQ22m09=",
-  string(vQ22m09,n2),
-  ",vQ22m10=",
-  string(vQ22m10,n2),
-  ",vQ22m11=",
-  string(vQ22m11,n2),
-  ",vQ22m12=",
-  string(vQ22m12,n2),
-  ",vQ22m13=",
-  string(vQ22m13,n2),
-  ",vQ22m14=",
-  string(vQ22m14,n2),
-  ",vQ22m15=",
-  string(vQ22m15,n2),
-  ",vQ22m16=",
-  string(vQ22m16,n2),
-  ",vQ22m17=",
-  string(vQ22m17,n2),
-  ",vQ22m18=",
-  string(vQ22m18,n2),
-  ",vQ22m19=",
-  string(vQ22m19,n2),
-  ",vQ22m20=",
-  string(vQ22m20,n2),
-  ",vQ22m21=",
-  string(vQ22m21,n2),
-  ",vQ22m22=",
-  string(vQ22m22,n2),
-  ",vQ22m23=",
-  string(vQ22m23,n2),
-  ",vQ22m24=",
-  string(vQ22m24,n2),
-  ",vQ22m25=",
-  string(vQ22m25,n2),
-  ",vQ22m26=",
-  string(vQ22m26,n2),
-  ",vQ22m27=",
-  string(vQ22m27,n2),
-  ",vQ22m28=",
-  string(vQ22m28,n2),
-  ",vQ22m29=",
-  string(vQ22m29,n2),
-  ",vQ22m30=",
-  string(vQ22m30,n2),
-  ",vQ22m31=",
-  string(vQ22m31,n2),
-  ",vQ22m32=",
-  string(vQ22m32,n2),
-  ",vQ22m33=",
-  string(vQ22m33,n2),
-  ",vQ22m34=",
-  string(vQ22m34,n2),
-  ",vQ22m35=",
-  string(vQ22m35,n2),
-  ",vQ22m36=",
-  string(vQ22m36,n2),
-  ",vQ22m37=",
-  string(vQ22m37,n2),
-  ",vQ22m38=",
-  string(vQ22m38,n2),
-  ",vQ22m39=",
-  string(vQ22m39,n2),
-  ",vQ22m40=",
-  string(vQ22m40,n2),
-  ",vQ22m88=",
-  string(vQ22m88,n2)
-).
-compute p1597="vQ20m02 in 1，應答vQ22m01,vQ22m02,vQ22m03,vQ22m04,vQ22m05,vQ22m06,vQ22m07,vQ22m08,vQ22m09,vQ22m10,vQ22m11,vQ22m12,vQ22m13,vQ22m14,vQ22m15,vQ22m16,vQ22m17,vQ22m18,vQ22m19,vQ22m20,vQ22m21,vQ22m22,vQ22m23,vQ22m24,vQ22m25,vQ22m26,vQ22m27,vQ22m28,vQ22m29,vQ22m30,vQ22m31,vQ22m32,vQ22m33,vQ22m34,vQ22m35,vQ22m36,vQ22m37,vQ22m38,vQ22m39,vQ22m40,vQ22m88而未答".
-end if.
-
-* logic check show vQ23m01,vQ23m02,vQ23m03,vQ23m04,vQ23m05,vQ23m06,vQ23m07,vQ23m08,vQ23m09,vQ23m10,vQ23m11,vQ23m12,vQ23m13,vQ23m14,vQ23m15,vQ23m16,vQ23m17,vQ23m18,vQ23m19,vQ23m20,vQ23m21,vQ23m22,vQ23m23,vQ23m24,vQ23m25,vQ23m26,vQ23m27,vQ23m88.
-do if (any(vQ20m03,1)) & (any(1,vQ23m01_96) | any(1,vQ23m02_96) | any(1,vQ23m03_96) | any(1,vQ23m04_96) | any(1,vQ23m05_96) | any(1,vQ23m06_96) | any(1,vQ23m07_96) | any(1,vQ23m08_96) | any(1,vQ23m09_96) | any(1,vQ23m10_96) | any(1,vQ23m11_96) | any(1,vQ23m12_96) | any(1,vQ23m13_96) | any(1,vQ23m14_96) | any(1,vQ23m15_96) | any(1,vQ23m16_96) | any(1,vQ23m17_96) | any(1,vQ23m18_96) | any(1,vQ23m19_96) | any(1,vQ23m20_96) | any(1,vQ23m21_96) | any(1,vQ23m22_96) | any(1,vQ23m23_96) | any(1,vQ23m24_96) | any(1,vQ23m25_96) | any(1,vQ23m26_96) | any(1,vQ23m27_96) | any(1,vQ23m88_96)).
-compute m1598=concat(
-  "vQ20m03=",
-  string(vQ20m03,n2),
-  ",vQ23m01=",
-  string(vQ23m01,n2),
-  ",vQ23m02=",
-  string(vQ23m02,n2),
-  ",vQ23m03=",
-  string(vQ23m03,n2),
-  ",vQ23m04=",
-  string(vQ23m04,n2),
-  ",vQ23m05=",
-  string(vQ23m05,n2),
-  ",vQ23m06=",
-  string(vQ23m06,n2),
-  ",vQ23m07=",
-  string(vQ23m07,n2),
-  ",vQ23m08=",
-  string(vQ23m08,n2),
-  ",vQ23m09=",
-  string(vQ23m09,n2),
-  ",vQ23m10=",
-  string(vQ23m10,n2),
-  ",vQ23m11=",
-  string(vQ23m11,n2),
-  ",vQ23m12=",
-  string(vQ23m12,n2),
-  ",vQ23m13=",
-  string(vQ23m13,n2),
-  ",vQ23m14=",
-  string(vQ23m14,n2),
-  ",vQ23m15=",
-  string(vQ23m15,n2),
-  ",vQ23m16=",
-  string(vQ23m16,n2),
-  ",vQ23m17=",
-  string(vQ23m17,n2),
-  ",vQ23m18=",
-  string(vQ23m18,n2),
-  ",vQ23m19=",
-  string(vQ23m19,n2),
-  ",vQ23m20=",
-  string(vQ23m20,n2),
-  ",vQ23m21=",
-  string(vQ23m21,n2),
-  ",vQ23m22=",
-  string(vQ23m22,n2),
-  ",vQ23m23=",
-  string(vQ23m23,n2),
-  ",vQ23m24=",
-  string(vQ23m24,n2),
-  ",vQ23m25=",
-  string(vQ23m25,n2),
-  ",vQ23m26=",
-  string(vQ23m26,n2),
-  ",vQ23m27=",
-  string(vQ23m27,n2),
-  ",vQ23m88=",
-  string(vQ23m88,n2)
-).
-compute p1598="vQ20m03 in 1，應答vQ23m01,vQ23m02,vQ23m03,vQ23m04,vQ23m05,vQ23m06,vQ23m07,vQ23m08,vQ23m09,vQ23m10,vQ23m11,vQ23m12,vQ23m13,vQ23m14,vQ23m15,vQ23m16,vQ23m17,vQ23m18,vQ23m19,vQ23m20,vQ23m21,vQ23m22,vQ23m23,vQ23m24,vQ23m25,vQ23m26,vQ23m27,vQ23m88而未答".
-end if.
-
-* logic check show vQ26m01,vQ26m02,vQ26m03,vQ26m04,vQ26m05,vQ26m06,vQ26m07,vQ26m08,vQ26m09,vQ26m10,vQ26m11,vQ26m12,vQ26m13,vQ26m14,vQ26m15,vQ26m16,vQ26m17,vQ26m18,vQ26m19,vQ26m20,vQ26m21,vQ26m22,vQ26m23,vQ26m24,vQ26m25,vQ26m26,vQ26m27,vQ26m28,vQ26m29,vQ26m88.
-do if (any(vQ20m04,1)) & (any(1,vQ26m01_96) | any(1,vQ26m02_96) | any(1,vQ26m03_96) | any(1,vQ26m04_96) | any(1,vQ26m05_96) | any(1,vQ26m06_96) | any(1,vQ26m07_96) | any(1,vQ26m08_96) | any(1,vQ26m09_96) | any(1,vQ26m10_96) | any(1,vQ26m11_96) | any(1,vQ26m12_96) | any(1,vQ26m13_96) | any(1,vQ26m14_96) | any(1,vQ26m15_96) | any(1,vQ26m16_96) | any(1,vQ26m17_96) | any(1,vQ26m18_96) | any(1,vQ26m19_96) | any(1,vQ26m20_96) | any(1,vQ26m21_96) | any(1,vQ26m22_96) | any(1,vQ26m23_96) | any(1,vQ26m24_96) | any(1,vQ26m25_96) | any(1,vQ26m26_96) | any(1,vQ26m27_96) | any(1,vQ26m28_96) | any(1,vQ26m29_96) | any(1,vQ26m88_96)).
-compute m1599=concat(
-  "vQ20m04=",
-  string(vQ20m04,n2),
-  ",vQ26m01=",
-  string(vQ26m01,n2),
-  ",vQ26m02=",
-  string(vQ26m02,n2),
-  ",vQ26m03=",
-  string(vQ26m03,n2),
-  ",vQ26m04=",
-  string(vQ26m04,n2),
-  ",vQ26m05=",
-  string(vQ26m05,n2),
-  ",vQ26m06=",
-  string(vQ26m06,n2),
-  ",vQ26m07=",
-  string(vQ26m07,n2),
-  ",vQ26m08=",
-  string(vQ26m08,n2),
-  ",vQ26m09=",
-  string(vQ26m09,n2),
-  ",vQ26m10=",
-  string(vQ26m10,n2),
-  ",vQ26m11=",
-  string(vQ26m11,n2),
-  ",vQ26m12=",
-  string(vQ26m12,n2),
-  ",vQ26m13=",
-  string(vQ26m13,n2),
-  ",vQ26m14=",
-  string(vQ26m14,n2),
-  ",vQ26m15=",
-  string(vQ26m15,n2),
-  ",vQ26m16=",
-  string(vQ26m16,n2),
-  ",vQ26m17=",
-  string(vQ26m17,n2),
-  ",vQ26m18=",
-  string(vQ26m18,n2),
-  ",vQ26m19=",
-  string(vQ26m19,n2),
-  ",vQ26m20=",
-  string(vQ26m20,n2),
-  ",vQ26m21=",
-  string(vQ26m21,n2),
-  ",vQ26m22=",
-  string(vQ26m22,n2),
-  ",vQ26m23=",
-  string(vQ26m23,n2),
-  ",vQ26m24=",
-  string(vQ26m24,n2),
-  ",vQ26m25=",
-  string(vQ26m25,n2),
-  ",vQ26m26=",
-  string(vQ26m26,n2),
-  ",vQ26m27=",
-  string(vQ26m27,n2),
-  ",vQ26m28=",
-  string(vQ26m28,n2),
-  ",vQ26m29=",
-  string(vQ26m29,n2),
-  ",vQ26m88=",
-  string(vQ26m88,n2)
-).
-compute p1599="vQ20m04 in 1，應答vQ26m01,vQ26m02,vQ26m03,vQ26m04,vQ26m05,vQ26m06,vQ26m07,vQ26m08,vQ26m09,vQ26m10,vQ26m11,vQ26m12,vQ26m13,vQ26m14,vQ26m15,vQ26m16,vQ26m17,vQ26m18,vQ26m19,vQ26m20,vQ26m21,vQ26m22,vQ26m23,vQ26m24,vQ26m25,vQ26m26,vQ26m27,vQ26m28,vQ26m29,vQ26m88而未答".
-end if.
-
-* logic check show vP3_4.
-do if (any(vE1,1)) & any(1,vP3_4_96).
-compute m1600=concat("vE1=",string(vE1,n2),",vP3_4=",string(vP3_4,n2)).
-compute p1600="vE1 in 1，應答vP3_4而未答".
-end if.
-
-* logic check show vCKP3_4.
-do if (any(vQ5,2)& any(vP3_4,2,3,4)) & any(1,vCKP3_4_96).
-compute m1601=concat(
-  "vQ5=",
-  string(vQ5,n2),
-  ",vP3_4=",
-  string(vP3_4,n2),
-  ",vCKP3_4=",
-  string(vCKP3_4,n2)
-).
-compute p1601="vQ5 in 2 & vP3_4 in 2,3,4，應答vCKP3_4而未答".
-end if.
-
-* logic check show vP3_5.
-do if ((any(vK2m90,1)| any(vQ5,2))) & any(1,vP3_5_96).
-compute m1602=concat(
-  "vK2m90=",
-  string(vK2m90,n2),
-  ",vQ5=",
-  string(vQ5,n2),
-  ",vP3_5=",
-  string(vP3_5,n2)
-).
-compute p1602="(vK2m90 in 1 | vQ5 in 2)，應答vP3_5而未答".
-end if.
-
-* logic check show vQ30m01,vQ30m02,vQ30m03,vQ30m04,vQ30m05,vQ30m06,vQ30m07,vQ30m08,vQ30m90.
-do if (any(vE1,1)) & (any(1,vQ30m01_96) | any(1,vQ30m02_96) | any(1,vQ30m03_96) | any(1,vQ30m04_96) | any(1,vQ30m05_96) | any(1,vQ30m06_96) | any(1,vQ30m07_96) | any(1,vQ30m08_96) | any(1,vQ30m90_96)).
-compute m1603=concat(
-  "vE1=",
-  string(vE1,n2),
-  ",vQ30m01=",
-  string(vQ30m01,n2),
-  ",vQ30m02=",
-  string(vQ30m02,n2),
-  ",vQ30m03=",
-  string(vQ30m03,n2),
-  ",vQ30m04=",
-  string(vQ30m04,n2),
-  ",vQ30m05=",
-  string(vQ30m05,n2),
-  ",vQ30m06=",
-  string(vQ30m06,n2),
-  ",vQ30m07=",
-  string(vQ30m07,n2),
-  ",vQ30m08=",
-  string(vQ30m08,n2),
-  ",vQ30m90=",
-  string(vQ30m90,n2)
-).
-compute p1603="vE1 in 1，應答vQ30m01,vQ30m02,vQ30m03,vQ30m04,vQ30m05,vQ30m06,vQ30m07,vQ30m08,vQ30m90而未答".
-end if.
-
-* logic check show vQ50.
-do if (any(vQ49,2,97,98)) & any(1,vQ50_96).
-compute m1604=concat("vQ49=",string(vQ49,n2),",vQ50=",string(vQ50,n2)).
-compute p1604="vQ49 in 2,97,98，應答vQ50而未答".
-end if.
-
-* logic check show vQ51.
-do if ((any(vQ49,1)| any(vQ50,1))) & any(1,vQ51_96).
-compute m1605=concat(
-  "vQ49=",
-  string(vQ49,n2),
-  ",vQ50=",
-  string(vQ50,n2),
-  ",vQ51=",
-  string(vQ51,n2)
-).
-compute p1605="(vQ49 in 1 | vQ50 in 1)，應答vQ51而未答".
-end if.
-
-* logic check show vQ52.
-do if (any(vQ51,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88)) & any(1,vQ52_96).
-compute m1606=concat("vQ51=",string(vQ51,n2),",vQ52=",string(vQ52,n2)).
-compute p1606="vQ51 in 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88，應答vQ52而未答".
+compute p1356="vD1 in 1,2，應答vD4sD4,vD4sD5,vD4sD6,vD4sD7,vD4sD8而未答".
+compute s1356=1.
 end if.
 
 * logic check show vZ2_2.
-do if (any(vD1,3)) & any(1,vZ2_2_96).
-compute m1607=concat("vD1=",string(vD1,n2),",vZ2_2=",string(vZ2_2,n11)).
-compute p1607="vD1 in 3，應答vZ2_2而未答".
+do if (any(vD1,3)) & vZ2_2="96".
+compute m1357=concat("vD1=",string(vD1,n2),",vZ2_2=",rtrim(ltrim(vZ2_2))).
+compute p1357="vD1 in 3，應答vZ2_2而未答".
+compute s1357=1.
 end if.
 
-* logic check show vZE2_1.
-do if (any(vZE2m01,1)| any(vZE2m02,1)) & vZE2_1="96".
-compute m1608=concat(
-  "vZE2m01=",
-  string(vZE2m01,n2),
-  ",vZE2m02=",
-  string(vZE2m02,n2),
-  ",vZE2_1=",
-  rtrim(ltrim(vZE2_1))
+* logic check show vD2.
+do if (any(vD1,1,2)) & any(1,vD2_96).
+compute m1358=concat("vD1=",string(vD1,n2),",vD2=",string(vD2,n4)).
+compute p1358="vD1 in 1 | vD1 in 2，應答vD2而未答".
+compute s1358=1.
+end if.
+
+* logic check hide vD2.
+do if (not any(vD1,1,2)) & any(0,vD2_96).
+compute m1359=concat("vD1=",string(vD1,n2),",vD2=",string(vD2,n4)).
+compute p1359="vD1~=1 & vD1~=2，不應答vD2而答".
+compute s1359=1.
+end if.
+
+* logic check show vD3.
+do if (any(vD1,1,2)) & any(1,vD3_96).
+compute m1360=concat("vD1=",string(vD1,n2),",vD3=",string(vD3,n5)).
+compute p1360="vD1 in 1 | vD1 in 2，應答vD3而未答".
+compute s1360=1.
+end if.
+
+* logic check hide vD3.
+do if (not any(vD1,1,2)) & any(0,vD3_96).
+compute m1361=concat("vD1=",string(vD1,n2),",vD3=",string(vD3,n5)).
+compute p1361="vD1~=1 & vD1~=2，不應答vD3而答".
+compute s1361=1.
+end if.
+
+* logic check show vD4sD4,vD4sD5,vD4sD6,vD4sD7,vD4sD8.
+do if (any(vD1,1,2)) & (any(1,vD4sD4_96) | any(1,vD4sD5_96) | any(1,vD4sD6_96) | any(1,vD4sD7_96) | any(1,vD4sD8_96)).
+compute m1362=concat(
+  "vD1=", string(vD1,n2), ",vD4sD4=", string(vD4sD4,n2), ",vD4sD5=", string(vD4sD5,n2), ",vD4sD6=", string(vD4sD6,n2), ",vD4sD7=", string(vD4sD7,n2),
+  ",vD4sD8=", string(vD4sD8,n2)
 ).
-compute p1608="vZE2m01 in 1 | vZE2m02 in 1，應答vZE2_1而未答".
+compute p1362="vD1 in 1 | vD1 in 2，應答vD4sD4,vD4sD5,vD4sD6,vD4sD7,vD4sD8而未答".
+compute s1362=1.
 end if.
 
-* logic check show vZE2_2.
-do if (any(vZE2m01,1)) & vZE2_2="96".
-compute m1609=concat("vZE2m01=",string(vZE2m01,n2),",vZE2_2=",rtrim(ltrim(vZE2_2))).
-compute p1609="vZE2m01 in 1，應答vZE2_2而未答".
+* logic check hide vD4sD4,vD4sD5,vD4sD6,vD4sD7,vD4sD8.
+do if (not any(vD1,1,2)) & (any(0,vD4sD4_96) | any(0,vD4sD5_96) | any(0,vD4sD6_96) | any(0,vD4sD7_96) | any(0,vD4sD8_96)).
+compute m1363=concat(
+  "vD1=", string(vD1,n2), ",vD4sD4=", string(vD4sD4,n2), ",vD4sD5=", string(vD4sD5,n2), ",vD4sD6=", string(vD4sD6,n2), ",vD4sD7=", string(vD4sD7,n2),
+  ",vD4sD8=", string(vD4sD8,n2)
+).
+compute p1363="vD1~=1 & vD1~=2，不應答vD4sD4,vD4sD5,vD4sD6,vD4sD7,vD4sD8而答".
+compute s1363=1.
 end if.
 
-* logic check show vZE2_3.
-do if (any(vZE2m02,1)) & vZE2_3="96".
-compute m1610=concat("vZE2m02=",string(vZE2m02,n2),",vZE2_3=",rtrim(ltrim(vZE2_3))).
-compute p1610="vZE2m02 in 1，應答vZE2_3而未答".
+* logic check hide vZ2_2.
+do if (any(vD1,3)) & vZ2_2~="96".
+compute m1364=concat("vD1=",string(vD1,n2),",vZ2_2=",rtrim(ltrim(vZ2_2))).
+compute p1364="vD1 in 3，不應答vZ2_2而答".
+compute s1364=1.
+end if.
+
+* logic check show vZ2_2.
+do if (vD1~=3) & vZ2_2="96".
+compute m1365=concat("vD1=",string(vD1,n2),",vZ2_2=",rtrim(ltrim(vZ2_2))).
+compute p1365="vD1~=3，應答vZ2_2而未答".
+compute s1365=1.
+end if.
+
+* logic check mutex.
+do if (any(vD1,3)) & (any(vE17,1)).
+compute m1366=concat("vD1=",string(vD1,n2),",vE17=",string(vE17,n2)).
+compute p1366="vD1 in 3與互斥條件不應同時成立".
+compute s1366=1.
+end if.
+
+* logic check mutex.
+do if (any(vD1,3)) & (any(vE18,1)).
+compute m1367=concat("vD1=",string(vD1,n2),",vE18=",string(vE18,n2)).
+compute p1367="vD1 in 3與互斥條件不應同時成立".
+compute s1367=1.
+end if.
+
+* logic check mutex.
+do if (any(vD1,3)) & (any(vE2m01,1)).
+compute m1368=concat("vD1=",string(vD1,n2),",vE2m01=",string(vE2m01,n2)).
+compute p1368="vD1 in 3與互斥條件不應同時成立".
+compute s1368=1.
+end if.
+
+* logic check mutex.
+do if (any(vD1,3)) & (any(vZE2m02,1)).
+compute m1369=concat("vD1=",string(vD1,n2),",vZE2m02=",string(vZE2m02,n2)).
+compute p1369="vD1 in 3與互斥條件不應同時成立".
+compute s1369=1.
 end if.
 
 * logic check limit vD3.
 do if not any(mod(trunc(vD3/10),10),0,1,2,3,4,5).
-compute m1611=concat("vD3=",string(vD3,n5)).
-compute p1611="vD3第3碼應為0,1,2,3,4,5".
+compute m1370=concat("vD3=",string(vD3,n5)).
+compute p1370="vD3第3碼應為0,1,2,3,4,5".
+compute s1370=1.
+end if.
+
+* logic check show vE17.
+do if ((any(vK1m01,1) | any(vK2m13,1))) & any(1,vE17_96).
+compute m1371=concat("vK1m01=",string(vK1m01,n2),",vK2m13=",string(vK2m13,n2),",vE17=",string(vE17,n2)).
+compute p1371="(vK1m01 in 1 | vK2m13 in 1)，應答vE17而未答".
+compute s1371=1.
+end if.
+
+* logic check show vKLI1.
+do if ((any(vK1m01,1) | any(vK2m13,1))) & any(1,vKLI1_96).
+compute m1372=concat("vK1m01=",string(vK1m01,n2),",vK2m13=",string(vK2m13,n2),",vKLI1=",string(vKLI1,n4)).
+compute p1372="(vK1m01 in 1 | vK2m13 in 1)，應答vKLI1而未答".
+compute s1372=1.
+end if.
+
+* logic check show vKLI2.
+do if ((any(vK1m01,1) | any(vK2m13,1))) & any(1,vKLI2_96).
+compute m1373=concat("vK1m01=",string(vK1m01,n2),",vK2m13=",string(vK2m13,n2),",vKLI2=",string(vKLI2,n5)).
+compute p1373="(vK1m01 in 1 | vK2m13 in 1)，應答vKLI2而未答".
+compute s1373=1.
+end if.
+
+* logic check show vE17.
+do if (any(vK1m01,1) | any(vK2m13,1)) & any(1,vE17_96).
+compute m1374=concat("vK1m01=",string(vK1m01,n2),",vK2m13=",string(vK2m13,n2),",vE17=",string(vE17,n2)).
+compute p1374="vK1m01 in 1 | vK2m13 in 1，應答vE17而未答".
+compute s1374=1.
+end if.
+
+* logic check hide vE17.
+do if (vK1m01~=1 & vK2m13~=1) & any(0,vE17_96).
+compute m1375=concat("vK1m01=",string(vK1m01,n2),",vK2m13=",string(vK2m13,n2),",vE17=",string(vE17,n2)).
+compute p1375="vK1m01~=1 & vK2m13~=1，不應答vE17而答".
+compute s1375=1.
+end if.
+
+* logic check show vKLI1.
+do if (any(vK1m01,1) | any(vK2m13,1)) & any(1,vKLI1_96).
+compute m1376=concat("vK1m01=",string(vK1m01,n2),",vK2m13=",string(vK2m13,n2),",vKLI1=",string(vKLI1,n4)).
+compute p1376="vK1m01 in 1 | vK2m13 in 1，應答vKLI1而未答".
+compute s1376=1.
+end if.
+
+* logic check hide vKLI1.
+do if (vK1m01~=1 & vK2m13~=1) & any(0,vKLI1_96).
+compute m1377=concat("vK1m01=",string(vK1m01,n2),",vK2m13=",string(vK2m13,n2),",vKLI1=",string(vKLI1,n4)).
+compute p1377="vK1m01~=1 & vK2m13~=1，不應答vKLI1而答".
+compute s1377=1.
+end if.
+
+* logic check show vKLI2.
+do if (any(vK1m01,1) | any(vK2m13,1)) & any(1,vKLI2_96).
+compute m1378=concat("vK1m01=",string(vK1m01,n2),",vK2m13=",string(vK2m13,n2),",vKLI2=",string(vKLI2,n5)).
+compute p1378="vK1m01 in 1 | vK2m13 in 1，應答vKLI2而未答".
+compute s1378=1.
+end if.
+
+* logic check hide vKLI2.
+do if (vK1m01~=1 & vK2m13~=1) & any(0,vKLI2_96).
+compute m1379=concat("vK1m01=",string(vK1m01,n2),",vK2m13=",string(vK2m13,n2),",vKLI2=",string(vKLI2,n5)).
+compute p1379="vK1m01~=1 & vK2m13~=1，不應答vKLI2而答".
+compute s1379=1.
+end if.
+
+* logic check show vKFB1.
+do if ((any(vK1m02,1) | any(vK2m01,1))) & any(1,vKFB1_96).
+compute m1380=concat("vK1m02=",string(vK1m02,n2),",vK2m01=",string(vK2m01,n2),",vKFB1=",string(vKFB1,n4)).
+compute p1380="(vK1m02 in 1 | vK2m01 in 1)，應答vKFB1而未答".
+compute s1380=1.
+end if.
+
+* logic check show vKFB2.
+do if ((any(vK1m02,1) | any(vK2m01,1))) & any(1,vKFB2_96).
+compute m1381=concat("vK1m02=",string(vK1m02,n2),",vK2m01=",string(vK2m01,n2),",vKFB2=",string(vKFB2,n5)).
+compute p1381="(vK1m02 in 1 | vK2m01 in 1)，應答vKFB2而未答".
+compute s1381=1.
+end if.
+
+* logic check show vKFB3m01,vKFB3m02,vKFB3m03,vKFB3m04,vKFB3m05,vKFB3m06,vKFB3m07,vKFB3m08,vKFB3m09,vKFB3m10,vKFB3m11,vKFB3m12,vKFB3m13,vKFB3m14,vKFB3m15.
+* vKFB3m16,vKFB3m17,vKFB3m88.
+do if ((any(vK1m02 , 1) | any(vK2m01 , 1))) & (any(1 , vKFB3m01_96) | any(1 , vKFB3m02_96) | any(1 , vKFB3m03_96) | any(1 , vKFB3m04_96) | any(1 , vKFB3m05_96)
+| any(1 , vKFB3m06_96) | any(1 , vKFB3m07_96) | any(1 , vKFB3m08_96) | any(1 , vKFB3m09_96) | any(1 , vKFB3m10_96) | any(1 , vKFB3m11_96) | any(1 , vKFB3m12_96)
+| any(1 , vKFB3m13_96) | any(1 , vKFB3m14_96) | any(1 , vKFB3m15_96) | any(1 , vKFB3m16_96) | any(1 , vKFB3m17_96) | any(1 , vKFB3m88_96)).
+compute m1382=concat(
+  "vK1m02=", string(vK1m02,n2), ",vK2m01=", string(vK2m01,n2), ",vKFB3m01=", string(vKFB3m01,n2), ",vKFB3m02=", string(vKFB3m02,n2), ",vKFB3m03=",
+  string(vKFB3m03,n2), ",vKFB3m04=", string(vKFB3m04,n2), ",vKFB3m05=", string(vKFB3m05,n2), ",vKFB3m06=", string(vKFB3m06,n2), ",vKFB3m07=",
+  string(vKFB3m07,n2), ",vKFB3m08=", string(vKFB3m08,n2), ",vKFB3m09=", string(vKFB3m09,n2), ",vKFB3m10=", string(vKFB3m10,n2), ",vKFB3m11=",
+  string(vKFB3m11,n2), ",vKFB3m12=", string(vKFB3m12,n2), ",vKFB3m13=", string(vKFB3m13,n2), ",vKFB3m14=", string(vKFB3m14,n2), ",vKFB3m15=",
+  string(vKFB3m15,n2), ",vKFB3m16=", string(vKFB3m16,n2), ",vKFB3m17=", string(vKFB3m17,n2), ",vKFB3m88=", string(vKFB3m88,n2)
+).
+compute p1382=concat(
+  "(vK1m02 in 1 | vK2m01 in 1)，應答vKFB3m01,vKFB3m02,vKFB3m03,vKFB3m04,vKFB3m05,vKFB3m06,vKFB3m07,vKFB3m0",
+  "8,vKFB3m09,vKFB3m10,vKFB3m11,vKFB3m12,vKFB3m13,vKFB3m14,vKFB3m15,vKFB3m16,vKFB3m17,vKFB3m88而未答"
+).
+compute s1382=1.
+end if.
+
+* logic check show vKFB4m01,vKFB4m02,vKFB4m03,vKFB4m04,vKFB4m05,vKFB4m06,vKFB4m07,vKFB4m08,vKFB4m09,vKFB4m10,vKFB4m11,vKFB4m12,vKFB4m13,vKFB4m14,vKFB4m15.
+* vKFB4m16,vKFB4m17,vKFB4m18,vKFB4m88.
+do if ((any(vK1m02 , 1) | any(vK2m01 , 1))) & (any(1 , vKFB4m01_96) | any(1 , vKFB4m02_96) | any(1 , vKFB4m03_96) | any(1 , vKFB4m04_96) | any(1 , vKFB4m05_96)
+| any(1 , vKFB4m06_96) | any(1 , vKFB4m07_96) | any(1 , vKFB4m08_96) | any(1 , vKFB4m09_96) | any(1 , vKFB4m10_96) | any(1 , vKFB4m11_96) | any(1 , vKFB4m12_96)
+| any(1 , vKFB4m13_96) | any(1 , vKFB4m14_96) | any(1 , vKFB4m15_96) | any(1 , vKFB4m16_96) | any(1 , vKFB4m17_96) | any(1 , vKFB4m18_96) | any(1
+, vKFB4m88_96)).
+compute m1383=concat(
+  "vK1m02=", string(vK1m02,n2), ",vK2m01=", string(vK2m01,n2), ",vKFB4m01=", string(vKFB4m01,n2), ",vKFB4m02=", string(vKFB4m02,n2), ",vKFB4m03=",
+  string(vKFB4m03,n2), ",vKFB4m04=", string(vKFB4m04,n2), ",vKFB4m05=", string(vKFB4m05,n2), ",vKFB4m06=", string(vKFB4m06,n2), ",vKFB4m07=",
+  string(vKFB4m07,n2), ",vKFB4m08=", string(vKFB4m08,n2), ",vKFB4m09=", string(vKFB4m09,n2), ",vKFB4m10=", string(vKFB4m10,n2), ",vKFB4m11=",
+  string(vKFB4m11,n2), ",vKFB4m12=", string(vKFB4m12,n2), ",vKFB4m13=", string(vKFB4m13,n2), ",vKFB4m14=", string(vKFB4m14,n2), ",vKFB4m15=",
+  string(vKFB4m15,n2), ",vKFB4m16=", string(vKFB4m16,n2), ",vKFB4m17=", string(vKFB4m17,n2), ",vKFB4m18=", string(vKFB4m18,n2), ",vKFB4m88=",
+  string(vKFB4m88,n2)
+).
+compute p1383=concat(
+  "(vK1m02 in 1 | vK2m01 in 1)，應答vKFB4m01,vKFB4m02,vKFB4m03,vKFB4m04,vKFB4m05,vKFB4m06,vKFB4m07,vKFB4m0",
+  "8,vKFB4m09,vKFB4m10,vKFB4m11,vKFB4m12,vKFB4m13,vKFB4m14,vKFB4m15,vKFB4m16,vKFB4m17,vKFB4m18,vKFB4m88",
+  "而未答"
+).
+compute s1383=1.
+end if.
+
+* logic check show vKFB1.
+do if (any(vK1m02,1) | any(vK2m01,1)) & any(1,vKFB1_96).
+compute m1384=concat("vK1m02=",string(vK1m02,n2),",vK2m01=",string(vK2m01,n2),",vKFB1=",string(vKFB1,n4)).
+compute p1384="vK1m02 in 1 | vK2m01 in 1，應答vKFB1而未答".
+compute s1384=1.
+end if.
+
+* logic check hide vKFB1.
+do if (vK1m02~=1 & vK2m01~=1) & any(0,vKFB1_96).
+compute m1385=concat("vK1m02=",string(vK1m02,n2),",vK2m01=",string(vK2m01,n2),",vKFB1=",string(vKFB1,n4)).
+compute p1385="vK1m02~=1 & vK2m01~=1，不應答vKFB1而答".
+compute s1385=1.
+end if.
+
+* logic check show vKFB2.
+do if (any(vK1m02,1) | any(vK2m01,1)) & any(1,vKFB2_96).
+compute m1386=concat("vK1m02=",string(vK1m02,n2),",vK2m01=",string(vK2m01,n2),",vKFB2=",string(vKFB2,n5)).
+compute p1386="vK1m02 in 1 | vK2m01 in 1，應答vKFB2而未答".
+compute s1386=1.
+end if.
+
+* logic check hide vKFB2.
+do if (vK1m02~=1 & vK2m01~=1) & any(0,vKFB2_96).
+compute m1387=concat("vK1m02=",string(vK1m02,n2),",vK2m01=",string(vK2m01,n2),",vKFB2=",string(vKFB2,n5)).
+compute p1387="vK1m02~=1 & vK2m01~=1，不應答vKFB2而答".
+compute s1387=1.
+end if.
+
+* logic check show vKFB3m01,vKFB3m02,vKFB3m03,vKFB3m04,vKFB3m05,vKFB3m06,vKFB3m07,vKFB3m08,vKFB3m09,vKFB3m10,vKFB3m11,vKFB3m12,vKFB3m13,vKFB3m14,vKFB3m15.
+* vKFB3m16,vKFB3m17,vKFB3m88.
+do if (any(vK1m02 , 1) | any(vK2m01 , 1)) & (any(1 , vKFB3m01_96) | any(1 , vKFB3m02_96) | any(1 , vKFB3m03_96) | any(1 , vKFB3m04_96) | any(1 , vKFB3m05_96)
+| any(1 , vKFB3m06_96) | any(1 , vKFB3m07_96) | any(1 , vKFB3m08_96) | any(1 , vKFB3m09_96) | any(1 , vKFB3m10_96) | any(1 , vKFB3m11_96) | any(1 , vKFB3m12_96)
+| any(1 , vKFB3m13_96) | any(1 , vKFB3m14_96) | any(1 , vKFB3m15_96) | any(1 , vKFB3m16_96) | any(1 , vKFB3m17_96) | any(1 , vKFB3m88_96)).
+compute m1388=concat(
+  "vK1m02=", string(vK1m02,n2), ",vK2m01=", string(vK2m01,n2), ",vKFB3m01=", string(vKFB3m01,n2), ",vKFB3m02=", string(vKFB3m02,n2), ",vKFB3m03=",
+  string(vKFB3m03,n2), ",vKFB3m04=", string(vKFB3m04,n2), ",vKFB3m05=", string(vKFB3m05,n2), ",vKFB3m06=", string(vKFB3m06,n2), ",vKFB3m07=",
+  string(vKFB3m07,n2), ",vKFB3m08=", string(vKFB3m08,n2), ",vKFB3m09=", string(vKFB3m09,n2), ",vKFB3m10=", string(vKFB3m10,n2), ",vKFB3m11=",
+  string(vKFB3m11,n2), ",vKFB3m12=", string(vKFB3m12,n2), ",vKFB3m13=", string(vKFB3m13,n2), ",vKFB3m14=", string(vKFB3m14,n2), ",vKFB3m15=",
+  string(vKFB3m15,n2), ",vKFB3m16=", string(vKFB3m16,n2), ",vKFB3m17=", string(vKFB3m17,n2), ",vKFB3m88=", string(vKFB3m88,n2)
+).
+compute p1388=concat(
+  "vK1m02 in 1 | vK2m01 in 1，應答vKFB3m01,vKFB3m02,vKFB3m03,vKFB3m04,vKFB3m05,vKFB3m06,vKFB3m07,vKFB3m08,",
+  "vKFB3m09,vKFB3m10,vKFB3m11,vKFB3m12,vKFB3m13,vKFB3m14,vKFB3m15,vKFB3m16,vKFB3m17,vKFB3m88而未答"
+).
+compute s1388=1.
+end if.
+
+* logic check hide vKFB3m01,vKFB3m02,vKFB3m03,vKFB3m04,vKFB3m05,vKFB3m06,vKFB3m07,vKFB3m08,vKFB3m09,vKFB3m10,vKFB3m11,vKFB3m12,vKFB3m13,vKFB3m14,vKFB3m15.
+* vKFB3m16,vKFB3m17,vKFB3m88.
+do if (vK1m02~=1 & vK2m01~=1) & (any(0 , vKFB3m01_96) | any(0 , vKFB3m02_96) | any(0 , vKFB3m03_96) | any(0 , vKFB3m04_96) | any(0 , vKFB3m05_96) | any(0
+, vKFB3m06_96) | any(0 , vKFB3m07_96) | any(0 , vKFB3m08_96) | any(0 , vKFB3m09_96) | any(0 , vKFB3m10_96) | any(0 , vKFB3m11_96) | any(0 , vKFB3m12_96) | any(0
+, vKFB3m13_96) | any(0 , vKFB3m14_96) | any(0 , vKFB3m15_96) | any(0 , vKFB3m16_96) | any(0 , vKFB3m17_96) | any(0 , vKFB3m88_96)).
+compute m1389=concat(
+  "vK1m02=", string(vK1m02,n2), ",vK2m01=", string(vK2m01,n2), ",vKFB3m01=", string(vKFB3m01,n2), ",vKFB3m02=", string(vKFB3m02,n2), ",vKFB3m03=",
+  string(vKFB3m03,n2), ",vKFB3m04=", string(vKFB3m04,n2), ",vKFB3m05=", string(vKFB3m05,n2), ",vKFB3m06=", string(vKFB3m06,n2), ",vKFB3m07=",
+  string(vKFB3m07,n2), ",vKFB3m08=", string(vKFB3m08,n2), ",vKFB3m09=", string(vKFB3m09,n2), ",vKFB3m10=", string(vKFB3m10,n2), ",vKFB3m11=",
+  string(vKFB3m11,n2), ",vKFB3m12=", string(vKFB3m12,n2), ",vKFB3m13=", string(vKFB3m13,n2), ",vKFB3m14=", string(vKFB3m14,n2), ",vKFB3m15=",
+  string(vKFB3m15,n2), ",vKFB3m16=", string(vKFB3m16,n2), ",vKFB3m17=", string(vKFB3m17,n2), ",vKFB3m88=", string(vKFB3m88,n2)
+).
+compute p1389=concat(
+  "vK1m02~=1 & vK2m01~=1，不應答vKFB3m01,vKFB3m02,vKFB3m03,vKFB3m04,vKFB3m05,vKFB3m06,vKFB3m07,vKFB3m08,vKF",
+  "B3m09,vKFB3m10,vKFB3m11,vKFB3m12,vKFB3m13,vKFB3m14,vKFB3m15,vKFB3m16,vKFB3m17,vKFB3m88而答"
+).
+compute s1389=1.
+end if.
+
+* logic check show vKFB4m01,vKFB4m02,vKFB4m03,vKFB4m04,vKFB4m05,vKFB4m06,vKFB4m07,vKFB4m08,vKFB4m09,vKFB4m10,vKFB4m11,vKFB4m12,vKFB4m13,vKFB4m14,vKFB4m15.
+* vKFB4m16,vKFB4m17,vKFB4m18,vKFB4m88.
+do if (any(vK1m02 , 1) | any(vK2m01 , 1)) & (any(1 , vKFB4m01_96) | any(1 , vKFB4m02_96) | any(1 , vKFB4m03_96) | any(1 , vKFB4m04_96) | any(1 , vKFB4m05_96)
+| any(1 , vKFB4m06_96) | any(1 , vKFB4m07_96) | any(1 , vKFB4m08_96) | any(1 , vKFB4m09_96) | any(1 , vKFB4m10_96) | any(1 , vKFB4m11_96) | any(1 , vKFB4m12_96)
+| any(1 , vKFB4m13_96) | any(1 , vKFB4m14_96) | any(1 , vKFB4m15_96) | any(1 , vKFB4m16_96) | any(1 , vKFB4m17_96) | any(1 , vKFB4m18_96) | any(1
+, vKFB4m88_96)).
+compute m1390=concat(
+  "vK1m02=", string(vK1m02,n2), ",vK2m01=", string(vK2m01,n2), ",vKFB4m01=", string(vKFB4m01,n2), ",vKFB4m02=", string(vKFB4m02,n2), ",vKFB4m03=",
+  string(vKFB4m03,n2), ",vKFB4m04=", string(vKFB4m04,n2), ",vKFB4m05=", string(vKFB4m05,n2), ",vKFB4m06=", string(vKFB4m06,n2), ",vKFB4m07=",
+  string(vKFB4m07,n2), ",vKFB4m08=", string(vKFB4m08,n2), ",vKFB4m09=", string(vKFB4m09,n2), ",vKFB4m10=", string(vKFB4m10,n2), ",vKFB4m11=",
+  string(vKFB4m11,n2), ",vKFB4m12=", string(vKFB4m12,n2), ",vKFB4m13=", string(vKFB4m13,n2), ",vKFB4m14=", string(vKFB4m14,n2), ",vKFB4m15=",
+  string(vKFB4m15,n2), ",vKFB4m16=", string(vKFB4m16,n2), ",vKFB4m17=", string(vKFB4m17,n2), ",vKFB4m18=", string(vKFB4m18,n2), ",vKFB4m88=",
+  string(vKFB4m88,n2)
+).
+compute p1390=concat(
+  "vK1m02 in 1 | vK2m01 in 1，應答vKFB4m01,vKFB4m02,vKFB4m03,vKFB4m04,vKFB4m05,vKFB4m06,vKFB4m07,vKFB4m08,",
+  "vKFB4m09,vKFB4m10,vKFB4m11,vKFB4m12,vKFB4m13,vKFB4m14,vKFB4m15,vKFB4m16,vKFB4m17,vKFB4m18,vKFB4m88而未",
+  "答"
+).
+compute s1390=1.
+end if.
+
+* logic check hide vKFB4m01,vKFB4m02,vKFB4m03,vKFB4m04,vKFB4m05,vKFB4m06,vKFB4m07,vKFB4m08,vKFB4m09,vKFB4m10,vKFB4m11,vKFB4m12,vKFB4m13,vKFB4m14,vKFB4m15.
+* vKFB4m16,vKFB4m17,vKFB4m18,vKFB4m88.
+do if (vK1m02~=1 & vK2m01~=1) & (any(0 , vKFB4m01_96) | any(0 , vKFB4m02_96) | any(0 , vKFB4m03_96) | any(0 , vKFB4m04_96) | any(0 , vKFB4m05_96) | any(0
+, vKFB4m06_96) | any(0 , vKFB4m07_96) | any(0 , vKFB4m08_96) | any(0 , vKFB4m09_96) | any(0 , vKFB4m10_96) | any(0 , vKFB4m11_96) | any(0 , vKFB4m12_96) | any(0
+, vKFB4m13_96) | any(0 , vKFB4m14_96) | any(0 , vKFB4m15_96) | any(0 , vKFB4m16_96) | any(0 , vKFB4m17_96) | any(0 , vKFB4m18_96) | any(0 , vKFB4m88_96)).
+compute m1391=concat(
+  "vK1m02=", string(vK1m02,n2), ",vK2m01=", string(vK2m01,n2), ",vKFB4m01=", string(vKFB4m01,n2), ",vKFB4m02=", string(vKFB4m02,n2), ",vKFB4m03=",
+  string(vKFB4m03,n2), ",vKFB4m04=", string(vKFB4m04,n2), ",vKFB4m05=", string(vKFB4m05,n2), ",vKFB4m06=", string(vKFB4m06,n2), ",vKFB4m07=",
+  string(vKFB4m07,n2), ",vKFB4m08=", string(vKFB4m08,n2), ",vKFB4m09=", string(vKFB4m09,n2), ",vKFB4m10=", string(vKFB4m10,n2), ",vKFB4m11=",
+  string(vKFB4m11,n2), ",vKFB4m12=", string(vKFB4m12,n2), ",vKFB4m13=", string(vKFB4m13,n2), ",vKFB4m14=", string(vKFB4m14,n2), ",vKFB4m15=",
+  string(vKFB4m15,n2), ",vKFB4m16=", string(vKFB4m16,n2), ",vKFB4m17=", string(vKFB4m17,n2), ",vKFB4m18=", string(vKFB4m18,n2), ",vKFB4m88=",
+  string(vKFB4m88,n2)
+).
+compute p1391=concat(
+  "vK1m02~=1 & vK2m01~=1，不應答vKFB4m01,vKFB4m02,vKFB4m03,vKFB4m04,vKFB4m05,vKFB4m06,vKFB4m07,vKFB4m08,vKF",
+  "B4m09,vKFB4m10,vKFB4m11,vKFB4m12,vKFB4m13,vKFB4m14,vKFB4m15,vKFB4m16,vKFB4m17,vKFB4m18,vKFB4m88而答"
+).
+compute s1391=1.
+end if.
+
+* logic check show vKIG1.
+do if ((any(vK1m03,1) | any(vK2m02,1))) & any(1,vKIG1_96).
+compute m1392=concat("vK1m03=",string(vK1m03,n2),",vK2m02=",string(vK2m02,n2),",vKIG1=",string(vKIG1,n4)).
+compute p1392="(vK1m03 in 1 | vK2m02 in 1)，應答vKIG1而未答".
+compute s1392=1.
+end if.
+
+* logic check show vKIG2.
+do if ((any(vK1m03,1) | any(vK2m02,1))) & any(1,vKIG2_96).
+compute m1393=concat("vK1m03=",string(vK1m03,n2),",vK2m02=",string(vK2m02,n2),",vKIG2=",string(vKIG2,n5)).
+compute p1393="(vK1m03 in 1 | vK2m02 in 1)，應答vKIG2而未答".
+compute s1393=1.
+end if.
+
+* logic check show vKIG3m01,vKIG3m02,vKIG3m03,vKIG3m04,vKIG3m05,vKIG3m06,vKIG3m07,vKIG3m08,vKIG3m09,vKIG3m10,vKIG3m11,vKIG3m12,vKIG3m13,vKIG3m14,vKIG3m15.
+* vKIG3m16,vKIG3m17,vKIG3m88.
+do if ((any(vK1m03 , 1) | any(vK2m02 , 1))) & (any(1 , vKIG3m01_96) | any(1 , vKIG3m02_96) | any(1 , vKIG3m03_96) | any(1 , vKIG3m04_96) | any(1 , vKIG3m05_96)
+| any(1 , vKIG3m06_96) | any(1 , vKIG3m07_96) | any(1 , vKIG3m08_96) | any(1 , vKIG3m09_96) | any(1 , vKIG3m10_96) | any(1 , vKIG3m11_96) | any(1 , vKIG3m12_96)
+| any(1 , vKIG3m13_96) | any(1 , vKIG3m14_96) | any(1 , vKIG3m15_96) | any(1 , vKIG3m16_96) | any(1 , vKIG3m17_96) | any(1 , vKIG3m88_96)).
+compute m1394=concat(
+  "vK1m03=", string(vK1m03,n2), ",vK2m02=", string(vK2m02,n2), ",vKIG3m01=", string(vKIG3m01,n2), ",vKIG3m02=", string(vKIG3m02,n2), ",vKIG3m03=",
+  string(vKIG3m03,n2), ",vKIG3m04=", string(vKIG3m04,n2), ",vKIG3m05=", string(vKIG3m05,n2), ",vKIG3m06=", string(vKIG3m06,n2), ",vKIG3m07=",
+  string(vKIG3m07,n2), ",vKIG3m08=", string(vKIG3m08,n2), ",vKIG3m09=", string(vKIG3m09,n2), ",vKIG3m10=", string(vKIG3m10,n2), ",vKIG3m11=",
+  string(vKIG3m11,n2), ",vKIG3m12=", string(vKIG3m12,n2), ",vKIG3m13=", string(vKIG3m13,n2), ",vKIG3m14=", string(vKIG3m14,n2), ",vKIG3m15=",
+  string(vKIG3m15,n2), ",vKIG3m16=", string(vKIG3m16,n2), ",vKIG3m17=", string(vKIG3m17,n2), ",vKIG3m88=", string(vKIG3m88,n2)
+).
+compute p1394=concat(
+  "(vK1m03 in 1 | vK2m02 in 1)，應答vKIG3m01,vKIG3m02,vKIG3m03,vKIG3m04,vKIG3m05,vKIG3m06,vKIG3m07,vKIG3m0",
+  "8,vKIG3m09,vKIG3m10,vKIG3m11,vKIG3m12,vKIG3m13,vKIG3m14,vKIG3m15,vKIG3m16,vKIG3m17,vKIG3m88而未答"
+).
+compute s1394=1.
+end if.
+
+* logic check show vKIG4m01,vKIG4m02,vKIG4m03,vKIG4m04,vKIG4m05,vKIG4m06,vKIG4m07,vKIG4m08,vKIG4m09,vKIG4m10,vKIG4m11,vKIG4m12,vKIG4m13,vKIG4m14,vKIG4m88.
+do if ((any(vK1m03 , 1) | any(vK2m02 , 1))) & (any(1 , vKIG4m01_96) | any(1 , vKIG4m02_96) | any(1 , vKIG4m03_96) | any(1 , vKIG4m04_96) | any(1 , vKIG4m05_96)
+| any(1 , vKIG4m06_96) | any(1 , vKIG4m07_96) | any(1 , vKIG4m08_96) | any(1 , vKIG4m09_96) | any(1 , vKIG4m10_96) | any(1 , vKIG4m11_96) | any(1 , vKIG4m12_96)
+| any(1 , vKIG4m13_96) | any(1 , vKIG4m14_96) | any(1 , vKIG4m88_96)).
+compute m1395=concat(
+  "vK1m03=", string(vK1m03,n2), ",vK2m02=", string(vK2m02,n2), ",vKIG4m01=", string(vKIG4m01,n2), ",vKIG4m02=", string(vKIG4m02,n2), ",vKIG4m03=",
+  string(vKIG4m03,n2), ",vKIG4m04=", string(vKIG4m04,n2), ",vKIG4m05=", string(vKIG4m05,n2), ",vKIG4m06=", string(vKIG4m06,n2), ",vKIG4m07=",
+  string(vKIG4m07,n2), ",vKIG4m08=", string(vKIG4m08,n2), ",vKIG4m09=", string(vKIG4m09,n2), ",vKIG4m10=", string(vKIG4m10,n2), ",vKIG4m11=",
+  string(vKIG4m11,n2), ",vKIG4m12=", string(vKIG4m12,n2), ",vKIG4m13=", string(vKIG4m13,n2), ",vKIG4m14=", string(vKIG4m14,n2), ",vKIG4m88=",
+  string(vKIG4m88,n2)
+).
+compute p1395=concat(
+  "(vK1m03 in 1 | vK2m02 in 1)，應答vKIG4m01,vKIG4m02,vKIG4m03,vKIG4m04,vKIG4m05,vKIG4m06,vKIG4m07,vKIG4m0",
+  "8,vKIG4m09,vKIG4m10,vKIG4m11,vKIG4m12,vKIG4m13,vKIG4m14,vKIG4m88而未答"
+).
+compute s1395=1.
+end if.
+
+* logic check show vKIG1.
+do if (any(vK1m03,1) | any(vK2m02,1)) & any(1,vKIG1_96).
+compute m1396=concat("vK1m03=",string(vK1m03,n2),",vK2m02=",string(vK2m02,n2),",vKIG1=",string(vKIG1,n4)).
+compute p1396="vK1m03 in 1 | vK2m02 in 1，應答vKIG1而未答".
+compute s1396=1.
+end if.
+
+* logic check hide vKIG1.
+do if (vK1m03~=1 & vK2m02~=1) & any(0,vKIG1_96).
+compute m1397=concat("vK1m03=",string(vK1m03,n2),",vK2m02=",string(vK2m02,n2),",vKIG1=",string(vKIG1,n4)).
+compute p1397="vK1m03~=1 & vK2m02~=1，不應答vKIG1而答".
+compute s1397=1.
+end if.
+
+* logic check show vKIG2.
+do if (any(vK1m03,1) | any(vK2m02,1)) & any(1,vKIG2_96).
+compute m1398=concat("vK1m03=",string(vK1m03,n2),",vK2m02=",string(vK2m02,n2),",vKIG2=",string(vKIG2,n5)).
+compute p1398="vK1m03 in 1 | vK2m02 in 1，應答vKIG2而未答".
+compute s1398=1.
+end if.
+
+* logic check hide vKIG2.
+do if (vK1m03~=1 & vK2m02~=1) & any(0,vKIG2_96).
+compute m1399=concat("vK1m03=",string(vK1m03,n2),",vK2m02=",string(vK2m02,n2),",vKIG2=",string(vKIG2,n5)).
+compute p1399="vK1m03~=1 & vK2m02~=1，不應答vKIG2而答".
+compute s1399=1.
+end if.
+
+* logic check show vKIG3m01,vKIG3m02,vKIG3m03,vKIG3m04,vKIG3m05,vKIG3m06,vKIG3m07,vKIG3m08,vKIG3m09,vKIG3m10,vKIG3m11,vKIG3m12,vKIG3m13,vKIG3m14,vKIG3m15.
+* vKIG3m16,vKIG3m17,vKIG3m88.
+do if (any(vK1m03 , 1) | any(vK2m02 , 1)) & (any(1 , vKIG3m01_96) | any(1 , vKIG3m02_96) | any(1 , vKIG3m03_96) | any(1 , vKIG3m04_96) | any(1 , vKIG3m05_96)
+| any(1 , vKIG3m06_96) | any(1 , vKIG3m07_96) | any(1 , vKIG3m08_96) | any(1 , vKIG3m09_96) | any(1 , vKIG3m10_96) | any(1 , vKIG3m11_96) | any(1 , vKIG3m12_96)
+| any(1 , vKIG3m13_96) | any(1 , vKIG3m14_96) | any(1 , vKIG3m15_96) | any(1 , vKIG3m16_96) | any(1 , vKIG3m17_96) | any(1 , vKIG3m88_96)).
+compute m1400=concat(
+  "vK1m03=", string(vK1m03,n2), ",vK2m02=", string(vK2m02,n2), ",vKIG3m01=", string(vKIG3m01,n2), ",vKIG3m02=", string(vKIG3m02,n2), ",vKIG3m03=",
+  string(vKIG3m03,n2), ",vKIG3m04=", string(vKIG3m04,n2), ",vKIG3m05=", string(vKIG3m05,n2), ",vKIG3m06=", string(vKIG3m06,n2), ",vKIG3m07=",
+  string(vKIG3m07,n2), ",vKIG3m08=", string(vKIG3m08,n2), ",vKIG3m09=", string(vKIG3m09,n2), ",vKIG3m10=", string(vKIG3m10,n2), ",vKIG3m11=",
+  string(vKIG3m11,n2), ",vKIG3m12=", string(vKIG3m12,n2), ",vKIG3m13=", string(vKIG3m13,n2), ",vKIG3m14=", string(vKIG3m14,n2), ",vKIG3m15=",
+  string(vKIG3m15,n2), ",vKIG3m16=", string(vKIG3m16,n2), ",vKIG3m17=", string(vKIG3m17,n2), ",vKIG3m88=", string(vKIG3m88,n2)
+).
+compute p1400=concat(
+  "vK1m03 in 1 | vK2m02 in 1，應答vKIG3m01,vKIG3m02,vKIG3m03,vKIG3m04,vKIG3m05,vKIG3m06,vKIG3m07,vKIG3m08,",
+  "vKIG3m09,vKIG3m10,vKIG3m11,vKIG3m12,vKIG3m13,vKIG3m14,vKIG3m15,vKIG3m16,vKIG3m17,vKIG3m88而未答"
+).
+compute s1400=1.
+end if.
+
+* logic check hide vKIG3m01,vKIG3m02,vKIG3m03,vKIG3m04,vKIG3m05,vKIG3m06,vKIG3m07,vKIG3m08,vKIG3m09,vKIG3m10,vKIG3m11,vKIG3m12,vKIG3m13,vKIG3m14,vKIG3m15.
+* vKIG3m16,vKIG3m17,vKIG3m88.
+do if (vK1m03~=1 & vK2m02~=1) & (any(0 , vKIG3m01_96) | any(0 , vKIG3m02_96) | any(0 , vKIG3m03_96) | any(0 , vKIG3m04_96) | any(0 , vKIG3m05_96) | any(0
+, vKIG3m06_96) | any(0 , vKIG3m07_96) | any(0 , vKIG3m08_96) | any(0 , vKIG3m09_96) | any(0 , vKIG3m10_96) | any(0 , vKIG3m11_96) | any(0 , vKIG3m12_96) | any(0
+, vKIG3m13_96) | any(0 , vKIG3m14_96) | any(0 , vKIG3m15_96) | any(0 , vKIG3m16_96) | any(0 , vKIG3m17_96) | any(0 , vKIG3m88_96)).
+compute m1401=concat(
+  "vK1m03=", string(vK1m03,n2), ",vK2m02=", string(vK2m02,n2), ",vKIG3m01=", string(vKIG3m01,n2), ",vKIG3m02=", string(vKIG3m02,n2), ",vKIG3m03=",
+  string(vKIG3m03,n2), ",vKIG3m04=", string(vKIG3m04,n2), ",vKIG3m05=", string(vKIG3m05,n2), ",vKIG3m06=", string(vKIG3m06,n2), ",vKIG3m07=",
+  string(vKIG3m07,n2), ",vKIG3m08=", string(vKIG3m08,n2), ",vKIG3m09=", string(vKIG3m09,n2), ",vKIG3m10=", string(vKIG3m10,n2), ",vKIG3m11=",
+  string(vKIG3m11,n2), ",vKIG3m12=", string(vKIG3m12,n2), ",vKIG3m13=", string(vKIG3m13,n2), ",vKIG3m14=", string(vKIG3m14,n2), ",vKIG3m15=",
+  string(vKIG3m15,n2), ",vKIG3m16=", string(vKIG3m16,n2), ",vKIG3m17=", string(vKIG3m17,n2), ",vKIG3m88=", string(vKIG3m88,n2)
+).
+compute p1401=concat(
+  "vK1m03~=1 & vK2m02~=1，不應答vKIG3m01,vKIG3m02,vKIG3m03,vKIG3m04,vKIG3m05,vKIG3m06,vKIG3m07,vKIG3m08,vKI",
+  "G3m09,vKIG3m10,vKIG3m11,vKIG3m12,vKIG3m13,vKIG3m14,vKIG3m15,vKIG3m16,vKIG3m17,vKIG3m88而答"
+).
+compute s1401=1.
+end if.
+
+* logic check show vKIG4m01,vKIG4m02,vKIG4m03,vKIG4m04,vKIG4m05,vKIG4m06,vKIG4m07,vKIG4m08,vKIG4m09,vKIG4m10,vKIG4m11,vKIG4m12,vKIG4m13,vKIG4m14,vKIG4m88.
+do if (any(vK1m03 , 1) | any(vK2m02 , 1)) & (any(1 , vKIG4m01_96) | any(1 , vKIG4m02_96) | any(1 , vKIG4m03_96) | any(1 , vKIG4m04_96) | any(1 , vKIG4m05_96)
+| any(1 , vKIG4m06_96) | any(1 , vKIG4m07_96) | any(1 , vKIG4m08_96) | any(1 , vKIG4m09_96) | any(1 , vKIG4m10_96) | any(1 , vKIG4m11_96) | any(1 , vKIG4m12_96)
+| any(1 , vKIG4m13_96) | any(1 , vKIG4m14_96) | any(1 , vKIG4m88_96)).
+compute m1402=concat(
+  "vK1m03=", string(vK1m03,n2), ",vK2m02=", string(vK2m02,n2), ",vKIG4m01=", string(vKIG4m01,n2), ",vKIG4m02=", string(vKIG4m02,n2), ",vKIG4m03=",
+  string(vKIG4m03,n2), ",vKIG4m04=", string(vKIG4m04,n2), ",vKIG4m05=", string(vKIG4m05,n2), ",vKIG4m06=", string(vKIG4m06,n2), ",vKIG4m07=",
+  string(vKIG4m07,n2), ",vKIG4m08=", string(vKIG4m08,n2), ",vKIG4m09=", string(vKIG4m09,n2), ",vKIG4m10=", string(vKIG4m10,n2), ",vKIG4m11=",
+  string(vKIG4m11,n2), ",vKIG4m12=", string(vKIG4m12,n2), ",vKIG4m13=", string(vKIG4m13,n2), ",vKIG4m14=", string(vKIG4m14,n2), ",vKIG4m88=",
+  string(vKIG4m88,n2)
+).
+compute p1402=concat(
+  "vK1m03 in 1 | vK2m02 in 1，應答vKIG4m01,vKIG4m02,vKIG4m03,vKIG4m04,vKIG4m05,vKIG4m06,vKIG4m07,vKIG4m08,",
+  "vKIG4m09,vKIG4m10,vKIG4m11,vKIG4m12,vKIG4m13,vKIG4m14,vKIG4m88而未答"
+).
+compute s1402=1.
+end if.
+
+* logic check hide vKIG4m01,vKIG4m02,vKIG4m03,vKIG4m04,vKIG4m05,vKIG4m06,vKIG4m07,vKIG4m08,vKIG4m09,vKIG4m10,vKIG4m11,vKIG4m12,vKIG4m13,vKIG4m14,vKIG4m88.
+do if (vK1m03~=1 & vK2m02~=1) & (any(0 , vKIG4m01_96) | any(0 , vKIG4m02_96) | any(0 , vKIG4m03_96) | any(0 , vKIG4m04_96) | any(0 , vKIG4m05_96) | any(0
+, vKIG4m06_96) | any(0 , vKIG4m07_96) | any(0 , vKIG4m08_96) | any(0 , vKIG4m09_96) | any(0 , vKIG4m10_96) | any(0 , vKIG4m11_96) | any(0 , vKIG4m12_96) | any(0
+, vKIG4m13_96) | any(0 , vKIG4m14_96) | any(0 , vKIG4m88_96)).
+compute m1403=concat(
+  "vK1m03=", string(vK1m03,n2), ",vK2m02=", string(vK2m02,n2), ",vKIG4m01=", string(vKIG4m01,n2), ",vKIG4m02=", string(vKIG4m02,n2), ",vKIG4m03=",
+  string(vKIG4m03,n2), ",vKIG4m04=", string(vKIG4m04,n2), ",vKIG4m05=", string(vKIG4m05,n2), ",vKIG4m06=", string(vKIG4m06,n2), ",vKIG4m07=",
+  string(vKIG4m07,n2), ",vKIG4m08=", string(vKIG4m08,n2), ",vKIG4m09=", string(vKIG4m09,n2), ",vKIG4m10=", string(vKIG4m10,n2), ",vKIG4m11=",
+  string(vKIG4m11,n2), ",vKIG4m12=", string(vKIG4m12,n2), ",vKIG4m13=", string(vKIG4m13,n2), ",vKIG4m14=", string(vKIG4m14,n2), ",vKIG4m88=",
+  string(vKIG4m88,n2)
+).
+compute p1403=concat(
+  "vK1m03~=1 & vK2m02~=1，不應答vKIG4m01,vKIG4m02,vKIG4m03,vKIG4m04,vKIG4m05,vKIG4m06,vKIG4m07,vKIG4m08,vKI",
+  "G4m09,vKIG4m10,vKIG4m11,vKIG4m12,vKIG4m13,vKIG4m14,vKIG4m88而答"
+).
+compute s1403=1.
+end if.
+
+* logic check show vKTT1.
+do if ((any(vK1m11,1) | any(vK2m07,1))) & any(1,vKTT1_96).
+compute m1404=concat("vK1m11=",string(vK1m11,n2),",vK2m07=",string(vK2m07,n2),",vKTT1=",string(vKTT1,n4)).
+compute p1404="(vK1m11 in 1 | vK2m07 in 1)，應答vKTT1而未答".
+compute s1404=1.
+end if.
+
+* logic check show vKTT2.
+do if ((any(vK1m11,1) | any(vK2m07,1))) & any(1,vKTT2_96).
+compute m1405=concat("vK1m11=",string(vK1m11,n2),",vK2m07=",string(vK2m07,n2),",vKTT2=",string(vKTT2,n5)).
+compute p1405="(vK1m11 in 1 | vK2m07 in 1)，應答vKTT2而未答".
+compute s1405=1.
+end if.
+
+* logic check show vKTT3m01,vKTT3m02,vKTT3m03,vKTT3m04,vKTT3m05,vKTT3m06,vKTT3m07,vKTT3m08,vKTT3m09,vKTT3m10,vKTT3m11,vKTT3m12,vKTT3m13,vKTT3m14,vKTT3m15.
+* vKTT3m16,vKTT3m88.
+do if ((any(vK1m11 , 1) | any(vK2m07 , 1))) & (any(1 , vKTT3m01_96) | any(1 , vKTT3m02_96) | any(1 , vKTT3m03_96) | any(1 , vKTT3m04_96) | any(1 , vKTT3m05_96)
+| any(1 , vKTT3m06_96) | any(1 , vKTT3m07_96) | any(1 , vKTT3m08_96) | any(1 , vKTT3m09_96) | any(1 , vKTT3m10_96) | any(1 , vKTT3m11_96) | any(1 , vKTT3m12_96)
+| any(1 , vKTT3m13_96) | any(1 , vKTT3m14_96) | any(1 , vKTT3m15_96) | any(1 , vKTT3m16_96) | any(1 , vKTT3m88_96)).
+compute m1406=concat(
+  "vK1m11=", string(vK1m11,n2), ",vK2m07=", string(vK2m07,n2), ",vKTT3m01=", string(vKTT3m01,n2), ",vKTT3m02=", string(vKTT3m02,n2), ",vKTT3m03=",
+  string(vKTT3m03,n2), ",vKTT3m04=", string(vKTT3m04,n2), ",vKTT3m05=", string(vKTT3m05,n2), ",vKTT3m06=", string(vKTT3m06,n2), ",vKTT3m07=",
+  string(vKTT3m07,n2), ",vKTT3m08=", string(vKTT3m08,n2), ",vKTT3m09=", string(vKTT3m09,n2), ",vKTT3m10=", string(vKTT3m10,n2), ",vKTT3m11=",
+  string(vKTT3m11,n2), ",vKTT3m12=", string(vKTT3m12,n2), ",vKTT3m13=", string(vKTT3m13,n2), ",vKTT3m14=", string(vKTT3m14,n2), ",vKTT3m15=",
+  string(vKTT3m15,n2), ",vKTT3m16=", string(vKTT3m16,n2), ",vKTT3m88=", string(vKTT3m88,n2)
+).
+compute p1406=concat(
+  "(vK1m11 in 1 | vK2m07 in 1)，應答vKTT3m01,vKTT3m02,vKTT3m03,vKTT3m04,vKTT3m05,vKTT3m06,vKTT3m07,vKTT3m0",
+  "8,vKTT3m09,vKTT3m10,vKTT3m11,vKTT3m12,vKTT3m13,vKTT3m14,vKTT3m15,vKTT3m16,vKTT3m88而未答"
+).
+compute s1406=1.
+end if.
+
+* logic check show vKTT4m01,vKTT4m02,vKTT4m03,vKTT4m04,vKTT4m05,vKTT4m06,vKTT4m07,vKTT4m08,vKTT4m09,vKTT4m10,vKTT4m11,vKTT4m12,vKTT4m13,vKTT4m14,vKTT4m88.
+do if ((any(vK1m11 , 1) | any(vK2m07 , 1))) & (any(1 , vKTT4m01_96) | any(1 , vKTT4m02_96) | any(1 , vKTT4m03_96) | any(1 , vKTT4m04_96) | any(1 , vKTT4m05_96)
+| any(1 , vKTT4m06_96) | any(1 , vKTT4m07_96) | any(1 , vKTT4m08_96) | any(1 , vKTT4m09_96) | any(1 , vKTT4m10_96) | any(1 , vKTT4m11_96) | any(1 , vKTT4m12_96)
+| any(1 , vKTT4m13_96) | any(1 , vKTT4m14_96) | any(1 , vKTT4m88_96)).
+compute m1407=concat(
+  "vK1m11=", string(vK1m11,n2), ",vK2m07=", string(vK2m07,n2), ",vKTT4m01=", string(vKTT4m01,n2), ",vKTT4m02=", string(vKTT4m02,n2), ",vKTT4m03=",
+  string(vKTT4m03,n2), ",vKTT4m04=", string(vKTT4m04,n2), ",vKTT4m05=", string(vKTT4m05,n2), ",vKTT4m06=", string(vKTT4m06,n2), ",vKTT4m07=",
+  string(vKTT4m07,n2), ",vKTT4m08=", string(vKTT4m08,n2), ",vKTT4m09=", string(vKTT4m09,n2), ",vKTT4m10=", string(vKTT4m10,n2), ",vKTT4m11=",
+  string(vKTT4m11,n2), ",vKTT4m12=", string(vKTT4m12,n2), ",vKTT4m13=", string(vKTT4m13,n2), ",vKTT4m14=", string(vKTT4m14,n2), ",vKTT4m88=",
+  string(vKTT4m88,n2)
+).
+compute p1407=concat(
+  "(vK1m11 in 1 | vK2m07 in 1)，應答vKTT4m01,vKTT4m02,vKTT4m03,vKTT4m04,vKTT4m05,vKTT4m06,vKTT4m07,vKTT4m0",
+  "8,vKTT4m09,vKTT4m10,vKTT4m11,vKTT4m12,vKTT4m13,vKTT4m14,vKTT4m88而未答"
+).
+compute s1407=1.
+end if.
+
+* logic check show vKTT5m01,vKTT5m02,vKTT5m03,vKTT5m04,vKTT5m05,vKTT5m06,vKTT5m07,vKTT5m08,vKTT5m09,vKTT5m10,vKTT5m11,vKTT5m12,vKTT5m88.
+do if ((any(vK1m11 , 1) | any(vK2m07 , 1))) & (any(1 , vKTT5m01_96) | any(1 , vKTT5m02_96) | any(1 , vKTT5m03_96) | any(1 , vKTT5m04_96) | any(1 , vKTT5m05_96)
+| any(1 , vKTT5m06_96) | any(1 , vKTT5m07_96) | any(1 , vKTT5m08_96) | any(1 , vKTT5m09_96) | any(1 , vKTT5m10_96) | any(1 , vKTT5m11_96) | any(1 , vKTT5m12_96)
+| any(1 , vKTT5m88_96)).
+compute m1408=concat(
+  "vK1m11=", string(vK1m11,n2), ",vK2m07=", string(vK2m07,n2), ",vKTT5m01=", string(vKTT5m01,n2), ",vKTT5m02=", string(vKTT5m02,n2), ",vKTT5m03=",
+  string(vKTT5m03,n2), ",vKTT5m04=", string(vKTT5m04,n2), ",vKTT5m05=", string(vKTT5m05,n2), ",vKTT5m06=", string(vKTT5m06,n2), ",vKTT5m07=",
+  string(vKTT5m07,n2), ",vKTT5m08=", string(vKTT5m08,n2), ",vKTT5m09=", string(vKTT5m09,n2), ",vKTT5m10=", string(vKTT5m10,n2), ",vKTT5m11=",
+  string(vKTT5m11,n2), ",vKTT5m12=", string(vKTT5m12,n2), ",vKTT5m88=", string(vKTT5m88,n2)
+).
+compute p1408=concat(
+  "(vK1m11 in 1 | vK2m07 in 1)，應答vKTT5m01,vKTT5m02,vKTT5m03,vKTT5m04,vKTT5m05,vKTT5m06,vKTT5m07,vKTT5m0",
+  "8,vKTT5m09,vKTT5m10,vKTT5m11,vKTT5m12,vKTT5m88而未答"
+).
+compute s1408=1.
+end if.
+
+* logic check show vKTT1.
+do if (any(vK1m11,1) | any(vK2m07,1)) & any(1,vKTT1_96).
+compute m1409=concat("vK1m11=",string(vK1m11,n2),",vK2m07=",string(vK2m07,n2),",vKTT1=",string(vKTT1,n4)).
+compute p1409="vK1m11 in 1 | vK2m07 in 1，應答vKTT1而未答".
+compute s1409=1.
+end if.
+
+* logic check hide vKTT1.
+do if (vK1m11~=1 & vK2m07~=1) & any(0,vKTT1_96).
+compute m1410=concat("vK1m11=",string(vK1m11,n2),",vK2m07=",string(vK2m07,n2),",vKTT1=",string(vKTT1,n4)).
+compute p1410="vK1m11~=1 & vK2m07~=1，不應答vKTT1而答".
+compute s1410=1.
+end if.
+
+* logic check show vKTT2.
+do if (any(vK1m11,1) | any(vK2m07,1)) & any(1,vKTT2_96).
+compute m1411=concat("vK1m11=",string(vK1m11,n2),",vK2m07=",string(vK2m07,n2),",vKTT2=",string(vKTT2,n5)).
+compute p1411="vK1m11 in 1 | vK2m07 in 1，應答vKTT2而未答".
+compute s1411=1.
+end if.
+
+* logic check hide vKTT2.
+do if (vK1m11~=1 & vK2m07~=1) & any(0,vKTT2_96).
+compute m1412=concat("vK1m11=",string(vK1m11,n2),",vK2m07=",string(vK2m07,n2),",vKTT2=",string(vKTT2,n5)).
+compute p1412="vK1m11~=1 & vK2m07~=1，不應答vKTT2而答".
+compute s1412=1.
+end if.
+
+* logic check show vKTT3m01,vKTT3m02,vKTT3m03,vKTT3m04,vKTT3m05,vKTT3m06,vKTT3m07,vKTT3m08,vKTT3m09,vKTT3m10,vKTT3m11,vKTT3m12,vKTT3m13,vKTT3m14,vKTT3m15.
+* vKTT3m16,vKTT3m88.
+do if (any(vK1m11 , 1) | any(vK2m07 , 1)) & (any(1 , vKTT3m01_96) | any(1 , vKTT3m02_96) | any(1 , vKTT3m03_96) | any(1 , vKTT3m04_96) | any(1 , vKTT3m05_96)
+| any(1 , vKTT3m06_96) | any(1 , vKTT3m07_96) | any(1 , vKTT3m08_96) | any(1 , vKTT3m09_96) | any(1 , vKTT3m10_96) | any(1 , vKTT3m11_96) | any(1 , vKTT3m12_96)
+| any(1 , vKTT3m13_96) | any(1 , vKTT3m14_96) | any(1 , vKTT3m15_96) | any(1 , vKTT3m16_96) | any(1 , vKTT3m88_96)).
+compute m1413=concat(
+  "vK1m11=", string(vK1m11,n2), ",vK2m07=", string(vK2m07,n2), ",vKTT3m01=", string(vKTT3m01,n2), ",vKTT3m02=", string(vKTT3m02,n2), ",vKTT3m03=",
+  string(vKTT3m03,n2), ",vKTT3m04=", string(vKTT3m04,n2), ",vKTT3m05=", string(vKTT3m05,n2), ",vKTT3m06=", string(vKTT3m06,n2), ",vKTT3m07=",
+  string(vKTT3m07,n2), ",vKTT3m08=", string(vKTT3m08,n2), ",vKTT3m09=", string(vKTT3m09,n2), ",vKTT3m10=", string(vKTT3m10,n2), ",vKTT3m11=",
+  string(vKTT3m11,n2), ",vKTT3m12=", string(vKTT3m12,n2), ",vKTT3m13=", string(vKTT3m13,n2), ",vKTT3m14=", string(vKTT3m14,n2), ",vKTT3m15=",
+  string(vKTT3m15,n2), ",vKTT3m16=", string(vKTT3m16,n2), ",vKTT3m88=", string(vKTT3m88,n2)
+).
+compute p1413=concat(
+  "vK1m11 in 1 | vK2m07 in 1，應答vKTT3m01,vKTT3m02,vKTT3m03,vKTT3m04,vKTT3m05,vKTT3m06,vKTT3m07,vKTT3m08,",
+  "vKTT3m09,vKTT3m10,vKTT3m11,vKTT3m12,vKTT3m13,vKTT3m14,vKTT3m15,vKTT3m16,vKTT3m88而未答"
+).
+compute s1413=1.
+end if.
+
+* logic check hide vKTT3m01,vKTT3m02,vKTT3m03,vKTT3m04,vKTT3m05,vKTT3m06,vKTT3m07,vKTT3m08,vKTT3m09,vKTT3m10,vKTT3m11,vKTT3m12,vKTT3m13,vKTT3m14,vKTT3m15.
+* vKTT3m16,vKTT3m88.
+do if (vK1m11~=1 & vK2m07~=1) & (any(0 , vKTT3m01_96) | any(0 , vKTT3m02_96) | any(0 , vKTT3m03_96) | any(0 , vKTT3m04_96) | any(0 , vKTT3m05_96) | any(0
+, vKTT3m06_96) | any(0 , vKTT3m07_96) | any(0 , vKTT3m08_96) | any(0 , vKTT3m09_96) | any(0 , vKTT3m10_96) | any(0 , vKTT3m11_96) | any(0 , vKTT3m12_96) | any(0
+, vKTT3m13_96) | any(0 , vKTT3m14_96) | any(0 , vKTT3m15_96) | any(0 , vKTT3m16_96) | any(0 , vKTT3m88_96)).
+compute m1414=concat(
+  "vK1m11=", string(vK1m11,n2), ",vK2m07=", string(vK2m07,n2), ",vKTT3m01=", string(vKTT3m01,n2), ",vKTT3m02=", string(vKTT3m02,n2), ",vKTT3m03=",
+  string(vKTT3m03,n2), ",vKTT3m04=", string(vKTT3m04,n2), ",vKTT3m05=", string(vKTT3m05,n2), ",vKTT3m06=", string(vKTT3m06,n2), ",vKTT3m07=",
+  string(vKTT3m07,n2), ",vKTT3m08=", string(vKTT3m08,n2), ",vKTT3m09=", string(vKTT3m09,n2), ",vKTT3m10=", string(vKTT3m10,n2), ",vKTT3m11=",
+  string(vKTT3m11,n2), ",vKTT3m12=", string(vKTT3m12,n2), ",vKTT3m13=", string(vKTT3m13,n2), ",vKTT3m14=", string(vKTT3m14,n2), ",vKTT3m15=",
+  string(vKTT3m15,n2), ",vKTT3m16=", string(vKTT3m16,n2), ",vKTT3m88=", string(vKTT3m88,n2)
+).
+compute p1414=concat(
+  "vK1m11~=1 & vK2m07~=1，不應答vKTT3m01,vKTT3m02,vKTT3m03,vKTT3m04,vKTT3m05,vKTT3m06,vKTT3m07,vKTT3m08,vKT",
+  "T3m09,vKTT3m10,vKTT3m11,vKTT3m12,vKTT3m13,vKTT3m14,vKTT3m15,vKTT3m16,vKTT3m88而答"
+).
+compute s1414=1.
+end if.
+
+* logic check show vKTT4m01,vKTT4m02,vKTT4m03,vKTT4m04,vKTT4m05,vKTT4m06,vKTT4m07,vKTT4m08,vKTT4m09,vKTT4m10,vKTT4m11,vKTT4m12,vKTT4m13,vKTT4m14,vKTT4m88.
+do if (any(vK1m11 , 1) | any(vK2m07 , 1)) & (any(1 , vKTT4m01_96) | any(1 , vKTT4m02_96) | any(1 , vKTT4m03_96) | any(1 , vKTT4m04_96) | any(1 , vKTT4m05_96)
+| any(1 , vKTT4m06_96) | any(1 , vKTT4m07_96) | any(1 , vKTT4m08_96) | any(1 , vKTT4m09_96) | any(1 , vKTT4m10_96) | any(1 , vKTT4m11_96) | any(1 , vKTT4m12_96)
+| any(1 , vKTT4m13_96) | any(1 , vKTT4m14_96) | any(1 , vKTT4m88_96)).
+compute m1415=concat(
+  "vK1m11=", string(vK1m11,n2), ",vK2m07=", string(vK2m07,n2), ",vKTT4m01=", string(vKTT4m01,n2), ",vKTT4m02=", string(vKTT4m02,n2), ",vKTT4m03=",
+  string(vKTT4m03,n2), ",vKTT4m04=", string(vKTT4m04,n2), ",vKTT4m05=", string(vKTT4m05,n2), ",vKTT4m06=", string(vKTT4m06,n2), ",vKTT4m07=",
+  string(vKTT4m07,n2), ",vKTT4m08=", string(vKTT4m08,n2), ",vKTT4m09=", string(vKTT4m09,n2), ",vKTT4m10=", string(vKTT4m10,n2), ",vKTT4m11=",
+  string(vKTT4m11,n2), ",vKTT4m12=", string(vKTT4m12,n2), ",vKTT4m13=", string(vKTT4m13,n2), ",vKTT4m14=", string(vKTT4m14,n2), ",vKTT4m88=",
+  string(vKTT4m88,n2)
+).
+compute p1415=concat(
+  "vK1m11 in 1 | vK2m07 in 1，應答vKTT4m01,vKTT4m02,vKTT4m03,vKTT4m04,vKTT4m05,vKTT4m06,vKTT4m07,vKTT4m08,",
+  "vKTT4m09,vKTT4m10,vKTT4m11,vKTT4m12,vKTT4m13,vKTT4m14,vKTT4m88而未答"
+).
+compute s1415=1.
+end if.
+
+* logic check hide vKTT4m01,vKTT4m02,vKTT4m03,vKTT4m04,vKTT4m05,vKTT4m06,vKTT4m07,vKTT4m08,vKTT4m09,vKTT4m10,vKTT4m11,vKTT4m12,vKTT4m13,vKTT4m14,vKTT4m88.
+do if (vK1m11~=1 & vK2m07~=1) & (any(0 , vKTT4m01_96) | any(0 , vKTT4m02_96) | any(0 , vKTT4m03_96) | any(0 , vKTT4m04_96) | any(0 , vKTT4m05_96) | any(0
+, vKTT4m06_96) | any(0 , vKTT4m07_96) | any(0 , vKTT4m08_96) | any(0 , vKTT4m09_96) | any(0 , vKTT4m10_96) | any(0 , vKTT4m11_96) | any(0 , vKTT4m12_96) | any(0
+, vKTT4m13_96) | any(0 , vKTT4m14_96) | any(0 , vKTT4m88_96)).
+compute m1416=concat(
+  "vK1m11=", string(vK1m11,n2), ",vK2m07=", string(vK2m07,n2), ",vKTT4m01=", string(vKTT4m01,n2), ",vKTT4m02=", string(vKTT4m02,n2), ",vKTT4m03=",
+  string(vKTT4m03,n2), ",vKTT4m04=", string(vKTT4m04,n2), ",vKTT4m05=", string(vKTT4m05,n2), ",vKTT4m06=", string(vKTT4m06,n2), ",vKTT4m07=",
+  string(vKTT4m07,n2), ",vKTT4m08=", string(vKTT4m08,n2), ",vKTT4m09=", string(vKTT4m09,n2), ",vKTT4m10=", string(vKTT4m10,n2), ",vKTT4m11=",
+  string(vKTT4m11,n2), ",vKTT4m12=", string(vKTT4m12,n2), ",vKTT4m13=", string(vKTT4m13,n2), ",vKTT4m14=", string(vKTT4m14,n2), ",vKTT4m88=",
+  string(vKTT4m88,n2)
+).
+compute p1416=concat(
+  "vK1m11~=1 & vK2m07~=1，不應答vKTT4m01,vKTT4m02,vKTT4m03,vKTT4m04,vKTT4m05,vKTT4m06,vKTT4m07,vKTT4m08,vKT",
+  "T4m09,vKTT4m10,vKTT4m11,vKTT4m12,vKTT4m13,vKTT4m14,vKTT4m88而答"
+).
+compute s1416=1.
+end if.
+
+* logic check show vKTT5m01,vKTT5m02,vKTT5m03,vKTT5m04,vKTT5m05,vKTT5m06,vKTT5m07,vKTT5m08,vKTT5m09,vKTT5m10,vKTT5m11,vKTT5m12,vKTT5m88.
+do if (any(vK1m11 , 1) | any(vK2m07 , 1)) & (any(1 , vKTT5m01_96) | any(1 , vKTT5m02_96) | any(1 , vKTT5m03_96) | any(1 , vKTT5m04_96) | any(1 , vKTT5m05_96)
+| any(1 , vKTT5m06_96) | any(1 , vKTT5m07_96) | any(1 , vKTT5m08_96) | any(1 , vKTT5m09_96) | any(1 , vKTT5m10_96) | any(1 , vKTT5m11_96) | any(1 , vKTT5m12_96)
+| any(1 , vKTT5m88_96)).
+compute m1417=concat(
+  "vK1m11=", string(vK1m11,n2), ",vK2m07=", string(vK2m07,n2), ",vKTT5m01=", string(vKTT5m01,n2), ",vKTT5m02=", string(vKTT5m02,n2), ",vKTT5m03=",
+  string(vKTT5m03,n2), ",vKTT5m04=", string(vKTT5m04,n2), ",vKTT5m05=", string(vKTT5m05,n2), ",vKTT5m06=", string(vKTT5m06,n2), ",vKTT5m07=",
+  string(vKTT5m07,n2), ",vKTT5m08=", string(vKTT5m08,n2), ",vKTT5m09=", string(vKTT5m09,n2), ",vKTT5m10=", string(vKTT5m10,n2), ",vKTT5m11=",
+  string(vKTT5m11,n2), ",vKTT5m12=", string(vKTT5m12,n2), ",vKTT5m88=", string(vKTT5m88,n2)
+).
+compute p1417=concat(
+  "vK1m11 in 1 | vK2m07 in 1，應答vKTT5m01,vKTT5m02,vKTT5m03,vKTT5m04,vKTT5m05,vKTT5m06,vKTT5m07,vKTT5m08,",
+  "vKTT5m09,vKTT5m10,vKTT5m11,vKTT5m12,vKTT5m88而未答"
+).
+compute s1417=1.
+end if.
+
+* logic check hide vKTT5m01,vKTT5m02,vKTT5m03,vKTT5m04,vKTT5m05,vKTT5m06,vKTT5m07,vKTT5m08,vKTT5m09,vKTT5m10,vKTT5m11,vKTT5m12,vKTT5m88.
+do if (vK1m11~=1 & vK2m07~=1) & (any(0 , vKTT5m01_96) | any(0 , vKTT5m02_96) | any(0 , vKTT5m03_96) | any(0 , vKTT5m04_96) | any(0 , vKTT5m05_96) | any(0
+, vKTT5m06_96) | any(0 , vKTT5m07_96) | any(0 , vKTT5m08_96) | any(0 , vKTT5m09_96) | any(0 , vKTT5m10_96) | any(0 , vKTT5m11_96) | any(0 , vKTT5m12_96) | any(0
+, vKTT5m88_96)).
+compute m1418=concat(
+  "vK1m11=", string(vK1m11,n2), ",vK2m07=", string(vK2m07,n2), ",vKTT5m01=", string(vKTT5m01,n2), ",vKTT5m02=", string(vKTT5m02,n2), ",vKTT5m03=",
+  string(vKTT5m03,n2), ",vKTT5m04=", string(vKTT5m04,n2), ",vKTT5m05=", string(vKTT5m05,n2), ",vKTT5m06=", string(vKTT5m06,n2), ",vKTT5m07=",
+  string(vKTT5m07,n2), ",vKTT5m08=", string(vKTT5m08,n2), ",vKTT5m09=", string(vKTT5m09,n2), ",vKTT5m10=", string(vKTT5m10,n2), ",vKTT5m11=",
+  string(vKTT5m11,n2), ",vKTT5m12=", string(vKTT5m12,n2), ",vKTT5m88=", string(vKTT5m88,n2)
+).
+compute p1418="vK1m11~=1 & vK2m07~=1，不應答vKTT5m01,vKTT5m02,vKTT5m03,vKTT5m04,vKTT5m05,vKTT5m06,vKTT5m07,vKTT5m08,vKTT5m09,vKTT5m10,vKTT5m11,vKTT5m12,vKTT5m88而答".
+compute s1418=1.
+end if.
+
+* logic check show vP5_1.
+do if ((any(vK1m13,1) | any(vK2m11,1))) & any(1,vP5_1_96).
+compute m1419=concat("vK1m13=",string(vK1m13,n2),",vK2m11=",string(vK2m11,n2),",vP5_1=",string(vP5_1,n4)).
+compute p1419="(vK1m13 in 1 | vK2m11 in 1)，應答vP5_1而未答".
+compute s1419=1.
+end if.
+
+* logic check show vP5_2.
+do if ((any(vK1m13,1) | any(vK2m11,1))) & any(1,vP5_2_96).
+compute m1420=concat("vK1m13=",string(vK1m13,n2),",vK2m11=",string(vK2m11,n2),",vP5_2=",string(vP5_2,n5)).
+compute p1420="(vK1m13 in 1 | vK2m11 in 1)，應答vP5_2而未答".
+compute s1420=1.
+end if.
+
+* logic check hide vQ8.
+do if (any(vQ5,2,97,98) | any(vK1m90,1)) & any(0,vQ8_96).
+compute m1421=concat("vQ5=",string(vQ5,n2),",vK1m90=",string(vK1m90,n2),",vQ8=",string(vQ8,n2)).
+compute p1421="any(vQ5,2,97,98) | vK1m90 in 1，不應答vQ8而答".
+compute s1421=1.
+end if.
+
+* logic check hide vQ13.
+do if (any(vQ10,2,97,98) | any(vK1m90,1) | any(vQ8,1)) & any(0,vQ13_96).
+compute m1422=concat("vQ10=",string(vQ10,n2),",vK1m90=",string(vK1m90,n2),",vQ8=",string(vQ8,n2),",vQ13=",string(vQ13,n2)).
+compute p1422="any(vQ10,2,97,98) | vK1m90 in 1 | vQ8 in 1，不應答vQ13而答".
+compute s1422=1.
+end if.
+
+* logic check hide vQ18.
+do if (any(vQ15,2,97,98) | any(vK1m90,1)) & any(0,vQ18_96).
+compute m1423=concat("vQ15=",string(vQ15,n2),",vK1m90=",string(vK1m90,n2),",vQ18=",string(vQ18,n2)).
+compute p1423="any(vQ15,2,97,98) | vK1m90 in 1，不應答vQ18而答".
+compute s1423=1.
+end if.
+
+* logic check mutex.
+do if (any(vK1m90,1)) & (any(vG7m02,1)).
+compute m1424=concat("vK1m90=",string(vK1m90,n2),",vG7m02=",string(vG7m02,n2)).
+compute p1424="vK1m90 in 1與互斥條件不應同時成立".
+compute s1424=1.
+end if.
+
+* logic check hide vQ6.
+do if (any(vQ5,2,97,98) | any(vK2m90,1)) & any(0,vQ6_96).
+compute m1425=concat("vQ5=",string(vQ5,n2),",vK2m90=",string(vK2m90,n2),",vQ6=",string(vQ6,n2)).
+compute p1425="any(vQ5,2,97,98) | vK2m90 in 1，不應答vQ6而答".
+compute s1425=1.
+end if.
+
+* logic check hide vQ11.
+do if (any(vQ10,2,97,98) | any(vK2m90,1) | any(vQ6,1)) & any(0,vQ11_96).
+compute m1426=concat("vQ10=",string(vQ10,n2),",vK2m90=",string(vK2m90,n2),",vQ6=",string(vQ6,n2),",vQ11=",string(vQ11,n2)).
+compute p1426="any(vQ10,2,97,98) | vK2m90 in 1 | vQ6 in 1，不應答vQ11而答".
+compute s1426=1.
+end if.
+
+* logic check hide vQ16.
+do if (any(vQ15,2,97,98) | any(vK2m90,1)) & any(0,vQ16_96).
+compute m1427=concat("vQ15=",string(vQ15,n2),",vK2m90=",string(vK2m90,n2),",vQ16=",string(vQ16,n2)).
+compute p1427="any(vQ15,2,97,98) | vK2m90 in 1，不應答vQ16而答".
+compute s1427=1.
+end if.
+
+* logic check hide vP3_5.
+do if (any(vK2m90,1) | any(vQ5,2)) & any(0,vP3_5_96).
+compute m1428=concat("vK2m90=",string(vK2m90,n2),",vQ5=",string(vQ5,n2),",vP3_5=",string(vP3_5,n2)).
+compute p1428="vK2m90 in 1 | vQ5 in 2，不應答vP3_5而答".
+compute s1428=1.
+end if.
+
+* logic check mutex.
+do if (any(vK2m90,1)) & (any(vG7m01,1)).
+compute m1429=concat("vK2m90=",string(vK2m90,n2),",vG7m01=",string(vG7m01,n2)).
+compute p1429="vK2m90 in 1與互斥條件不應同時成立".
+compute s1429=1.
+end if.
+
+* logic check show vE4.
+do if ((any(vE2m01,1) | any(vE17,1) | any(vE18,1))) & any(1,vE4_96).
+compute m1430=concat("vE2m01=",string(vE2m01,n2),",vE17=",string(vE17,n2),",vE18=",string(vE18,n2),",vE4=",string(vE4,n4)).
+compute p1430="(vE2m01 in 1 | vE17 in 1 | vE18 in 1)，應答vE4而未答".
+compute s1430=1.
+end if.
+
+* logic check show vQ11.
+do if (not any(vQ10,2,97,98) & vK2m90~=1 & vQ6~=1) & any(1,vQ11_96).
+compute m1431=concat("vQ10=",string(vQ10,n2),",vK2m90=",string(vK2m90,n2),",vQ6=",string(vQ6,n2),",vQ11=",string(vQ11,n2)).
+compute p1431="not any(vQ10,2,97,98) & vK2m90~=1 & vQ6~=1，應答vQ11而未答".
+compute s1431=1.
+end if.
+
+* logic check show vE6.
+do if ((any(vE2m01,1) | any(vE17,1) | any(vE18,1))) & any(1,vE6_96).
+compute m1432=concat("vE2m01=",string(vE2m01,n2),",vE17=",string(vE17,n2),",vE18=",string(vE18,n2),",vE6=",string(vE6,n5)).
+compute p1432="(vE2m01 in 1 | vE17 in 1 | vE18 in 1)，應答vE6而未答".
+compute s1432=1.
+end if.
+
+* logic check show vE7.
+do if ((any(vE2m02,1) | any(vE17,2) | any(vE18,2))) & any(1,vE7_96).
+compute m1433=concat("vE2m02=",string(vE2m02,n2),",vE17=",string(vE17,n2),",vE18=",string(vE18,n2),",vE7=",string(vE7,n4)).
+compute p1433="(vE2m02 in 1 | vE17 in 2 | vE18 in 2)，應答vE7而未答".
+compute s1433=1.
+end if.
+
+* logic check show vQ12.
+do if (not any(vQ10,2,97,98) & vK3m90~=1 & vQ7~=1) & any(1,vQ12_96).
+compute m1434=concat("vQ10=",string(vQ10,n2),",vK3m90=",string(vK3m90,n2),",vQ7=",string(vQ7,n2),",vQ12=",string(vQ12,n2)).
+compute p1434="not any(vQ10,2,97,98) & vK3m90~=1 & vQ7~=1，應答vQ12而未答".
+compute s1434=1.
+end if.
+
+* logic check show vE9.
+do if ((any(vE2m02,1) | any(vE17,2) | any(vE18,2))) & any(1,vE9_96).
+compute m1435=concat("vE2m02=",string(vE2m02,n2),",vE17=",string(vE17,n2),",vE18=",string(vE18,n2),",vE9=",string(vE9,n5)).
+compute p1435="(vE2m02 in 1 | vE17 in 2 | vE18 in 2)，應答vE9而未答".
+compute s1435=1.
+end if.
+
+* logic check show vE10.
+do if ((any(vE2m03,1) | any(vE17,3) | any(vE18,3))) & any(1,vE10_96).
+compute m1436=concat("vE2m03=",string(vE2m03,n2),",vE17=",string(vE17,n2),",vE18=",string(vE18,n2),",vE10=",string(vE10,n4)).
+compute p1436="(vE2m03 in 1 | vE17 in 3 | vE18 in 3)，應答vE10而未答".
+compute s1436=1.
+end if.
+
+* logic check show vQ13.
+do if (not any(vQ10,2,97,98) & vK1m90~=1 & vQ8~=1) & any(1,vQ13_96).
+compute m1437=concat("vQ10=",string(vQ10,n2),",vK1m90=",string(vK1m90,n2),",vQ8=",string(vQ8,n2),",vQ13=",string(vQ13,n2)).
+compute p1437="not any(vQ10,2,97,98) & vK1m90~=1 & vQ8~=1，應答vQ13而未答".
+compute s1437=1.
+end if.
+
+* logic check show vE12.
+do if ((any(vE2m03,1) | any(vE17,3) | any(vE18,3))) & any(1,vE12_96).
+compute m1438=concat("vE2m03=",string(vE2m03,n2),",vE17=",string(vE17,n2),",vE18=",string(vE18,n2),",vE12=",string(vE12,n5)).
+compute p1438="(vE2m03 in 1 | vE17 in 3 | vE18 in 3)，應答vE12而未答".
+compute s1438=1.
+end if.
+
+* logic check show vE4.
+do if (any(vE2m01,1) | any(vE17,1) | any(vE18,1)) & any(1,vE4_96).
+compute m1439=concat("vE2m01=",string(vE2m01,n2),",vE17=",string(vE17,n2),",vE18=",string(vE18,n2),",vE4=",string(vE4,n4)).
+compute p1439="vE2m01 in 1 | vE17 in 1 | vE18 in 1，應答vE4而未答".
+compute s1439=1.
+end if.
+
+* logic check hide vE4.
+do if (vE2m01~=1 & vE17~=1 & vE18~=1) & any(0,vE4_96).
+compute m1440=concat("vE2m01=",string(vE2m01,n2),",vE17=",string(vE17,n2),",vE18=",string(vE18,n2),",vE4=",string(vE4,n4)).
+compute p1440="vE2m01~=1 & vE17~=1 & vE18~=1，不應答vE4而答".
+compute s1440=1.
+end if.
+
+* logic check show vQ16.
+do if (not any(vQ15,2,97,98) & vK2m90~=1) & any(1,vQ16_96).
+compute m1441=concat("vQ15=",string(vQ15,n2),",vK2m90=",string(vK2m90,n2),",vQ16=",string(vQ16,n2)).
+compute p1441="not any(vQ15,2,97,98) & vK2m90~=1，應答vQ16而未答".
+compute s1441=1.
+end if.
+
+* logic check show vQ17.
+do if (not any(vQ15,2,97,98) & vK3m90~=1) & any(1,vQ17_96).
+compute m1442=concat("vQ15=",string(vQ15,n2),",vK3m90=",string(vK3m90,n2),",vQ17=",string(vQ17,n2)).
+compute p1442="not any(vQ15,2,97,98) & vK3m90~=1，應答vQ17而未答".
+compute s1442=1.
+end if.
+
+* logic check show vE6.
+do if (any(vE2m01,1) | any(vE17,1) | any(vE18,1)) & any(1,vE6_96).
+compute m1443=concat("vE2m01=",string(vE2m01,n2),",vE17=",string(vE17,n2),",vE18=",string(vE18,n2),",vE6=",string(vE6,n5)).
+compute p1443="vE2m01 in 1 | vE17 in 1 | vE18 in 1，應答vE6而未答".
+compute s1443=1.
+end if.
+
+* logic check hide vE6.
+do if (vE2m01~=1 & vE17~=1 & vE18~=1) & any(0,vE6_96).
+compute m1444=concat("vE2m01=",string(vE2m01,n2),",vE17=",string(vE17,n2),",vE18=",string(vE18,n2),",vE6=",string(vE6,n5)).
+compute p1444="vE2m01~=1 & vE17~=1 & vE18~=1，不應答vE6而答".
+compute s1444=1.
+end if.
+
+* logic check show vE7.
+do if (any(vE2m02,1) | any(vE17,2) | any(vE18,2)) & any(1,vE7_96).
+compute m1445=concat("vE2m02=",string(vE2m02,n2),",vE17=",string(vE17,n2),",vE18=",string(vE18,n2),",vE7=",string(vE7,n4)).
+compute p1445="vE2m02 in 1 | vE17 in 2 | vE18 in 2，應答vE7而未答".
+compute s1445=1.
+end if.
+
+* logic check hide vE7.
+do if (vE2m02~=1 & vE17~=2 & vE18~=2) & any(0,vE7_96).
+compute m1446=concat("vE2m02=",string(vE2m02,n2),",vE17=",string(vE17,n2),",vE18=",string(vE18,n2),",vE7=",string(vE7,n4)).
+compute p1446="vE2m02~=1 & vE17~=2 & vE18~=2，不應答vE7而答".
+compute s1446=1.
+end if.
+
+* logic check show vQ18.
+do if (not any(vQ15,2,97,98) & vK1m90~=1) & any(1,vQ18_96).
+compute m1447=concat("vQ15=",string(vQ15,n2),",vK1m90=",string(vK1m90,n2),",vQ18=",string(vQ18,n2)).
+compute p1447="not any(vQ15,2,97,98) & vK1m90~=1，應答vQ18而未答".
+compute s1447=1.
+end if.
+
+* logic check show vP3_5.
+do if (vK2m90~=1 & vQ5~=2) & any(1,vP3_5_96).
+compute m1448=concat("vK2m90=",string(vK2m90,n2),",vQ5=",string(vQ5,n2),",vP3_5=",string(vP3_5,n2)).
+compute p1448="vK2m90~=1 & vQ5~=2，應答vP3_5而未答".
+compute s1448=1.
+end if.
+
+* logic check show vE9.
+do if (any(vE2m02,1) | any(vE17,2) | any(vE18,2)) & any(1,vE9_96).
+compute m1449=concat("vE2m02=",string(vE2m02,n2),",vE17=",string(vE17,n2),",vE18=",string(vE18,n2),",vE9=",string(vE9,n5)).
+compute p1449="vE2m02 in 1 | vE17 in 2 | vE18 in 2，應答vE9而未答".
+compute s1449=1.
+end if.
+
+* logic check hide vE9.
+do if (vE2m02~=1 & vE17~=2 & vE18~=2) & any(0,vE9_96).
+compute m1450=concat("vE2m02=",string(vE2m02,n2),",vE17=",string(vE17,n2),",vE18=",string(vE18,n2),",vE9=",string(vE9,n5)).
+compute p1450="vE2m02~=1 & vE17~=2 & vE18~=2，不應答vE9而答".
+compute s1450=1.
+end if.
+
+* logic check show vE10.
+do if (any(vE2m03,1) | any(vE17,3) | any(vE18,3)) & any(1,vE10_96).
+compute m1451=concat("vE2m03=",string(vE2m03,n2),",vE17=",string(vE17,n2),",vE18=",string(vE18,n2),",vE10=",string(vE10,n4)).
+compute p1451="vE2m03 in 1 | vE17 in 3 | vE18 in 3，應答vE10而未答".
+compute s1451=1.
+end if.
+
+* logic check hide vE10.
+do if (vE2m03~=1 & vE17~=3 & vE18~=3) & any(0,vE10_96).
+compute m1452=concat("vE2m03=",string(vE2m03,n2),",vE17=",string(vE17,n2),",vE18=",string(vE18,n2),",vE10=",string(vE10,n4)).
+compute p1452="vE2m03~=1 & vE17~=3 & vE18~=3，不應答vE10而答".
+compute s1452=1.
+end if.
+
+* logic check hide vQ9.
+do if (any(vQ5,2,97,98) | (any(vG7m90,1) & any(vG8m90,1) & any(vG9m90,1) & any(vG10m90,1) & any(vG11m90,1))) & any(0,vQ9_96).
+compute m1453=concat(
+  "vQ5=", string(vQ5,n2), ",vG7m90=", string(vG7m90,n2), ",vG8m90=", string(vG8m90,n2), ",vG9m90=", string(vG9m90,n2), ",vG10m90=", string(vG10m90,n2),
+  ",vG11m90=", string(vG11m90,n2), ",vQ9=", string(vQ9,n2)
+).
+compute p1453="any(vQ5,2,97,98) | (vG7m90 in 1 & vG8m90 in 1 & vG9m90 in 1 & vG10m90 in 1 & vG11m90 in 1)，不應答vQ9而答".
+compute s1453=1.
+end if.
+
+* logic check show vQ9.
+do if (not any(vQ5,2,97,98) & (vG7m90~=1 | vG8m90~=1 | vG9m90~=1 | vG10m90~=1 | vG11m90~=1)) & any(1,vQ9_96).
+compute m1454=concat(
+  "vQ5=", string(vQ5,n2), ",vG7m90=", string(vG7m90,n2), ",vG8m90=", string(vG8m90,n2), ",vG9m90=", string(vG9m90,n2), ",vG10m90=", string(vG10m90,n2),
+  ",vG11m90=", string(vG11m90,n2), ",vQ9=", string(vQ9,n2)
+).
+compute p1454="not any(vQ5,2,97,98) & (vG7m90~=1 | vG8m90~=1 | vG9m90~=1 | vG10m90~=1 | vG11m90~=1)，應答vQ9而未答".
+compute s1454=1.
+end if.
+
+* logic check show vE12.
+do if (any(vE2m03,1) | any(vE17,3) | any(vE18,3)) & any(1,vE12_96).
+compute m1455=concat("vE2m03=",string(vE2m03,n2),",vE17=",string(vE17,n2),",vE18=",string(vE18,n2),",vE12=",string(vE12,n5)).
+compute p1455="vE2m03 in 1 | vE17 in 3 | vE18 in 3，應答vE12而未答".
+compute s1455=1.
+end if.
+
+* logic check hide vE12.
+do if (vE2m03~=1 & vE17~=3 & vE18~=3) & any(0,vE12_96).
+compute m1456=concat("vE2m03=",string(vE2m03,n2),",vE17=",string(vE17,n2),",vE18=",string(vE18,n2),",vE12=",string(vE12,n5)).
+compute p1456="vE2m03~=1 & vE17~=3 & vE18~=3，不應答vE12而答".
+compute s1456=1.
 end if.
 
 * logic check limit vKLI2.
 do if not any(mod(trunc(vKLI2/10),10),0,1,2,3,4,5).
-compute m1612=concat("vKLI2=",string(vKLI2,n5)).
-compute p1612="vKLI2第3碼應為0,1,2,3,4,5".
+compute m1457=concat("vKLI2=",string(vKLI2,n5)).
+compute p1457="vKLI2第3碼應為0,1,2,3,4,5".
+compute s1457=1.
 end if.
 
 * logic check limit vKFB2.
 do if not any(mod(trunc(vKFB2/10),10),0,1,2,3,4,5).
-compute m1613=concat("vKFB2=",string(vKFB2,n5)).
-compute p1613="vKFB2第3碼應為0,1,2,3,4,5".
+compute m1458=concat("vKFB2=",string(vKFB2,n5)).
+compute p1458="vKFB2第3碼應為0,1,2,3,4,5".
+compute s1458=1.
 end if.
 
 * logic check limit vKIG2.
 do if not any(mod(trunc(vKIG2/10),10),0,1,2,3,4,5).
-compute m1614=concat("vKIG2=",string(vKIG2,n5)).
-compute p1614="vKIG2第3碼應為0,1,2,3,4,5".
+compute m1459=concat("vKIG2=",string(vKIG2,n5)).
+compute p1459="vKIG2第3碼應為0,1,2,3,4,5".
+compute s1459=1.
 end if.
 
 * logic check limit vKTT2.
 do if not any(mod(trunc(vKTT2/10),10),0,1,2,3,4,5).
-compute m1615=concat("vKTT2=",string(vKTT2,n5)).
-compute p1615="vKTT2第3碼應為0,1,2,3,4,5".
+compute m1460=concat("vKTT2=",string(vKTT2,n5)).
+compute p1460="vKTT2第3碼應為0,1,2,3,4,5".
+compute s1460=1.
 end if.
 
 * logic check limit vP5_2.
 do if not any(mod(trunc(vP5_2/10),10),0,1,2,3,4,5).
-compute m1616=concat("vP5_2=",string(vP5_2,n5)).
-compute p1616="vP5_2第3碼應為0,1,2,3,4,5".
+compute m1461=concat("vP5_2=",string(vP5_2,n5)).
+compute p1461="vP5_2第3碼應為0,1,2,3,4,5".
+compute s1461=1.
+end if.
+
+* logic check show vE18.
+do if (any(vK3m01,1)) & any(1,vE18_96).
+compute m1462=concat("vK3m01=",string(vK3m01,n2),",vE18=",string(vE18,n2)).
+compute p1462="vK3m01 in 1，應答vE18而未答".
+compute s1462=1.
+end if.
+
+* logic check show vKYT1.
+do if (any(vK3m01,1)) & any(1,vKYT1_96).
+compute m1463=concat("vK3m01=",string(vK3m01,n2),",vKYT1=",string(vKYT1,n4)).
+compute p1463="vK3m01 in 1，應答vKYT1而未答".
+compute s1463=1.
+end if.
+
+* logic check show vKYT2.
+do if (any(vK3m01,1)) & any(1,vKYT2_96).
+compute m1464=concat("vK3m01=",string(vK3m01,n2),",vKYT2=",string(vKYT2,n5)).
+compute p1464="vK3m01 in 1，應答vKYT2而未答".
+compute s1464=1.
+end if.
+
+* logic check hide vE18.
+do if (vK3m01~=1) & any(0,vE18_96).
+compute m1465=concat("vK3m01=",string(vK3m01,n2),",vE18=",string(vE18,n2)).
+compute p1465="vK3m01~=1，不應答vE18而答".
+compute s1465=1.
+end if.
+
+* logic check hide vKYT1.
+do if (vK3m01~=1) & any(0,vKYT1_96).
+compute m1466=concat("vK3m01=",string(vK3m01,n2),",vKYT1=",string(vKYT1,n4)).
+compute p1466="vK3m01~=1，不應答vKYT1而答".
+compute s1466=1.
+end if.
+
+* logic check hide vKYT2.
+do if (vK3m01~=1) & any(0,vKYT2_96).
+compute m1467=concat("vK3m01=",string(vK3m01,n2),",vKYT2=",string(vKYT2,n5)).
+compute p1467="vK3m01~=1，不應答vKYT2而答".
+compute s1467=1.
+end if.
+
+* logic check hide vQ7.
+do if (any(vQ5,2,97,98) | any(vK3m90,1)) & any(0,vQ7_96).
+compute m1468=concat("vQ5=",string(vQ5,n2),",vK3m90=",string(vK3m90,n2),",vQ7=",string(vQ7,n2)).
+compute p1468="any(vQ5,2,97,98) | vK3m90 in 1，不應答vQ7而答".
+compute s1468=1.
+end if.
+
+* logic check hide vQ12.
+do if (any(vQ10,2,97,98) | any(vK3m90,1) | any(vQ7,1)) & any(0,vQ12_96).
+compute m1469=concat("vQ10=",string(vQ10,n2),",vK3m90=",string(vK3m90,n2),",vQ7=",string(vQ7,n2),",vQ12=",string(vQ12,n2)).
+compute p1469="any(vQ10,2,97,98) | vK3m90 in 1 | vQ7 in 1，不應答vQ12而答".
+compute s1469=1.
+end if.
+
+* logic check hide vQ17.
+do if (any(vQ15,2,97,98) | any(vK3m90,1)) & any(0,vQ17_96).
+compute m1470=concat("vQ15=",string(vQ15,n2),",vK3m90=",string(vK3m90,n2),",vQ17=",string(vQ17,n2)).
+compute p1470="any(vQ15,2,97,98) | vK3m90 in 1，不應答vQ17而答".
+compute s1470=1.
 end if.
 
 * logic check limit vKYT2.
 do if not any(mod(trunc(vKYT2/10),10),0,1,2,3,4,5).
-compute m1617=concat("vKYT2=",string(vKYT2,n5)).
-compute p1617="vKYT2第3碼應為0,1,2,3,4,5".
+compute m1471=concat("vKYT2=",string(vKYT2,n5)).
+compute p1471="vKYT2第3碼應為0,1,2,3,4,5".
+compute s1471=1.
+end if.
+
+* logic check show vE2m01,vE2m02,vE2m03,vE2m04,vE2m88.
+do if (any(vE1,1)) & (any(1,vE2m01_96) | any(1,vE2m02_96) | any(1,vE2m03_96) | any(1,vE2m04_96) | any(1,vE2m88_96)).
+compute m1472=concat(
+  "vE1=", string(vE1,n2), ",vE2m01=", string(vE2m01,n2), ",vE2m02=", string(vE2m02,n2), ",vE2m03=", string(vE2m03,n2), ",vE2m04=", string(vE2m04,n2),
+  ",vE2m88=", string(vE2m88,n2)
+).
+compute p1472="vE1 in 1，應答vE2m01,vE2m02,vE2m03,vE2m04,vE2m88而未答".
+compute s1472=1.
+end if.
+
+* logic check show vE3.
+do if (any(vE1,1)) & any(1,vE3_96).
+compute m1473=concat("vE1=",string(vE1,n2),",vE3=",string(vE3,n5)).
+compute p1473="vE1 in 1，應答vE3而未答".
+compute s1473=1.
+end if.
+
+* logic check show vE13m01,vE13m02,vE13m03,vE13m04,vE13m05,vE13m06,vE13m88.
+do if (any(vE1 , 1)) & (any(1 , vE13m01_96) | any(1 , vE13m02_96) | any(1 , vE13m03_96) | any(1 , vE13m04_96) | any(1 , vE13m05_96) | any(1 , vE13m06_96)
+| any(1 , vE13m88_96)).
+compute m1474=concat(
+  "vE1=", string(vE1,n2), ",vE13m01=", string(vE13m01,n2), ",vE13m02=", string(vE13m02,n2), ",vE13m03=", string(vE13m03,n2), ",vE13m04=", string(vE13m04,n2),
+  ",vE13m05=", string(vE13m05,n2), ",vE13m06=", string(vE13m06,n2), ",vE13m88=", string(vE13m88,n2)
+).
+compute p1474="vE1 in 1，應答vE13m01,vE13m02,vE13m03,vE13m04,vE13m05,vE13m06,vE13m88而未答".
+compute s1474=1.
+end if.
+
+* logic check show vE14.
+do if (any(vE1,1)) & any(1,vE14_96).
+compute m1475=concat("vE1=",string(vE1,n2),",vE14=",string(vE14,n7)).
+compute p1475="vE1 in 1，應答vE14而未答".
+compute s1475=1.
+end if.
+
+* logic check show vG7m01,vG7m02,vG7m03,vG7m04,vG7m05,vG7m06,vG7m07,vG7m08,vG7m09,vG7m10,vG7m11,vG7m12,vG7m88,vG7m90.
+do if (any(vE1 , 1)) & (any(1 , vG7m01_96) | any(1 , vG7m02_96) | any(1 , vG7m03_96) | any(1 , vG7m04_96) | any(1 , vG7m05_96) | any(1 , vG7m06_96) | any(1
+, vG7m07_96) | any(1 , vG7m08_96) | any(1 , vG7m09_96) | any(1 , vG7m10_96) | any(1 , vG7m11_96) | any(1 , vG7m12_96) | any(1 , vG7m88_96) | any(1 , vG7m90_96)).
+compute m1476=concat(
+  "vE1=", string(vE1,n2), ",vG7m01=", string(vG7m01,n2), ",vG7m02=", string(vG7m02,n2), ",vG7m03=", string(vG7m03,n2), ",vG7m04=", string(vG7m04,n2),
+  ",vG7m05=", string(vG7m05,n2), ",vG7m06=", string(vG7m06,n2), ",vG7m07=", string(vG7m07,n2), ",vG7m08=", string(vG7m08,n2), ",vG7m09=", string(vG7m09,n2),
+  ",vG7m10=", string(vG7m10,n2), ",vG7m11=", string(vG7m11,n2), ",vG7m12=", string(vG7m12,n2), ",vG7m88=", string(vG7m88,n2), ",vG7m90=", string(vG7m90,n2)
+).
+compute p1476="vE1 in 1，應答vG7m01,vG7m02,vG7m03,vG7m04,vG7m05,vG7m06,vG7m07,vG7m08,vG7m09,vG7m10,vG7m11,vG7m12,vG7m88,vG7m90而未答".
+compute s1476=1.
+end if.
+
+* logic check show vG8m01,vG8m02,vG8m03,vG8m04,vG8m05,vG8m06,vG8m07,vG8m08,vG8m09,vG8m10,vG8m11,vG8m12,vG8m13,vG8m14,vG8m15,vG8m16,vG8m88,vG8m90.
+do if (any(vE1 , 1)) & (any(1 , vG8m01_96) | any(1 , vG8m02_96) | any(1 , vG8m03_96) | any(1 , vG8m04_96) | any(1 , vG8m05_96) | any(1 , vG8m06_96) | any(1
+, vG8m07_96) | any(1 , vG8m08_96) | any(1 , vG8m09_96) | any(1 , vG8m10_96) | any(1 , vG8m11_96) | any(1 , vG8m12_96) | any(1 , vG8m13_96) | any(1 , vG8m14_96)
+| any(1 , vG8m15_96) | any(1 , vG8m16_96) | any(1 , vG8m88_96) | any(1 , vG8m90_96)).
+compute m1477=concat(
+  "vE1=", string(vE1,n2), ",vG8m01=", string(vG8m01,n2), ",vG8m02=", string(vG8m02,n2), ",vG8m03=", string(vG8m03,n2), ",vG8m04=", string(vG8m04,n2),
+  ",vG8m05=", string(vG8m05,n2), ",vG8m06=", string(vG8m06,n2), ",vG8m07=", string(vG8m07,n2), ",vG8m08=", string(vG8m08,n2), ",vG8m09=", string(vG8m09,n2),
+  ",vG8m10=", string(vG8m10,n2), ",vG8m11=", string(vG8m11,n2), ",vG8m12=", string(vG8m12,n2), ",vG8m13=", string(vG8m13,n2), ",vG8m14=", string(vG8m14,n2),
+  ",vG8m15=", string(vG8m15,n2), ",vG8m16=", string(vG8m16,n2), ",vG8m88=", string(vG8m88,n2), ",vG8m90=", string(vG8m90,n2)
+).
+compute p1477="vE1 in 1，應答vG8m01,vG8m02,vG8m03,vG8m04,vG8m05,vG8m06,vG8m07,vG8m08,vG8m09,vG8m10,vG8m11,vG8m12,vG8m13,vG8m14,vG8m15,vG8m16,vG8m88,vG8m90而未答".
+compute s1477=1.
+end if.
+
+* logic check show vG9m01,vG9m02,vG9m03,vG9m04,vG9m05,vG9m06,vG9m07,vG9m08,vG9m09,vG9m10,vG9m11,vG9m12,vG9m13,vG9m88,vG9m90.
+do if (any(vE1 , 1)) & (any(1 , vG9m01_96) | any(1 , vG9m02_96) | any(1 , vG9m03_96) | any(1 , vG9m04_96) | any(1 , vG9m05_96) | any(1 , vG9m06_96) | any(1
+, vG9m07_96) | any(1 , vG9m08_96) | any(1 , vG9m09_96) | any(1 , vG9m10_96) | any(1 , vG9m11_96) | any(1 , vG9m12_96) | any(1 , vG9m13_96) | any(1 , vG9m88_96)
+| any(1 , vG9m90_96)).
+compute m1478=concat(
+  "vE1=", string(vE1,n2), ",vG9m01=", string(vG9m01,n2), ",vG9m02=", string(vG9m02,n2), ",vG9m03=", string(vG9m03,n2), ",vG9m04=", string(vG9m04,n2),
+  ",vG9m05=", string(vG9m05,n2), ",vG9m06=", string(vG9m06,n2), ",vG9m07=", string(vG9m07,n2), ",vG9m08=", string(vG9m08,n2), ",vG9m09=", string(vG9m09,n2),
+  ",vG9m10=", string(vG9m10,n2), ",vG9m11=", string(vG9m11,n2), ",vG9m12=", string(vG9m12,n2), ",vG9m13=", string(vG9m13,n2), ",vG9m88=", string(vG9m88,n2),
+  ",vG9m90=", string(vG9m90,n2)
+).
+compute p1478="vE1 in 1，應答vG9m01,vG9m02,vG9m03,vG9m04,vG9m05,vG9m06,vG9m07,vG9m08,vG9m09,vG9m10,vG9m11,vG9m12,vG9m13,vG9m88,vG9m90而未答".
+compute s1478=1.
+end if.
+
+* logic check show vG10m01,vG10m02,vG10m03,vG10m04,vG10m05,vG10m06,vG10m07,vG10m08,vG10m09,vG10m10,vG10m11,vG10m12,vG10m13,vG10m14,vG10m15,vG10m16,vG10m17.
+* vG10m18,vG10m19,vG10m88,vG10m90.
+do if (any(vE1 , 1)) & (any(1 , vG10m01_96) | any(1 , vG10m02_96) | any(1 , vG10m03_96) | any(1 , vG10m04_96) | any(1 , vG10m05_96) | any(1 , vG10m06_96)
+| any(1 , vG10m07_96) | any(1 , vG10m08_96) | any(1 , vG10m09_96) | any(1 , vG10m10_96) | any(1 , vG10m11_96) | any(1 , vG10m12_96) | any(1 , vG10m13_96)
+| any(1 , vG10m14_96) | any(1 , vG10m15_96) | any(1 , vG10m16_96) | any(1 , vG10m17_96) | any(1 , vG10m18_96) | any(1 , vG10m19_96) | any(1 , vG10m88_96)
+| any(1 , vG10m90_96)).
+compute m1479=concat(
+  "vE1=", string(vE1,n2), ",vG10m01=", string(vG10m01,n2), ",vG10m02=", string(vG10m02,n2), ",vG10m03=", string(vG10m03,n2), ",vG10m04=", string(vG10m04,n2),
+  ",vG10m05=", string(vG10m05,n2), ",vG10m06=", string(vG10m06,n2), ",vG10m07=", string(vG10m07,n2), ",vG10m08=", string(vG10m08,n2), ",vG10m09=",
+  string(vG10m09,n2), ",vG10m10=", string(vG10m10,n2), ",vG10m11=", string(vG10m11,n2), ",vG10m12=", string(vG10m12,n2), ",vG10m13=", string(vG10m13,n2),
+  ",vG10m14=", string(vG10m14,n2), ",vG10m15=", string(vG10m15,n2), ",vG10m16=", string(vG10m16,n2), ",vG10m17=", string(vG10m17,n2), ",vG10m18=",
+  string(vG10m18,n2), ",vG10m19=", string(vG10m19,n2), ",vG10m88=", string(vG10m88,n2), ",vG10m90=", string(vG10m90,n2)
+).
+compute p1479=concat(
+  "vE1 in 1，應答vG10m01,vG10m02,vG10m03,vG10m04,vG10m05,vG10m06,vG10m07,vG10m08,vG10m09,vG10m10,vG10m11,v",
+  "G10m12,vG10m13,vG10m14,vG10m15,vG10m16,vG10m17,vG10m18,vG10m19,vG10m88,vG10m90而未答"
+).
+compute s1479=1.
+end if.
+
+* logic check show vG11m01,vG11m02,vG11m03,vG11m04,vG11m05,vG11m88,vG11m90.
+do if (any(vE1 , 1)) & (any(1 , vG11m01_96) | any(1 , vG11m02_96) | any(1 , vG11m03_96) | any(1 , vG11m04_96) | any(1 , vG11m05_96) | any(1 , vG11m88_96)
+| any(1 , vG11m90_96)).
+compute m1480=concat(
+  "vE1=", string(vE1,n2), ",vG11m01=", string(vG11m01,n2), ",vG11m02=", string(vG11m02,n2), ",vG11m03=", string(vG11m03,n2), ",vG11m04=", string(vG11m04,n2),
+  ",vG11m05=", string(vG11m05,n2), ",vG11m88=", string(vG11m88,n2), ",vG11m90=", string(vG11m90,n2)
+).
+compute p1480="vE1 in 1，應答vG11m01,vG11m02,vG11m03,vG11m04,vG11m05,vG11m88,vG11m90而未答".
+compute s1480=1.
+end if.
+
+* logic check show vJ4_5.
+do if (any(vE1,1)) & any(1,vJ4_5_96).
+compute m1481=concat("vE1=",string(vE1,n2),",vJ4_5=",string(vJ4_5,n4)).
+compute p1481="vE1 in 1，應答vJ4_5而未答".
+compute s1481=1.
+end if.
+
+* logic check show vJB2m01,vJB2m02,vJB2m03,vJB2m04,vJB2m05,vJB2m06,vJB2m07,vJB2m88,vJB2m90.
+do if (any(vE1 , 1)) & (any(1 , vJB2m01_96) | any(1 , vJB2m02_96) | any(1 , vJB2m03_96) | any(1 , vJB2m04_96) | any(1 , vJB2m05_96) | any(1 , vJB2m06_96)
+| any(1 , vJB2m07_96) | any(1 , vJB2m88_96) | any(1 , vJB2m90_96)).
+compute m1482=concat(
+  "vE1=", string(vE1,n2), ",vJB2m01=", string(vJB2m01,n2), ",vJB2m02=", string(vJB2m02,n2), ",vJB2m03=", string(vJB2m03,n2), ",vJB2m04=", string(vJB2m04,n2),
+  ",vJB2m05=", string(vJB2m05,n2), ",vJB2m06=", string(vJB2m06,n2), ",vJB2m07=", string(vJB2m07,n2), ",vJB2m88=", string(vJB2m88,n2), ",vJB2m90=",
+  string(vJB2m90,n2)
+).
+compute p1482="vE1 in 1，應答vJB2m01,vJB2m02,vJB2m03,vJB2m04,vJB2m05,vJB2m06,vJB2m07,vJB2m88,vJB2m90而未答".
+compute s1482=1.
+end if.
+
+* logic check show vH4.
+do if (any(vE1,1)) & any(1,vH4_96).
+compute m1483=concat("vE1=",string(vE1,n2),",vH4=",string(vH4,n4)).
+compute p1483="vE1 in 1，應答vH4而未答".
+compute s1483=1.
+end if.
+
+* logic check show vQ5.
+do if (any(vE1,1)) & any(1,vQ5_96).
+compute m1484=concat("vE1=",string(vE1,n2),",vQ5=",string(vQ5,n2)).
+compute p1484="vE1 in 1，應答vQ5而未答".
+compute s1484=1.
+end if.
+
+* logic check show vQ10.
+do if (any(vE1,1)) & any(1,vQ10_96).
+compute m1485=concat("vE1=",string(vE1,n2),",vQ10=",string(vQ10,n2)).
+compute p1485="vE1 in 1，應答vQ10而未答".
+compute s1485=1.
+end if.
+
+* logic check show vQ15.
+do if (any(vE1,1)) & any(1,vQ15_96).
+compute m1486=concat("vE1=",string(vE1,n2),",vQ15=",string(vQ15,n2)).
+compute p1486="vE1 in 1，應答vQ15而未答".
+compute s1486=1.
+end if.
+
+* logic check show vP3_4.
+do if (any(vE1,1)) & any(1,vP3_4_96).
+compute m1487=concat("vE1=",string(vE1,n2),",vP3_4=",string(vP3_4,n2)).
+compute p1487="vE1 in 1，應答vP3_4而未答".
+compute s1487=1.
+end if.
+
+* logic check show vQ30m01,vQ30m02,vQ30m03,vQ30m04,vQ30m05,vQ30m06,vQ30m07,vQ30m08,vQ30m90.
+do if (any(vE1 , 1)) & (any(1 , vQ30m01_96) | any(1 , vQ30m02_96) | any(1 , vQ30m03_96) | any(1 , vQ30m04_96) | any(1 , vQ30m05_96) | any(1 , vQ30m06_96)
+| any(1 , vQ30m07_96) | any(1 , vQ30m08_96) | any(1 , vQ30m90_96)).
+compute m1488=concat(
+  "vE1=", string(vE1,n2), ",vQ30m01=", string(vQ30m01,n2), ",vQ30m02=", string(vQ30m02,n2), ",vQ30m03=", string(vQ30m03,n2), ",vQ30m04=", string(vQ30m04,n2),
+  ",vQ30m05=", string(vQ30m05,n2), ",vQ30m06=", string(vQ30m06,n2), ",vQ30m07=", string(vQ30m07,n2), ",vQ30m08=", string(vQ30m08,n2), ",vQ30m90=",
+  string(vQ30m90,n2)
+).
+compute p1488="vE1 in 1，應答vQ30m01,vQ30m02,vQ30m03,vQ30m04,vQ30m05,vQ30m06,vQ30m07,vQ30m08,vQ30m90而未答".
+compute s1488=1.
+end if.
+
+* logic check hide vE2m01,vE2m02,vE2m03,vE2m04,vE2m88.
+do if (vE1~=1) & (any(0,vE2m01_96) | any(0,vE2m02_96) | any(0,vE2m03_96) | any(0,vE2m04_96) | any(0,vE2m88_96)).
+compute m1489=concat(
+  "vE1=", string(vE1,n2), ",vE2m01=", string(vE2m01,n2), ",vE2m02=", string(vE2m02,n2), ",vE2m03=", string(vE2m03,n2), ",vE2m04=", string(vE2m04,n2),
+  ",vE2m88=", string(vE2m88,n2)
+).
+compute p1489="vE1~=1，不應答vE2m01,vE2m02,vE2m03,vE2m04,vE2m88而答".
+compute s1489=1.
+end if.
+
+* logic check hide vE3.
+do if (vE1~=1) & any(0,vE3_96).
+compute m1490=concat("vE1=",string(vE1,n2),",vE3=",string(vE3,n5)).
+compute p1490="vE1~=1，不應答vE3而答".
+compute s1490=1.
+end if.
+
+* logic check hide vE13m01,vE13m02,vE13m03,vE13m04,vE13m05,vE13m06,vE13m88.
+do if (vE1~=1) & (any(0,vE13m01_96) | any(0,vE13m02_96) | any(0,vE13m03_96) | any(0,vE13m04_96) | any(0,vE13m05_96) | any(0,vE13m06_96) | any(0,vE13m88_96)).
+compute m1491=concat(
+  "vE1=", string(vE1,n2), ",vE13m01=", string(vE13m01,n2), ",vE13m02=", string(vE13m02,n2), ",vE13m03=", string(vE13m03,n2), ",vE13m04=", string(vE13m04,n2),
+  ",vE13m05=", string(vE13m05,n2), ",vE13m06=", string(vE13m06,n2), ",vE13m88=", string(vE13m88,n2)
+).
+compute p1491="vE1~=1，不應答vE13m01,vE13m02,vE13m03,vE13m04,vE13m05,vE13m06,vE13m88而答".
+compute s1491=1.
+end if.
+
+* logic check hide vE14.
+do if (vE1~=1) & any(0,vE14_96).
+compute m1492=concat("vE1=",string(vE1,n2),",vE14=",string(vE14,n7)).
+compute p1492="vE1~=1，不應答vE14而答".
+compute s1492=1.
+end if.
+
+* logic check hide vG7m01,vG7m02,vG7m03,vG7m04,vG7m05,vG7m06,vG7m07,vG7m08,vG7m09,vG7m10,vG7m11,vG7m12,vG7m88,vG7m90.
+do if (vE1~=1) & (any(0 , vG7m01_96) | any(0 , vG7m02_96) | any(0 , vG7m03_96) | any(0 , vG7m04_96) | any(0 , vG7m05_96) | any(0 , vG7m06_96) | any(0
+, vG7m07_96) | any(0 , vG7m08_96) | any(0 , vG7m09_96) | any(0 , vG7m10_96) | any(0 , vG7m11_96) | any(0 , vG7m12_96) | any(0 , vG7m88_96) | any(0 , vG7m90_96)).
+compute m1493=concat(
+  "vE1=", string(vE1,n2), ",vG7m01=", string(vG7m01,n2), ",vG7m02=", string(vG7m02,n2), ",vG7m03=", string(vG7m03,n2), ",vG7m04=", string(vG7m04,n2),
+  ",vG7m05=", string(vG7m05,n2), ",vG7m06=", string(vG7m06,n2), ",vG7m07=", string(vG7m07,n2), ",vG7m08=", string(vG7m08,n2), ",vG7m09=", string(vG7m09,n2),
+  ",vG7m10=", string(vG7m10,n2), ",vG7m11=", string(vG7m11,n2), ",vG7m12=", string(vG7m12,n2), ",vG7m88=", string(vG7m88,n2), ",vG7m90=", string(vG7m90,n2)
+).
+compute p1493="vE1~=1，不應答vG7m01,vG7m02,vG7m03,vG7m04,vG7m05,vG7m06,vG7m07,vG7m08,vG7m09,vG7m10,vG7m11,vG7m12,vG7m88,vG7m90而答".
+compute s1493=1.
+end if.
+
+* logic check hide vG8m01,vG8m02,vG8m03,vG8m04,vG8m05,vG8m06,vG8m07,vG8m08,vG8m09,vG8m10,vG8m11,vG8m12,vG8m13,vG8m14,vG8m15,vG8m16,vG8m88,vG8m90.
+do if (vE1~=1) & (any(0 , vG8m01_96) | any(0 , vG8m02_96) | any(0 , vG8m03_96) | any(0 , vG8m04_96) | any(0 , vG8m05_96) | any(0 , vG8m06_96) | any(0
+, vG8m07_96) | any(0 , vG8m08_96) | any(0 , vG8m09_96) | any(0 , vG8m10_96) | any(0 , vG8m11_96) | any(0 , vG8m12_96) | any(0 , vG8m13_96) | any(0 , vG8m14_96)
+| any(0 , vG8m15_96) | any(0 , vG8m16_96) | any(0 , vG8m88_96) | any(0 , vG8m90_96)).
+compute m1494=concat(
+  "vE1=", string(vE1,n2), ",vG8m01=", string(vG8m01,n2), ",vG8m02=", string(vG8m02,n2), ",vG8m03=", string(vG8m03,n2), ",vG8m04=", string(vG8m04,n2),
+  ",vG8m05=", string(vG8m05,n2), ",vG8m06=", string(vG8m06,n2), ",vG8m07=", string(vG8m07,n2), ",vG8m08=", string(vG8m08,n2), ",vG8m09=", string(vG8m09,n2),
+  ",vG8m10=", string(vG8m10,n2), ",vG8m11=", string(vG8m11,n2), ",vG8m12=", string(vG8m12,n2), ",vG8m13=", string(vG8m13,n2), ",vG8m14=", string(vG8m14,n2),
+  ",vG8m15=", string(vG8m15,n2), ",vG8m16=", string(vG8m16,n2), ",vG8m88=", string(vG8m88,n2), ",vG8m90=", string(vG8m90,n2)
+).
+compute p1494="vE1~=1，不應答vG8m01,vG8m02,vG8m03,vG8m04,vG8m05,vG8m06,vG8m07,vG8m08,vG8m09,vG8m10,vG8m11,vG8m12,vG8m13,vG8m14,vG8m15,vG8m16,vG8m88,vG8m90而答".
+compute s1494=1.
+end if.
+
+* logic check hide vG9m01,vG9m02,vG9m03,vG9m04,vG9m05,vG9m06,vG9m07,vG9m08,vG9m09,vG9m10,vG9m11,vG9m12,vG9m13,vG9m88,vG9m90.
+do if (vE1~=1) & (any(0 , vG9m01_96) | any(0 , vG9m02_96) | any(0 , vG9m03_96) | any(0 , vG9m04_96) | any(0 , vG9m05_96) | any(0 , vG9m06_96) | any(0
+, vG9m07_96) | any(0 , vG9m08_96) | any(0 , vG9m09_96) | any(0 , vG9m10_96) | any(0 , vG9m11_96) | any(0 , vG9m12_96) | any(0 , vG9m13_96) | any(0 , vG9m88_96)
+| any(0 , vG9m90_96)).
+compute m1495=concat(
+  "vE1=", string(vE1,n2), ",vG9m01=", string(vG9m01,n2), ",vG9m02=", string(vG9m02,n2), ",vG9m03=", string(vG9m03,n2), ",vG9m04=", string(vG9m04,n2),
+  ",vG9m05=", string(vG9m05,n2), ",vG9m06=", string(vG9m06,n2), ",vG9m07=", string(vG9m07,n2), ",vG9m08=", string(vG9m08,n2), ",vG9m09=", string(vG9m09,n2),
+  ",vG9m10=", string(vG9m10,n2), ",vG9m11=", string(vG9m11,n2), ",vG9m12=", string(vG9m12,n2), ",vG9m13=", string(vG9m13,n2), ",vG9m88=", string(vG9m88,n2),
+  ",vG9m90=", string(vG9m90,n2)
+).
+compute p1495="vE1~=1，不應答vG9m01,vG9m02,vG9m03,vG9m04,vG9m05,vG9m06,vG9m07,vG9m08,vG9m09,vG9m10,vG9m11,vG9m12,vG9m13,vG9m88,vG9m90而答".
+compute s1495=1.
+end if.
+
+* logic check hide vG10m01,vG10m02,vG10m03,vG10m04,vG10m05,vG10m06,vG10m07,vG10m08,vG10m09,vG10m10,vG10m11,vG10m12,vG10m13,vG10m14,vG10m15,vG10m16,vG10m17.
+* vG10m18,vG10m19,vG10m88,vG10m90.
+do if (vE1~=1) & (any(0 , vG10m01_96) | any(0 , vG10m02_96) | any(0 , vG10m03_96) | any(0 , vG10m04_96) | any(0 , vG10m05_96) | any(0 , vG10m06_96) | any(0
+, vG10m07_96) | any(0 , vG10m08_96) | any(0 , vG10m09_96) | any(0 , vG10m10_96) | any(0 , vG10m11_96) | any(0 , vG10m12_96) | any(0 , vG10m13_96) | any(0
+, vG10m14_96) | any(0 , vG10m15_96) | any(0 , vG10m16_96) | any(0 , vG10m17_96) | any(0 , vG10m18_96) | any(0 , vG10m19_96) | any(0 , vG10m88_96) | any(0
+, vG10m90_96)).
+compute m1496=concat(
+  "vE1=", string(vE1,n2), ",vG10m01=", string(vG10m01,n2), ",vG10m02=", string(vG10m02,n2), ",vG10m03=", string(vG10m03,n2), ",vG10m04=", string(vG10m04,n2),
+  ",vG10m05=", string(vG10m05,n2), ",vG10m06=", string(vG10m06,n2), ",vG10m07=", string(vG10m07,n2), ",vG10m08=", string(vG10m08,n2), ",vG10m09=",
+  string(vG10m09,n2), ",vG10m10=", string(vG10m10,n2), ",vG10m11=", string(vG10m11,n2), ",vG10m12=", string(vG10m12,n2), ",vG10m13=", string(vG10m13,n2),
+  ",vG10m14=", string(vG10m14,n2), ",vG10m15=", string(vG10m15,n2), ",vG10m16=", string(vG10m16,n2), ",vG10m17=", string(vG10m17,n2), ",vG10m18=",
+  string(vG10m18,n2), ",vG10m19=", string(vG10m19,n2), ",vG10m88=", string(vG10m88,n2), ",vG10m90=", string(vG10m90,n2)
+).
+compute p1496=concat(
+  "vE1~=1，不應答vG10m01,vG10m02,vG10m03,vG10m04,vG10m05,vG10m06,vG10m07,vG10m08,vG10m09,vG10m10,vG10m11,vG",
+  "10m12,vG10m13,vG10m14,vG10m15,vG10m16,vG10m17,vG10m18,vG10m19,vG10m88,vG10m90而答"
+).
+compute s1496=1.
+end if.
+
+* logic check hide vG11m01,vG11m02,vG11m03,vG11m04,vG11m05,vG11m88,vG11m90.
+do if (vE1~=1) & (any(0,vG11m01_96) | any(0,vG11m02_96) | any(0,vG11m03_96) | any(0,vG11m04_96) | any(0,vG11m05_96) | any(0,vG11m88_96) | any(0,vG11m90_96)).
+compute m1497=concat(
+  "vE1=", string(vE1,n2), ",vG11m01=", string(vG11m01,n2), ",vG11m02=", string(vG11m02,n2), ",vG11m03=", string(vG11m03,n2), ",vG11m04=", string(vG11m04,n2),
+  ",vG11m05=", string(vG11m05,n2), ",vG11m88=", string(vG11m88,n2), ",vG11m90=", string(vG11m90,n2)
+).
+compute p1497="vE1~=1，不應答vG11m01,vG11m02,vG11m03,vG11m04,vG11m05,vG11m88,vG11m90而答".
+compute s1497=1.
+end if.
+
+* logic check hide vJ4_5.
+do if (vE1~=1) & any(0,vJ4_5_96).
+compute m1498=concat("vE1=",string(vE1,n2),",vJ4_5=",string(vJ4_5,n4)).
+compute p1498="vE1~=1，不應答vJ4_5而答".
+compute s1498=1.
+end if.
+
+* logic check hide vJB2m01,vJB2m02,vJB2m03,vJB2m04,vJB2m05,vJB2m06,vJB2m07,vJB2m88,vJB2m90.
+do if (vE1~=1) & (any(0 , vJB2m01_96) | any(0 , vJB2m02_96) | any(0 , vJB2m03_96) | any(0 , vJB2m04_96) | any(0 , vJB2m05_96) | any(0 , vJB2m06_96) | any(0
+, vJB2m07_96) | any(0 , vJB2m88_96) | any(0 , vJB2m90_96)).
+compute m1499=concat(
+  "vE1=", string(vE1,n2), ",vJB2m01=", string(vJB2m01,n2), ",vJB2m02=", string(vJB2m02,n2), ",vJB2m03=", string(vJB2m03,n2), ",vJB2m04=", string(vJB2m04,n2),
+  ",vJB2m05=", string(vJB2m05,n2), ",vJB2m06=", string(vJB2m06,n2), ",vJB2m07=", string(vJB2m07,n2), ",vJB2m88=", string(vJB2m88,n2), ",vJB2m90=",
+  string(vJB2m90,n2)
+).
+compute p1499="vE1~=1，不應答vJB2m01,vJB2m02,vJB2m03,vJB2m04,vJB2m05,vJB2m06,vJB2m07,vJB2m88,vJB2m90而答".
+compute s1499=1.
+end if.
+
+* logic check hide vH4.
+do if (vE1~=1) & any(0,vH4_96).
+compute m1500=concat("vE1=",string(vE1,n2),",vH4=",string(vH4,n4)).
+compute p1500="vE1~=1，不應答vH4而答".
+compute s1500=1.
+end if.
+
+* logic check hide vQ5.
+do if (vE1~=1) & any(0,vQ5_96).
+compute m1501=concat("vE1=",string(vE1,n2),",vQ5=",string(vQ5,n2)).
+compute p1501="vE1~=1，不應答vQ5而答".
+compute s1501=1.
+end if.
+
+* logic check hide vQ10.
+do if (vE1~=1) & any(0,vQ10_96).
+compute m1502=concat("vE1=",string(vE1,n2),",vQ10=",string(vQ10,n2)).
+compute p1502="vE1~=1，不應答vQ10而答".
+compute s1502=1.
+end if.
+
+* logic check hide vQ15.
+do if (vE1~=1) & any(0,vQ15_96).
+compute m1503=concat("vE1=",string(vE1,n2),",vQ15=",string(vQ15,n2)).
+compute p1503="vE1~=1，不應答vQ15而答".
+compute s1503=1.
+end if.
+
+* logic check mutex.
+do if (any(vE1,2,97,98)) & (any(vF0,2)).
+compute m1504=concat("vE1=",string(vE1,n2),",vF0=",string(vF0,n2)).
+compute p1504="vE1 in 2 | vE1 in 97 | vE1 in 98與互斥條件不應同時成立".
+compute s1504=1.
+end if.
+
+* logic check mutex.
+do if (any(vE1,2,97,98)) & (any(vF0,89)).
+compute m1505=concat("vE1=",string(vE1,n2),",vF0=",string(vF0,n2)).
+compute p1505="vE1 in 2 | vE1 in 97 | vE1 in 98與互斥條件不應同時成立".
+compute s1505=1.
+end if.
+
+* logic check mutex.
+do if (any(vB1,0) & any(vB3,0) & any(vE1,2)) & (any(vQ20m01,1)).
+compute m1506=concat("vB1=",string(vB1,n4),",vB3=",string(vB3,n4),",vE1=",string(vE1,n2),",vQ20m01=",string(vQ20m01,n2)).
+compute p1506="vB1 in 0 & vB3 in 0 & vE1 in 2與互斥條件不應同時成立".
+compute s1506=1.
+end if.
+
+* logic check mutex.
+do if (any(vE1,2)) & (any(vQ20m02,1)).
+compute m1507=concat("vE1=",string(vE1,n2),",vQ20m02=",string(vQ20m02,n2)).
+compute p1507="vE1 in 2與互斥條件不應同時成立".
+compute s1507=1.
+end if.
+
+* logic check mutex.
+do if (any(vE1,2)) & (any(vQ20m03,1)).
+compute m1508=concat("vE1=",string(vE1,n2),",vQ20m03=",string(vQ20m03,n2)).
+compute p1508="vE1 in 2與互斥條件不應同時成立".
+compute s1508=1.
+end if.
+
+* logic check mutex.
+do if (any(vE1,2)) & (any(vQ20m04,1)).
+compute m1509=concat("vE1=",string(vE1,n2),",vQ20m04=",string(vQ20m04,n2)).
+compute p1509="vE1 in 2與互斥條件不應同時成立".
+compute s1509=1.
+end if.
+
+* logic check mutex.
+do if (any(vE1,2)) & (any(vQ20m05,1)).
+compute m1510=concat("vE1=",string(vE1,n2),",vQ20m05=",string(vQ20m05,n2)).
+compute p1510="vE1 in 2與互斥條件不應同時成立".
+compute s1510=1.
 end if.
 
 * logic check limit vE3.
 do if not any(mod(trunc(vE3/10),10),0,1,2,3,4,5).
-compute m1618=concat("vE3=",string(vE3,n5)).
-compute p1618="vE3第3碼應為0,1,2,3,4,5".
+compute m1511=concat("vE3=",string(vE3,n5)).
+compute p1511="vE3第3碼應為0,1,2,3,4,5".
+compute s1511=1.
+end if.
+
+* logic check show vG4.
+do if (any(vG7m01 , 1) | any(vG7m02 , 1) | any(vG7m03 , 1) | any(vG7m04 , 1) | any(vG7m05 , 1) | any(vG7m06 , 1) | any(vG7m07 , 1) | any(vG7m08 , 1)
+| any(vG7m09 , 1) | any(vG7m10 , 1) | any(vG7m11 , 1) | any(vG7m12 , 1) | any(vG7m88 , 1) | any(vG8m01 , 1) | any(vG8m02 , 1) | any(vG8m03 , 1) | any(vG8m04
+, 1) | any(vG8m05 , 1) | any(vG8m06 , 1) | any(vG8m07 , 1) | any(vG8m08 , 1) | any(vG8m09 , 1) | any(vG8m10 , 1) | any(vG8m11 , 1) | any(vG8m12 , 1)
+| any(vG8m13 , 1) | any(vG8m14 , 1) | any(vG8m15 , 1) | any(vG8m16 , 1) | any(vG8m88 , 1) | any(vG9m01 , 1) | any(vG9m02 , 1) | any(vG9m03 , 1) | any(vG9m04
+, 1) | any(vG9m05 , 1) | any(vG9m06 , 1) | any(vG9m07 , 1) | any(vG9m08 , 1) | any(vG9m09 , 1) | any(vG9m10 , 1) | any(vG9m11 , 1) | any(vG9m12 , 1)
+| any(vG9m13 , 1) | any(vG9m88 , 1) | any(vG10m01 , 1) | any(vG10m02 , 1) | any(vG10m03 , 1) | any(vG10m04 , 1) | any(vG10m05 , 1) | any(vG10m06 , 1)
+| any(vG10m07 , 1) | any(vG10m08 , 1) | any(vG10m09 , 1) | any(vG10m10 , 1) | any(vG10m11 , 1) | any(vG10m12 , 1) | any(vG10m13 , 1) | any(vG10m14 , 1)
+| any(vG10m15 , 1) | any(vG10m16 , 1) | any(vG10m17 , 1) | any(vG10m18 , 1) | any(vG10m19 , 1) | any(vG10m88 , 1) | any(vG11m01 , 1) | any(vG11m02 , 1)
+| any(vG11m03 , 1) | any(vG11m04 , 1) | any(vG11m05 , 1) | any(vG11m88 , 1)) & any(1 , vG4_96).
+compute m1512=concat(
+  "vG7m01=", string(vG7m01,n2), ",vG7m02=", string(vG7m02,n2), ",vG7m03=", string(vG7m03,n2), ",vG7m04=", string(vG7m04,n2), ",vG7m05=", string(vG7m05,n2),
+  ",vG7m06=", string(vG7m06,n2), ",vG7m07=", string(vG7m07,n2), ",vG7m08=", string(vG7m08,n2), ",vG7m09=", string(vG7m09,n2), ",vG7m10=", string(vG7m10,n2),
+  ",vG7m11=", string(vG7m11,n2), ",vG7m12=", string(vG7m12,n2), ",vG7m88=", string(vG7m88,n2), ",vG8m01=", string(vG8m01,n2), ",vG8m02=", string(vG8m02,n2),
+  ",vG8m03=", string(vG8m03,n2), ",vG8m04=", string(vG8m04,n2), ",vG8m05=", string(vG8m05,n2), ",vG8m06=", string(vG8m06,n2), ",vG8m07=", string(vG8m07,n2),
+  ",vG8m08=", string(vG8m08,n2), ",vG8m09=", string(vG8m09,n2), ",vG8m10=", string(vG8m10,n2), ",vG8m11=", string(vG8m11,n2), ",vG8m12=", string(vG8m12,n2),
+  ",vG8m13=", string(vG8m13,n2), ",vG8m14=", string(vG8m14,n2), ",vG8m15=", string(vG8m15,n2), ",vG8m16=", string(vG8m16,n2), ",vG8m88=", string(vG8m88,n2),
+  ",vG9m01=", string(vG9m01,n2), ",vG9m02=", string(vG9m02,n2), ",vG9m03=", string(vG9m03,n2), ",vG9m04=", string(vG9m04,n2), ",vG9m05=", string(vG9m05,n2),
+  ",vG9m06=", string(vG9m06,n2), ",vG9m07=", string(vG9m07,n2), ",vG9m08=", string(vG9m08,n2), ",vG9m09=", string(vG9m09,n2), ",vG9m10=", string(vG9m10,n2),
+  ",vG9m11=", string(vG9m11,n2), ",vG9m12=", string(vG9m12,n2), ",vG9m13=", string(vG9m13,n2), ",vG9m88=", string(vG9m88,n2), ",vG10m01=", string(vG10m01,n2),
+  ",vG10m02=", string(vG10m02,n2), ",vG10m03=", string(vG10m03,n2), ",vG10m04=", string(vG10m04,n2), ",vG10m05=", string(vG10m05,n2), ",vG10m06=",
+  string(vG10m06,n2), ",vG10m07=", string(vG10m07,n2), ",vG10m08=", string(vG10m08,n2), ",vG10m09=", string(vG10m09,n2), ",vG10m10=", string(vG10m10,n2),
+  ",vG10m11=", string(vG10m11,n2), ",vG10m12=", string(vG10m12,n2), ",vG10m13=", string(vG10m13,n2), ",vG10m14=", string(vG10m14,n2), ",vG10m15=",
+  string(vG10m15,n2), ",vG10m16=", string(vG10m16,n2), ",vG10m17=", string(vG10m17,n2), ",vG10m18=", string(vG10m18,n2), ",vG10m19=", string(vG10m19,n2),
+  ",vG10m88=", string(vG10m88,n2), ",vG11m01=", string(vG11m01,n2), ",vG11m02=", string(vG11m02,n2), ",vG11m03=", string(vG11m03,n2), ",vG11m04=",
+  string(vG11m04,n2), ",vG11m05=", string(vG11m05,n2), ",vG11m88=", string(vG11m88,n2), ",vG4=", string(vG4,n4)
+).
+compute p1512=concat(
+  "vG7m01 in 1 | vG7m02 in 1 | vG7m03 in 1 | vG7m04 in 1 | vG7m05 in 1 | vG7m06 in 1 | vG7m07 in 1 | vG",
+  "7m08 in 1 | vG7m09 in 1 | vG7m10 in 1 | vG7m11 in 1 | vG7m12 in 1 | vG7m88 in 1 | vG8m01 in 1 | vG8m",
+  "02 in 1 | vG8m03 in 1 | vG8m04 in 1 | vG8m05 in 1 | vG8m06 in 1 | vG8m07 in 1 | vG8m08 in 1 | vG8m09",
+  " in 1 | vG8m10 in 1 | vG8m11 in 1 | vG8m12 in 1 | vG8m13 in 1 | vG8m14 in 1 | vG8m15 in 1 | vG8m16 i",
+  "n 1 | vG8m88 in 1 | vG9m01 in 1 | vG9m02 in 1 | vG9m03 in 1 | vG9m04 in 1 | vG9m05 in 1 | vG9m06 in ",
+  "1 | vG9m07 in 1 | vG9m08 in 1 | vG9m09 in 1 | vG9m10 in 1 | vG9m11 in 1 | vG9m12 in 1 | vG9m13 in 1 ",
+  "| vG9m88 in 1 | vG10m01 in 1 | vG10m02 in 1 | vG10m03 in 1 | vG10m04 in 1 | vG10m05 in 1 | vG10m06 i",
+  "n 1 | vG10m07 in 1 | vG10m08 in 1 | vG10m09 in 1 | vG10m10 in 1 | vG10m11 in 1 | vG10m12 in 1 | vG10",
+  "m13 in 1 | vG10m14 in 1 | vG10m15 in 1 | vG10m16 in 1 | vG10m17 in 1 | vG10m18 in 1 | vG10m19 in 1 |",
+  " vG10m88 in 1 | vG11m01 in 1 | vG11m02 in 1 | vG11m03 in 1 | vG11m04 in 1 | vG11m05 in 1 | vG11m88 i",
+  "n 1，應答vG4而未答"
+).
+compute s1512=1.
+end if.
+
+* logic check hide vG4.
+do if (vG7m01~=1 & vG7m02~=1 & vG7m03~=1 & vG7m04~=1 & vG7m05~=1 & vG7m06~=1 & vG7m07~=1 & vG7m08~=1 & vG7m09~=1 & vG7m10~=1 & vG7m11~=1 & vG7m12~=1 & vG7m88~=1
+& vG8m01~=1 & vG8m02~=1 & vG8m03~=1 & vG8m04~=1 & vG8m05~=1 & vG8m06~=1 & vG8m07~=1 & vG8m08~=1 & vG8m09~=1 & vG8m10~=1 & vG8m11~=1 & vG8m12~=1 & vG8m13~=1
+& vG8m14~=1 & vG8m15~=1 & vG8m16~=1 & vG8m88~=1 & vG9m01~=1 & vG9m02~=1 & vG9m03~=1 & vG9m04~=1 & vG9m05~=1 & vG9m06~=1 & vG9m07~=1 & vG9m08~=1 & vG9m09~=1
+& vG9m10~=1 & vG9m11~=1 & vG9m12~=1 & vG9m13~=1 & vG9m88~=1 & vG10m01~=1 & vG10m02~=1 & vG10m03~=1 & vG10m04~=1 & vG10m05~=1 & vG10m06~=1 & vG10m07~=1
+& vG10m08~=1 & vG10m09~=1 & vG10m10~=1 & vG10m11~=1 & vG10m12~=1 & vG10m13~=1 & vG10m14~=1 & vG10m15~=1 & vG10m16~=1 & vG10m17~=1 & vG10m18~=1 & vG10m19~=1
+& vG10m88~=1 & vG11m01~=1 & vG11m02~=1 & vG11m03~=1 & vG11m04~=1 & vG11m05~=1 & vG11m88~=1) & any(0 , vG4_96).
+compute m1513=concat(
+  "vG7m01=", string(vG7m01,n2), ",vG7m02=", string(vG7m02,n2), ",vG7m03=", string(vG7m03,n2), ",vG7m04=", string(vG7m04,n2), ",vG7m05=", string(vG7m05,n2),
+  ",vG7m06=", string(vG7m06,n2), ",vG7m07=", string(vG7m07,n2), ",vG7m08=", string(vG7m08,n2), ",vG7m09=", string(vG7m09,n2), ",vG7m10=", string(vG7m10,n2),
+  ",vG7m11=", string(vG7m11,n2), ",vG7m12=", string(vG7m12,n2), ",vG7m88=", string(vG7m88,n2), ",vG8m01=", string(vG8m01,n2), ",vG8m02=", string(vG8m02,n2),
+  ",vG8m03=", string(vG8m03,n2), ",vG8m04=", string(vG8m04,n2), ",vG8m05=", string(vG8m05,n2), ",vG8m06=", string(vG8m06,n2), ",vG8m07=", string(vG8m07,n2),
+  ",vG8m08=", string(vG8m08,n2), ",vG8m09=", string(vG8m09,n2), ",vG8m10=", string(vG8m10,n2), ",vG8m11=", string(vG8m11,n2), ",vG8m12=", string(vG8m12,n2),
+  ",vG8m13=", string(vG8m13,n2), ",vG8m14=", string(vG8m14,n2), ",vG8m15=", string(vG8m15,n2), ",vG8m16=", string(vG8m16,n2), ",vG8m88=", string(vG8m88,n2),
+  ",vG9m01=", string(vG9m01,n2), ",vG9m02=", string(vG9m02,n2), ",vG9m03=", string(vG9m03,n2), ",vG9m04=", string(vG9m04,n2), ",vG9m05=", string(vG9m05,n2),
+  ",vG9m06=", string(vG9m06,n2), ",vG9m07=", string(vG9m07,n2), ",vG9m08=", string(vG9m08,n2), ",vG9m09=", string(vG9m09,n2), ",vG9m10=", string(vG9m10,n2),
+  ",vG9m11=", string(vG9m11,n2), ",vG9m12=", string(vG9m12,n2), ",vG9m13=", string(vG9m13,n2), ",vG9m88=", string(vG9m88,n2), ",vG10m01=", string(vG10m01,n2),
+  ",vG10m02=", string(vG10m02,n2), ",vG10m03=", string(vG10m03,n2), ",vG10m04=", string(vG10m04,n2), ",vG10m05=", string(vG10m05,n2), ",vG10m06=",
+  string(vG10m06,n2), ",vG10m07=", string(vG10m07,n2), ",vG10m08=", string(vG10m08,n2), ",vG10m09=", string(vG10m09,n2), ",vG10m10=", string(vG10m10,n2),
+  ",vG10m11=", string(vG10m11,n2), ",vG10m12=", string(vG10m12,n2), ",vG10m13=", string(vG10m13,n2), ",vG10m14=", string(vG10m14,n2), ",vG10m15=",
+  string(vG10m15,n2), ",vG10m16=", string(vG10m16,n2), ",vG10m17=", string(vG10m17,n2), ",vG10m18=", string(vG10m18,n2), ",vG10m19=", string(vG10m19,n2),
+  ",vG10m88=", string(vG10m88,n2), ",vG11m01=", string(vG11m01,n2), ",vG11m02=", string(vG11m02,n2), ",vG11m03=", string(vG11m03,n2), ",vG11m04=",
+  string(vG11m04,n2), ",vG11m05=", string(vG11m05,n2), ",vG11m88=", string(vG11m88,n2), ",vG4=", string(vG4,n4)
+).
+compute p1513=concat(
+  "vG7m01~=1 & vG7m02~=1 & vG7m03~=1 & vG7m04~=1 & vG7m05~=1 & vG7m06~=1 & vG7m07~=1 & vG7m08~=1 & vG7m",
+  "09~=1 & vG7m10~=1 & vG7m11~=1 & vG7m12~=1 & vG7m88~=1 & vG8m01~=1 & vG8m02~=1 & vG8m03~=1 & vG8m04~=",
+  "1 & vG8m05~=1 & vG8m06~=1 & vG8m07~=1 & vG8m08~=1 & vG8m09~=1 & vG8m10~=1 & vG8m11~=1 & vG8m12~=1 & ",
+  "vG8m13~=1 & vG8m14~=1 & vG8m15~=1 & vG8m16~=1 & vG8m88~=1 & vG9m01~=1 & vG9m02~=1 & vG9m03~=1 & vG9m",
+  "04~=1 & vG9m05~=1 & vG9m06~=1 & vG9m07~=1 & vG9m08~=1 & vG9m09~=1 & vG9m10~=1 & vG9m11~=1 & vG9m12~=",
+  "1 & vG9m13~=1 & vG9m88~=1 & vG10m01~=1 & vG10m02~=1 & vG10m03~=1 & vG10m04~=1 & vG10m05~=1 & vG10m06",
+  "~=1 & vG10m07~=1 & vG10m08~=1 & vG10m09~=1 & vG10m10~=1 & vG10m11~=1 & vG10m12~=1 & vG10m13~=1 & vG1",
+  "0m14~=1 & vG10m15~=1 & vG10m16~=1 & vG10m17~=1 & vG10m18~=1 & vG10m19~=1 & vG10m88~=1 & vG11m01~=1 &",
+  " vG11m02~=1 & vG11m03~=1 & vG11m04~=1 & vG11m05~=1 & vG11m88~=1，不應答vG4而答"
+).
+compute s1513=1.
+end if.
+
+* logic check show vG5.
+do if (any(vG7m01 , 1) | any(vG7m02 , 1) | any(vG7m03 , 1) | any(vG7m04 , 1) | any(vG7m05 , 1) | any(vG7m06 , 1) | any(vG7m07 , 1) | any(vG7m08 , 1)
+| any(vG7m09 , 1) | any(vG7m10 , 1) | any(vG7m11 , 1) | any(vG7m12 , 1) | any(vG7m88 , 1) | any(vG8m01 , 1) | any(vG8m02 , 1) | any(vG8m03 , 1) | any(vG8m04
+, 1) | any(vG8m05 , 1) | any(vG8m06 , 1) | any(vG8m07 , 1) | any(vG8m08 , 1) | any(vG8m09 , 1) | any(vG8m10 , 1) | any(vG8m11 , 1) | any(vG8m12 , 1)
+| any(vG8m13 , 1) | any(vG8m14 , 1) | any(vG8m15 , 1) | any(vG8m16 , 1) | any(vG8m88 , 1) | any(vG9m01 , 1) | any(vG9m02 , 1) | any(vG9m03 , 1) | any(vG9m04
+, 1) | any(vG9m05 , 1) | any(vG9m06 , 1) | any(vG9m07 , 1) | any(vG9m08 , 1) | any(vG9m09 , 1) | any(vG9m10 , 1) | any(vG9m11 , 1) | any(vG9m12 , 1)
+| any(vG9m13 , 1) | any(vG9m88 , 1) | any(vG10m01 , 1) | any(vG10m02 , 1) | any(vG10m03 , 1) | any(vG10m04 , 1) | any(vG10m05 , 1) | any(vG10m06 , 1)
+| any(vG10m07 , 1) | any(vG10m08 , 1) | any(vG10m09 , 1) | any(vG10m10 , 1) | any(vG10m11 , 1) | any(vG10m12 , 1) | any(vG10m13 , 1) | any(vG10m14 , 1)
+| any(vG10m15 , 1) | any(vG10m16 , 1) | any(vG10m17 , 1) | any(vG10m18 , 1) | any(vG10m19 , 1) | any(vG10m88 , 1) | any(vG11m01 , 1) | any(vG11m02 , 1)
+| any(vG11m03 , 1) | any(vG11m04 , 1) | any(vG11m05 , 1) | any(vG11m88 , 1)) & any(1 , vG5_96).
+compute m1514=concat(
+  "vG7m01=", string(vG7m01,n2), ",vG7m02=", string(vG7m02,n2), ",vG7m03=", string(vG7m03,n2), ",vG7m04=", string(vG7m04,n2), ",vG7m05=", string(vG7m05,n2),
+  ",vG7m06=", string(vG7m06,n2), ",vG7m07=", string(vG7m07,n2), ",vG7m08=", string(vG7m08,n2), ",vG7m09=", string(vG7m09,n2), ",vG7m10=", string(vG7m10,n2),
+  ",vG7m11=", string(vG7m11,n2), ",vG7m12=", string(vG7m12,n2), ",vG7m88=", string(vG7m88,n2), ",vG8m01=", string(vG8m01,n2), ",vG8m02=", string(vG8m02,n2),
+  ",vG8m03=", string(vG8m03,n2), ",vG8m04=", string(vG8m04,n2), ",vG8m05=", string(vG8m05,n2), ",vG8m06=", string(vG8m06,n2), ",vG8m07=", string(vG8m07,n2),
+  ",vG8m08=", string(vG8m08,n2), ",vG8m09=", string(vG8m09,n2), ",vG8m10=", string(vG8m10,n2), ",vG8m11=", string(vG8m11,n2), ",vG8m12=", string(vG8m12,n2),
+  ",vG8m13=", string(vG8m13,n2), ",vG8m14=", string(vG8m14,n2), ",vG8m15=", string(vG8m15,n2), ",vG8m16=", string(vG8m16,n2), ",vG8m88=", string(vG8m88,n2),
+  ",vG9m01=", string(vG9m01,n2), ",vG9m02=", string(vG9m02,n2), ",vG9m03=", string(vG9m03,n2), ",vG9m04=", string(vG9m04,n2), ",vG9m05=", string(vG9m05,n2),
+  ",vG9m06=", string(vG9m06,n2), ",vG9m07=", string(vG9m07,n2), ",vG9m08=", string(vG9m08,n2), ",vG9m09=", string(vG9m09,n2), ",vG9m10=", string(vG9m10,n2),
+  ",vG9m11=", string(vG9m11,n2), ",vG9m12=", string(vG9m12,n2), ",vG9m13=", string(vG9m13,n2), ",vG9m88=", string(vG9m88,n2), ",vG10m01=", string(vG10m01,n2),
+  ",vG10m02=", string(vG10m02,n2), ",vG10m03=", string(vG10m03,n2), ",vG10m04=", string(vG10m04,n2), ",vG10m05=", string(vG10m05,n2), ",vG10m06=",
+  string(vG10m06,n2), ",vG10m07=", string(vG10m07,n2), ",vG10m08=", string(vG10m08,n2), ",vG10m09=", string(vG10m09,n2), ",vG10m10=", string(vG10m10,n2),
+  ",vG10m11=", string(vG10m11,n2), ",vG10m12=", string(vG10m12,n2), ",vG10m13=", string(vG10m13,n2), ",vG10m14=", string(vG10m14,n2), ",vG10m15=",
+  string(vG10m15,n2), ",vG10m16=", string(vG10m16,n2), ",vG10m17=", string(vG10m17,n2), ",vG10m18=", string(vG10m18,n2), ",vG10m19=", string(vG10m19,n2),
+  ",vG10m88=", string(vG10m88,n2), ",vG11m01=", string(vG11m01,n2), ",vG11m02=", string(vG11m02,n2), ",vG11m03=", string(vG11m03,n2), ",vG11m04=",
+  string(vG11m04,n2), ",vG11m05=", string(vG11m05,n2), ",vG11m88=", string(vG11m88,n2), ",vG5=", string(vG5,n5)
+).
+compute p1514=concat(
+  "vG7m01 in 1 | vG7m02 in 1 | vG7m03 in 1 | vG7m04 in 1 | vG7m05 in 1 | vG7m06 in 1 | vG7m07 in 1 | vG",
+  "7m08 in 1 | vG7m09 in 1 | vG7m10 in 1 | vG7m11 in 1 | vG7m12 in 1 | vG7m88 in 1 | vG8m01 in 1 | vG8m",
+  "02 in 1 | vG8m03 in 1 | vG8m04 in 1 | vG8m05 in 1 | vG8m06 in 1 | vG8m07 in 1 | vG8m08 in 1 | vG8m09",
+  " in 1 | vG8m10 in 1 | vG8m11 in 1 | vG8m12 in 1 | vG8m13 in 1 | vG8m14 in 1 | vG8m15 in 1 | vG8m16 i",
+  "n 1 | vG8m88 in 1 | vG9m01 in 1 | vG9m02 in 1 | vG9m03 in 1 | vG9m04 in 1 | vG9m05 in 1 | vG9m06 in ",
+  "1 | vG9m07 in 1 | vG9m08 in 1 | vG9m09 in 1 | vG9m10 in 1 | vG9m11 in 1 | vG9m12 in 1 | vG9m13 in 1 ",
+  "| vG9m88 in 1 | vG10m01 in 1 | vG10m02 in 1 | vG10m03 in 1 | vG10m04 in 1 | vG10m05 in 1 | vG10m06 i",
+  "n 1 | vG10m07 in 1 | vG10m08 in 1 | vG10m09 in 1 | vG10m10 in 1 | vG10m11 in 1 | vG10m12 in 1 | vG10",
+  "m13 in 1 | vG10m14 in 1 | vG10m15 in 1 | vG10m16 in 1 | vG10m17 in 1 | vG10m18 in 1 | vG10m19 in 1 |",
+  " vG10m88 in 1 | vG11m01 in 1 | vG11m02 in 1 | vG11m03 in 1 | vG11m04 in 1 | vG11m05 in 1 | vG11m88 i",
+  "n 1，應答vG5而未答"
+).
+compute s1514=1.
+end if.
+
+* logic check hide vG5.
+do if (vG7m01~=1 & vG7m02~=1 & vG7m03~=1 & vG7m04~=1 & vG7m05~=1 & vG7m06~=1 & vG7m07~=1 & vG7m08~=1 & vG7m09~=1 & vG7m10~=1 & vG7m11~=1 & vG7m12~=1 & vG7m88~=1
+& vG8m01~=1 & vG8m02~=1 & vG8m03~=1 & vG8m04~=1 & vG8m05~=1 & vG8m06~=1 & vG8m07~=1 & vG8m08~=1 & vG8m09~=1 & vG8m10~=1 & vG8m11~=1 & vG8m12~=1 & vG8m13~=1
+& vG8m14~=1 & vG8m15~=1 & vG8m16~=1 & vG8m88~=1 & vG9m01~=1 & vG9m02~=1 & vG9m03~=1 & vG9m04~=1 & vG9m05~=1 & vG9m06~=1 & vG9m07~=1 & vG9m08~=1 & vG9m09~=1
+& vG9m10~=1 & vG9m11~=1 & vG9m12~=1 & vG9m13~=1 & vG9m88~=1 & vG10m01~=1 & vG10m02~=1 & vG10m03~=1 & vG10m04~=1 & vG10m05~=1 & vG10m06~=1 & vG10m07~=1
+& vG10m08~=1 & vG10m09~=1 & vG10m10~=1 & vG10m11~=1 & vG10m12~=1 & vG10m13~=1 & vG10m14~=1 & vG10m15~=1 & vG10m16~=1 & vG10m17~=1 & vG10m18~=1 & vG10m19~=1
+& vG10m88~=1 & vG11m01~=1 & vG11m02~=1 & vG11m03~=1 & vG11m04~=1 & vG11m05~=1 & vG11m88~=1) & any(0 , vG5_96).
+compute m1515=concat(
+  "vG7m01=", string(vG7m01,n2), ",vG7m02=", string(vG7m02,n2), ",vG7m03=", string(vG7m03,n2), ",vG7m04=", string(vG7m04,n2), ",vG7m05=", string(vG7m05,n2),
+  ",vG7m06=", string(vG7m06,n2), ",vG7m07=", string(vG7m07,n2), ",vG7m08=", string(vG7m08,n2), ",vG7m09=", string(vG7m09,n2), ",vG7m10=", string(vG7m10,n2),
+  ",vG7m11=", string(vG7m11,n2), ",vG7m12=", string(vG7m12,n2), ",vG7m88=", string(vG7m88,n2), ",vG8m01=", string(vG8m01,n2), ",vG8m02=", string(vG8m02,n2),
+  ",vG8m03=", string(vG8m03,n2), ",vG8m04=", string(vG8m04,n2), ",vG8m05=", string(vG8m05,n2), ",vG8m06=", string(vG8m06,n2), ",vG8m07=", string(vG8m07,n2),
+  ",vG8m08=", string(vG8m08,n2), ",vG8m09=", string(vG8m09,n2), ",vG8m10=", string(vG8m10,n2), ",vG8m11=", string(vG8m11,n2), ",vG8m12=", string(vG8m12,n2),
+  ",vG8m13=", string(vG8m13,n2), ",vG8m14=", string(vG8m14,n2), ",vG8m15=", string(vG8m15,n2), ",vG8m16=", string(vG8m16,n2), ",vG8m88=", string(vG8m88,n2),
+  ",vG9m01=", string(vG9m01,n2), ",vG9m02=", string(vG9m02,n2), ",vG9m03=", string(vG9m03,n2), ",vG9m04=", string(vG9m04,n2), ",vG9m05=", string(vG9m05,n2),
+  ",vG9m06=", string(vG9m06,n2), ",vG9m07=", string(vG9m07,n2), ",vG9m08=", string(vG9m08,n2), ",vG9m09=", string(vG9m09,n2), ",vG9m10=", string(vG9m10,n2),
+  ",vG9m11=", string(vG9m11,n2), ",vG9m12=", string(vG9m12,n2), ",vG9m13=", string(vG9m13,n2), ",vG9m88=", string(vG9m88,n2), ",vG10m01=", string(vG10m01,n2),
+  ",vG10m02=", string(vG10m02,n2), ",vG10m03=", string(vG10m03,n2), ",vG10m04=", string(vG10m04,n2), ",vG10m05=", string(vG10m05,n2), ",vG10m06=",
+  string(vG10m06,n2), ",vG10m07=", string(vG10m07,n2), ",vG10m08=", string(vG10m08,n2), ",vG10m09=", string(vG10m09,n2), ",vG10m10=", string(vG10m10,n2),
+  ",vG10m11=", string(vG10m11,n2), ",vG10m12=", string(vG10m12,n2), ",vG10m13=", string(vG10m13,n2), ",vG10m14=", string(vG10m14,n2), ",vG10m15=",
+  string(vG10m15,n2), ",vG10m16=", string(vG10m16,n2), ",vG10m17=", string(vG10m17,n2), ",vG10m18=", string(vG10m18,n2), ",vG10m19=", string(vG10m19,n2),
+  ",vG10m88=", string(vG10m88,n2), ",vG11m01=", string(vG11m01,n2), ",vG11m02=", string(vG11m02,n2), ",vG11m03=", string(vG11m03,n2), ",vG11m04=",
+  string(vG11m04,n2), ",vG11m05=", string(vG11m05,n2), ",vG11m88=", string(vG11m88,n2), ",vG5=", string(vG5,n5)
+).
+compute p1515=concat(
+  "vG7m01~=1 & vG7m02~=1 & vG7m03~=1 & vG7m04~=1 & vG7m05~=1 & vG7m06~=1 & vG7m07~=1 & vG7m08~=1 & vG7m",
+  "09~=1 & vG7m10~=1 & vG7m11~=1 & vG7m12~=1 & vG7m88~=1 & vG8m01~=1 & vG8m02~=1 & vG8m03~=1 & vG8m04~=",
+  "1 & vG8m05~=1 & vG8m06~=1 & vG8m07~=1 & vG8m08~=1 & vG8m09~=1 & vG8m10~=1 & vG8m11~=1 & vG8m12~=1 & ",
+  "vG8m13~=1 & vG8m14~=1 & vG8m15~=1 & vG8m16~=1 & vG8m88~=1 & vG9m01~=1 & vG9m02~=1 & vG9m03~=1 & vG9m",
+  "04~=1 & vG9m05~=1 & vG9m06~=1 & vG9m07~=1 & vG9m08~=1 & vG9m09~=1 & vG9m10~=1 & vG9m11~=1 & vG9m12~=",
+  "1 & vG9m13~=1 & vG9m88~=1 & vG10m01~=1 & vG10m02~=1 & vG10m03~=1 & vG10m04~=1 & vG10m05~=1 & vG10m06",
+  "~=1 & vG10m07~=1 & vG10m08~=1 & vG10m09~=1 & vG10m10~=1 & vG10m11~=1 & vG10m12~=1 & vG10m13~=1 & vG1",
+  "0m14~=1 & vG10m15~=1 & vG10m16~=1 & vG10m17~=1 & vG10m18~=1 & vG10m19~=1 & vG10m88~=1 & vG11m01~=1 &",
+  " vG11m02~=1 & vG11m03~=1 & vG11m04~=1 & vG11m05~=1 & vG11m88~=1，不應答vG5而答"
+).
+compute s1515=1.
+end if.
+
+* logic check hide vQ14.
+do if (any(vQ10,2,97,98) | (any(vG7m90,1) & any(vG8m90,1) & any(vG9m90,1) & any(vG10m90,1) & any(vG11m90,1)) | any(vQ9,1)) & any(0,vQ14_96).
+compute m1516=concat(
+  "vQ10=", string(vQ10,n2), ",vG7m90=", string(vG7m90,n2), ",vG8m90=", string(vG8m90,n2), ",vG9m90=", string(vG9m90,n2), ",vG10m90=", string(vG10m90,n2),
+  ",vG11m90=", string(vG11m90,n2), ",vQ9=", string(vQ9,n2), ",vQ14=", string(vQ14,n2)
+).
+compute p1516="vQ10 in 2 | vQ10 in 97 | vQ10 in 98 | (vG7m90 in 1 & vG8m90 in 1 & vG9m90 in 1 & vG10m90 in 1 & vG11m90 in 1) | vQ9 in 1，不應答vQ14而答".
+compute s1516=1.
+end if.
+
+* logic check show vQ14.
+do if (not any(vQ10,2,97,98) & (vG7m90~=1 | vG8m90~=1 | vG9m90~=1 | vG10m90~=1 | vG11m90~=1) & vQ9~=1) & any(1,vQ14_96).
+compute m1517=concat(
+  "vQ10=", string(vQ10,n2), ",vG7m90=", string(vG7m90,n2), ",vG8m90=", string(vG8m90,n2), ",vG9m90=", string(vG9m90,n2), ",vG10m90=", string(vG10m90,n2),
+  ",vG11m90=", string(vG11m90,n2), ",vQ9=", string(vQ9,n2), ",vQ14=", string(vQ14,n2)
+).
+compute p1517="vQ10~=2 & vQ10~=97 & vQ10~=98 & (vG7m90~=1 | vG8m90~=1 | vG9m90~=1 | vG10m90~=1 | vG11m90~=1) & vQ9~=1，應答vQ14而未答".
+compute s1517=1.
+end if.
+
+* logic check hide vQ19.
+do if (any(vQ15,2,97,98) | (any(vG7m90,1) & any(vG8m90,1) & any(vG9m90,1) & any(vG10m90,1) & any(vG11m90,1))) & any(0,vQ19_96).
+compute m1518=concat(
+  "vQ15=", string(vQ15,n2), ",vG7m90=", string(vG7m90,n2), ",vG8m90=", string(vG8m90,n2), ",vG9m90=", string(vG9m90,n2), ",vG10m90=", string(vG10m90,n2),
+  ",vG11m90=", string(vG11m90,n2), ",vQ19=", string(vQ19,n2)
+).
+compute p1518="vQ15 in 2 | vQ15 in 97 | vQ15 in 98 | (vG7m90 in 1 & vG8m90 in 1 & vG9m90 in 1 & vG10m90 in 1 & vG11m90 in 1)，不應答vQ19而答".
+compute s1518=1.
+end if.
+
+* logic check show vQ19.
+do if (not any(vQ15,2,97,98) & (vG7m90~=1 | vG8m90~=1 | vG9m90~=1 | vG10m90~=1 | vG11m90~=1)) & any(1,vQ19_96).
+compute m1519=concat(
+  "vQ15=", string(vQ15,n2), ",vG7m90=", string(vG7m90,n2), ",vG8m90=", string(vG8m90,n2), ",vG9m90=", string(vG9m90,n2), ",vG10m90=", string(vG10m90,n2),
+  ",vG11m90=", string(vG11m90,n2), ",vQ19=", string(vQ19,n2)
+).
+compute p1519="vQ15~=2 & vQ15~=97 & vQ15~=98 & (vG7m90~=1 | vG8m90~=1 | vG9m90~=1 | vG10m90~=1 | vG11m90~=1)，應答vQ19而未答".
+compute s1519=1.
 end if.
 
 * logic check limit vG5.
 do if not any(mod(trunc(vG5/10),10),0,1,2,3,4,5).
-compute m1619=concat("vG5=",string(vG5,n5)).
-compute p1619="vG5第3碼應為0,1,2,3,4,5".
+compute m1520=concat("vG5=",string(vG5,n5)).
+compute p1520="vG5第3碼應為0,1,2,3,4,5".
+compute s1520=1.
+end if.
+
+* logic check hide vB2.
+do if (any(vB1,0)) & any(0,vB2_96).
+compute m1521=concat("vB1=",string(vB1,n4),",vB2=",string(vB2,n5)).
+compute p1521="vB1 in 0，不應答vB2而答".
+compute s1521=1.
+end if.
+
+* logic check show vCKQ20B.
+do if (any(vQ5,2) & any(vQ20m01,1) & any(vB1,0) & any(vB3,0)) & any(1,vCKQ20B_96).
+compute m1522=concat("vQ5=",string(vQ5,n2),",vQ20m01=",string(vQ20m01,n2),",vB1=",string(vB1,n4),",vB3=",string(vB3,n4),",vCKQ20B=",string(vCKQ20B,n2)).
+compute p1522="vQ5 in 2 & vQ20m01 in 1 & vB1 in 0 & vB3 in 0，應答vCKQ20B而未答".
+compute s1522=1.
+end if.
+
+* logic check show vB2.
+do if (vB1~=0) & any(1,vB2_96).
+compute m1523=concat("vB1=",string(vB1,n4),",vB2=",string(vB2,n5)).
+compute p1523="vB1~=0，應答vB2而未答".
+compute s1523=1.
+end if.
+
+* logic check hide vB8m01,vB8m02,vB8m03,vB8m04,vB8m05,vB8m06,vB8m07,vB8m08,vB8m09,vB8m10,vB8m88.
+do if (any(vB1 , 0) & any(vB3 , 0)) & (any(0 , vB8m01_96) | any(0 , vB8m02_96) | any(0 , vB8m03_96) | any(0 , vB8m04_96) | any(0 , vB8m05_96) | any(0
+, vB8m06_96) | any(0 , vB8m07_96) | any(0 , vB8m08_96) | any(0 , vB8m09_96) | any(0 , vB8m10_96) | any(0 , vB8m88_96)).
+compute m1524=concat(
+  "vB1=", string(vB1,n4), ",vB3=", string(vB3,n4), ",vB8m01=", string(vB8m01,n2), ",vB8m02=", string(vB8m02,n2), ",vB8m03=", string(vB8m03,n2), ",vB8m04=",
+  string(vB8m04,n2), ",vB8m05=", string(vB8m05,n2), ",vB8m06=", string(vB8m06,n2), ",vB8m07=", string(vB8m07,n2), ",vB8m08=", string(vB8m08,n2), ",vB8m09=",
+  string(vB8m09,n2), ",vB8m10=", string(vB8m10,n2), ",vB8m88=", string(vB8m88,n2)
+).
+compute p1524="vB1 in 0 & vB3 in 0，不應答vB8m01,vB8m02,vB8m03,vB8m04,vB8m05,vB8m06,vB8m07,vB8m08,vB8m09,vB8m10,vB8m88而答".
+compute s1524=1.
+end if.
+
+* logic check show vB8m01,vB8m02,vB8m03,vB8m04,vB8m05,vB8m06,vB8m07,vB8m08,vB8m09,vB8m10,vB8m88.
+do if (vB1~=0 | vB3~=0) & (any(1 , vB8m01_96) | any(1 , vB8m02_96) | any(1 , vB8m03_96) | any(1 , vB8m04_96) | any(1 , vB8m05_96) | any(1 , vB8m06_96) | any(1
+, vB8m07_96) | any(1 , vB8m08_96) | any(1 , vB8m09_96) | any(1 , vB8m10_96) | any(1 , vB8m88_96)).
+compute m1525=concat(
+  "vB1=", string(vB1,n4), ",vB3=", string(vB3,n4), ",vB8m01=", string(vB8m01,n2), ",vB8m02=", string(vB8m02,n2), ",vB8m03=", string(vB8m03,n2), ",vB8m04=",
+  string(vB8m04,n2), ",vB8m05=", string(vB8m05,n2), ",vB8m06=", string(vB8m06,n2), ",vB8m07=", string(vB8m07,n2), ",vB8m08=", string(vB8m08,n2), ",vB8m09=",
+  string(vB8m09,n2), ",vB8m10=", string(vB8m10,n2), ",vB8m88=", string(vB8m88,n2)
+).
+compute p1525="vB1~=0 | vB3~=0，應答vB8m01,vB8m02,vB8m03,vB8m04,vB8m05,vB8m06,vB8m07,vB8m08,vB8m09,vB8m10,vB8m88而未答".
+compute s1525=1.
+end if.
+
+* logic check hide vQ4.
+do if (any(vB1,0) & any(vB3,0)) & any(0,vQ4_96).
+compute m1526=concat("vB1=",string(vB1,n4),",vB3=",string(vB3,n4),",vQ4=",string(vQ4,n2)).
+compute p1526="vB1 in 0 & vB3 in 0，不應答vQ4而答".
+compute s1526=1.
+end if.
+
+* logic check show vQ4.
+do if (vB1~=0 | vB3~=0) & any(1,vQ4_96).
+compute m1527=concat("vB1=",string(vB1,n4),",vB3=",string(vB3,n4),",vQ4=",string(vQ4,n2)).
+compute p1527="vB1~=0 | vB3~=0，應答vQ4而未答".
+compute s1527=1.
 end if.
 
 * logic check limit vB2.
 do if not any(mod(trunc(vB2/10),10),0,1,2,3,4,5).
-compute m1620=concat("vB2=",string(vB2,n5)).
-compute p1620="vB2第3碼應為0,1,2,3,4,5".
+compute m1528=concat("vB2=",string(vB2,n5)).
+compute p1528="vB2第3碼應為0,1,2,3,4,5".
+compute s1528=1.
+end if.
+
+* logic check hide vB4.
+do if (any(vB3,0)) & any(0,vB4_96).
+compute m1529=concat("vB3=",string(vB3,n4),",vB4=",string(vB4,n5)).
+compute p1529="vB3 in 0，不應答vB4而答".
+compute s1529=1.
+end if.
+
+* logic check show vB4.
+do if (vB3~=0) & any(1,vB4_96).
+compute m1530=concat("vB3=",string(vB3,n4),",vB4=",string(vB4,n5)).
+compute p1530="vB3~=0，應答vB4而未答".
+compute s1530=1.
 end if.
 
 * logic check limit vB4.
 do if not any(mod(trunc(vB4/10),10),0,1,2,3,4,5).
-compute m1621=concat("vB4=",string(vB4,n5)).
-compute p1621="vB4第3碼應為0,1,2,3,4,5".
+compute m1531=concat("vB4=",string(vB4,n5)).
+compute p1531="vB4第3碼應為0,1,2,3,4,5".
+compute s1531=1.
+end if.
+
+* logic check show vB6.
+do if (any(vB5,0)) & any(1,vB6_96).
+compute m1532=concat("vB5=",string(vB5,n4),",vB6=",string(vB6,n5)).
+compute p1532="vB5 in 0，應答vB6而未答".
+compute s1532=1.
+end if.
+
+* logic check show vB7.
+do if (any(vB5,0)) & any(1,vB7_96).
+compute m1533=concat("vB5=",string(vB5,n4),",vB7=",string(vB7,n2)).
+compute p1533="vB5 in 0，應答vB7而未答".
+compute s1533=1.
+end if.
+
+* logic check show vJB1m01,vJB1m02,vJB1m03,vJB1m04,vJB1m05,vJB1m06,vJB1m07,vJB1m08,vJB1m09,vJB1m10,vJB1m11,vJB1m88,vJB1m90.
+do if (any(vB5 , 0)) & (any(1 , vJB1m01_96) | any(1 , vJB1m02_96) | any(1 , vJB1m03_96) | any(1 , vJB1m04_96) | any(1 , vJB1m05_96) | any(1 , vJB1m06_96)
+| any(1 , vJB1m07_96) | any(1 , vJB1m08_96) | any(1 , vJB1m09_96) | any(1 , vJB1m10_96) | any(1 , vJB1m11_96) | any(1 , vJB1m88_96) | any(1 , vJB1m90_96)).
+compute m1534=concat(
+  "vB5=", string(vB5,n4), ",vJB1m01=", string(vJB1m01,n2), ",vJB1m02=", string(vJB1m02,n2), ",vJB1m03=", string(vJB1m03,n2), ",vJB1m04=", string(vJB1m04,n2),
+  ",vJB1m05=", string(vJB1m05,n2), ",vJB1m06=", string(vJB1m06,n2), ",vJB1m07=", string(vJB1m07,n2), ",vJB1m08=", string(vJB1m08,n2), ",vJB1m09=",
+  string(vJB1m09,n2), ",vJB1m10=", string(vJB1m10,n2), ",vJB1m11=", string(vJB1m11,n2), ",vJB1m88=", string(vJB1m88,n2), ",vJB1m90=", string(vJB1m90,n2)
+).
+compute p1534="vB5 in 0，應答vJB1m01,vJB1m02,vJB1m03,vJB1m04,vJB1m05,vJB1m06,vJB1m07,vJB1m08,vJB1m09,vJB1m10,vJB1m11,vJB1m88,vJB1m90而未答".
+compute s1534=1.
+end if.
+
+* logic check hide vB6.
+do if (any(vB5,0)) & any(0,vB6_96).
+compute m1535=concat("vB5=",string(vB5,n4),",vB6=",string(vB6,n5)).
+compute p1535="vB5 in 0，不應答vB6而答".
+compute s1535=1.
+end if.
+
+* logic check show vB6.
+do if (vB5~=0) & any(1,vB6_96).
+compute m1536=concat("vB5=",string(vB5,n4),",vB6=",string(vB6,n5)).
+compute p1536="vB5~=0，應答vB6而未答".
+compute s1536=1.
+end if.
+
+* logic check hide vB7.
+do if (any(vB5,0)) & any(0,vB7_96).
+compute m1537=concat("vB5=",string(vB5,n4),",vB7=",string(vB7,n2)).
+compute p1537="vB5 in 0，不應答vB7而答".
+compute s1537=1.
+end if.
+
+* logic check show vB7.
+do if (vB5~=0) & any(1,vB7_96).
+compute m1538=concat("vB5=",string(vB5,n4),",vB7=",string(vB7,n2)).
+compute p1538="vB5~=0，應答vB7而未答".
+compute s1538=1.
+end if.
+
+* logic check hide vJB1m01,vJB1m02,vJB1m03,vJB1m04,vJB1m05,vJB1m06,vJB1m07,vJB1m08,vJB1m09,vJB1m10,vJB1m11,vJB1m88,vJB1m90.
+do if (any(vB5 , 0)) & (any(0 , vJB1m01_96) | any(0 , vJB1m02_96) | any(0 , vJB1m03_96) | any(0 , vJB1m04_96) | any(0 , vJB1m05_96) | any(0 , vJB1m06_96)
+| any(0 , vJB1m07_96) | any(0 , vJB1m08_96) | any(0 , vJB1m09_96) | any(0 , vJB1m10_96) | any(0 , vJB1m11_96) | any(0 , vJB1m88_96) | any(0 , vJB1m90_96)).
+compute m1539=concat(
+  "vB5=", string(vB5,n4), ",vJB1m01=", string(vJB1m01,n2), ",vJB1m02=", string(vJB1m02,n2), ",vJB1m03=", string(vJB1m03,n2), ",vJB1m04=", string(vJB1m04,n2),
+  ",vJB1m05=", string(vJB1m05,n2), ",vJB1m06=", string(vJB1m06,n2), ",vJB1m07=", string(vJB1m07,n2), ",vJB1m08=", string(vJB1m08,n2), ",vJB1m09=",
+  string(vJB1m09,n2), ",vJB1m10=", string(vJB1m10,n2), ",vJB1m11=", string(vJB1m11,n2), ",vJB1m88=", string(vJB1m88,n2), ",vJB1m90=", string(vJB1m90,n2)
+).
+compute p1539="vB5 in 0，不應答vJB1m01,vJB1m02,vJB1m03,vJB1m04,vJB1m05,vJB1m06,vJB1m07,vJB1m08,vJB1m09,vJB1m10,vJB1m11,vJB1m88,vJB1m90而答".
+compute s1539=1.
+end if.
+
+* logic check show vJB1m01,vJB1m02,vJB1m03,vJB1m04,vJB1m05,vJB1m06,vJB1m07,vJB1m08,vJB1m09,vJB1m10,vJB1m11,vJB1m88,vJB1m90.
+do if (vB5~=0) & (any(1 , vJB1m01_96) | any(1 , vJB1m02_96) | any(1 , vJB1m03_96) | any(1 , vJB1m04_96) | any(1 , vJB1m05_96) | any(1 , vJB1m06_96) | any(1
+, vJB1m07_96) | any(1 , vJB1m08_96) | any(1 , vJB1m09_96) | any(1 , vJB1m10_96) | any(1 , vJB1m11_96) | any(1 , vJB1m88_96) | any(1 , vJB1m90_96)).
+compute m1540=concat(
+  "vB5=", string(vB5,n4), ",vJB1m01=", string(vJB1m01,n2), ",vJB1m02=", string(vJB1m02,n2), ",vJB1m03=", string(vJB1m03,n2), ",vJB1m04=", string(vJB1m04,n2),
+  ",vJB1m05=", string(vJB1m05,n2), ",vJB1m06=", string(vJB1m06,n2), ",vJB1m07=", string(vJB1m07,n2), ",vJB1m08=", string(vJB1m08,n2), ",vJB1m09=",
+  string(vJB1m09,n2), ",vJB1m10=", string(vJB1m10,n2), ",vJB1m11=", string(vJB1m11,n2), ",vJB1m88=", string(vJB1m88,n2), ",vJB1m90=", string(vJB1m90,n2)
+).
+compute p1540="vB5~=0，應答vJB1m01,vJB1m02,vJB1m03,vJB1m04,vJB1m05,vJB1m06,vJB1m07,vJB1m08,vJB1m09,vJB1m10,vJB1m11,vJB1m88,vJB1m90而未答".
+compute s1540=1.
+end if.
+
+* logic check mutex.
+do if (any(vB5,0)) & (any(vB8m01,1)).
+compute m1541=concat("vB5=",string(vB5,n4),",vB8m01=",string(vB8m01,n2)).
+compute p1541="vB5 in 0與互斥條件不應同時成立".
+compute s1541=1.
 end if.
 
 * logic check limit vB6.
 do if not any(mod(trunc(vB6/10),10),0,1,2,3,4,5).
-compute m1622=concat("vB6=",string(vB6,n5)).
-compute p1622="vB6第3碼應為0,1,2,3,4,5".
+compute m1542=concat("vB6=",string(vB6,n5)).
+compute p1542="vB6第3碼應為0,1,2,3,4,5".
+compute s1542=1.
+end if.
+
+* logic check mutex.
+do if (any(vB8m08,1)) & (any(vQ4,1)).
+compute m1543=concat("vB8m08=",string(vB8m08,n2),",vQ4=",string(vQ4,n2)).
+compute p1543="vB8m08 in 1與互斥條件不應同時成立".
+compute s1543=1.
+end if.
+
+* logic check hide vI2.
+do if (any(vI1,0)) & any(0,vI2_96).
+compute m1544=concat("vI1=",string(vI1,n4),",vI2=",string(vI2,n5)).
+compute p1544="vI1 in 0，不應答vI2而答".
+compute s1544=1.
+end if.
+
+* logic check show vI2.
+do if (vI1~=0) & any(1,vI2_96).
+compute m1545=concat("vI1=",string(vI1,n4),",vI2=",string(vI2,n5)).
+compute p1545="vI1~=0，應答vI2而未答".
+compute s1545=1.
 end if.
 
 * logic check limit vI2.
 do if not any(mod(trunc(vI2/10),10),0,1,2,3,4,5).
-compute m1623=concat("vI2=",string(vI2,n5)).
-compute p1623="vI2第3碼應為0,1,2,3,4,5".
+compute m1546=concat("vI2=",string(vI2,n5)).
+compute p1546="vI2第3碼應為0,1,2,3,4,5".
+compute s1546=1.
+end if.
+
+* logic check hide vI4.
+do if (any(vI3,0)) & any(0,vI4_96).
+compute m1547=concat("vI3=",string(vI3,n4),",vI4=",string(vI4,n5)).
+compute p1547="vI3 in 0，不應答vI4而答".
+compute s1547=1.
+end if.
+
+* logic check show vI4.
+do if (vI3~=0) & any(1,vI4_96).
+compute m1548=concat("vI3=",string(vI3,n4),",vI4=",string(vI4,n5)).
+compute p1548="vI3~=0，應答vI4而未答".
+compute s1548=1.
 end if.
 
 * logic check limit vI4.
 do if not any(mod(trunc(vI4/10),10),0,1,2,3,4,5).
-compute m1624=concat("vI4=",string(vI4,n5)).
-compute p1624="vI4第3碼應為0,1,2,3,4,5".
+compute m1549=concat("vI4=",string(vI4,n5)).
+compute p1549="vI4第3碼應為0,1,2,3,4,5".
+compute s1549=1.
 end if.
 
 * logic check limit vG2.
 do if not any(mod(trunc(vG2/10),10),0,1,2,3,4,5).
-compute m1625=concat("vG2=",string(vG2,n5)).
-compute p1625="vG2第3碼應為0,1,2,3,4,5".
+compute m1550=concat("vG2=",string(vG2,n5)).
+compute p1550="vG2第3碼應為0,1,2,3,4,5".
+compute s1550=1.
+end if.
+
+* logic check show vF1.
+do if (any(vF0,1,89)) & any(1,vF1_96).
+compute m1551=concat("vF0=",string(vF0,n2),",vF1=",string(vF1,n5)).
+compute p1551="vF0 in 1,89，應答vF1而未答".
+compute s1551=1.
+end if.
+
+* logic check show vF2.
+do if (any(vF0,1,89)) & any(1,vF2_96).
+compute m1552=concat("vF0=",string(vF0,n2),",vF2=",string(vF2,n5)).
+compute p1552="vF0 in 1,89，應答vF2而未答".
+compute s1552=1.
+end if.
+
+* logic check show vF3.
+do if (any(vF0,2,89)) & any(1,vF3_96).
+compute m1553=concat("vF0=",string(vF0,n2),",vF3=",string(vF3,n5)).
+compute p1553="vF0 in 2,89，應答vF3而未答".
+compute s1553=1.
+end if.
+
+* logic check show vF4.
+do if (any(vF0,2,89)) & any(1,vF4_96).
+compute m1554=concat("vF0=",string(vF0,n2),",vF4=",string(vF4,n5)).
+compute p1554="vF0 in 2,89，應答vF4而未答".
+compute s1554=1.
+end if.
+
+* logic check hide vF5m01,vF5m02,vF5m03,vF5m04,vF5m05,vF5m06,vF5m07,vF5m08,vF5m88.
+do if (any(vF0 , 90 , 97 , 98)) & (any(0 , vF5m01_96) | any(0 , vF5m02_96) | any(0 , vF5m03_96) | any(0 , vF5m04_96) | any(0 , vF5m05_96) | any(0 , vF5m06_96)
+| any(0 , vF5m07_96) | any(0 , vF5m08_96) | any(0 , vF5m88_96)).
+compute m1555=concat(
+  "vF0=", string(vF0,n2), ",vF5m01=", string(vF5m01,n2), ",vF5m02=", string(vF5m02,n2), ",vF5m03=", string(vF5m03,n2), ",vF5m04=", string(vF5m04,n2),
+  ",vF5m05=", string(vF5m05,n2), ",vF5m06=", string(vF5m06,n2), ",vF5m07=", string(vF5m07,n2), ",vF5m08=", string(vF5m08,n2), ",vF5m88=", string(vF5m88,n2)
+).
+compute p1555="vF0 in 90,97,98，不應答vF5m01,vF5m02,vF5m03,vF5m04,vF5m05,vF5m06,vF5m07,vF5m08,vF5m88而答".
+compute s1555=1.
+end if.
+
+* logic check show vF1.
+do if (any(vF0,1,89)) & any(1,vF1_96).
+compute m1556=concat("vF0=",string(vF0,n2),",vF1=",string(vF1,n5)).
+compute p1556="vF0 in 1 | vF0 in 89，應答vF1而未答".
+compute s1556=1.
+end if.
+
+* logic check hide vF1.
+do if (not any(vF0,1,89)) & any(0,vF1_96).
+compute m1557=concat("vF0=",string(vF0,n2),",vF1=",string(vF1,n5)).
+compute p1557="vF0~=1 & vF0~=89，不應答vF1而答".
+compute s1557=1.
+end if.
+
+* logic check show vF2.
+do if (any(vF0,1,89)) & any(1,vF2_96).
+compute m1558=concat("vF0=",string(vF0,n2),",vF2=",string(vF2,n5)).
+compute p1558="vF0 in 1 | vF0 in 89，應答vF2而未答".
+compute s1558=1.
+end if.
+
+* logic check hide vF2.
+do if (not any(vF0,1,89)) & any(0,vF2_96).
+compute m1559=concat("vF0=",string(vF0,n2),",vF2=",string(vF2,n5)).
+compute p1559="vF0~=1 & vF0~=89，不應答vF2而答".
+compute s1559=1.
+end if.
+
+* logic check show vF3.
+do if (any(vF0,2,89)) & any(1,vF3_96).
+compute m1560=concat("vF0=",string(vF0,n2),",vF3=",string(vF3,n5)).
+compute p1560="vF0 in 2 | vF0 in 89，應答vF3而未答".
+compute s1560=1.
+end if.
+
+* logic check hide vF3.
+do if (not any(vF0,2,89)) & any(0,vF3_96).
+compute m1561=concat("vF0=",string(vF0,n2),",vF3=",string(vF3,n5)).
+compute p1561="vF0~=2 & vF0~=89，不應答vF3而答".
+compute s1561=1.
+end if.
+
+* logic check show vF4.
+do if (any(vF0,2,89)) & any(1,vF4_96).
+compute m1562=concat("vF0=",string(vF0,n2),",vF4=",string(vF4,n5)).
+compute p1562="vF0 in 2 | vF0 in 89，應答vF4而未答".
+compute s1562=1.
+end if.
+
+* logic check hide vF4.
+do if (not any(vF0,2,89)) & any(0,vF4_96).
+compute m1563=concat("vF0=",string(vF0,n2),",vF4=",string(vF4,n5)).
+compute p1563="vF0~=2 & vF0~=89，不應答vF4而答".
+compute s1563=1.
+end if.
+
+* logic check hide vF5m01,vF5m02,vF5m03,vF5m04,vF5m05,vF5m06,vF5m07,vF5m08,vF5m88.
+do if (any(vF0 , 90 , 97 , 98)) & (any(0 , vF5m01_96) | any(0 , vF5m02_96) | any(0 , vF5m03_96) | any(0 , vF5m04_96) | any(0 , vF5m05_96) | any(0 , vF5m06_96)
+| any(0 , vF5m07_96) | any(0 , vF5m08_96) | any(0 , vF5m88_96)).
+compute m1564=concat(
+  "vF0=", string(vF0,n2), ",vF5m01=", string(vF5m01,n2), ",vF5m02=", string(vF5m02,n2), ",vF5m03=", string(vF5m03,n2), ",vF5m04=", string(vF5m04,n2),
+  ",vF5m05=", string(vF5m05,n2), ",vF5m06=", string(vF5m06,n2), ",vF5m07=", string(vF5m07,n2), ",vF5m08=", string(vF5m08,n2), ",vF5m88=", string(vF5m88,n2)
+).
+compute p1564="vF0 in 90 | vF0 in 97 | vF0 in 98，不應答vF5m01,vF5m02,vF5m03,vF5m04,vF5m05,vF5m06,vF5m07,vF5m08,vF5m88而答".
+compute s1564=1.
+end if.
+
+* logic check show vF5m01,vF5m02,vF5m03,vF5m04,vF5m05,vF5m06,vF5m07,vF5m08,vF5m88.
+do if (not any(vF0 , 90 , 97 , 98)) & (any(1 , vF5m01_96) | any(1 , vF5m02_96) | any(1 , vF5m03_96) | any(1 , vF5m04_96) | any(1 , vF5m05_96) | any(1
+, vF5m06_96) | any(1 , vF5m07_96) | any(1 , vF5m08_96) | any(1 , vF5m88_96)).
+compute m1565=concat(
+  "vF0=", string(vF0,n2), ",vF5m01=", string(vF5m01,n2), ",vF5m02=", string(vF5m02,n2), ",vF5m03=", string(vF5m03,n2), ",vF5m04=", string(vF5m04,n2),
+  ",vF5m05=", string(vF5m05,n2), ",vF5m06=", string(vF5m06,n2), ",vF5m07=", string(vF5m07,n2), ",vF5m08=", string(vF5m08,n2), ",vF5m88=", string(vF5m88,n2)
+).
+compute p1565="vF0~=90 & vF0~=97 & vF0~=98，應答vF5m01,vF5m02,vF5m03,vF5m04,vF5m05,vF5m06,vF5m07,vF5m08,vF5m88而未答".
+compute s1565=1.
 end if.
 
 * logic check limit vF2.
 do if not any(mod(trunc(vF2/10),10),0,1,2,3,4,5).
-compute m1626=concat("vF2=",string(vF2,n5)).
-compute p1626="vF2第3碼應為0,1,2,3,4,5".
+compute m1566=concat("vF2=",string(vF2,n5)).
+compute p1566="vF2第3碼應為0,1,2,3,4,5".
+compute s1566=1.
 end if.
 
 * logic check limit vF4.
 do if not any(mod(trunc(vF4/10),10),0,1,2,3,4,5).
-compute m1627=concat("vF4=",string(vF4,n5)).
-compute p1627="vF4第3碼應為0,1,2,3,4,5".
+compute m1567=concat("vF4=",string(vF4,n5)).
+compute p1567="vF4第3碼應為0,1,2,3,4,5".
+compute s1567=1.
+end if.
+
+* logic check hide vC2.
+do if (any(vC1,0)) & any(0,vC2_96).
+compute m1568=concat("vC1=",string(vC1,n4),",vC2=",string(vC2,n5)).
+compute p1568="vC1 in 0，不應答vC2而答".
+compute s1568=1.
+end if.
+
+* logic check hide vC3m01,vC3m02,vC3m03,vC3m04,vC3m05,vC3m06,vC3m07,vC3m08,vC3m09,vC3m10,vC3m11,vC3m88.
+do if (any(vC1 , 0)) & (any(0 , vC3m01_96) | any(0 , vC3m02_96) | any(0 , vC3m03_96) | any(0 , vC3m04_96) | any(0 , vC3m05_96) | any(0 , vC3m06_96) | any(0
+, vC3m07_96) | any(0 , vC3m08_96) | any(0 , vC3m09_96) | any(0 , vC3m10_96) | any(0 , vC3m11_96) | any(0 , vC3m88_96)).
+compute m1569=concat(
+  "vC1=", string(vC1,n4), ",vC3m01=", string(vC3m01,n2), ",vC3m02=", string(vC3m02,n2), ",vC3m03=", string(vC3m03,n2), ",vC3m04=", string(vC3m04,n2),
+  ",vC3m05=", string(vC3m05,n2), ",vC3m06=", string(vC3m06,n2), ",vC3m07=", string(vC3m07,n2), ",vC3m08=", string(vC3m08,n2), ",vC3m09=", string(vC3m09,n2),
+  ",vC3m10=", string(vC3m10,n2), ",vC3m11=", string(vC3m11,n2), ",vC3m88=", string(vC3m88,n2)
+).
+compute p1569="vC1 in 0，不應答vC3m01,vC3m02,vC3m03,vC3m04,vC3m05,vC3m06,vC3m07,vC3m08,vC3m09,vC3m10,vC3m11,vC3m88而答".
+compute s1569=1.
+end if.
+
+* logic check show vC2.
+do if (vC1~=0) & any(1,vC2_96).
+compute m1570=concat("vC1=",string(vC1,n4),",vC2=",string(vC2,n5)).
+compute p1570="vC1~=0，應答vC2而未答".
+compute s1570=1.
+end if.
+
+* logic check show vC3m01,vC3m02,vC3m03,vC3m04,vC3m05,vC3m06,vC3m07,vC3m08,vC3m09,vC3m10,vC3m11,vC3m88.
+do if (vC1~=0) & (any(1 , vC3m01_96) | any(1 , vC3m02_96) | any(1 , vC3m03_96) | any(1 , vC3m04_96) | any(1 , vC3m05_96) | any(1 , vC3m06_96) | any(1
+, vC3m07_96) | any(1 , vC3m08_96) | any(1 , vC3m09_96) | any(1 , vC3m10_96) | any(1 , vC3m11_96) | any(1 , vC3m88_96)).
+compute m1571=concat(
+  "vC1=", string(vC1,n4), ",vC3m01=", string(vC3m01,n2), ",vC3m02=", string(vC3m02,n2), ",vC3m03=", string(vC3m03,n2), ",vC3m04=", string(vC3m04,n2),
+  ",vC3m05=", string(vC3m05,n2), ",vC3m06=", string(vC3m06,n2), ",vC3m07=", string(vC3m07,n2), ",vC3m08=", string(vC3m08,n2), ",vC3m09=", string(vC3m09,n2),
+  ",vC3m10=", string(vC3m10,n2), ",vC3m11=", string(vC3m11,n2), ",vC3m88=", string(vC3m88,n2)
+).
+compute p1571="vC1~=0，應答vC3m01,vC3m02,vC3m03,vC3m04,vC3m05,vC3m06,vC3m07,vC3m08,vC3m09,vC3m10,vC3m11,vC3m88而未答".
+compute s1571=1.
+end if.
+
+* logic check hide vQ3.
+do if (any(vC1,0)) & any(0,vQ3_96).
+compute m1572=concat("vC1=",string(vC1,n4),",vQ3=",string(vQ3,n2)).
+compute p1572="vC1 in 0，不應答vQ3而答".
+compute s1572=1.
+end if.
+
+* logic check show vQ3.
+do if (vC1~=0) & any(1,vQ3_96).
+compute m1573=concat("vC1=",string(vC1,n4),",vQ3=",string(vQ3,n2)).
+compute p1573="vC1~=0，應答vQ3而未答".
+compute s1573=1.
 end if.
 
 * logic check limit vC2.
 do if not any(mod(trunc(vC2/10),10),0,1,2,3,4,5).
-compute m1628=concat("vC2=",string(vC2,n5)).
-compute p1628="vC2第3碼應為0,1,2,3,4,5".
+compute m1574=concat("vC2=",string(vC2,n5)).
+compute p1574="vC2第3碼應為0,1,2,3,4,5".
+compute s1574=1.
+end if.
+
+* logic check mutex.
+do if (any(vC3m08,1)) & (any(vQ3,1)).
+compute m1575=concat("vC3m08=",string(vC3m08,n2),",vQ3=",string(vQ3,n2)).
+compute p1575="vC3m08 in 1與互斥條件不應同時成立".
+compute s1575=1.
+end if.
+
+* logic check show vH2.
+do if (any(vH1,997,998)) & any(1,vH2_96).
+compute m1576=concat("vH1=",string(vH1,n4),",vH2=",string(vH2,n2)).
+compute p1576="vH1 in 997,998，應答vH2而未答".
+compute s1576=1.
+end if.
+
+* logic check hide vH3.
+do if ((any(vH1,0) | any(vH2,1))) & any(0,vH3_96).
+compute m1577=concat("vH1=",string(vH1,n4),",vH2=",string(vH2,n2),",vH3=",string(vH3,n2)).
+compute p1577="(vH1 in 0 | vH2 in 1)，不應答vH3而答".
+compute s1577=1.
+end if.
+
+* logic check show vH2.
+do if (any(vH1,997,998)) & any(1,vH2_96).
+compute m1578=concat("vH1=",string(vH1,n4),",vH2=",string(vH2,n2)).
+compute p1578="vH1 in 997 | vH1 in 998，應答vH2而未答".
+compute s1578=1.
+end if.
+
+* logic check hide vH2.
+do if (not any(vH1,997,998)) & any(0,vH2_96).
+compute m1579=concat("vH1=",string(vH1,n4),",vH2=",string(vH2,n2)).
+compute p1579="vH1~=997 & vH1~=998，不應答vH2而答".
+compute s1579=1.
+end if.
+
+* logic check hide vH3.
+do if (any(vH1,0) | any(vH2,1)) & any(0,vH3_96).
+compute m1580=concat("vH1=",string(vH1,n4),",vH2=",string(vH2,n2),",vH3=",string(vH3,n2)).
+compute p1580="vH1 in 0 | vH2 in 1，不應答vH3而答".
+compute s1580=1.
+end if.
+
+* logic check show vH3.
+do if (vH1~=0 & vH2~=1) & any(1,vH3_96).
+compute m1581=concat("vH1=",string(vH1,n4),",vH2=",string(vH2,n2),",vH3=",string(vH3,n2)).
+compute p1581="vH1~=0 & vH2~=1，應答vH3而未答".
+compute s1581=1.
+end if.
+
+* logic check show vH7.
+do if (not any(vH1,0,997,998,9996) & not any(vH4,0,997,998,9996)) & any(1,vH7_96).
+compute m1582=concat("vH1=",string(vH1,n4),",vH4=",string(vH4,n4),",vH7=",string(vH7,n4)).
+compute p1582="not any(vH1,0,997,998,9996) & not any(vH4,0,997,998,9996)，應答vH7而未答".
+compute s1582=1.
+end if.
+
+* logic check hide vH7.
+do if (any(vH1,0,997,998,9996) | any(vH4,0,997,998,9996)) & any(0,vH7_96).
+compute m1583=concat("vH1=",string(vH1,n4),",vH4=",string(vH4,n4),",vH7=",string(vH7,n4)).
+compute p1583="any(vH1,0,997,998,9996) | any(vH4,0,997,998,9996)，不應答vH7而答".
+compute s1583=1.
+end if.
+
+* logic check show vH7_1.
+do if (not any(vH1,0,997,998,9996) & not any(vH5,1,96,97,98)) & any(1,vH7_1_96).
+compute m1584=concat("vH1=",string(vH1,n4),",vH5=",string(vH5,n2),",vH7_1=",string(vH7_1,n4)).
+compute p1584="not any(vH1,0,997,998,9996) & not any(vH5,1,96,97,98)，應答vH7_1而未答".
+compute s1584=1.
+end if.
+
+* logic check hide vH7_1.
+do if (any(vH1,0,997,998,9996) | any(vH5,1,96,97,98)) & any(0,vH7_1_96).
+compute m1585=concat("vH1=",string(vH1,n4),",vH5=",string(vH5,n2),",vH7_1=",string(vH7_1,n4)).
+compute p1585="any(vH1,0,997,998,9996) | any(vH5,1,96,97,98)，不應答vH7_1而答".
+compute s1585=1.
+end if.
+
+* logic check show vH7_2.
+do if (not any(vH2,1,96,97,98) & not any(vH4,0,997,998,9996)) & any(1,vH7_2_96).
+compute m1586=concat("vH2=",string(vH2,n2),",vH4=",string(vH4,n4),",vH7_2=",string(vH7_2,n4)).
+compute p1586="not any(vH2,1,96,97,98) & not any(vH4,0,997,998,9996)，應答vH7_2而未答".
+compute s1586=1.
+end if.
+
+* logic check hide vH7_2.
+do if (any(vH2,1,96,97,98) | any(vH4,0,997,998,9996)) & any(0,vH7_2_96).
+compute m1587=concat("vH2=",string(vH2,n2),",vH4=",string(vH4,n4),",vH7_2=",string(vH7_2,n4)).
+compute p1587="any(vH2,1,96,97,98) | any(vH4,0,997,998,9996)，不應答vH7_2而答".
+compute s1587=1.
+end if.
+
+* logic check show vH7_3.
+do if (not any(vH2,1,96,97,98) & not any(vH5,1,96,97,98)) & any(1,vH7_3_96).
+compute m1588=concat("vH2=",string(vH2,n2),",vH5=",string(vH5,n2),",vH7_3=",string(vH7_3,n4)).
+compute p1588="not any(vH2,1,96,97,98) & not any(vH5,1,96,97,98)，應答vH7_3而未答".
+compute s1588=1.
+end if.
+
+* logic check hide vH7_3.
+do if (any(vH2,1,96,97,98) | any(vH5,1,96,97,98)) & any(0,vH7_3_96).
+compute m1589=concat("vH2=",string(vH2,n2),",vH5=",string(vH5,n2),",vH7_3=",string(vH7_3,n4)).
+compute p1589="any(vH2,1,96,97,98) | any(vH5,1,96,97,98)，不應答vH7_3而答".
+compute s1589=1.
+end if.
+
+* logic check show vH5.
+do if (any(vH4,997,998)) & any(1,vH5_96).
+compute m1590=concat("vH4=",string(vH4,n4),",vH5=",string(vH5,n2)).
+compute p1590="vH4 in 997,998，應答vH5而未答".
+compute s1590=1.
+end if.
+
+* logic check hide vH6.
+do if ((any(vH4,0) | any(vH5,1))) & any(0,vH6_96).
+compute m1591=concat("vH4=",string(vH4,n4),",vH5=",string(vH5,n2),",vH6=",string(vH6,n2)).
+compute p1591="(vH4 in 0 | vH5 in 1)，不應答vH6而答".
+compute s1591=1.
+end if.
+
+* logic check show vH5.
+do if (any(vH4,997,998)) & any(1,vH5_96).
+compute m1592=concat("vH4=",string(vH4,n4),",vH5=",string(vH5,n2)).
+compute p1592="vH4 in 997 | vH4 in 998，應答vH5而未答".
+compute s1592=1.
+end if.
+
+* logic check hide vH5.
+do if (not any(vH4,997,998)) & any(0,vH5_96).
+compute m1593=concat("vH4=",string(vH4,n4),",vH5=",string(vH5,n2)).
+compute p1593="vH4~=997 & vH4~=998，不應答vH5而答".
+compute s1593=1.
+end if.
+
+* logic check hide vH6.
+do if (any(vH4,0) | any(vH5,1)) & any(0,vH6_96).
+compute m1594=concat("vH4=",string(vH4,n4),",vH5=",string(vH5,n2),",vH6=",string(vH6,n2)).
+compute p1594="vH4 in 0 | vH5 in 1，不應答vH6而答".
+compute s1594=1.
+end if.
+
+* logic check show vH6.
+do if (vH4~=0 & vH5~=1) & any(1,vH6_96).
+compute m1595=concat("vH4=",string(vH4,n4),",vH5=",string(vH5,n2),",vH6=",string(vH6,n2)).
+compute p1595="vH4~=0 & vH5~=1，應答vH6而未答".
+compute s1595=1.
+end if.
+
+* logic check hide vM2m01,vM2m02,vM2m03,vM2m04,vM2m05,vM2m06,vM2m07,vM2m08,vM2m09,vM2m10,vM2m11,vM2m12,vM2m13,vM2m14,vM2m15,vM2m16,vM2m88.
+do if (any(vM1g1 , 0) & any(vM1g2 , 0)) & (any(0 , vM2m01_96) | any(0 , vM2m02_96) | any(0 , vM2m03_96) | any(0 , vM2m04_96) | any(0 , vM2m05_96) | any(0
+, vM2m06_96) | any(0 , vM2m07_96) | any(0 , vM2m08_96) | any(0 , vM2m09_96) | any(0 , vM2m10_96) | any(0 , vM2m11_96) | any(0 , vM2m12_96) | any(0 , vM2m13_96)
+| any(0 , vM2m14_96) | any(0 , vM2m15_96) | any(0 , vM2m16_96) | any(0 , vM2m88_96)).
+compute m1596=concat(
+  "vM1g1=", string(vM1g1,n4), ",vM1g2=", string(vM1g2,n3), ",vM2m01=", string(vM2m01,n2), ",vM2m02=", string(vM2m02,n2), ",vM2m03=", string(vM2m03,n2),
+  ",vM2m04=", string(vM2m04,n2), ",vM2m05=", string(vM2m05,n2), ",vM2m06=", string(vM2m06,n2), ",vM2m07=", string(vM2m07,n2), ",vM2m08=", string(vM2m08,n2),
+  ",vM2m09=", string(vM2m09,n2), ",vM2m10=", string(vM2m10,n2), ",vM2m11=", string(vM2m11,n2), ",vM2m12=", string(vM2m12,n2), ",vM2m13=", string(vM2m13,n2),
+  ",vM2m14=", string(vM2m14,n2), ",vM2m15=", string(vM2m15,n2), ",vM2m16=", string(vM2m16,n2), ",vM2m88=", string(vM2m88,n2)
+).
+compute p1596=concat(
+  "vM1g1 in 0 & vM1g2 in 0，不應答vM2m01,vM2m02,vM2m03,vM2m04,vM2m05,vM2m06,vM2m07,vM2m08,vM2m09,vM2m10,vM2",
+  "m11,vM2m12,vM2m13,vM2m14,vM2m15,vM2m16,vM2m88而答"
+).
+compute s1596=1.
+end if.
+
+* logic check show vM2m01,vM2m02,vM2m03,vM2m04,vM2m05,vM2m06,vM2m07,vM2m08,vM2m09,vM2m10,vM2m11,vM2m12,vM2m13,vM2m14,vM2m15,vM2m16,vM2m88.
+do if (vM1g1~=0 | vM1g2~=0) & (any(1 , vM2m01_96) | any(1 , vM2m02_96) | any(1 , vM2m03_96) | any(1 , vM2m04_96) | any(1 , vM2m05_96) | any(1 , vM2m06_96)
+| any(1 , vM2m07_96) | any(1 , vM2m08_96) | any(1 , vM2m09_96) | any(1 , vM2m10_96) | any(1 , vM2m11_96) | any(1 , vM2m12_96) | any(1 , vM2m13_96) | any(1
+, vM2m14_96) | any(1 , vM2m15_96) | any(1 , vM2m16_96) | any(1 , vM2m88_96)).
+compute m1597=concat(
+  "vM1g1=", string(vM1g1,n4), ",vM1g2=", string(vM1g2,n3), ",vM2m01=", string(vM2m01,n2), ",vM2m02=", string(vM2m02,n2), ",vM2m03=", string(vM2m03,n2),
+  ",vM2m04=", string(vM2m04,n2), ",vM2m05=", string(vM2m05,n2), ",vM2m06=", string(vM2m06,n2), ",vM2m07=", string(vM2m07,n2), ",vM2m08=", string(vM2m08,n2),
+  ",vM2m09=", string(vM2m09,n2), ",vM2m10=", string(vM2m10,n2), ",vM2m11=", string(vM2m11,n2), ",vM2m12=", string(vM2m12,n2), ",vM2m13=", string(vM2m13,n2),
+  ",vM2m14=", string(vM2m14,n2), ",vM2m15=", string(vM2m15,n2), ",vM2m16=", string(vM2m16,n2), ",vM2m88=", string(vM2m88,n2)
+).
+compute p1597="vM1g1~=0 | vM1g2~=0，應答vM2m01,vM2m02,vM2m03,vM2m04,vM2m05,vM2m06,vM2m07,vM2m08,vM2m09,vM2m10,vM2m11,vM2m12,vM2m13,vM2m14,vM2m15,vM2m16,vM2m88而未答".
+compute s1597=1.
+end if.
+
+* logic check hide vM3m01,vM3m02,vM3m03,vM3m04,vM3m05,vM3m06,vM3m07,vM3m08,vM3m09,vM3m10,vM3m11,vM3m12,vM3m13,vM3m88.
+do if (any(vM1g1 , 0) & any(vM1g2 , 0)) & (any(0 , vM3m01_96) | any(0 , vM3m02_96) | any(0 , vM3m03_96) | any(0 , vM3m04_96) | any(0 , vM3m05_96) | any(0
+, vM3m06_96) | any(0 , vM3m07_96) | any(0 , vM3m08_96) | any(0 , vM3m09_96) | any(0 , vM3m10_96) | any(0 , vM3m11_96) | any(0 , vM3m12_96) | any(0 , vM3m13_96)
+| any(0 , vM3m88_96)).
+compute m1598=concat(
+  "vM1g1=", string(vM1g1,n4), ",vM1g2=", string(vM1g2,n3), ",vM3m01=", string(vM3m01,n2), ",vM3m02=", string(vM3m02,n2), ",vM3m03=", string(vM3m03,n2),
+  ",vM3m04=", string(vM3m04,n2), ",vM3m05=", string(vM3m05,n2), ",vM3m06=", string(vM3m06,n2), ",vM3m07=", string(vM3m07,n2), ",vM3m08=", string(vM3m08,n2),
+  ",vM3m09=", string(vM3m09,n2), ",vM3m10=", string(vM3m10,n2), ",vM3m11=", string(vM3m11,n2), ",vM3m12=", string(vM3m12,n2), ",vM3m13=", string(vM3m13,n2),
+  ",vM3m88=", string(vM3m88,n2)
+).
+compute p1598="vM1g1 in 0 & vM1g2 in 0，不應答vM3m01,vM3m02,vM3m03,vM3m04,vM3m05,vM3m06,vM3m07,vM3m08,vM3m09,vM3m10,vM3m11,vM3m12,vM3m13,vM3m88而答".
+compute s1598=1.
+end if.
+
+* logic check show vM3m01,vM3m02,vM3m03,vM3m04,vM3m05,vM3m06,vM3m07,vM3m08,vM3m09,vM3m10,vM3m11,vM3m12,vM3m13,vM3m88.
+do if (vM1g1~=0 | vM1g2~=0) & (any(1 , vM3m01_96) | any(1 , vM3m02_96) | any(1 , vM3m03_96) | any(1 , vM3m04_96) | any(1 , vM3m05_96) | any(1 , vM3m06_96)
+| any(1 , vM3m07_96) | any(1 , vM3m08_96) | any(1 , vM3m09_96) | any(1 , vM3m10_96) | any(1 , vM3m11_96) | any(1 , vM3m12_96) | any(1 , vM3m13_96) | any(1
+, vM3m88_96)).
+compute m1599=concat(
+  "vM1g1=", string(vM1g1,n4), ",vM1g2=", string(vM1g2,n3), ",vM3m01=", string(vM3m01,n2), ",vM3m02=", string(vM3m02,n2), ",vM3m03=", string(vM3m03,n2),
+  ",vM3m04=", string(vM3m04,n2), ",vM3m05=", string(vM3m05,n2), ",vM3m06=", string(vM3m06,n2), ",vM3m07=", string(vM3m07,n2), ",vM3m08=", string(vM3m08,n2),
+  ",vM3m09=", string(vM3m09,n2), ",vM3m10=", string(vM3m10,n2), ",vM3m11=", string(vM3m11,n2), ",vM3m12=", string(vM3m12,n2), ",vM3m13=", string(vM3m13,n2),
+  ",vM3m88=", string(vM3m88,n2)
+).
+compute p1599="vM1g1~=0 | vM1g2~=0，應答vM3m01,vM3m02,vM3m03,vM3m04,vM3m05,vM3m06,vM3m07,vM3m08,vM3m09,vM3m10,vM3m11,vM3m12,vM3m13,vM3m88而未答".
+compute s1599=1.
+end if.
+
+* logic check hide vM4sM4,vM4sM5,vM4sM6.
+do if (any(vM1g1,0) & any(vM1g2,0)) & (any(0,vM4sM4_96) | any(0,vM4sM5_96) | any(0,vM4sM6_96)).
+compute m1600=concat(
+  "vM1g1=", string(vM1g1,n4), ",vM1g2=", string(vM1g2,n3), ",vM4sM4=", string(vM4sM4,n2), ",vM4sM5=", string(vM4sM5,n2), ",vM4sM6=", string(vM4sM6,n2)
+).
+compute p1600="vM1g1 in 0 & vM1g2 in 0，不應答vM4sM4,vM4sM5,vM4sM6而答".
+compute s1600=1.
+end if.
+
+* logic check show vM4sM4,vM4sM5,vM4sM6.
+do if (vM1g1~=0 | vM1g2~=0) & (any(1,vM4sM4_96) | any(1,vM4sM5_96) | any(1,vM4sM6_96)).
+compute m1601=concat(
+  "vM1g1=", string(vM1g1,n4), ",vM1g2=", string(vM1g2,n3), ",vM4sM4=", string(vM4sM4,n2), ",vM4sM5=", string(vM4sM5,n2), ",vM4sM6=", string(vM4sM6,n2)
+).
+compute p1601="vM1g1~=0 | vM1g2~=0，應答vM4sM4,vM4sM5,vM4sM6而未答".
+compute s1601=1.
+end if.
+
+* logic check hide vQ27m01,vQ27m02,vQ27m03,vQ27m04,vQ27m05,vQ27m06,vQ27m07,vQ27m88.
+do if (any(vQ1 , 1) & any(vQ2 , 1) & any(vQ3 , 1) & any(vQ4 , 1) & any(vQ5 , 2) & any(vQ10 , 2) & any(vQ15 , 2) & any(vQ20m90 , 1)) & (any(0 , vQ27m01_96)
+| any(0 , vQ27m02_96) | any(0 , vQ27m03_96) | any(0 , vQ27m04_96) | any(0 , vQ27m05_96) | any(0 , vQ27m06_96) | any(0 , vQ27m07_96) | any(0 , vQ27m88_96)).
+compute m1602=concat(
+  "vQ1=", string(vQ1,n2), ",vQ2=", string(vQ2,n2), ",vQ3=", string(vQ3,n2), ",vQ4=", string(vQ4,n2), ",vQ5=", string(vQ5,n2), ",vQ10=", string(vQ10,n2),
+  ",vQ15=", string(vQ15,n2), ",vQ20m90=", string(vQ20m90,n2), ",vQ27m01=", string(vQ27m01,n2), ",vQ27m02=", string(vQ27m02,n2), ",vQ27m03=", string(vQ27m03,n2),
+  ",vQ27m04=", string(vQ27m04,n2), ",vQ27m05=", string(vQ27m05,n2), ",vQ27m06=", string(vQ27m06,n2), ",vQ27m07=", string(vQ27m07,n2), ",vQ27m88=",
+  string(vQ27m88,n2)
+).
+compute p1602=concat(
+  "vQ1 in 1 & vQ2 in 1 & vQ3 in 1 & vQ4 in 1 & vQ5 in 2 & vQ10 in 2 & vQ15 in 2 & vQ20m90 in 1，不應答vQ27m",
+  "01,vQ27m02,vQ27m03,vQ27m04,vQ27m05,vQ27m06,vQ27m07,vQ27m88而答"
+).
+compute s1602=1.
+end if.
+
+* logic check show vQ27m01,vQ27m02,vQ27m03,vQ27m04,vQ27m05,vQ27m06,vQ27m07,vQ27m88.
+do if (vQ1~=1 | vQ2~=1 | vQ3~=1 | vQ4~=1 | vQ5~=2 | vQ10~=2 | vQ15~=2 | vQ20m90~=1) & (any(1 , vQ27m01_96) | any(1 , vQ27m02_96) | any(1 , vQ27m03_96) | any(1
+, vQ27m04_96) | any(1 , vQ27m05_96) | any(1 , vQ27m06_96) | any(1 , vQ27m07_96) | any(1 , vQ27m88_96)).
+compute m1603=concat(
+  "vQ1=", string(vQ1,n2), ",vQ2=", string(vQ2,n2), ",vQ3=", string(vQ3,n2), ",vQ4=", string(vQ4,n2), ",vQ5=", string(vQ5,n2), ",vQ10=", string(vQ10,n2),
+  ",vQ15=", string(vQ15,n2), ",vQ20m90=", string(vQ20m90,n2), ",vQ27m01=", string(vQ27m01,n2), ",vQ27m02=", string(vQ27m02,n2), ",vQ27m03=", string(vQ27m03,n2),
+  ",vQ27m04=", string(vQ27m04,n2), ",vQ27m05=", string(vQ27m05,n2), ",vQ27m06=", string(vQ27m06,n2), ",vQ27m07=", string(vQ27m07,n2), ",vQ27m88=",
+  string(vQ27m88,n2)
+).
+compute p1603=concat(
+  "vQ1~=1 | vQ2~=1 | vQ3~=1 | vQ4~=1 | vQ5~=2 | vQ10~=2 | vQ15~=2 | vQ20m90~=1，應答vQ27m01,vQ27m02,vQ27m0",
+  "3,vQ27m04,vQ27m05,vQ27m06,vQ27m07,vQ27m88而未答"
+).
+compute s1603=1.
+end if.
+
+* logic check show vCKQ10.
+do if (any(vQ5,2) & any(vQ10,1)) & any(1,vCKQ10_96).
+compute m1604=concat("vQ5=",string(vQ5,n2),",vQ10=",string(vQ10,n2),",vCKQ10=",string(vCKQ10,n2)).
+compute p1604="vQ5 in 2 & vQ10 in 1，應答vCKQ10而未答".
+compute s1604=1.
+end if.
+
+* logic check show vCKQ20A.
+do if (any(vQ5,2) & any(vQ20m02,1) | any(vQ20m03,1) | any(vQ20m04,1) | any(vQ20m05,1)) & any(1,vCKQ20A_96).
+compute m1605=concat(
+  "vQ5=", string(vQ5,n2), ",vQ20m02=", string(vQ20m02,n2), ",vQ20m03=", string(vQ20m03,n2), ",vQ20m04=", string(vQ20m04,n2), ",vQ20m05=", string(vQ20m05,n2),
+  ",vCKQ20A=", string(vCKQ20A,n2)
+).
+compute p1605="vQ5 in 2 & vQ20m02 in 1 | vQ20m03 in 1 | vQ20m04 in 1 | vQ20m05 in 1，應答vCKQ20A而未答".
+compute s1605=1.
+end if.
+
+* logic check show vCKP3_4.
+do if (any(vQ5,2) & any(vP3_4,2,3,4)) & any(1,vCKP3_4_96).
+compute m1606=concat("vQ5=",string(vQ5,n2),",vP3_4=",string(vP3_4,n2),",vCKP3_4=",string(vCKP3_4,n2)).
+compute p1606="vQ5 in 2 & vP3_4 in 2,3,4，應答vCKP3_4而未答".
+compute s1606=1.
+end if.
+
+* logic check show vQ25m01,vQ25m02,vQ25m03,vQ25m04,vQ25m05,vQ25m06,vQ25m07,vQ25m08,vQ25m09,vQ25m10,vQ25m11,vQ25m12,vQ25m13,vQ25m14,vQ25m15,vQ25m16,vQ25m17.
+* vQ25m18,vQ25m19,vQ25m20,vQ25m21,vQ25m22,vQ25m23,vQ25m24,vQ25m25,vQ25m26,vQ25m27,vQ25m28,vQ25m29,vQ25m30,vQ25m31,vQ25m88.
+do if (any(vQ20m01 , 1)) & (any(1 , vQ25m01_96) | any(1 , vQ25m02_96) | any(1 , vQ25m03_96) | any(1 , vQ25m04_96) | any(1 , vQ25m05_96) | any(1 , vQ25m06_96)
+| any(1 , vQ25m07_96) | any(1 , vQ25m08_96) | any(1 , vQ25m09_96) | any(1 , vQ25m10_96) | any(1 , vQ25m11_96) | any(1 , vQ25m12_96) | any(1 , vQ25m13_96)
+| any(1 , vQ25m14_96) | any(1 , vQ25m15_96) | any(1 , vQ25m16_96) | any(1 , vQ25m17_96) | any(1 , vQ25m18_96) | any(1 , vQ25m19_96) | any(1 , vQ25m20_96)
+| any(1 , vQ25m21_96) | any(1 , vQ25m22_96) | any(1 , vQ25m23_96) | any(1 , vQ25m24_96) | any(1 , vQ25m25_96) | any(1 , vQ25m26_96) | any(1 , vQ25m27_96)
+| any(1 , vQ25m28_96) | any(1 , vQ25m29_96) | any(1 , vQ25m30_96) | any(1 , vQ25m31_96) | any(1 , vQ25m88_96)).
+compute m1607=concat(
+  "vQ20m01=", string(vQ20m01,n2), ",vQ25m01=", string(vQ25m01,n2), ",vQ25m02=", string(vQ25m02,n2), ",vQ25m03=", string(vQ25m03,n2), ",vQ25m04=",
+  string(vQ25m04,n2), ",vQ25m05=", string(vQ25m05,n2), ",vQ25m06=", string(vQ25m06,n2), ",vQ25m07=", string(vQ25m07,n2), ",vQ25m08=", string(vQ25m08,n2),
+  ",vQ25m09=", string(vQ25m09,n2), ",vQ25m10=", string(vQ25m10,n2), ",vQ25m11=", string(vQ25m11,n2), ",vQ25m12=", string(vQ25m12,n2), ",vQ25m13=",
+  string(vQ25m13,n2), ",vQ25m14=", string(vQ25m14,n2), ",vQ25m15=", string(vQ25m15,n2), ",vQ25m16=", string(vQ25m16,n2), ",vQ25m17=", string(vQ25m17,n2),
+  ",vQ25m18=", string(vQ25m18,n2), ",vQ25m19=", string(vQ25m19,n2), ",vQ25m20=", string(vQ25m20,n2), ",vQ25m21=", string(vQ25m21,n2), ",vQ25m22=",
+  string(vQ25m22,n2), ",vQ25m23=", string(vQ25m23,n2), ",vQ25m24=", string(vQ25m24,n2), ",vQ25m25=", string(vQ25m25,n2), ",vQ25m26=", string(vQ25m26,n2),
+  ",vQ25m27=", string(vQ25m27,n2), ",vQ25m28=", string(vQ25m28,n2), ",vQ25m29=", string(vQ25m29,n2), ",vQ25m30=", string(vQ25m30,n2), ",vQ25m31=",
+  string(vQ25m31,n2), ",vQ25m88=", string(vQ25m88,n2)
+).
+compute p1607=concat(
+  "vQ20m01 in 1，應答vQ25m01,vQ25m02,vQ25m03,vQ25m04,vQ25m05,vQ25m06,vQ25m07,vQ25m08,vQ25m09,vQ25m10,vQ25m",
+  "11,vQ25m12,vQ25m13,vQ25m14,vQ25m15,vQ25m16,vQ25m17,vQ25m18,vQ25m19,vQ25m20,vQ25m21,vQ25m22,vQ25m23,v",
+  "Q25m24,vQ25m25,vQ25m26,vQ25m27,vQ25m28,vQ25m29,vQ25m30,vQ25m31,vQ25m88而未答"
+).
+compute s1607=1.
+end if.
+
+* logic check show vQ24g1,vQ24g2.
+do if (any(vQ20m01,1)) & (any(1,vQ24g1_96) | any(1,vQ24g2_96)).
+compute m1608=concat("vQ20m01=",string(vQ20m01,n2),",vQ24g1=",string(vQ24g1,n4),",vQ24g2=",string(vQ24g2,n3)).
+compute p1608="vQ20m01 in 1，應答vQ24g1,vQ24g2而未答".
+compute s1608=1.
+end if.
+
+* logic check hide vQ24g1,vQ24g2.
+do if (vQ20m01~=1) & (any(0,vQ24g1_96) | any(0,vQ24g2_96)).
+compute m1609=concat("vQ20m01=",string(vQ20m01,n2),",vQ24g1=",string(vQ24g1,n4),",vQ24g2=",string(vQ24g2,n3)).
+compute p1609="vQ20m01~=1，不應答vQ24g1,vQ24g2而答".
+compute s1609=1.
+end if.
+
+* logic check hide vQ25m01,vQ25m02,vQ25m03,vQ25m04,vQ25m05,vQ25m06,vQ25m07,vQ25m08,vQ25m09,vQ25m10,vQ25m11,vQ25m12,vQ25m13,vQ25m14,vQ25m15,vQ25m16,vQ25m17.
+* vQ25m18,vQ25m19,vQ25m20,vQ25m21,vQ25m22,vQ25m23,vQ25m24,vQ25m25,vQ25m26,vQ25m27,vQ25m28,vQ25m29,vQ25m30,vQ25m31,vQ25m88.
+do if (vQ20m01~=1) & (any(0 , vQ25m01_96) | any(0 , vQ25m02_96) | any(0 , vQ25m03_96) | any(0 , vQ25m04_96) | any(0 , vQ25m05_96) | any(0 , vQ25m06_96) | any(0
+, vQ25m07_96) | any(0 , vQ25m08_96) | any(0 , vQ25m09_96) | any(0 , vQ25m10_96) | any(0 , vQ25m11_96) | any(0 , vQ25m12_96) | any(0 , vQ25m13_96) | any(0
+, vQ25m14_96) | any(0 , vQ25m15_96) | any(0 , vQ25m16_96) | any(0 , vQ25m17_96) | any(0 , vQ25m18_96) | any(0 , vQ25m19_96) | any(0 , vQ25m20_96) | any(0
+, vQ25m21_96) | any(0 , vQ25m22_96) | any(0 , vQ25m23_96) | any(0 , vQ25m24_96) | any(0 , vQ25m25_96) | any(0 , vQ25m26_96) | any(0 , vQ25m27_96) | any(0
+, vQ25m28_96) | any(0 , vQ25m29_96) | any(0 , vQ25m30_96) | any(0 , vQ25m31_96) | any(0 , vQ25m88_96)).
+compute m1610=concat(
+  "vQ20m01=", string(vQ20m01,n2), ",vQ25m01=", string(vQ25m01,n2), ",vQ25m02=", string(vQ25m02,n2), ",vQ25m03=", string(vQ25m03,n2), ",vQ25m04=",
+  string(vQ25m04,n2), ",vQ25m05=", string(vQ25m05,n2), ",vQ25m06=", string(vQ25m06,n2), ",vQ25m07=", string(vQ25m07,n2), ",vQ25m08=", string(vQ25m08,n2),
+  ",vQ25m09=", string(vQ25m09,n2), ",vQ25m10=", string(vQ25m10,n2), ",vQ25m11=", string(vQ25m11,n2), ",vQ25m12=", string(vQ25m12,n2), ",vQ25m13=",
+  string(vQ25m13,n2), ",vQ25m14=", string(vQ25m14,n2), ",vQ25m15=", string(vQ25m15,n2), ",vQ25m16=", string(vQ25m16,n2), ",vQ25m17=", string(vQ25m17,n2),
+  ",vQ25m18=", string(vQ25m18,n2), ",vQ25m19=", string(vQ25m19,n2), ",vQ25m20=", string(vQ25m20,n2), ",vQ25m21=", string(vQ25m21,n2), ",vQ25m22=",
+  string(vQ25m22,n2), ",vQ25m23=", string(vQ25m23,n2), ",vQ25m24=", string(vQ25m24,n2), ",vQ25m25=", string(vQ25m25,n2), ",vQ25m26=", string(vQ25m26,n2),
+  ",vQ25m27=", string(vQ25m27,n2), ",vQ25m28=", string(vQ25m28,n2), ",vQ25m29=", string(vQ25m29,n2), ",vQ25m30=", string(vQ25m30,n2), ",vQ25m31=",
+  string(vQ25m31,n2), ",vQ25m88=", string(vQ25m88,n2)
+).
+compute p1610=concat(
+  "vQ20m01~=1，不應答vQ25m01,vQ25m02,vQ25m03,vQ25m04,vQ25m05,vQ25m06,vQ25m07,vQ25m08,vQ25m09,vQ25m10,vQ25m1",
+  "1,vQ25m12,vQ25m13,vQ25m14,vQ25m15,vQ25m16,vQ25m17,vQ25m18,vQ25m19,vQ25m20,vQ25m21,vQ25m22,vQ25m23,vQ",
+  "25m24,vQ25m25,vQ25m26,vQ25m27,vQ25m28,vQ25m29,vQ25m30,vQ25m31,vQ25m88而答"
+).
+compute s1610=1.
+end if.
+
+* logic check show vQ22m01,vQ22m02,vQ22m03,vQ22m04,vQ22m05,vQ22m06,vQ22m07,vQ22m08,vQ22m09,vQ22m10,vQ22m11,vQ22m12,vQ22m13,vQ22m14,vQ22m15,vQ22m16,vQ22m17.
+* vQ22m18,vQ22m19,vQ22m20,vQ22m21,vQ22m22,vQ22m23,vQ22m24,vQ22m25,vQ22m26,vQ22m27,vQ22m28,vQ22m29,vQ22m30,vQ22m31,vQ22m32,vQ22m33,vQ22m34,vQ22m35,vQ22m36.
+* vQ22m37,vQ22m38,vQ22m39,vQ22m40,vQ22m88.
+do if (any(vQ20m02 , 1)) & (any(1 , vQ22m01_96) | any(1 , vQ22m02_96) | any(1 , vQ22m03_96) | any(1 , vQ22m04_96) | any(1 , vQ22m05_96) | any(1 , vQ22m06_96)
+| any(1 , vQ22m07_96) | any(1 , vQ22m08_96) | any(1 , vQ22m09_96) | any(1 , vQ22m10_96) | any(1 , vQ22m11_96) | any(1 , vQ22m12_96) | any(1 , vQ22m13_96)
+| any(1 , vQ22m14_96) | any(1 , vQ22m15_96) | any(1 , vQ22m16_96) | any(1 , vQ22m17_96) | any(1 , vQ22m18_96) | any(1 , vQ22m19_96) | any(1 , vQ22m20_96)
+| any(1 , vQ22m21_96) | any(1 , vQ22m22_96) | any(1 , vQ22m23_96) | any(1 , vQ22m24_96) | any(1 , vQ22m25_96) | any(1 , vQ22m26_96) | any(1 , vQ22m27_96)
+| any(1 , vQ22m28_96) | any(1 , vQ22m29_96) | any(1 , vQ22m30_96) | any(1 , vQ22m31_96) | any(1 , vQ22m32_96) | any(1 , vQ22m33_96) | any(1 , vQ22m34_96)
+| any(1 , vQ22m35_96) | any(1 , vQ22m36_96) | any(1 , vQ22m37_96) | any(1 , vQ22m38_96) | any(1 , vQ22m39_96) | any(1 , vQ22m40_96) | any(1 , vQ22m88_96)).
+compute m1611=concat(
+  "vQ20m02=", string(vQ20m02,n2), ",vQ22m01=", string(vQ22m01,n2), ",vQ22m02=", string(vQ22m02,n2), ",vQ22m03=", string(vQ22m03,n2), ",vQ22m04=",
+  string(vQ22m04,n2), ",vQ22m05=", string(vQ22m05,n2), ",vQ22m06=", string(vQ22m06,n2), ",vQ22m07=", string(vQ22m07,n2), ",vQ22m08=", string(vQ22m08,n2),
+  ",vQ22m09=", string(vQ22m09,n2), ",vQ22m10=", string(vQ22m10,n2), ",vQ22m11=", string(vQ22m11,n2), ",vQ22m12=", string(vQ22m12,n2), ",vQ22m13=",
+  string(vQ22m13,n2), ",vQ22m14=", string(vQ22m14,n2), ",vQ22m15=", string(vQ22m15,n2), ",vQ22m16=", string(vQ22m16,n2), ",vQ22m17=", string(vQ22m17,n2),
+  ",vQ22m18=", string(vQ22m18,n2), ",vQ22m19=", string(vQ22m19,n2), ",vQ22m20=", string(vQ22m20,n2), ",vQ22m21=", string(vQ22m21,n2), ",vQ22m22=",
+  string(vQ22m22,n2), ",vQ22m23=", string(vQ22m23,n2), ",vQ22m24=", string(vQ22m24,n2), ",vQ22m25=", string(vQ22m25,n2), ",vQ22m26=", string(vQ22m26,n2),
+  ",vQ22m27=", string(vQ22m27,n2), ",vQ22m28=", string(vQ22m28,n2), ",vQ22m29=", string(vQ22m29,n2), ",vQ22m30=", string(vQ22m30,n2), ",vQ22m31=",
+  string(vQ22m31,n2), ",vQ22m32=", string(vQ22m32,n2), ",vQ22m33=", string(vQ22m33,n2), ",vQ22m34=", string(vQ22m34,n2), ",vQ22m35=", string(vQ22m35,n2),
+  ",vQ22m36=", string(vQ22m36,n2), ",vQ22m37=", string(vQ22m37,n2), ",vQ22m38=", string(vQ22m38,n2), ",vQ22m39=", string(vQ22m39,n2), ",vQ22m40=",
+  string(vQ22m40,n2), ",vQ22m88=", string(vQ22m88,n2)
+).
+compute p1611=concat(
+  "vQ20m02 in 1，應答vQ22m01,vQ22m02,vQ22m03,vQ22m04,vQ22m05,vQ22m06,vQ22m07,vQ22m08,vQ22m09,vQ22m10,vQ22m",
+  "11,vQ22m12,vQ22m13,vQ22m14,vQ22m15,vQ22m16,vQ22m17,vQ22m18,vQ22m19,vQ22m20,vQ22m21,vQ22m22,vQ22m23,v",
+  "Q22m24,vQ22m25,vQ22m26,vQ22m27,vQ22m28,vQ22m29,vQ22m30,vQ22m31,vQ22m32,vQ22m33,vQ22m34,vQ22m35,vQ22m",
+  "36,vQ22m37,vQ22m38,vQ22m39,vQ22m40,vQ22m88而未答"
+).
+compute s1611=1.
+end if.
+
+* logic check show vQ21g1,vQ21g2.
+do if (any(vQ20m02,1) | any(vQ20m03,1)) & (any(1,vQ21g1_96) | any(1,vQ21g2_96)).
+compute m1612=concat("vQ20m02=",string(vQ20m02,n2),",vQ20m03=",string(vQ20m03,n2),",vQ21g1=",string(vQ21g1,n4),",vQ21g2=",string(vQ21g2,n3)).
+compute p1612="vQ20m02 in 1 | vQ20m03 in 1，應答vQ21g1,vQ21g2而未答".
+compute s1612=1.
+end if.
+
+* logic check hide vQ21g1,vQ21g2.
+do if (vQ20m02~=1 & vQ20m03~=1) & (any(0,vQ21g1_96) | any(0,vQ21g2_96)).
+compute m1613=concat("vQ20m02=",string(vQ20m02,n2),",vQ20m03=",string(vQ20m03,n2),",vQ21g1=",string(vQ21g1,n4),",vQ21g2=",string(vQ21g2,n3)).
+compute p1613="vQ20m02~=1 & vQ20m03~=1，不應答vQ21g1,vQ21g2而答".
+compute s1613=1.
+end if.
+
+* logic check hide vQ22m01,vQ22m02,vQ22m03,vQ22m04,vQ22m05,vQ22m06,vQ22m07,vQ22m08,vQ22m09,vQ22m10,vQ22m11,vQ22m12,vQ22m13,vQ22m14,vQ22m15,vQ22m16,vQ22m17.
+* vQ22m18,vQ22m19,vQ22m20,vQ22m21,vQ22m22,vQ22m23,vQ22m24,vQ22m25,vQ22m26,vQ22m27,vQ22m28,vQ22m29,vQ22m30,vQ22m31,vQ22m32,vQ22m33,vQ22m34,vQ22m35,vQ22m36.
+* vQ22m37,vQ22m38,vQ22m39,vQ22m40,vQ22m88.
+do if (vQ20m02~=1) & (any(0 , vQ22m01_96) | any(0 , vQ22m02_96) | any(0 , vQ22m03_96) | any(0 , vQ22m04_96) | any(0 , vQ22m05_96) | any(0 , vQ22m06_96) | any(0
+, vQ22m07_96) | any(0 , vQ22m08_96) | any(0 , vQ22m09_96) | any(0 , vQ22m10_96) | any(0 , vQ22m11_96) | any(0 , vQ22m12_96) | any(0 , vQ22m13_96) | any(0
+, vQ22m14_96) | any(0 , vQ22m15_96) | any(0 , vQ22m16_96) | any(0 , vQ22m17_96) | any(0 , vQ22m18_96) | any(0 , vQ22m19_96) | any(0 , vQ22m20_96) | any(0
+, vQ22m21_96) | any(0 , vQ22m22_96) | any(0 , vQ22m23_96) | any(0 , vQ22m24_96) | any(0 , vQ22m25_96) | any(0 , vQ22m26_96) | any(0 , vQ22m27_96) | any(0
+, vQ22m28_96) | any(0 , vQ22m29_96) | any(0 , vQ22m30_96) | any(0 , vQ22m31_96) | any(0 , vQ22m32_96) | any(0 , vQ22m33_96) | any(0 , vQ22m34_96) | any(0
+, vQ22m35_96) | any(0 , vQ22m36_96) | any(0 , vQ22m37_96) | any(0 , vQ22m38_96) | any(0 , vQ22m39_96) | any(0 , vQ22m40_96) | any(0 , vQ22m88_96)).
+compute m1614=concat(
+  "vQ20m02=", string(vQ20m02,n2), ",vQ22m01=", string(vQ22m01,n2), ",vQ22m02=", string(vQ22m02,n2), ",vQ22m03=", string(vQ22m03,n2), ",vQ22m04=",
+  string(vQ22m04,n2), ",vQ22m05=", string(vQ22m05,n2), ",vQ22m06=", string(vQ22m06,n2), ",vQ22m07=", string(vQ22m07,n2), ",vQ22m08=", string(vQ22m08,n2),
+  ",vQ22m09=", string(vQ22m09,n2), ",vQ22m10=", string(vQ22m10,n2), ",vQ22m11=", string(vQ22m11,n2), ",vQ22m12=", string(vQ22m12,n2), ",vQ22m13=",
+  string(vQ22m13,n2), ",vQ22m14=", string(vQ22m14,n2), ",vQ22m15=", string(vQ22m15,n2), ",vQ22m16=", string(vQ22m16,n2), ",vQ22m17=", string(vQ22m17,n2),
+  ",vQ22m18=", string(vQ22m18,n2), ",vQ22m19=", string(vQ22m19,n2), ",vQ22m20=", string(vQ22m20,n2), ",vQ22m21=", string(vQ22m21,n2), ",vQ22m22=",
+  string(vQ22m22,n2), ",vQ22m23=", string(vQ22m23,n2), ",vQ22m24=", string(vQ22m24,n2), ",vQ22m25=", string(vQ22m25,n2), ",vQ22m26=", string(vQ22m26,n2),
+  ",vQ22m27=", string(vQ22m27,n2), ",vQ22m28=", string(vQ22m28,n2), ",vQ22m29=", string(vQ22m29,n2), ",vQ22m30=", string(vQ22m30,n2), ",vQ22m31=",
+  string(vQ22m31,n2), ",vQ22m32=", string(vQ22m32,n2), ",vQ22m33=", string(vQ22m33,n2), ",vQ22m34=", string(vQ22m34,n2), ",vQ22m35=", string(vQ22m35,n2),
+  ",vQ22m36=", string(vQ22m36,n2), ",vQ22m37=", string(vQ22m37,n2), ",vQ22m38=", string(vQ22m38,n2), ",vQ22m39=", string(vQ22m39,n2), ",vQ22m40=",
+  string(vQ22m40,n2), ",vQ22m88=", string(vQ22m88,n2)
+).
+compute p1614=concat(
+  "vQ20m02~=1，不應答vQ22m01,vQ22m02,vQ22m03,vQ22m04,vQ22m05,vQ22m06,vQ22m07,vQ22m08,vQ22m09,vQ22m10,vQ22m1",
+  "1,vQ22m12,vQ22m13,vQ22m14,vQ22m15,vQ22m16,vQ22m17,vQ22m18,vQ22m19,vQ22m20,vQ22m21,vQ22m22,vQ22m23,vQ",
+  "22m24,vQ22m25,vQ22m26,vQ22m27,vQ22m28,vQ22m29,vQ22m30,vQ22m31,vQ22m32,vQ22m33,vQ22m34,vQ22m35,vQ22m3",
+  "6,vQ22m37,vQ22m38,vQ22m39,vQ22m40,vQ22m88而答"
+).
+compute s1614=1.
+end if.
+
+* logic check show vQ23m01,vQ23m02,vQ23m03,vQ23m04,vQ23m05,vQ23m06,vQ23m07,vQ23m08,vQ23m09,vQ23m10,vQ23m11,vQ23m12,vQ23m13,vQ23m14,vQ23m15,vQ23m16,vQ23m17.
+* vQ23m18,vQ23m19,vQ23m20,vQ23m21,vQ23m22,vQ23m23,vQ23m24,vQ23m25,vQ23m26,vQ23m27,vQ23m88.
+do if (any(vQ20m03 , 1)) & (any(1 , vQ23m01_96) | any(1 , vQ23m02_96) | any(1 , vQ23m03_96) | any(1 , vQ23m04_96) | any(1 , vQ23m05_96) | any(1 , vQ23m06_96)
+| any(1 , vQ23m07_96) | any(1 , vQ23m08_96) | any(1 , vQ23m09_96) | any(1 , vQ23m10_96) | any(1 , vQ23m11_96) | any(1 , vQ23m12_96) | any(1 , vQ23m13_96)
+| any(1 , vQ23m14_96) | any(1 , vQ23m15_96) | any(1 , vQ23m16_96) | any(1 , vQ23m17_96) | any(1 , vQ23m18_96) | any(1 , vQ23m19_96) | any(1 , vQ23m20_96)
+| any(1 , vQ23m21_96) | any(1 , vQ23m22_96) | any(1 , vQ23m23_96) | any(1 , vQ23m24_96) | any(1 , vQ23m25_96) | any(1 , vQ23m26_96) | any(1 , vQ23m27_96)
+| any(1 , vQ23m88_96)).
+compute m1615=concat(
+  "vQ20m03=", string(vQ20m03,n2), ",vQ23m01=", string(vQ23m01,n2), ",vQ23m02=", string(vQ23m02,n2), ",vQ23m03=", string(vQ23m03,n2), ",vQ23m04=",
+  string(vQ23m04,n2), ",vQ23m05=", string(vQ23m05,n2), ",vQ23m06=", string(vQ23m06,n2), ",vQ23m07=", string(vQ23m07,n2), ",vQ23m08=", string(vQ23m08,n2),
+  ",vQ23m09=", string(vQ23m09,n2), ",vQ23m10=", string(vQ23m10,n2), ",vQ23m11=", string(vQ23m11,n2), ",vQ23m12=", string(vQ23m12,n2), ",vQ23m13=",
+  string(vQ23m13,n2), ",vQ23m14=", string(vQ23m14,n2), ",vQ23m15=", string(vQ23m15,n2), ",vQ23m16=", string(vQ23m16,n2), ",vQ23m17=", string(vQ23m17,n2),
+  ",vQ23m18=", string(vQ23m18,n2), ",vQ23m19=", string(vQ23m19,n2), ",vQ23m20=", string(vQ23m20,n2), ",vQ23m21=", string(vQ23m21,n2), ",vQ23m22=",
+  string(vQ23m22,n2), ",vQ23m23=", string(vQ23m23,n2), ",vQ23m24=", string(vQ23m24,n2), ",vQ23m25=", string(vQ23m25,n2), ",vQ23m26=", string(vQ23m26,n2),
+  ",vQ23m27=", string(vQ23m27,n2), ",vQ23m88=", string(vQ23m88,n2)
+).
+compute p1615=concat(
+  "vQ20m03 in 1，應答vQ23m01,vQ23m02,vQ23m03,vQ23m04,vQ23m05,vQ23m06,vQ23m07,vQ23m08,vQ23m09,vQ23m10,vQ23m",
+  "11,vQ23m12,vQ23m13,vQ23m14,vQ23m15,vQ23m16,vQ23m17,vQ23m18,vQ23m19,vQ23m20,vQ23m21,vQ23m22,vQ23m23,v",
+  "Q23m24,vQ23m25,vQ23m26,vQ23m27,vQ23m88而未答"
+).
+compute s1615=1.
+end if.
+
+* logic check hide vQ23m01,vQ23m02,vQ23m03,vQ23m04,vQ23m05,vQ23m06,vQ23m07,vQ23m08,vQ23m09,vQ23m10,vQ23m11,vQ23m12,vQ23m13,vQ23m14,vQ23m15,vQ23m16,vQ23m17.
+* vQ23m18,vQ23m19,vQ23m20,vQ23m21,vQ23m22,vQ23m23,vQ23m24,vQ23m25,vQ23m26,vQ23m27,vQ23m88.
+do if (vQ20m03~=1) & (any(0 , vQ23m01_96) | any(0 , vQ23m02_96) | any(0 , vQ23m03_96) | any(0 , vQ23m04_96) | any(0 , vQ23m05_96) | any(0 , vQ23m06_96) | any(0
+, vQ23m07_96) | any(0 , vQ23m08_96) | any(0 , vQ23m09_96) | any(0 , vQ23m10_96) | any(0 , vQ23m11_96) | any(0 , vQ23m12_96) | any(0 , vQ23m13_96) | any(0
+, vQ23m14_96) | any(0 , vQ23m15_96) | any(0 , vQ23m16_96) | any(0 , vQ23m17_96) | any(0 , vQ23m18_96) | any(0 , vQ23m19_96) | any(0 , vQ23m20_96) | any(0
+, vQ23m21_96) | any(0 , vQ23m22_96) | any(0 , vQ23m23_96) | any(0 , vQ23m24_96) | any(0 , vQ23m25_96) | any(0 , vQ23m26_96) | any(0 , vQ23m27_96) | any(0
+, vQ23m88_96)).
+compute m1616=concat(
+  "vQ20m03=", string(vQ20m03,n2), ",vQ23m01=", string(vQ23m01,n2), ",vQ23m02=", string(vQ23m02,n2), ",vQ23m03=", string(vQ23m03,n2), ",vQ23m04=",
+  string(vQ23m04,n2), ",vQ23m05=", string(vQ23m05,n2), ",vQ23m06=", string(vQ23m06,n2), ",vQ23m07=", string(vQ23m07,n2), ",vQ23m08=", string(vQ23m08,n2),
+  ",vQ23m09=", string(vQ23m09,n2), ",vQ23m10=", string(vQ23m10,n2), ",vQ23m11=", string(vQ23m11,n2), ",vQ23m12=", string(vQ23m12,n2), ",vQ23m13=",
+  string(vQ23m13,n2), ",vQ23m14=", string(vQ23m14,n2), ",vQ23m15=", string(vQ23m15,n2), ",vQ23m16=", string(vQ23m16,n2), ",vQ23m17=", string(vQ23m17,n2),
+  ",vQ23m18=", string(vQ23m18,n2), ",vQ23m19=", string(vQ23m19,n2), ",vQ23m20=", string(vQ23m20,n2), ",vQ23m21=", string(vQ23m21,n2), ",vQ23m22=",
+  string(vQ23m22,n2), ",vQ23m23=", string(vQ23m23,n2), ",vQ23m24=", string(vQ23m24,n2), ",vQ23m25=", string(vQ23m25,n2), ",vQ23m26=", string(vQ23m26,n2),
+  ",vQ23m27=", string(vQ23m27,n2), ",vQ23m88=", string(vQ23m88,n2)
+).
+compute p1616=concat(
+  "vQ20m03~=1，不應答vQ23m01,vQ23m02,vQ23m03,vQ23m04,vQ23m05,vQ23m06,vQ23m07,vQ23m08,vQ23m09,vQ23m10,vQ23m1",
+  "1,vQ23m12,vQ23m13,vQ23m14,vQ23m15,vQ23m16,vQ23m17,vQ23m18,vQ23m19,vQ23m20,vQ23m21,vQ23m22,vQ23m23,vQ",
+  "23m24,vQ23m25,vQ23m26,vQ23m27,vQ23m88而答"
+).
+compute s1616=1.
+end if.
+
+* logic check show vQ26m01,vQ26m02,vQ26m03,vQ26m04,vQ26m05,vQ26m06,vQ26m07,vQ26m08,vQ26m09,vQ26m10,vQ26m11,vQ26m12,vQ26m13,vQ26m14,vQ26m15,vQ26m16,vQ26m17.
+* vQ26m18,vQ26m19,vQ26m20,vQ26m21,vQ26m22,vQ26m23,vQ26m24,vQ26m25,vQ26m26,vQ26m27,vQ26m28,vQ26m29,vQ26m88.
+do if (any(vQ20m04 , 1)) & (any(1 , vQ26m01_96) | any(1 , vQ26m02_96) | any(1 , vQ26m03_96) | any(1 , vQ26m04_96) | any(1 , vQ26m05_96) | any(1 , vQ26m06_96)
+| any(1 , vQ26m07_96) | any(1 , vQ26m08_96) | any(1 , vQ26m09_96) | any(1 , vQ26m10_96) | any(1 , vQ26m11_96) | any(1 , vQ26m12_96) | any(1 , vQ26m13_96)
+| any(1 , vQ26m14_96) | any(1 , vQ26m15_96) | any(1 , vQ26m16_96) | any(1 , vQ26m17_96) | any(1 , vQ26m18_96) | any(1 , vQ26m19_96) | any(1 , vQ26m20_96)
+| any(1 , vQ26m21_96) | any(1 , vQ26m22_96) | any(1 , vQ26m23_96) | any(1 , vQ26m24_96) | any(1 , vQ26m25_96) | any(1 , vQ26m26_96) | any(1 , vQ26m27_96)
+| any(1 , vQ26m28_96) | any(1 , vQ26m29_96) | any(1 , vQ26m88_96)).
+compute m1617=concat(
+  "vQ20m04=", string(vQ20m04,n2), ",vQ26m01=", string(vQ26m01,n2), ",vQ26m02=", string(vQ26m02,n2), ",vQ26m03=", string(vQ26m03,n2), ",vQ26m04=",
+  string(vQ26m04,n2), ",vQ26m05=", string(vQ26m05,n2), ",vQ26m06=", string(vQ26m06,n2), ",vQ26m07=", string(vQ26m07,n2), ",vQ26m08=", string(vQ26m08,n2),
+  ",vQ26m09=", string(vQ26m09,n2), ",vQ26m10=", string(vQ26m10,n2), ",vQ26m11=", string(vQ26m11,n2), ",vQ26m12=", string(vQ26m12,n2), ",vQ26m13=",
+  string(vQ26m13,n2), ",vQ26m14=", string(vQ26m14,n2), ",vQ26m15=", string(vQ26m15,n2), ",vQ26m16=", string(vQ26m16,n2), ",vQ26m17=", string(vQ26m17,n2),
+  ",vQ26m18=", string(vQ26m18,n2), ",vQ26m19=", string(vQ26m19,n2), ",vQ26m20=", string(vQ26m20,n2), ",vQ26m21=", string(vQ26m21,n2), ",vQ26m22=",
+  string(vQ26m22,n2), ",vQ26m23=", string(vQ26m23,n2), ",vQ26m24=", string(vQ26m24,n2), ",vQ26m25=", string(vQ26m25,n2), ",vQ26m26=", string(vQ26m26,n2),
+  ",vQ26m27=", string(vQ26m27,n2), ",vQ26m28=", string(vQ26m28,n2), ",vQ26m29=", string(vQ26m29,n2), ",vQ26m88=", string(vQ26m88,n2)
+).
+compute p1617=concat(
+  "vQ20m04 in 1，應答vQ26m01,vQ26m02,vQ26m03,vQ26m04,vQ26m05,vQ26m06,vQ26m07,vQ26m08,vQ26m09,vQ26m10,vQ26m",
+  "11,vQ26m12,vQ26m13,vQ26m14,vQ26m15,vQ26m16,vQ26m17,vQ26m18,vQ26m19,vQ26m20,vQ26m21,vQ26m22,vQ26m23,v",
+  "Q26m24,vQ26m25,vQ26m26,vQ26m27,vQ26m28,vQ26m29,vQ26m88而未答"
+).
+compute s1617=1.
+end if.
+
+* logic check show vQ26Ag1,vQ26Ag2.
+do if (any(vQ20m04,1)) & (any(1,vQ26Ag1_96) | any(1,vQ26Ag2_96)).
+compute m1618=concat("vQ20m04=",string(vQ20m04,n2),",vQ26Ag1=",string(vQ26Ag1,n4),",vQ26Ag2=",string(vQ26Ag2,n3)).
+compute p1618="vQ20m04 in 1，應答vQ26Ag1,vQ26Ag2而未答".
+compute s1618=1.
+end if.
+
+* logic check hide vQ26Ag1,vQ26Ag2.
+do if (vQ20m04~=1) & (any(0,vQ26Ag1_96) | any(0,vQ26Ag2_96)).
+compute m1619=concat("vQ20m04=",string(vQ20m04,n2),",vQ26Ag1=",string(vQ26Ag1,n4),",vQ26Ag2=",string(vQ26Ag2,n3)).
+compute p1619="vQ20m04~=1，不應答vQ26Ag1,vQ26Ag2而答".
+compute s1619=1.
+end if.
+
+* logic check hide vQ26m01,vQ26m02,vQ26m03,vQ26m04,vQ26m05,vQ26m06,vQ26m07,vQ26m08,vQ26m09,vQ26m10,vQ26m11,vQ26m12,vQ26m13,vQ26m14,vQ26m15,vQ26m16,vQ26m17.
+* vQ26m18,vQ26m19,vQ26m20,vQ26m21,vQ26m22,vQ26m23,vQ26m24,vQ26m25,vQ26m26,vQ26m27,vQ26m28,vQ26m29,vQ26m88.
+do if (vQ20m04~=1) & (any(0 , vQ26m01_96) | any(0 , vQ26m02_96) | any(0 , vQ26m03_96) | any(0 , vQ26m04_96) | any(0 , vQ26m05_96) | any(0 , vQ26m06_96) | any(0
+, vQ26m07_96) | any(0 , vQ26m08_96) | any(0 , vQ26m09_96) | any(0 , vQ26m10_96) | any(0 , vQ26m11_96) | any(0 , vQ26m12_96) | any(0 , vQ26m13_96) | any(0
+, vQ26m14_96) | any(0 , vQ26m15_96) | any(0 , vQ26m16_96) | any(0 , vQ26m17_96) | any(0 , vQ26m18_96) | any(0 , vQ26m19_96) | any(0 , vQ26m20_96) | any(0
+, vQ26m21_96) | any(0 , vQ26m22_96) | any(0 , vQ26m23_96) | any(0 , vQ26m24_96) | any(0 , vQ26m25_96) | any(0 , vQ26m26_96) | any(0 , vQ26m27_96) | any(0
+, vQ26m28_96) | any(0 , vQ26m29_96) | any(0 , vQ26m88_96)).
+compute m1620=concat(
+  "vQ20m04=", string(vQ20m04,n2), ",vQ26m01=", string(vQ26m01,n2), ",vQ26m02=", string(vQ26m02,n2), ",vQ26m03=", string(vQ26m03,n2), ",vQ26m04=",
+  string(vQ26m04,n2), ",vQ26m05=", string(vQ26m05,n2), ",vQ26m06=", string(vQ26m06,n2), ",vQ26m07=", string(vQ26m07,n2), ",vQ26m08=", string(vQ26m08,n2),
+  ",vQ26m09=", string(vQ26m09,n2), ",vQ26m10=", string(vQ26m10,n2), ",vQ26m11=", string(vQ26m11,n2), ",vQ26m12=", string(vQ26m12,n2), ",vQ26m13=",
+  string(vQ26m13,n2), ",vQ26m14=", string(vQ26m14,n2), ",vQ26m15=", string(vQ26m15,n2), ",vQ26m16=", string(vQ26m16,n2), ",vQ26m17=", string(vQ26m17,n2),
+  ",vQ26m18=", string(vQ26m18,n2), ",vQ26m19=", string(vQ26m19,n2), ",vQ26m20=", string(vQ26m20,n2), ",vQ26m21=", string(vQ26m21,n2), ",vQ26m22=",
+  string(vQ26m22,n2), ",vQ26m23=", string(vQ26m23,n2), ",vQ26m24=", string(vQ26m24,n2), ",vQ26m25=", string(vQ26m25,n2), ",vQ26m26=", string(vQ26m26,n2),
+  ",vQ26m27=", string(vQ26m27,n2), ",vQ26m28=", string(vQ26m28,n2), ",vQ26m29=", string(vQ26m29,n2), ",vQ26m88=", string(vQ26m88,n2)
+).
+compute p1620=concat(
+  "vQ20m04~=1，不應答vQ26m01,vQ26m02,vQ26m03,vQ26m04,vQ26m05,vQ26m06,vQ26m07,vQ26m08,vQ26m09,vQ26m10,vQ26m1",
+  "1,vQ26m12,vQ26m13,vQ26m14,vQ26m15,vQ26m16,vQ26m17,vQ26m18,vQ26m19,vQ26m20,vQ26m21,vQ26m22,vQ26m23,vQ",
+  "26m24,vQ26m25,vQ26m26,vQ26m27,vQ26m28,vQ26m29,vQ26m88而答"
+).
+compute s1620=1.
+end if.
+
+* logic check show vQ50.
+do if (any(vQ49,2,97,98)) & any(1,vQ50_96).
+compute m1621=concat("vQ49=",string(vQ49,n2),",vQ50=",string(vQ50,n2)).
+compute p1621="vQ49 in 2,97,98，應答vQ50而未答".
+compute s1621=1.
+end if.
+
+* logic check show vQ50.
+do if (any(vQ49,2,97,98)) & any(1,vQ50_96).
+compute m1622=concat("vQ49=",string(vQ49,n2),",vQ50=",string(vQ50,n2)).
+compute p1622="vQ49 in 2 | vQ49 in 97 | vQ49 in 98，應答vQ50而未答".
+compute s1622=1.
+end if.
+
+* logic check hide vQ50.
+do if (not any(vQ49,2,97,98)) & any(0,vQ50_96).
+compute m1623=concat("vQ49=",string(vQ49,n2),",vQ50=",string(vQ50,n2)).
+compute p1623="vQ49~=2 & vQ49~=97 & vQ49~=98，不應答vQ50而答".
+compute s1623=1.
+end if.
+
+* logic check show vQ51.
+do if (any(vQ49,1) | any(vQ50,1)) & any(1,vQ51_96).
+compute m1624=concat("vQ49=",string(vQ49,n2),",vQ50=",string(vQ50,n2),",vQ51=",string(vQ51,n2)).
+compute p1624="vQ49 in 1 | vQ50 in 1，應答vQ51而未答".
+compute s1624=1.
+end if.
+
+* logic check hide vQ51.
+do if (vQ49~=1 & vQ50~=1) & any(0,vQ51_96).
+compute m1625=concat("vQ49=",string(vQ49,n2),",vQ50=",string(vQ50,n2),",vQ51=",string(vQ51,n2)).
+compute p1625="vQ49~=1 & vQ50~=1，不應答vQ51而答".
+compute s1625=1.
+end if.
+
+* logic check show vQ52.
+do if (any(vQ51 , 1 , 2 , 3 , 4 , 5 , 6 , 7 , 8 , 9 , 10 , 11 , 12 , 13 , 14 , 15 , 16 , 17 , 18 , 19 , 20 , 21 , 22 , 23 , 24 , 25 , 26 , 27 , 28 , 29 , 30
+, 31 , 32 , 33 , 34 , 35 , 36 , 37 , 38 , 39 , 40 , 41 , 42 , 43 , 44 , 45 , 46 , 47 , 48 , 49 , 50 , 51 , 52 , 53 , 54 , 55 , 56 , 57 , 58 , 59 , 60 , 61 , 62
+, 63 , 64 , 65 , 66 , 67 , 68 , 69 , 70 , 71 , 72 , 73 , 74 , 75 , 76 , 77 , 78 , 79 , 80 , 81 , 82 , 83 , 84 , 85 , 86 , 87 , 88)) & any(1 , vQ52_96).
+compute m1626=concat("vQ51=",string(vQ51,n2),",vQ52=",string(vQ52,n2)).
+compute p1626="vQ51 in 1~88，應答vQ52而未答".
+compute s1626=1.
+end if.
+
+* logic check hide vQ52.
+do if (vQ51>88) & any(0,vQ52_96).
+compute m1627=concat("vQ51=",string(vQ51,n2),",vQ52=",string(vQ52,n2)).
+compute p1627="vQ51>88，不應答vQ52而答".
+compute s1627=1.
+end if.
+
+* logic check show vZE2_1.
+do if (any(vZE2m01,1) | any(vZE2m02,1)) & vZE2_1="96".
+compute m1628=concat("vZE2m01=",string(vZE2m01,n2),",vZE2m02=",string(vZE2m02,n2),",vZE2_1=",rtrim(ltrim(vZE2_1))).
+compute p1628="vZE2m01 in 1 | vZE2m02 in 1，應答vZE2_1而未答".
+compute s1628=1.
+end if.
+
+* logic check show vZE2_2.
+do if (any(vZE2m01,1)) & vZE2_2="96".
+compute m1629=concat("vZE2m01=",string(vZE2m01,n2),",vZE2_2=",rtrim(ltrim(vZE2_2))).
+compute p1629="vZE2m01 in 1，應答vZE2_2而未答".
+compute s1629=1.
+end if.
+
+* logic check hide vZE2_2.
+do if (vZE2m01~=1) & vZE2_2~="96".
+compute m1630=concat("vZE2m01=",string(vZE2m01,n2),",vZE2_2=",rtrim(ltrim(vZE2_2))).
+compute p1630="vZE2m01~=1，不應答vZE2_2而答".
+compute s1630=1.
+end if.
+
+* logic check show vZE2_3.
+do if (any(vZE2m02,1)) & vZE2_3="96".
+compute m1631=concat("vZE2m02=",string(vZE2m02,n2),",vZE2_3=",rtrim(ltrim(vZE2_3))).
+compute p1631="vZE2m02 in 1，應答vZE2_3而未答".
+compute s1631=1.
+end if.
+
+* logic check hide vZE2_3.
+do if (vZE2m02~=1) & vZE2_3~="96".
+compute m1632=concat("vZE2m02=",string(vZE2m02,n2),",vZE2_3=",rtrim(ltrim(vZE2_3))).
+compute p1632="vZE2m02~=1，不應答vZE2_3而答".
+compute s1632=1.
 end if.
 
 * SYNTAXWORK_END_LOGIC.

@@ -21,6 +21,8 @@ class MultiQuestion:
     row: int
     m: str
     p: str
+    s: str
+    s_value: str
     raw_question: str
     display_name: str
     group_key: str
@@ -35,6 +37,8 @@ class MutexRule:
     row: int
     m: str
     p: str
+    s: str
+    s_value: str
     raw_question: str
     display_name: str
     group_key: str
@@ -84,6 +88,15 @@ def infer_group_from_var(var_name: str) -> str:
 
 def normalize_id(value: Any) -> str:
     text = id_text(value)
+    return text
+
+
+def resolved_optional_id(value: Any, row_values: tuple[Any, ...], headers: dict[str, int], fallback_key: str = "") -> str:
+    text = normalize_id(value)
+    if text.startswith("="):
+        if fallback_key and fallback_key in headers:
+            return normalize_id(row_values[headers[fallback_key]])
+        return ""
     return text
 
 
@@ -218,11 +231,15 @@ def load_questions(wb: openpyxl.Workbook, issues: list[dict[str, Any]]) -> list[
         p_id = normalize_id(row[headers.get("p", headers["m"])])
         if not p_id or p_id.startswith("="):
             p_id = m_id
+        s_id = resolved_optional_id(row[headers["s"]], row, headers, "m") if "s" in headers else ""
+        s_value = resolved_optional_id(row[headers["s="]], row, headers) if "s=" in headers else ""
         questions.append(
             MultiQuestion(
                 row=row_idx,
                 m=m_id,
                 p=p_id,
+                s=s_id,
+                s_value=s_value,
                 raw_question=cell_text(row[headers["題號"]]),
                 display_name=display,
                 group_key=group_key,
@@ -342,11 +359,15 @@ def load_mutex_rules(wb: openpyxl.Workbook, questions: list[MultiQuestion], issu
         p_id = normalize_id(row[headers.get("p", headers["m"])])
         if not p_id or p_id.startswith("="):
             p_id = m_id
+        s_id = resolved_optional_id(row[headers["s"]], row, headers, "m") if "s" in headers else ""
+        s_value = resolved_optional_id(row[headers["s="]], row, headers) if "s=" in headers else ""
         rules.append(
             MutexRule(
                 row=row_idx,
                 m=m_id,
                 p=p_id,
+                s=s_id,
+                s_value=s_value,
                 raw_question=cell_text(row[headers["題號"]]),
                 display_name=question.display_name,
                 group_key=question.group_key,
@@ -368,6 +389,21 @@ def string_format(var_name: str, widths: dict[str, int]) -> str:
     return f"string({var_name},f{width})"
 
 
+def wrap_args(parts: list[str], indent: str = "  ", max_len: int = 160) -> list[str]:
+    lines: list[str] = []
+    current = indent
+    for index, part in enumerate(parts):
+        token = part + ("," if index < len(parts) - 1 else "")
+        if current.strip() and len(current) + len(token) + 1 > max_len:
+            lines.append(current.rstrip())
+            current = indent + token
+        else:
+            current += ("" if current == indent else " ") + token
+    if current.strip():
+        lines.append(current.rstrip())
+    return lines
+
+
 def render_concat(display_name: str, vars_for_question: tuple[str, ...], widths: dict[str, int]) -> str:
     parts: list[str] = []
     for index, var_name in enumerate(vars_for_question):
@@ -375,7 +411,13 @@ def render_concat(display_name: str, vars_for_question: tuple[str, ...], widths:
             parts.append('" , "')
         parts.append(f'"{var_name}="')
         parts.append(string_format(var_name, widths))
-    return f"COMPUTE {display_name} = Rtrim(Ltrim(concat({','.join(parts)})))."
+    single_line = f"COMPUTE {display_name} = Rtrim(Ltrim(concat({','.join(parts)})))."
+    if len(single_line) <= 200:
+        return single_line
+    lines = [f"COMPUTE {display_name} = Rtrim(Ltrim(concat("]
+    lines.extend(wrap_args(parts))
+    lines.append("))).")
+    return "\n".join(lines)
 
 
 def render_multi_section(questions: list[MultiQuestion], mutex_rules: list[MutexRule], widths: dict[str, int]) -> str:
@@ -412,6 +454,7 @@ def render_multi_section(questions: list[MultiQuestion], mutex_rules: list[Mutex
                 "do if " + "\n| ".join(conditions) + ".",
                 f"compute m{question.m}=Rtrim(Ltrim({question.display_name})).",
                 f'compute p{question.p}="{question.display_name}至少選1項或選特殊碼應一致".',
+                *([f"compute s{question.s}={question.s_value}."] if question.s and question.s_value else []),
                 "end if.",
                 "end loop.",
                 "exec.",
@@ -428,6 +471,7 @@ def render_multi_section(questions: list[MultiQuestion], mutex_rules: list[Mutex
                 f"do if any({rule.exclusive_var},1) & any(1,{other_range}).",
                 f"compute m{rule.m}=Rtrim(Ltrim({rule.display_name})).",
                 f'compute p{rule.p}="{rule.display_name}({rule.exclusive_code})複選題選項應互斥".',
+                *([f"compute s{rule.s}={rule.s_value}."] if rule.s and rule.s_value else []),
                 "end if.",
                 "Exec.",
                 "",

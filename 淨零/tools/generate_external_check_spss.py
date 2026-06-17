@@ -30,6 +30,8 @@ class ExternalCheckRule:
     row: int
     m: str
     p: str
+    s: str
+    s_value: str
     qid: str
     vars_text: str
     description: str
@@ -58,6 +60,21 @@ def resolved_mp_value(ws: openpyxl.worksheet.worksheet.Worksheet, h: dict[str, i
     value = cell_text(ws.cell(row_idx, h[col_name]).value)
     if value.startswith("="):
         return cell_text(ws.cell(row_idx, h["m"]).value)
+    return value
+
+
+def resolved_optional_value(
+    ws: openpyxl.worksheet.worksheet.Worksheet,
+    h: dict[str, int],
+    row_idx: int,
+    col_name: str,
+    fallback_col: str = "",
+) -> str:
+    if col_name not in h:
+        return ""
+    value = cell_text(ws.cell(row_idx, h[col_name]).value)
+    if value.startswith("="):
+        return cell_text(ws.cell(row_idx, h[fallback_col]).value) if fallback_col and fallback_col in h else ""
     return value
 
 
@@ -134,6 +151,70 @@ def render_compute_m(m_id: str, vars_to_show: list[str], specs: dict[str, VarSpe
     return lines
 
 
+def split_outside_quotes(text: str, separators: set[str]) -> list[str]:
+    parts: list[str] = []
+    current: list[str] = []
+    in_quote = False
+    for char in text:
+        if char == '"':
+            in_quote = not in_quote
+        if not in_quote and char in separators:
+            piece = "".join(current).strip()
+            if piece:
+                parts.append(piece)
+            parts.append(char)
+            current = []
+        else:
+            current.append(char)
+    piece = "".join(current).strip()
+    if piece:
+        parts.append(piece)
+    return parts
+
+
+def wrap_expression(expr: str, first_prefix: str, final_suffix: str = ".", max_len: int = 160) -> list[str]:
+    single = f"{first_prefix}{expr}{final_suffix}"
+    if len(single) <= max_len:
+        return [single]
+    tokens = split_outside_quotes(expr, {"&", "|", "+"})
+    lines: list[str] = []
+    current = first_prefix
+    pending_op = ""
+    for token in tokens:
+        if token in {"&", "|", "+"}:
+            pending_op = token
+            continue
+        piece = f"{pending_op} {token}" if pending_op else token
+        if current.strip() and len(current) + len(piece) + 1 > max_len:
+            lines.append(current.rstrip())
+            current = f"{pending_op} {token}" if pending_op else token
+        else:
+            current += ("" if current == first_prefix else " ") + piece
+        pending_op = ""
+    if current.strip():
+        lines.append(current.rstrip() + final_suffix)
+    return lines
+
+
+def string_chunks(text: str, chunk_size: int = 100) -> list[str]:
+    return [text[index : index + chunk_size] for index in range(0, len(text), chunk_size)] or [""]
+
+
+def render_compute_p(p_id: str, message: str, commented: bool = False) -> list[str]:
+    escaped = message.replace('"', "'")
+    prefix = "* " if commented else ""
+    single = f'{prefix}compute p{p_id}="{escaped}".'
+    if len(single) <= 160:
+        return [single]
+    lines = [f"{prefix}compute p{p_id}=concat("]
+    chunks = string_chunks(escaped)
+    for index, chunk in enumerate(chunks):
+        suffix = "," if index < len(chunks) - 1 else ""
+        lines.append(f'{prefix}  "{chunk}"{suffix}')
+    lines.append(f"{prefix}).")
+    return lines
+
+
 def condition_vars(condition: str, specs: dict[str, VarSpec]) -> list[str]:
     names = re.findall(r"\b[A-Za-z_][A-Za-z0-9_]*\b", normalize_condition(condition, specs))
     result: list[str] = []
@@ -159,7 +240,7 @@ def unique(values: list[str]) -> list[str]:
 
 
 def is_aggregate_var(var_name: str) -> bool:
-    return bool(re.fullmatch(r"sum[A-Za-z0-9_]+_min", var_name))
+    return bool(re.fullmatch(r"sum[A-Za-z0-9_]+(?:_min)?", var_name))
 
 
 def range_vars(start_var: str, end_var: str, specs: dict[str, VarSpec]) -> list[str]:
@@ -202,15 +283,49 @@ def hhmm_minutes(var_name: str) -> str:
     return f"(trunc({var_name}/100)*60 + mod({var_name},100))"
 
 
-def render_aggregate_computes(vars_to_show: list[str], specs: dict[str, VarSpec]) -> list[str]:
+def hhmm_hours(var_name: str) -> str:
+    return f"((trunc({var_name}/100)*60 + mod({var_name},100))/60)"
+
+
+def aggregate_value_expr(var_name: str, source_var: str) -> str:
+    if var_name.endswith("_min"):
+        return hhmm_minutes(source_var)
+    return hhmm_hours(source_var)
+
+
+def render_aggregate_computes(aggregate_vars: list[str], specs: dict[str, VarSpec]) -> list[str]:
     lines: list[str] = []
-    for var_name in vars_to_show:
+    for var_name in aggregate_vars:
         source_vars = aggregate_source_vars(var_name, specs)
         if not source_vars:
             continue
-        expr = " + ".join(hhmm_minutes(var) for var in source_vars)
-        lines.append(f"compute {var_name}={expr}.")
+        minute_var = var_name if var_name.endswith("_min") else f"{var_name}_min"
+        lines.append(f"compute {minute_var}=0.")
+        for source_var in source_vars:
+            lines.extend(
+                wrap_expression(
+                    f"(not(any({source_var},9797,9898,99996))) {minute_var}={minute_var} + {hhmm_minutes(source_var)}",
+                    "if ",
+                )
+            )
+        if var_name != minute_var:
+            lines.append(f"compute {var_name}={minute_var}/60.")
+        lines.append("")
     return lines
+
+
+def rule_listed_vars(rule: ExternalCheckRule, specs: dict[str, VarSpec]) -> list[str]:
+    condition = normalize_condition(rule.condition, specs)
+    return unique(split_vars(rule.vars_text) + split_vars(rule.extra_vars) + condition_vars(condition, specs))
+
+
+def collect_aggregate_vars(rules: list[ExternalCheckRule], specs: dict[str, VarSpec]) -> list[str]:
+    result: list[str] = []
+    for rule in rules:
+        for var_name in rule_listed_vars(rule, specs):
+            if is_aggregate_var(var_name) and var_name not in result:
+                result.append(var_name)
+    return result
 
 
 def load_rules(workbook_path: Path) -> tuple[list[ExternalCheckRule], list[dict[str, Any]]]:
@@ -228,6 +343,8 @@ def load_rules(workbook_path: Path) -> tuple[list[ExternalCheckRule], list[dict[
     for row_idx in range(2, ws.max_row + 1):
         m = resolved_mp_value(ws, h, row_idx, "m")
         p = resolved_mp_value(ws, h, row_idx, "p")
+        s = resolved_optional_value(ws, h, row_idx, "s", "m")
+        s_value = resolved_optional_value(ws, h, row_idx, "s=")
         qid = cell_text(ws.cell(row_idx, h["題號"]).value)
         vars_text = cell_text(ws.cell(row_idx, h["變項名稱"]).value)
         desc = cell_text(ws.cell(row_idx, h["檢核說明"]).value)
@@ -236,30 +353,42 @@ def load_rules(workbook_path: Path) -> tuple[list[ExternalCheckRule], list[dict[
         extra_vars = cell_text(ws.cell(row_idx, h["額外列出變項"]).value)
         if not any([qid, vars_text, desc, note, condition]):
             continue
-        if not condition:
-            skipped.append({"severity": "warning", "row": row_idx, "qid": qid, "reason": "blank condition"})
-            continue
         if not m or not p:
             skipped.append({"severity": "warning", "row": row_idx, "qid": qid, "reason": "blank m or p"})
             continue
-        rules.append(ExternalCheckRule(row_idx, m, p, qid, vars_text, desc, note, condition, extra_vars))
+        rules.append(ExternalCheckRule(row_idx, m, p, s, s_value, qid, vars_text, desc, note, condition, extra_vars))
     return rules, skipped
 
 
 def render_rule(rule: ExternalCheckRule, specs: dict[str, VarSpec]) -> str:
     condition = normalize_condition(rule.condition, specs)
-    listed_vars = unique(split_vars(rule.vars_text) + split_vars(rule.extra_vars) + condition_vars(condition, specs))
+    listed_vars = rule_listed_vars(rule, specs)
     lines = [
         f"* external check row {rule.row}: {rule.qid}.",
     ]
-    lines.extend(render_aggregate_computes(listed_vars, specs))
-    lines.extend([
-        f"do if {condition}.",
-    ])
+    if not condition:
+        skeleton = [
+            "* TODO: blank condition in Excel; fill the condition before enabling this rule.",
+            "* do if .",
+        ]
+        skeleton.extend(f"* {line}" for line in render_compute_m(rule.m, listed_vars, specs))
+        skeleton.extend(render_compute_p(rule.p, message_text(rule), commented=True))
+        skeleton.extend(
+            [
+                *([f"* compute s{rule.s}={rule.s_value}."] if rule.s and rule.s_value else []),
+                "* end if.",
+                "* exec.",
+                "",
+            ]
+        )
+        lines.extend(skeleton)
+        return "\n".join(lines)
+    lines.extend(wrap_expression(f"({condition})", "do if "))
     lines.extend(render_compute_m(rule.m, listed_vars, specs))
+    lines.extend(render_compute_p(rule.p, message_text(rule)))
     lines.extend(
         [
-            f'compute p{rule.p}="{message_text(rule)}".',
+            *([f"compute s{rule.s}={rule.s_value}."] if rule.s and rule.s_value else []),
             "end if.",
             "exec.",
             "",
@@ -274,6 +403,10 @@ def render_spss(rules: list[ExternalCheckRule], specs: dict[str, VarSpec]) -> st
         "**EXTERNAL CHECK ITEMS.",
         "* SYNTAXWORK_BEGIN_EXTERNAL_CHECKS.",
     ]
+    aggregate_lines = render_aggregate_computes(collect_aggregate_vars(rules, specs), specs)
+    if aggregate_lines:
+        blocks.append("* aggregate variables.")
+        blocks.append("\n".join(aggregate_lines).rstrip())
     blocks.extend(render_rule(rule, specs) for rule in rules)
     blocks.append("* SYNTAXWORK_END_EXTERNAL_CHECKS.")
     return "\n".join(blocks).rstrip() + "\n"
@@ -290,11 +423,14 @@ def duplicate_mp_report(workbook_path: Path, rules: list[ExternalCheckRule]) -> 
         h = headers(ws)
         if "m" not in h and "p" not in h:
             continue
-        for row_idx in range(2, ws.max_row + 1):
+        for row_idx, row in enumerate(ws.iter_rows(min_row=2, values_only=True), start=2):
+            row_values = {name: row[idx - 1] for name, idx in h.items() if idx - 1 < len(row)}
             for col_name in ("m", "p"):
                 if col_name not in h:
                     continue
-                value = resolved_mp_value(ws, h, row_idx, col_name)
+                value = cell_text(row_values.get(col_name))
+                if value.startswith("="):
+                    value = cell_text(row_values.get("m"))
                 if not value:
                     continue
                 key = (col_name, value)
@@ -306,6 +442,14 @@ def duplicate_mp_report(workbook_path: Path, rules: list[ExternalCheckRule]) -> 
     return issues
 
 
+def pending_condition_rows(rules: list[ExternalCheckRule]) -> list[dict[str, Any]]:
+    return [
+        {"severity": "info", "row": rule.row, "qid": rule.qid, "reason": "blank condition; emitted commented SPSS skeleton"}
+        for rule in rules
+        if not rule.condition
+    ]
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--workbook", required=True, type=Path)
@@ -315,14 +459,17 @@ def main() -> int:
 
     specs = load_var_specs(args.workbook)
     rules, skipped = load_rules(args.workbook)
+    pending_conditions = pending_condition_rows(rules)
     duplicate_issues = duplicate_mp_report(args.workbook, rules)
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(render_spss(rules, specs), encoding="utf-8-sig")
     report = {
         "rules": len(rules),
         "skipped": len(skipped),
+        "pending_conditions": len(pending_conditions),
         "duplicate_mp_issues": len(duplicate_issues),
         "skipped_rows": skipped,
+        "pending_condition_rows": pending_conditions,
         "duplicate_mp": duplicate_issues,
         "output": str(args.output),
     }

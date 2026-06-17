@@ -14,6 +14,8 @@ class NumericRule:
     row: int
     m: str
     p: str
+    s: str
+    s_value: str
     var: str
     width: int
     in_or_not: str
@@ -51,6 +53,13 @@ def resolved_mp(value: Any, row_values: dict[str, Any]) -> str:
     return text
 
 
+def resolved_optional_id(value: Any, row_values: dict[str, Any], fallback_key: str = "") -> str:
+    text = cell_text(value)
+    if text.startswith("="):
+        return cell_text(row_values.get(fallback_key)) if fallback_key else ""
+    return text
+
+
 def load_rules(workbook_path: Path) -> tuple[list[NumericRule], list[dict[str, Any]]]:
     wb = openpyxl.load_workbook(workbook_path, data_only=False, read_only=True)
     ws = sheet_by_prefix(wb, "數值題")
@@ -74,6 +83,8 @@ def load_rules(workbook_path: Path) -> tuple[list[NumericRule], list[dict[str, A
             continue
         m = cell_text(values.get("m"))
         p = resolved_mp(values.get("p"), values)
+        s = resolved_optional_id(values.get("s"), values, "m") if "s" in h else ""
+        s_value = resolved_optional_id(values.get("s="), values) if "s=" in h else ""
         if not m or not p:
             skipped.append({"row": row_idx, "var": var, "reason": "blank m or p"})
             continue
@@ -86,6 +97,8 @@ def load_rules(workbook_path: Path) -> tuple[list[NumericRule], list[dict[str, A
                 row=row_idx,
                 m=m,
                 p=p,
+                s=s,
+                s_value=s_value,
                 var=var,
                 width=width,
                 in_or_not=cell_text(values.get("in_or_not")) or "range",
@@ -100,11 +113,25 @@ def expand_range_args(values: list[str]) -> list[str]:
     args: list[str] = []
     for value in values:
         if "," in value:
-            left, right = [part.strip() for part in value.split(",", 1)]
-            args.extend([left, right])
+            args.extend(part.strip() for part in value.split(",") if part.strip())
         else:
             args.extend([value, value])
     return args
+
+
+def wrap_args(parts: list[str], indent: str = "  ", max_len: int = 160) -> list[str]:
+    lines: list[str] = []
+    current = indent
+    for index, part in enumerate(parts):
+        token = part + ("," if index < len(parts) - 1 else "")
+        if current.strip() and len(current) + len(token) + 1 > max_len:
+            lines.append(current.rstrip())
+            current = indent + token
+        else:
+            current += ("" if current == indent else " ") + token
+    if current.strip():
+        lines.append(current.rstrip())
+    return lines
 
 
 def valid_expr(rule: NumericRule) -> str:
@@ -116,14 +143,42 @@ def valid_expr(rule: NumericRule) -> str:
     return expr
 
 
+def render_valid_expr(rule: NumericRule) -> list[str]:
+    args = [rule.var, *expand_range_args(rule.ranges)]
+    fn = "any" if rule.in_or_not.lower() == "any" else "range"
+    expr = valid_expr(rule)
+    if len(expr) <= 160:
+        return [expr]
+    if rule.decimal_rule:
+        return ["(" + f"{fn}("] + wrap_args(args) + [f")) & ({rule.decimal_rule})"]
+    return [f"{fn}("] + wrap_args(args) + [")"]
+
+
+def render_do_if(rule: NumericRule) -> list[str]:
+    valid_lines = render_valid_expr(rule)
+    if len(valid_lines) == 1:
+        return [f"do if not {valid_lines[0]} | sys({rule.var})."]
+    lines = [f"do if not {valid_lines[0]}"]
+    lines.extend(valid_lines[1:-1])
+    lines.append(f"{valid_lines[-1]} | sys({rule.var}).")
+    return lines
+
+
+def render_comment(rule: NumericRule) -> list[str]:
+    text = f"*{rule.var}={' '.join(rule.ranges)} ."
+    if len(text) <= 160:
+        return [text]
+    return [f"*{rule.var}=<long valid range; see do if range arguments below>."]
+
+
 def render_rule(rule: NumericRule) -> str:
-    range_comment = " ".join(rule.ranges)
     return "\n".join(
         [
-            f"*{rule.var}={range_comment} .",
-            f"do if not {valid_expr(rule)} | sys({rule.var}).",
+            *render_comment(rule),
+            *render_do_if(rule),
             f'compute m{rule.m}=concat("{rule.var}=",string({rule.var},f{rule.width})).',
             f'compute p{rule.p}="{rule.var}為不合理值或遺漏值".',
+            *([f"compute s{rule.s}={rule.s_value}."] if rule.s and rule.s_value else []),
             "end if.",
             "Exec.",
             "",

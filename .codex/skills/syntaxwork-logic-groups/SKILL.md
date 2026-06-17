@@ -18,6 +18,16 @@ Use this skill for the questionnaire -> Excel step only. Do not edit questionnai
 ## Required Rules
 
 - Use comma-separated variables, never `|`, in Excel fields that list variables.
+- Bracketed questionnaire text with `需回答此題`, `需答此題`, or equivalent wording should create a required-answer logic row. Also create the reverse row as a forbidden-answer rule when the condition is false.
+- Bracketed questionnaire text with `不需回答此題`, `不需答此題`, `不須回答此題`, or equivalent wording should create a forbidden-answer logic row. Also create the reverse row as a required-answer rule when the inverse condition is stable.
+- If one questionnaire item has multiple bracketed instructions with the same direction, such as two `不需回答此題` notes or two `需回答此題` notes, merge them before writing Excel: the direct condition is joined with OR, and the reverse condition is joined with AND. For example, Q1 with `G1=0 不需回答` and `A9=01 不需回答` becomes `vG1 in 0 | vA9 in 1` for forbidden-answer and `vG1~=0 & vA9~=1` for required-answer.
+- Override for multiple bracketed instructions: multiple skip / `不需答` instructions use OR for the forbidden-answer condition and AND for the reverse required-answer condition; multiple need / `需答` instructions use AND for the required-answer condition and OR for the reverse forbidden-answer condition. Example: Q1 with two skip notes becomes `vG1 in 0 | vA9 in 1`; E5 with two need notes becomes `(branch1) & (branch2)`.
+- When a questionnaire qid is not present as a direct `v{qid}` variable in `all`, resolve stable grouped targets from `all`, including multi-choice `m##`, grouped numeric/time `g#`, and grouped scale `s...` suffixes. Keep open-ended `o##` variables out of logic target lists unless explicitly required.
+- For large multi-choice ranges such as `G7或G8或...答(01)-(88)`, expand only option variables that actually exist in `all`; do not require every code in the written range to exist as a column.
+- For grouped hour/minute variables such as `vM1g1,vM1g2`, a questionnaire condition like `M1答0` can be treated as both grouped variables equal to `0` when this matches the time-question context.
+- Add the optional `互斥` column immediately after `限制` in `邏輯組`. Use it for questionnaire option notes such as `選項互斥`, `與此選項互斥`, `與選項(01)-(88)互斥`, or `A09答(01)者,選項互斥`.
+- For mutex rows, write the prerequisite in `條件` and the forbidden simultaneous option/condition in `互斥`; leave `應答`, `不應答`, and `限制` blank. Example: `條件=vA9 in 1`, `互斥=vO1_1 in 1`.
+- Ignore display-check wording such as `互斥無法點選,選項號隱藏` for mutex extraction; these belong to numeric/check-display handling instead.
 - Treat display-only date questions as numeric width `14` fields in `all`; final apps should allow user-configured start/end dates.
 - For 4-digit time fields such as `K1G2`, add validation logic that prevents impossible minutes: the third digit cannot be `6`, `7`, `8`, or `9`.
 - Use markers only in generated SPSS, not in questionnaire files: `* SYNTAXWORK_BEGIN_LOGIC.` and `* SYNTAXWORK_END_LOGIC.`

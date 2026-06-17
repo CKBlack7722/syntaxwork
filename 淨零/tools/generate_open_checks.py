@@ -26,6 +26,8 @@ class OpenRule:
     row: int
     m: str
     p: str
+    s: str
+    s_value: str
     var: str
     width: int
     is_multi: str
@@ -61,6 +63,13 @@ def resolved_mp(value: Any, row_values: dict[str, Any]) -> str:
     text = cell_text(value)
     if text.startswith("="):
         return cell_text(row_values.get("m"))
+    return text
+
+
+def resolved_optional_id(value: Any, row_values: dict[str, Any], fallback_key: str = "") -> str:
+    text = cell_text(value)
+    if text.startswith("="):
+        return cell_text(row_values.get(fallback_key)) if fallback_key else ""
     return text
 
 
@@ -129,6 +138,8 @@ def load_rules(workbook_path: Path) -> tuple[list[OpenRule], list[dict[str, Any]
             continue
         m = cell_text(values.get("m"))
         p = resolved_mp(values.get("p"), values)
+        s = resolved_optional_id(values.get("s"), values, "m") if "s" in h else ""
+        s_value = resolved_optional_id(values.get("s="), values) if "s=" in h else ""
         if not m or not p:
             skipped.append({"row": row_idx, "var": var, "reason": "blank m or p"})
             continue
@@ -148,7 +159,7 @@ def load_rules(workbook_path: Path) -> tuple[list[OpenRule], list[dict[str, Any]
         except ValueError:
             width = 150
         parent_width = specs.get(parent_var, VarSpec(parent_var, "數值", 2)).width
-        rules.append(OpenRule(row_idx, m, p, var, width, is_multi, parent_var, range_value, parent_width))
+        rules.append(OpenRule(row_idx, m, p, s, s_value, var, width, is_multi, parent_var, range_value, parent_width))
     return rules, skipped
 
 
@@ -168,6 +179,10 @@ def render_message(rule: OpenRule, text: str) -> str:
     return f'compute p{rule.p}="{rule.var}{text}".'
 
 
+def render_s(rule: OpenRule) -> str:
+    return f"compute s{rule.s}={rule.s_value}." if rule.s and rule.s_value else ""
+
+
 def render_m(rule: OpenRule) -> str:
     show_width = min(rule.width, 150)
     return (
@@ -183,12 +198,15 @@ def render_rule(rule: OpenRule) -> str:
             f'do if {parent_expr(rule)} & {rule.var}="".',
             render_m(rule),
             render_message(rule, "開放欄位應答而未答"),
+            *([render_s(rule)] if render_s(rule) else []),
             f'else if {parent_not_expr(rule)} & {rule.var}~="".',
             render_m(rule),
             render_message(rule, "開放欄位不該答而答"),
+            *([render_s(rule)] if render_s(rule) else []),
             f'else if {parent_expr(rule)} & {rule.var}~="" & range(keyin,keyindate1, Keyindate2).',
             render_m(rule),
             render_message(rule, "開放欄位內容列出確認"),
+            *([render_s(rule)] if render_s(rule) else []),
             "end if.",
             "Exec.",
             "",
