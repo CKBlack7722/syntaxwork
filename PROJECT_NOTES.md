@@ -565,3 +565,79 @@ skill 適用性觀察：
 
 - 五個主 skill 可用且已通過 quick validation。
 - `.codex/skills/syntaxwork-external-checks` 與 `syntaxwork-check-items` 功能重疊；後續建議以 `syntaxwork-check-items` 作為五大主流程之一，`syntaxwork-external-checks` 只保留為舊名稱/相容參考，避免流程分歧。
+
+## 2026-06-19 follow-up: all sheet to Excel section skeletons
+
+新增測試工具：
+
+```text
+淨零/tools/fill_excel_sections_from_all.py
+```
+
+用途：
+
+- 使用者完成 `all` sheet 後，工具從 `last` 變項列之後開始讀取正式問卷變項。
+- 所有 `變項屬性=數值` 的變項補入 `數值題` sheet。
+- 所有 `變項屬性=字串/文字` 的變項補入 `開放欄位` sheet。
+- 變項名稱符合 `v...m數字` 的數值變項辨識為複選展開變項，補入 `複選題變項清單`。
+- 依複選分組補入 `複選題` 主表。
+- `複選題內_互斥` 不由此工具產生；仍由問卷 -> Excel skill 或人工規則處理。
+
+測試檔：
+
+```text
+傳播4-1/檢核程式套印-傳播4-1測試.xlsx
+```
+
+測試結果：
+
+```text
+last row: 22
+all vars after last: 864
+numeric vars: 804
+text vars: 60
+multi groups: 36
+multi vars: 586
+```
+
+寫入結果：
+
+```text
+數值題: 804 rows
+開放欄位: 60 rows
+複選題變項清單: 586 rows
+複選題主表: 36 rows
+```
+
+輸出報告：
+
+```text
+傳播4-1/generated/fill_sections_from_all_report.json
+傳播4-1/generated/excel_precheck_after_fill_from_all_report.json
+傳播4-1/generated/numeric_checks_after_fill_from_all_report.json
+傳播4-1/generated/open_checks_after_fill_from_all_report.json
+傳播4-1/generated/multi_checks_after_fill_from_all_report.json
+```
+
+目前觀察：
+
+- Excel precheck 僅剩 7 筆 warning，都是特殊文字欄位寬度不是 150：
+  - `vE3_1`
+  - `vZ2_1g1`
+  - `vZ2_1g2`
+  - `vZ2_2`
+  - `vZE2_1`
+  - `vZE2_2`
+  - `vZE2_3`
+- 這些欄位不是一般「其他請說明」型開放欄位，未來應由專門字串格式檢核或 `檢核項目清單` 處理，不應強制套用一般開放欄位公式。
+- 開放欄位 SPSS 產生器可產生 53 筆，跳過上述 7 筆需要 parent/range 專門規則的特殊字串欄位。
+- 數值題 sheet 可由 all 補出 804 筆骨架，但 `all` 不包含答案範圍，因此 `r1-r4` 仍需由 Word 規則或人工補齊；目前 numeric SPSS 產生器會跳過 r1-r4 空白列。
+- 複選題主表已可由 all 的 `v...m數字` 變項自動產生。
+- 若複選分組含 `m90/m96/m99`，工具會自動補 `全部無反應選項` 與 `無反應選項1`。
+- `generate_multi_checks.py` 已修正：若複選題主表沒有無反應碼，不再自動 fallback 為 96，只做至少選一項檢查。
+
+架構判斷：
+
+- `all` 可以作為「欄位骨架 single source of truth」。
+- `數值題/開放欄位/複選題/複選題變項清單` 可視為由程式補全的工作表。
+- 問卷語意型欄位，例如數值範圍、特殊碼、互斥選項、字串格式檢查，仍需由 Word -> Excel skill、檢核項目清單或人工規則補充。

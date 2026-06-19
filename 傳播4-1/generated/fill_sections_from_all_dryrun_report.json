@@ -1,0 +1,15 @@
+{
+  "workbook": "Z:\\AIWork\\syntax\\傳播4-1\\檢核程式套印-傳播4-1測試.xlsx",
+  "last_row": 22,
+  "all_vars_after_last": 864,
+  "numeric_vars": 804,
+  "text_vars": 60,
+  "multi_groups": 36,
+  "multi_vars": 586,
+  "applied": false,
+  "warnings": [],
+  "numeric_rows_to_write": 804,
+  "open_rows_to_write": 60,
+  "multi_var_rows_to_write": 586,
+  "multi_main_rows_to_write": 36
+}

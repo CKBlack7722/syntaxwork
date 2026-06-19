@@ -3,4 +3,5 @@ __pycache__/
 ~$*.xlsx
 *.tmp
 *.bak
+*.before_fill_from_all.xlsx
 .codex/vendor/

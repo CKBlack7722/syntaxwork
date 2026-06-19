@@ -1,0 +1,42 @@
+{
+  "rules": 53,
+  "skipped": 7,
+  "skipped_rows": [
+    {
+      "row": 26,
+      "var": "vE3_1",
+      "reason": "cannot infer parent/range"
+    },
+    {
+      "row": 54,
+      "var": "vZ2_1g1",
+      "reason": "cannot infer parent/range"
+    },
+    {
+      "row": 55,
+      "var": "vZ2_1g2",
+      "reason": "cannot infer parent/range"
+    },
+    {
+      "row": 56,
+      "var": "vZ2_2",
+      "reason": "cannot infer parent/range"
+    },
+    {
+      "row": 59,
+      "var": "vZE2_1",
+      "reason": "cannot infer parent/range"
+    },
+    {
+      "row": 60,
+      "var": "vZE2_2",
+      "reason": "cannot infer parent/range"
+    },
+    {
+      "row": 61,
+      "var": "vZE2_3",
+      "reason": "cannot infer parent/range"
+    }
+  ],
+  "output": "Z:\\AIWork\\syntax\\傳播4-1\\generated\\open_checks_after_fill_from_all.sps"
+}

@@ -1,0 +1,101 @@
+{
+  "workbook": "Z:\\AIWork\\syntax\\傳播4-1\\檢核程式套印-傳播4-1測試.xlsx",
+  "last_row": 22,
+  "all_vars_after_last": 864,
+  "numeric_vars": 804,
+  "text_vars": 60,
+  "multi_groups": 36,
+  "multi_vars": 586,
+  "applied": true,
+  "warnings": [
+    {
+      "var": "vE3_1",
+      "reason": "cannot infer complete parent/range fields for SPSS open-field check",
+      "inferred": {
+        "題號": "vE3_1",
+        "題號變項名稱": "",
+        "選項數值": "",
+        "var2_new": "",
+        "range_new": "",
+        "n": ""
+      }
+    },
+    {
+      "var": "vZ2_1g1",
+      "reason": "cannot infer complete parent/range fields for SPSS open-field check",
+      "inferred": {
+        "題號": "vZ2_1g1",
+        "題號變項名稱": "",
+        "選項數值": "",
+        "var2_new": "",
+        "range_new": "",
+        "n": ""
+      }
+    },
+    {
+      "var": "vZ2_1g2",
+      "reason": "cannot infer complete parent/range fields for SPSS open-field check",
+      "inferred": {
+        "題號": "vZ2_1g2",
+        "題號變項名稱": "",
+        "選項數值": "",
+        "var2_new": "",
+        "range_new": "",
+        "n": ""
+      }
+    },
+    {
+      "var": "vZ2_2",
+      "reason": "cannot infer complete parent/range fields for SPSS open-field check",
+      "inferred": {
+        "題號": "vZ2_2",
+        "題號變項名稱": "",
+        "選項數值": "",
+        "var2_new": "",
+        "range_new": "",
+        "n": ""
+      }
+    },
+    {
+      "var": "vZE2_1",
+      "reason": "cannot infer complete parent/range fields for SPSS open-field check",
+      "inferred": {
+        "題號": "vZE2_1",
+        "題號變項名稱": "",
+        "選項數值": "",
+        "var2_new": "",
+        "range_new": "",
+        "n": ""
+      }
+    },
+    {
+      "var": "vZE2_2",
+      "reason": "cannot infer complete parent/range fields for SPSS open-field check",
+      "inferred": {
+        "題號": "vZE2_2",
+        "題號變項名稱": "",
+        "選項數值": "",
+        "var2_new": "",
+        "range_new": "",
+        "n": ""
+      }
+    },
+    {
+      "var": "vZE2_3",
+      "reason": "cannot infer complete parent/range fields for SPSS open-field check",
+      "inferred": {
+        "題號": "vZE2_3",
+        "題號變項名稱": "",
+        "選項數值": "",
+        "var2_new": "",
+        "range_new": "",
+        "n": ""
+      }
+    }
+  ],
+  "backup": "Z:\\AIWork\\syntax\\傳播4-1\\generated\\檢核程式套印-傳播4-1測試.before_fill_from_all.xlsx",
+  "numeric_rows_written": 804,
+  "open_rows_written": 60,
+  "multi_var_rows_written": 586,
+  "multi_main_rows_written": 36
+}

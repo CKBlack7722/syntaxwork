@@ -224,8 +224,6 @@ def load_questions(wb: openpyxl.Workbook, issues: list[dict[str, Any]]) -> list[
             row[headers.get("全部無反應選項", -1)] if "全部無反應選項" in headers else "",
             *(row[headers[f"無反應選項{i}"]] for i in range(1, 6) if f"無反應選項{i}" in headers),
         )
-        if not no_response:
-            no_response = ("96",)
 
         m_id = normalize_id(row[headers["m"]])
         p_id = normalize_id(row[headers.get("p", headers["m"])])
@@ -435,7 +433,7 @@ def render_multi_section(questions: list[MultiQuestion], mutex_rules: list[Mutex
         zero_name = re.sub(r"^v", "", question.display_name)
         code_list = ",".join(question.no_response_codes)
         conditions: list[str] = []
-        if question.check_code_consistency:
+        if question.check_code_consistency and question.no_response_codes:
             conditions.extend(
                 [
                     f"(any(a(#i),0,1) & any(a(#i+1),{code_list}))",
@@ -453,7 +451,7 @@ def render_multi_section(questions: list[MultiQuestion], mutex_rules: list[Mutex
                 f"loop #i=1 to {len(question.vars) - 1}.",
                 "do if " + "\n| ".join(conditions) + ".",
                 f"compute m{question.m}=Rtrim(Ltrim({question.display_name})).",
-                f'compute p{question.p}="{question.display_name}至少選1項或選特殊碼應一致".',
+                f'compute p{question.p}="{question.display_name}{"至少選1項或選特殊碼應一致" if question.no_response_codes else "至少選1項"}".',
                 *([f"compute s{question.s}={question.s_value}."] if question.s and question.s_value else []),
                 "end if.",
                 "end loop.",

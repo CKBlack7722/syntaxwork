@@ -1,0 +1,81 @@
+{
+  "summary": {
+    "workbook": "Z:\\AIWork\\syntax\\傳播4-1\\檢核程式套印-傳播4-1測試.xlsx",
+    "sheets": {
+      "numeric": "數值題",
+      "open": "開放欄位",
+      "multi": "複選題",
+      "mutex": "複選題內_互斥",
+      "multi_vars": "複選題變項清單",
+      "logic": "邏輯組"
+    },
+    "issue_counts": {
+      "warning": 7
+    }
+  },
+  "issues": [
+    {
+      "project": "傳播4-1測試",
+      "severity": "warning",
+      "sheet": "開放欄位",
+      "row": "26",
+      "column": "寬度",
+      "code": "open_width_review",
+      "message": "vE3_1 open field width is expected to be 150."
+    },
+    {
+      "project": "傳播4-1測試",
+      "severity": "warning",
+      "sheet": "開放欄位",
+      "row": "54",
+      "column": "寬度",
+      "code": "open_width_review",
+      "message": "vZ2_1g1 open field width is expected to be 150."
+    },
+    {
+      "project": "傳播4-1測試",
+      "severity": "warning",
+      "sheet": "開放欄位",
+      "row": "55",
+      "column": "寬度",
+      "code": "open_width_review",
+      "message": "vZ2_1g2 open field width is expected to be 150."
+    },
+    {
+      "project": "傳播4-1測試",
+      "severity": "warning",
+      "sheet": "開放欄位",
+      "row": "56",
+      "column": "寬度",
+      "code": "open_width_review",
+      "message": "vZ2_2 open field width is expected to be 150."
+    },
+    {
+      "project": "傳播4-1測試",
+      "severity": "warning",
+      "sheet": "開放欄位",
+      "row": "59",
+      "column": "寬度",
+      "code": "open_width_review",
+      "message": "vZE2_1 open field width is expected to be 150."
+    },
+    {
+      "project": "傳播4-1測試",
+      "severity": "warning",
+      "sheet": "開放欄位",
+      "row": "60",
+      "column": "寬度",
+      "code": "open_width_review",
+      "message": "vZE2_2 open field width is expected to be 150."
+    },
+    {
+      "project": "傳播4-1測試",
+      "severity": "warning",
+      "sheet": "開放欄位",
+      "row": "61",
+      "column": "寬度",
+      "code": "open_width_review",
+      "message": "vZE2_3 open field width is expected to be 150."
+    }
+  ]
+}
