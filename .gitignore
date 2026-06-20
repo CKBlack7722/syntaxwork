@@ -4,4 +4,6 @@ __pycache__/
 *.tmp
 *.bak
 *.before_fill_from_all.xlsx
+*.before_logic_refresh.xlsx
+logic_review_preview*
 .codex/vendor/

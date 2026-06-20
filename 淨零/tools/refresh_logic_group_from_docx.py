@@ -11,10 +11,15 @@ from pathlib import Path
 
 import openpyxl
 from docx import Document
+from openpyxl.styles import Alignment, Font, PatternFill
+
+from analyze_logic_from_docx import extract_cues
 
 
 LOGIC_SHEET = "邏輯組"
 ALL_SHEET = "all"
+REVIEW_SHEET = "邏輯組_人工確認"
+CUE_SHEET = "邏輯組_問卷線索"
 NEED_CUES = ("需回答此題", "需答此題", "才需回答此題", "才需答此題")
 SKIP_CUES = ("不需回答此題", "不需答此題", "不須回答此題", "免答此題")
 VERB_PATTERN = r"(有?回答|皆回答|有?答|皆答|未答|回答|選擇|選|為)"
@@ -40,6 +45,26 @@ class Rule:
     inverse_condition: str
     target_vars: tuple[str, ...]
     source_text: str
+
+
+REVIEW_HEADERS = [
+    "規則鍵",
+    "處理狀態",
+    "題號",
+    "問卷原始文字",
+    "指示類型",
+    "條件成立（轉譯）",
+    "條件成立時應答",
+    "條件成立時不應答",
+    "條件不成立（反向轉譯）",
+    "條件不成立時應答",
+    "條件不成立時不應答",
+    "邏輯組直接列",
+    "邏輯組反向列",
+    "人工確認",
+    "人工備註",
+    "判讀/未解析原因",
+]
 
 
 def cell_text(value: object) -> str:
@@ -349,6 +374,211 @@ def write_csv(path: Path, rows: list[dict[str, str]]) -> None:
             writer.writerow(row)
 
 
+def review_key(qid: str, cue: str, condition: str, targets: tuple[str, ...]) -> str:
+    return "|".join((qid, cue, condition, ",".join(targets)))
+
+
+def save_previous_review_values(wb: openpyxl.Workbook) -> dict[str, tuple[str, str]]:
+    if REVIEW_SHEET not in wb.sheetnames:
+        return {}
+    ws = wb[REVIEW_SHEET]
+    headers = {cell_text(cell.value): cell.column for cell in ws[1] if cell_text(cell.value)}
+    key_col = headers.get("規則鍵")
+    confirmation_col = headers.get("人工確認")
+    note_col = headers.get("人工備註")
+    saved: dict[str, tuple[str, str]] = {}
+    if key_col:
+        for row_idx in range(2, ws.max_row + 1):
+            key = cell_text(ws.cell(row_idx, key_col).value)
+            if key:
+                saved[key] = (
+                    cell_text(ws.cell(row_idx, confirmation_col).value) if confirmation_col else "",
+                    cell_text(ws.cell(row_idx, note_col).value) if note_col else "",
+                )
+    wb.remove(ws)
+    return saved
+
+
+def logic_row_lookup(rows: list[dict[str, str]]) -> dict[tuple[str, str, str], tuple[str, str]]:
+    lookup: dict[tuple[str, str, str], tuple[str, str]] = {}
+    for row in rows:
+        direction = cell_text(row.get("direction"))
+        if direction not in {"need", "need_inverse", "skip", "skip_inverse"}:
+            continue
+        key = (cell_text(row.get("qid")), direction, cell_text(row.get("source")))
+        lookup[key] = (cell_text(row.get("status")), cell_text(row.get("row")))
+    return lookup
+
+
+def logic_cells_for_rule(rule: Rule) -> tuple[str, str, str, str, str, str]:
+    targets = ",".join(rule.target_vars)
+    if rule.cue == "need":
+        return targets, "", "", targets, "need", "need_inverse"
+    return "", targets, targets, "", "skip", "skip_inverse"
+
+
+def write_review_sheet(wb: openpyxl.Workbook, rules: list[Rule], review: list[dict[str, str]], output_rows: list[dict[str, str]]) -> None:
+    """Write one readable row per questionnaire rule, preserving user decisions."""
+    saved_values = save_previous_review_values(wb)
+    ws = wb.create_sheet(REVIEW_SHEET)
+    ws.append(REVIEW_HEADERS)
+    ws.freeze_panes = "A2"
+    ws.auto_filter.ref = f"A1:P1"
+    ws.row_dimensions[1].height = 30
+
+    header_fill = PatternFill("solid", fgColor="1F4E78")
+    for cell in ws[1]:
+        cell.fill = header_fill
+        cell.font = Font(color="FFFFFF", bold=True)
+        cell.alignment = Alignment(horizontal="center", vertical="center", wrap_text=True)
+
+    lookup = logic_row_lookup(output_rows)
+    for rule in rules:
+        direct_required, direct_forbidden, inverse_required, inverse_forbidden, direct_direction, inverse_direction = logic_cells_for_rule(rule)
+        key = review_key(rule.qid, rule.cue, rule.condition, rule.target_vars)
+        direct_status, direct_row = lookup.get((rule.qid, direct_direction, rule.source_text), ("", ""))
+        inverse_status, inverse_row = lookup.get((rule.qid, inverse_direction, rule.source_text), ("", ""))
+        status = direct_status or inverse_status or "proposal"
+        confirmation, note = saved_values.get(key, ("", ""))
+        ws.append(
+            [
+                key,
+                status,
+                rule.qid,
+                rule.source_text,
+                "需回答" if rule.cue == "need" else "不需回答",
+                rule.condition,
+                direct_required,
+                direct_forbidden,
+                rule.inverse_condition,
+                inverse_required,
+                inverse_forbidden,
+                direct_row,
+                inverse_row,
+                confirmation,
+                note,
+                "",
+            ]
+        )
+
+    for item in review:
+        qid = cell_text(item.get("qid"))
+        reason = cell_text(item.get("reason"))
+        source = cell_text(item.get("text")) or cell_text(item.get("source"))
+        bracket = cell_text(item.get("bracket"))
+        key = review_key(qid, "review", bracket or source, ())
+        confirmation, note = saved_values.get(key, ("", ""))
+        ws.append(
+            [
+                key,
+                "需人工判讀",
+                qid,
+                source,
+                "未解析",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                confirmation,
+                note,
+                reason + (f" | 標記：{bracket}" if bracket else ""),
+            ]
+        )
+
+    widths = {
+        "A": 44, "B": 14, "C": 12, "D": 62, "E": 12, "F": 36, "G": 28, "H": 28,
+        "I": 36, "J": 28, "K": 28, "L": 14, "M": 14, "N": 14, "O": 28, "P": 42,
+    }
+    status_fills = {
+        "appended": PatternFill("solid", fgColor="E2F0D9"),
+        "duplicate": PatternFill("solid", fgColor="DDEBF7"),
+        "proposal": PatternFill("solid", fgColor="FFF2CC"),
+        "需人工判讀": PatternFill("solid", fgColor="FCE4D6"),
+    }
+    for column, width in widths.items():
+        ws.column_dimensions[column].width = width
+    for row_idx in range(2, ws.max_row + 1):
+        status = cell_text(ws.cell(row_idx, 2).value)
+        fill = status_fills.get(status)
+        for cell in ws[row_idx]:
+            cell.alignment = Alignment(vertical="top", wrap_text=True)
+            if fill:
+                cell.fill = fill
+
+
+def write_cue_sheet(wb: openpyxl.Workbook, docx_path: Path, rules: list[Rule], review: list[dict[str, str]]) -> None:
+    """List every detected questionnaire cue so missing coverage is reviewable."""
+    saved_values: dict[str, tuple[str, str]] = {}
+    if CUE_SHEET in wb.sheetnames:
+        previous = wb[CUE_SHEET]
+        previous_headers = {cell_text(cell.value): cell.column for cell in previous[1] if cell_text(cell.value)}
+        key_col = previous_headers.get("線索鍵")
+        confirmation_col = previous_headers.get("人工確認")
+        note_col = previous_headers.get("人工備註")
+        if key_col:
+            for row_idx in range(2, previous.max_row + 1):
+                key = cell_text(previous.cell(row_idx, key_col).value)
+                if key:
+                    saved_values[key] = (
+                        cell_text(previous.cell(row_idx, confirmation_col).value) if confirmation_col else "",
+                        cell_text(previous.cell(row_idx, note_col).value) if note_col else "",
+                    )
+        wb.remove(previous)
+
+    ws = wb.create_sheet(CUE_SHEET)
+    headers = ["線索鍵", "題號", "來源", "位置", "線索類型", "問卷邏輯文字", "完整原始文字", "自動對照結果", "對照規則數", "人工確認", "人工備註"]
+    ws.append(headers)
+    ws.freeze_panes = "A2"
+    ws.auto_filter.ref = "A1:K1"
+    header_fill = PatternFill("solid", fgColor="548235")
+    for cell in ws[1]:
+        cell.fill = header_fill
+        cell.font = Font(color="FFFFFF", bold=True)
+        cell.alignment = Alignment(horizontal="center", vertical="center", wrap_text=True)
+
+    matched_source_counts: dict[str, int] = {}
+    for rule in rules:
+        matched_source_counts[rule.source_text] = matched_source_counts.get(rule.source_text, 0) + 1
+    review_sources = {cell_text(item.get("text")) or cell_text(item.get("source")) for item in review}
+    status_fills = {
+        "已產生對照規則": PatternFill("solid", fgColor="E2F0D9"),
+        "需人工判讀": PatternFill("solid", fgColor="FCE4D6"),
+        "未對照：請檢查": PatternFill("solid", fgColor="FFF2CC"),
+        "忽略：非資料應答邏輯": PatternFill("solid", fgColor="D9EAF7"),
+    }
+    for cue in extract_cues(docx_path):
+        key = f"{cue.source}|{cue.index}|{cue.condition_text}"
+        matches = matched_source_counts.get(cue.raw_text, 0)
+        if cue.status == "ignore":
+            result = "忽略：非資料應答邏輯"
+        elif matches:
+            result = "已產生對照規則"
+        elif cue.raw_text in review_sources:
+            result = "需人工判讀"
+        else:
+            result = "未對照：請檢查"
+        confirmation, note = saved_values.get(key, ("", ""))
+        ws.append([
+            key, cue.qid, cue.source, cue.index, cue.cue_type, cue.condition_text,
+            cue.raw_text, result, matches, confirmation, note,
+        ])
+        fill = status_fills.get(result)
+        if fill:
+            for cell in ws[ws.max_row]:
+                cell.fill = fill
+
+    for column, width in {"A": 36, "B": 12, "C": 14, "D": 9, "E": 14, "F": 44, "G": 70, "H": 26, "I": 13, "J": 14, "K": 28}.items():
+        ws.column_dimensions[column].width = width
+    for row_idx in range(2, ws.max_row + 1):
+        for cell in ws[row_idx]:
+            cell.alignment = Alignment(vertical="top", wrap_text=True)
+
+
+
 def refresh_logic(docx_path: Path, workbook_path: Path, *, apply: bool, qid_filter: str = "", csv_path: Path | None = None, report_path: Path | None = None) -> dict[str, object]:
     all_vars = load_all_vars(workbook_path)
     units = doc_text_units(docx_path)
@@ -389,7 +619,9 @@ def refresh_logic(docx_path: Path, workbook_path: Path, *, apply: bool, qid_filt
     for item in review:
         output_rows.append({"status": "review", "row": "", "direction": "", "條件": "", "應答": "", "不應答": "", "限制": "", **item})
 
-    if apply and appended:
+    if apply:
+        write_review_sheet(wb, rules, review, output_rows)
+        write_cue_sheet(wb, docx_path, rules, review)
         backup = workbook_path.parent / "generated" / f"{workbook_path.stem}.before_logic_refresh.xlsx"
         backup.parent.mkdir(parents=True, exist_ok=True)
         if not backup.exists():
@@ -409,6 +641,8 @@ def refresh_logic(docx_path: Path, workbook_path: Path, *, apply: bool, qid_filt
         "appended": appended,
         "duplicates": duplicates,
         "review": len(review),
+        "review_sheet": REVIEW_SHEET if apply else "",
+        "cue_sheet": CUE_SHEET if apply else "",
     }
     if report_path:
         report_path.parent.mkdir(parents=True, exist_ok=True)
@@ -424,15 +658,30 @@ def main() -> None:
     parser.add_argument("--qid", default="")
     parser.add_argument("--proposal-csv", type=Path)
     parser.add_argument("--report", type=Path)
+    parser.add_argument(
+        "--preview-workbook",
+        type=Path,
+        help="Copy the source workbook here, fill only the copy, and add 邏輯組_人工確認 for review.",
+    )
     args = parser.parse_args()
+    target_workbook = args.workbook
+    target_apply = args.apply
+    if args.preview_workbook:
+        args.preview_workbook.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(args.workbook, args.preview_workbook)
+        target_workbook = args.preview_workbook
+        target_apply = True
     report = refresh_logic(
         args.docx,
-        args.workbook,
-        apply=args.apply,
+        target_workbook,
+        apply=target_apply,
         qid_filter=args.qid,
         csv_path=args.proposal_csv,
         report_path=args.report,
     )
+    if args.preview_workbook:
+        report["source_workbook"] = str(args.workbook)
+        report["preview_workbook"] = str(args.preview_workbook)
     print(json.dumps(report, ensure_ascii=False))
 
 
