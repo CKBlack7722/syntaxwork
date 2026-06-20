@@ -1,0 +1,8 @@
+﻿project,severity,sheet,row,column,code,message
+??4-1,warning,開放欄位,26,寬度,open_width_review,vE3_1 open field width is expected to be 150.
+??4-1,warning,開放欄位,54,寬度,open_width_review,vZ2_1g1 open field width is expected to be 150.
+??4-1,warning,開放欄位,55,寬度,open_width_review,vZ2_1g2 open field width is expected to be 150.
+??4-1,warning,開放欄位,56,寬度,open_width_review,vZ2_2 open field width is expected to be 150.
+??4-1,warning,開放欄位,59,寬度,open_width_review,vZE2_1 open field width is expected to be 150.
+??4-1,warning,開放欄位,60,寬度,open_width_review,vZE2_2 open field width is expected to be 150.
+??4-1,warning,開放欄位,61,寬度,open_width_review,vZE2_3 open field width is expected to be 150.

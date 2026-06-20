@@ -17,6 +17,10 @@ DEFAULT_STARTS = {
     "multi": 1101,
 }
 
+# The marker may be changed later if a questionnaire uses a convention other
+# than vQuestionoOption for its conditional open-text variables.
+DEFAULT_OPEN_OPTION_MARKER = "o"
+
 
 @dataclass(frozen=True)
 class AllVar:
@@ -73,7 +77,7 @@ def read_existing_by_key(ws: openpyxl.worksheet.worksheet.Worksheet, key_header:
     return existing
 
 
-def read_all_vars(wb: openpyxl.Workbook) -> tuple[list[AllVar], int]:
+def read_all_vars(wb: openpyxl.Workbook) -> tuple[list[AllVar], int | None]:
     ws = wb["all"]
     headers = read_headers(ws)
     for required in ("變項名稱", "變項屬性", "寬度"):
@@ -85,11 +89,12 @@ def read_all_vars(wb: openpyxl.Workbook) -> tuple[list[AllVar], int]:
         if name.lower() == "last":
             last_row = row_idx
             break
-    if last_row is None:
-        raise ValueError("cannot find variable named 'last' in all sheet")
+    # A new project may not yet have a technical-variable boundary.  In that
+    # case, treat all variables as formal questionnaire variables.
+    start_row = last_row + 1 if last_row is not None else 2
 
     variables: list[AllVar] = []
-    for row_idx in range(last_row + 1, ws.max_row + 1):
+    for row_idx in range(start_row, ws.max_row + 1):
         name = cell_text(ws.cell(row_idx, headers["變項名稱"]).value)
         if not name:
             continue
@@ -144,51 +149,56 @@ def first_existing_m(ws: openpyxl.worksheet.worksheet.Worksheet, fallback: int) 
     return fallback
 
 
-def infer_open_qid(var_name: str) -> str:
-    if var_name.lower().endswith("_oth"):
-        return re.sub(r"_oth$", "", var_name, flags=re.IGNORECASE)
-    return re.sub(r"o[0-9A-Za-z]+$", "", var_name, flags=re.IGNORECASE)
+def parse_open_option(var_name: str, marker: str = DEFAULT_OPEN_OPTION_MARKER) -> tuple[str, str]:
+    """Return the original question variable and its selected option.
+
+    The marker is deliberately case-sensitive: vO1o88 means vO1 + 88, while
+    the capital O in the question identifier must never be treated as a marker.
+    """
+    if not marker:
+        return "", ""
+    marker_index = var_name.rfind(marker)
+    if marker_index <= 0:
+        return "", ""
+    option = var_name[marker_index + len(marker) :]
+    if not option.isdigit():
+        return "", ""
+    return var_name[:marker_index], str(int(option))
 
 
-def infer_open_option(var_name: str, qid: str) -> str:
-    if var_name.lower().endswith("_oth"):
-        return ""
-    match = re.search(r"o([0-9A-Za-z]+)$", var_name[len(qid) :], flags=re.IGNORECASE)
-    if not match:
-        return ""
-    value = match.group(1)
-    return str(int(value)) if value.isdigit() else value
-
-
-def infer_open_spss_fields(var_name: str, is_multi: bool) -> dict[str, str]:
-    qid = infer_open_qid(var_name)
-    option = infer_open_option(var_name, qid)
-    if var_name.lower().endswith("city_oth"):
+def infer_open_spss_fields(var_name: str, multi_var_names: set[str], marker: str) -> dict[str, str]:
+    base_var, option = parse_open_option(var_name, marker)
+    if "city" in var_name.lower():
+        city_var = re.sub(r"_oth$", "", var_name, flags=re.IGNORECASE)
         return {
-            "題號": qid,
-            "題號變項名稱": qid,
+            "題號": city_var,
+            "題號變項名稱": city_var,
             "選項數值": "29",
-            "var2_new": qid,
+            "var2_new": city_var,
             "range_new": "29",
             "n": "3",
         }
-    if is_multi and option:
-        parent = f"{qid}m{option}"
+    if base_var and option:
+        multi_parent = f"{base_var}m{option}"
+        is_multi = multi_parent in multi_var_names
+        parent = multi_parent if is_multi else base_var
         return {
-            "題號": qid,
+            "題號": base_var,
             "題號變項名稱": parent,
             "選項數值": option,
             "var2_new": parent,
-            "range_new": "1",
+            "range_new": "1" if is_multi else option,
             "n": "2" if len(option) == 1 else str(len(option)),
         }
+    # General open-text fields have no controlling option.  They are still
+    # listed in SPSS for review, but do not receive skip-logic conditions.
     return {
-        "題號": qid,
-        "題號變項名稱": option,
-        "選項數值": option,
-        "var2_new": qid if option else "",
-        "range_new": option,
-        "n": "2" if len(option) == 1 else (str(len(option)) if option else ""),
+        "題號": var_name,
+        "題號變項名稱": "",
+        "選項數值": "",
+        "var2_new": "",
+        "range_new": "",
+        "n": "",
     }
 
 
@@ -243,18 +253,17 @@ def fill_open_sheet(
     ws: openpyxl.worksheet.worksheet.Worksheet,
     variables: list[AllVar],
     existing: dict[str, dict[str, Any]],
-    multi_groups: dict[str, list[AllVar]],
-) -> tuple[int, list[dict[str, Any]]]:
+    multi_var_names: set[str],
+    marker: str,
+) -> int:
     start_m = first_existing_m(ws, DEFAULT_STARTS["open"])
     clear_data(ws)
     open_vars = [var for var in variables if is_text(var)]
-    warnings: list[dict[str, Any]] = []
     for offset, var in enumerate(open_vars):
         m = start_m + offset
         old = existing.get(var.name, {})
-        qid = infer_open_qid(var.name)
-        is_multi = qid in multi_groups
-        inferred = infer_open_spss_fields(var.name, is_multi)
+        inferred = infer_open_spss_fields(var.name, multi_var_names, marker)
+        is_multi = inferred["var2_new"] in multi_var_names
         row_values = dict(old)
         row_values.update(
             {
@@ -267,16 +276,8 @@ def fill_open_sheet(
                 **inferred,
             }
         )
-        if not inferred.get("var2_new") or not inferred.get("range_new"):
-            warnings.append(
-                {
-                    "var": var.name,
-                    "reason": "cannot infer complete parent/range fields for SPSS open-field check",
-                    "inferred": inferred,
-                }
-            )
         write_row(ws, offset + 2, row_values)
-    return len(open_vars), warnings
+    return len(open_vars)
 
 
 def fill_multi_var_sheet(ws: openpyxl.worksheet.worksheet.Worksheet, groups: dict[str, list[AllVar]]) -> int:
@@ -287,6 +288,18 @@ def fill_multi_var_sheet(ws: openpyxl.worksheet.worksheet.Worksheet, groups: dic
             write_row(ws, row_idx, {"變項名稱": var.name, "分組": group})
             row_idx += 1
     return row_idx - 2
+
+
+def read_multi_var_names(ws: openpyxl.worksheet.worksheet.Worksheet) -> set[str]:
+    headers = read_headers(ws)
+    var_col = headers.get("變項名稱")
+    if not var_col:
+        raise ValueError(f"{ws.title} missing 變項名稱 column")
+    return {
+        cell_text(ws.cell(row_idx, var_col).value)
+        for row_idx in range(2, ws.max_row + 1)
+        if cell_text(ws.cell(row_idx, var_col).value)
+    }
 
 
 def preserve_main_multi_defaults(old: dict[str, Any], vars_: list[AllVar]) -> dict[str, Any]:
@@ -341,7 +354,7 @@ def fill_multi_main_sheet(
     return len(groups)
 
 
-def fill_sections(workbook_path: Path, apply: bool) -> dict[str, Any]:
+def fill_sections(workbook_path: Path, apply: bool, open_option_marker: str) -> dict[str, Any]:
     wb = openpyxl.load_workbook(workbook_path)
     variables, last_row = read_all_vars(wb)
     numeric_ws = sheet_by_prefix(wb, "數值題")
@@ -357,6 +370,9 @@ def fill_sections(workbook_path: Path, apply: bool) -> dict[str, Any]:
     report: dict[str, Any] = {
         "workbook": str(workbook_path),
         "last_row": last_row,
+        "all_start_row": (last_row + 1) if last_row is not None else 2,
+        "last_found": last_row is not None,
+        "open_option_marker": open_option_marker,
         "all_vars_after_last": len(variables),
         "numeric_vars": sum(1 for var in variables if is_numeric(var)),
         "text_vars": sum(1 for var in variables if is_text(var)),
@@ -373,10 +389,11 @@ def fill_sections(workbook_path: Path, apply: bool) -> dict[str, Any]:
         report["backup"] = str(backup_path)
 
         report["numeric_rows_written"] = fill_numeric_sheet(numeric_ws, variables, numeric_existing)
-        open_count, open_warnings = fill_open_sheet(open_ws, variables, open_existing, multi_groups)
-        report["open_rows_written"] = open_count
-        report["warnings"].extend(open_warnings)
         report["multi_var_rows_written"] = fill_multi_var_sheet(multi_var_ws, multi_groups)
+        multi_var_names = read_multi_var_names(multi_var_ws)
+        report["open_rows_written"] = fill_open_sheet(
+            open_ws, variables, open_existing, multi_var_names, open_option_marker
+        )
         report["multi_main_rows_written"] = fill_multi_main_sheet(multi_ws, multi_groups, multi_existing)
         wb.save(workbook_path)
     else:
@@ -392,9 +409,14 @@ def main() -> int:
     parser.add_argument("--workbook", required=True, type=Path)
     parser.add_argument("--report", required=True, type=Path)
     parser.add_argument("--apply", action="store_true")
+    parser.add_argument(
+        "--open-option-marker",
+        default=DEFAULT_OPEN_OPTION_MARKER,
+        help="Case-sensitive marker before an open-field option number (default: o).",
+    )
     args = parser.parse_args()
 
-    report = fill_sections(args.workbook, args.apply)
+    report = fill_sections(args.workbook, args.apply, args.open_option_marker)
     args.report.parent.mkdir(parents=True, exist_ok=True)
     args.report.write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
     print(json.dumps({k: v for k, v in report.items() if k != "warnings"}, ensure_ascii=False))

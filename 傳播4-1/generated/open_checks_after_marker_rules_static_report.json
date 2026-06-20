@@ -1,0 +1,19 @@
+{
+  "rules": 60,
+  "skipped": [],
+  "conditioned_rules": 53,
+  "review_only_rules": [
+    "vE3_1",
+    "vZ2_1g1",
+    "vZ2_1g2",
+    "vZ2_2",
+    "vZE2_1",
+    "vZE2_2",
+    "vZE2_3"
+  ],
+  "parent_variables_missing_from_all": [],
+  "generic_review_blocks_missing": [],
+  "do_if_blocks": 60,
+  "end_if_blocks": 60,
+  "syntax_contains_value_error": false
+}

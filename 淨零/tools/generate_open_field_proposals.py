@@ -75,34 +75,19 @@ def read_headers(ws: openpyxl.worksheet.worksheet.Worksheet) -> dict[str, int]:
     return {str(value).strip(): idx for idx, value in enumerate(values) if value not in (None, "")}
 
 
-def infer_open_qid(var_name: str) -> str:
-    if var_name.lower().endswith("_oth"):
-        return re.sub(r"_oth$", "", var_name, flags=re.IGNORECASE)
-    return re.sub(r"o[0-9A-Za-z]+$", "", var_name, flags=re.IGNORECASE)
-
-
-def infer_open_option(var_name: str, qid: str) -> str:
-    if var_name.lower().endswith("_oth"):
-        return ""
-    suffix = var_name[len(qid) :]
-    match = re.search(r"o([0-9A-Za-z]+)$", suffix, flags=re.IGNORECASE)
-    if not match:
-        return ""
-    value = match.group(1)
-    return str(int(value)) if value.isdigit() else value
-
-
 def infer_open_formula_values(var_name: str, is_multi: str) -> dict[str, str]:
-    qid = infer_open_qid(var_name)
-    option_value = infer_open_option(var_name, qid)
-    if is_multi == "1":
-        qvar = f"{qid}m{option_value}" if option_value else qid
-        var2_new = qvar
-        range_new = "1"
-    else:
-        qvar = qid
-        var2_new = qid
-        range_new = option_value
+    if "city" in var_name.lower():
+        qid = re.sub(r"_oth$", "", var_name, flags=re.IGNORECASE)
+        return {"qid": qid, "qvar": qid, "option_value": "29", "var2_new": qid, "range_new": "29", "n": "3"}
+    marker_index = var_name.rfind("o")
+    option_value = var_name[marker_index + 1 :] if marker_index > 0 else ""
+    if marker_index <= 0 or not option_value.isdigit():
+        return {"qid": var_name, "qvar": "", "option_value": "", "var2_new": "", "range_new": "", "n": ""}
+    qid = var_name[:marker_index]
+    qvar = f"{qid}m{int(option_value)}" if is_multi == "1" else qid
+    var2_new = qvar
+    range_new = "1" if is_multi == "1" else str(int(option_value))
+    option_value = str(int(option_value))
     n = str(len(option_value) + 1) if len(option_value) == 1 else str(len(option_value))
     return {
         "qid": qid,

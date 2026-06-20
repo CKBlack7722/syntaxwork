@@ -568,6 +568,22 @@ skill 適用性觀察：
 
 ## 2026-06-19 follow-up: all sheet to Excel section skeletons
 
+## 2026-06-20 開放欄位辨識規則更新
+
+`淨零/tools/fill_excel_sections_from_all.py` 現在支援：
+
+- `all` 找不到 `last` 時，從第 1 筆變項資料開始（Excel 第 2 列），不再中止。
+- 開放欄位預設只把「最後一個小寫 `o` 後面接純數字」辨識為選項型欄位，例如 `vO1o88` 會正確拆成原題變項 `vO1` 與選項 `88`；大寫題號中的 `O` 不會被誤判。
+- 可用 `--open-option-marker` 變更該標記，保留未來不用 `o` 的彈性。
+- 是否為複選題改以 `複選題變項清單` 是否有對應的 `v題號m選項` 變項判斷；複選題寫入 `var2_new=v題號m選項`、`range_new=1`。
+- 含 `city` 的欄位維持 `var2_new` 指向 city 原始變項，`range_new` 固定為 `29`。
+- 沒有選項標記的純開放欄位不再填入臆測的 `var2_new/range_new`；SPSS 只會在 key-in 日期範圍內列出非空白內容供確認，不生成「應答而未答／不該答而答」兩段跳答檢核。
+
+測試輸出：
+
+- `傳播4-1/generated/open_checks_after_marker_rules.sps`
+- `傳播4-1/generated/marker_rule_verification.json`
+
 新增測試工具：
 
 ```text

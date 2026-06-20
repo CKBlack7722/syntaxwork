@@ -1,0 +1,75 @@
+{
+  "selected_rows": {
+    "vA5city_oth": {
+      "是否複選": 0,
+      "題號": "vA5city",
+      "題號變項名稱": "vA5city",
+      "選項數值": "29",
+      "var2_new": "vA5city",
+      "range_new": "29",
+      "n": "3"
+    },
+    "vO1o88": {
+      "是否複選": 0,
+      "題號": "vO1",
+      "題號變項名稱": "vO1",
+      "選項數值": "88",
+      "var2_new": "vO1",
+      "range_new": "88",
+      "n": "2"
+    },
+    "vK1o88": {
+      "是否複選": 1,
+      "題號": "vK1",
+      "題號變項名稱": "vK1m88",
+      "選項數值": "88",
+      "var2_new": "vK1m88",
+      "range_new": "1",
+      "n": "2"
+    },
+    "vE3_1": {
+      "是否複選": 0,
+      "題號": "vE3_1",
+      "題號變項名稱": null,
+      "選項數值": null,
+      "var2_new": null,
+      "range_new": null,
+      "n": null
+    }
+  },
+  "rule_summary": {
+    "vA5city_oth": {
+      "has_parent_condition": true,
+      "parent_var": "vA5city",
+      "range": "29"
+    },
+    "vO1o88": {
+      "has_parent_condition": true,
+      "parent_var": "vO1",
+      "range": "88"
+    },
+    "vK1o88": {
+      "has_parent_condition": true,
+      "parent_var": "vK1m88",
+      "range": "1"
+    },
+    "vE3_1": {
+      "has_parent_condition": false,
+      "parent_var": "",
+      "range": ""
+    }
+  },
+  "general_open_rules": 7,
+  "conditioned_open_rules": 53,
+  "skipped": [],
+  "precheck": {
+    "warning": 7
+  },
+  "last_missing_test": {
+    "last_row": null,
+    "vars": [
+      "vA1",
+      "vA2"
+    ]
+  }
+}

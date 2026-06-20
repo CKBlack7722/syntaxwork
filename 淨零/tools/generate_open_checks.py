@@ -34,6 +34,7 @@ class OpenRule:
     parent_var: str
     range_value: str
     parent_width: int
+    has_parent_condition: bool
 
 
 def cell_text(value: Any) -> str:
@@ -89,35 +90,6 @@ def load_specs(workbook_path: Path) -> dict[str, VarSpec]:
     return specs
 
 
-def infer_open_qid(var_name: str) -> str:
-    if var_name.lower().endswith("_oth"):
-        return re.sub(r"_oth$", "", var_name, flags=re.IGNORECASE)
-    return re.sub(r"o[0-9A-Za-z]+$", "", var_name, flags=re.IGNORECASE)
-
-
-def infer_open_option(var_name: str, qid: str) -> str:
-    if var_name.lower().endswith("_oth"):
-        return ""
-    match = re.search(r"o([0-9A-Za-z]+)$", var_name[len(qid) :], flags=re.IGNORECASE)
-    if not match:
-        return ""
-    value = match.group(1)
-    return str(int(value)) if value.isdigit() else value
-
-
-def inferred_values(var_name: str, is_multi: str) -> tuple[str, str]:
-    match = re.fullmatch(r"v71_2s[1-4]", var_name, flags=re.IGNORECASE)
-    if match:
-        return "v71_1", "1,10"
-    if var_name.lower().endswith("city_oth"):
-        return re.sub(r"_oth$", "", var_name, flags=re.IGNORECASE), "29"
-    qid = infer_open_qid(var_name)
-    option = infer_open_option(var_name, qid)
-    if is_multi == "1":
-        return (f"{qid}m{option}" if option else qid, "1")
-    return qid, option
-
-
 def load_rules(workbook_path: Path) -> tuple[list[OpenRule], list[dict[str, Any]]]:
     specs = load_specs(workbook_path)
     wb = openpyxl.load_workbook(workbook_path, data_only=False, read_only=True)
@@ -144,22 +116,20 @@ def load_rules(workbook_path: Path) -> tuple[list[OpenRule], list[dict[str, Any]
             skipped.append({"row": row_idx, "var": var, "reason": "blank m or p"})
             continue
         is_multi = cell_text(values.get("是否複選")) or "0"
-        inferred_parent, inferred_range = inferred_values(var, is_multi)
         parent_var = cell_text(values.get("var2_new"))
         range_value = cell_text(values.get("range_new"))
-        if not parent_var or parent_var.startswith("="):
-            parent_var = inferred_parent
-        if not range_value or range_value.startswith("="):
-            range_value = inferred_range
-        if not parent_var or not range_value:
-            skipped.append({"row": row_idx, "var": var, "reason": "cannot infer parent/range"})
-            continue
+        has_parent_condition = bool(parent_var and range_value and not parent_var.startswith("=") and not range_value.startswith("="))
         try:
             width = int(cell_text(values.get("寬度")) or "150")
         except ValueError:
             width = 150
         parent_width = specs.get(parent_var, VarSpec(parent_var, "數值", 2)).width
-        rules.append(OpenRule(row_idx, m, p, s, s_value, var, width, is_multi, parent_var, range_value, parent_width))
+        rules.append(
+            OpenRule(
+                row_idx, m, p, s, s_value, var, width, is_multi,
+                parent_var, range_value, parent_width, has_parent_condition,
+            )
+        )
     return rules, skipped
 
 
@@ -185,6 +155,8 @@ def render_s(rule: OpenRule) -> str:
 
 def render_m(rule: OpenRule) -> str:
     show_width = min(rule.width, 150)
+    if not rule.has_parent_condition:
+        return f'Compute m{rule.m}=concat("{rule.var}=",char.substr({rule.var},1,{show_width})).'
     return (
         f'Compute m{rule.m}=concat("{rule.parent_var}=",string({rule.parent_var},n{rule.parent_width}),'
         f'";{rule.var}=",char.substr({rule.var},1,{show_width})).'
@@ -192,6 +164,19 @@ def render_m(rule: OpenRule) -> str:
 
 
 def render_rule(rule: OpenRule) -> str:
+    if not rule.has_parent_condition:
+        return "\n".join(
+            [
+                f"*{rule.var} 開放欄位內容確認。",
+                f'do if {rule.var}~="" & range(keyin,keyindate1, Keyindate2).',
+                render_m(rule),
+                render_message(rule, "開放欄位內容確認"),
+                *([render_s(rule)] if render_s(rule) else []),
+                "end if.",
+                "Exec.",
+                "",
+            ]
+        )
     return "\n".join(
         [
             f"*{rule.var} 開放欄位檢核 是否為複選題={rule.is_multi}.",
