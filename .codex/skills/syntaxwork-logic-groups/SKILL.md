@@ -10,7 +10,7 @@ description: Fill and validate Syntaxwork logic-group Excel sheets from question
 Use this skill for the questionnaire -> Excel step only. Do not edit questionnaire Word files.
 
 1. Read the project workbook `all` sheet first to understand variable names, types, widths, and labels.
-2. Parse the questionnaire `.docx` in document order, preserving paragraphs and tables.
+2. Parse the questionnaire `.docx` in document order, preserving paragraphs and tables. Read table cells separately; do not concatenate a whole row when an option-level rule may be present.
 3. Extract logic conditions from bracketed instructions such as `【A答(01)者,需回答此題】`, display-question notes, skip notes, and table-scoped conditions.
 4. Fill only confident logic-group rows. Leave ambiguous conditions blank and report them.
 5. Compare filled rows against questionnaire text and existing generated reports before moving to Excel -> SPSS.
@@ -33,6 +33,29 @@ Use this skill for the questionnaire -> Excel step only. Do not edit questionnai
 - Use markers only in generated SPSS, not in questionnaire files: `* SYNTAXWORK_BEGIN_LOGIC.` and `* SYNTAXWORK_END_LOGIC.`
 - If a condition requires interpretation across distant questions, record a review item rather than guessing.
 
+## Tables And Uncertainty
+
+Tables are a high-risk source of false mappings because a nearby heading, a table number,
+or a partial overlap of option codes is not proof of the underlying question. Use this
+evidence order when a table must be mapped to a question in `all`:
+
+1. An explicit question ID in the table heading or its immediate, unambiguous context.
+2. A **unique exact** match between the table's substantive option-code set and one
+   multiple-response variable group in `all`. Ignore standard special codes only when
+   they are clearly special options.
+3. A user-confirmed mapping stored as project configuration, with a stable table
+   fingerprint (for example heading text plus option-code set), rather than only a
+   Word table index.
+
+Never write a rule from a partial match, from the largest overlap, or from a remembered
+mapping such as `table 15 -> Q25`. Word table numbering changes as questionnaires are
+edited. An unresolved table must also not inherit the preceding paragraph's question ID.
+
+For every unresolved table rule, produce a review item containing the source cell,
+table index (diagnostic only), option-code set, candidate question IDs, and the exact
+reason it was not applied. Ask the user to confirm the mapping before generating an
+Excel logic row or SPSS syntax.
+
 ## Validation
 
 Run a small batch first, then full workbook fill. The report should list:
@@ -42,5 +65,6 @@ Run a small batch first, then full workbook fill. The report should list:
 - variables not found in `all`
 - logic references not found in questionnaire
 - time/date special handling
+- table mappings that were applied, plus unresolved table candidates and their evidence
 
 Do not proceed silently when a logic condition cannot be mapped to SPSS-compatible expressions.

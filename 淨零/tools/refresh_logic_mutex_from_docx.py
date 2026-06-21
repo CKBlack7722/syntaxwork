@@ -22,6 +22,7 @@ from refresh_logic_group_from_docx import (
     option_expr,
     parse_condition,
     render_node,
+    target_vars_for_qid,
 )
 
 
@@ -39,6 +40,23 @@ class MutexRule:
     source_text: str
 
 
+@dataclass(frozen=True)
+class TableResolution:
+    """A table-to-question match that is safe enough to use automatically."""
+
+    qid: str
+    option_codes: tuple[str, ...]
+    candidates: tuple[str, ...]
+    reason: str
+    table_index: int
+
+
+@dataclass(frozen=True)
+class TextUnit:
+    text: str
+    table: TableResolution | None = None
+
+
 def normalize(value: str) -> str:
     text = unicodedata.normalize("NFKC", value or "")
     text = text.replace("～", "~").replace("−", "-")
@@ -46,18 +64,76 @@ def normalize(value: str) -> str:
     return text
 
 
-def text_units(docx_path: Path) -> list[str]:
+def multi_groups(all_vars: set[str]) -> dict[str, set[str]]:
+    groups: dict[str, set[str]] = {}
+    for name in all_vars:
+        match = re.fullmatch(r"(v.+)m(\d+)", name, flags=re.I)
+        if match:
+            groups.setdefault(match.group(1), set()).add(str(int(match.group(2))))
+    return groups
+
+
+def infer_table_qid(cells: list[str], groups: dict[str, set[str]], table_index: int) -> TableResolution:
+    """Resolve a table only when its option set identifies one question uniquely.
+
+    A Word table number is intentionally not part of this rule. Table numbers move
+    whenever a questionnaire is edited, while a complete option-code set is useful
+    evidence. A partial overlap is never enough: it is reported for review instead.
+    """
+    ignored_codes = {"96", "97", "98", "99"}
+    codes = {
+        str(int(code))
+        for cell in cells
+        for code in re.findall(r"\((\d+)\)", unicodedata.normalize("NFKC", cell))
+    } - ignored_codes
+    option_codes = tuple(sorted(codes, key=int))
+    if not codes:
+        return TableResolution("", option_codes, (), "table has no usable option codes", table_index)
+
+    exact = sorted(
+        name[1:]
+        for name, group_codes in groups.items()
+        if (group_codes - ignored_codes) == codes
+    )
+    if len(exact) == 1:
+        return TableResolution(exact[0], option_codes, tuple(exact), "unique exact option-set match", table_index)
+    if exact:
+        return TableResolution(
+            "",
+            option_codes,
+            tuple(exact),
+            "ambiguous exact option-set match; user confirmation is required",
+            table_index,
+        )
+
+    overlaps = sorted(
+        name[1:]
+        for name, group_codes in groups.items()
+        if codes & (group_codes - ignored_codes)
+    )
+    return TableResolution(
+        "",
+        option_codes,
+        tuple(overlaps),
+        "no unique exact option-set match; user confirmation is required",
+        table_index,
+    )
+
+
+def text_units(docx_path: Path, all_vars: set[str]) -> list[TextUnit]:
     doc = Document(docx_path)
-    units: list[str] = []
+    units: list[TextUnit] = []
     for paragraph in doc.paragraphs:
         text = paragraph.text.strip()
         if text:
-            units.append(text)
-    for table in doc.tables:
-        for row in table.rows:
-            cells = [cell.text.strip().replace("\n", " ") for cell in row.cells if cell.text.strip()]
-            if cells:
-                units.append(" ".join(cells))
+            units.append(TextUnit(text))
+    groups = multi_groups(all_vars)
+    for table_index, table in enumerate(doc.tables, start=1):
+        cells = [cell.text.strip().replace("\n", " ") for row in table.rows for cell in row.cells if cell.text.strip()]
+        hint = infer_table_qid(cells, groups, table_index)
+        for cell in cells:
+            # Keep every cell separate: a row may contain option 05, 16 and 27.
+            units.append(TextUnit(cell, hint))
     return units
 
 
@@ -95,11 +171,52 @@ def parse_option_range_target(text: str, current_qid: str, all_vars: set[str]) -
     return expr_for_existing_options(current_qid, expand_codes(target_text), all_vars)
 
 
-def parse_external_option_target(text: str, all_vars: set[str]) -> str:
-    match = re.search(r"([A-Z][A-Z0-9_]*)(?:選項)?\(?(\d+)\)?", text)
+def resolve_external_qid(token: str, all_vars: set[str]) -> str:
+    """Resolve a questionnaire qid without silently accepting an ambiguous typo."""
+    normalized = norm_qid(token)
+    candidates = {normalized}
+    # In Word questionnaires, a zero is occasionally typed as a capital O. Only
+    # use this correction when it produces exactly one real question in ``all``.
+    if "O" in normalized:
+        candidates.add(normalized.replace("O", "0"))
+    matches = [qid for qid in candidates if target_vars_for_qid(qid, all_vars)]
+    return matches[0] if len(matches) == 1 else ""
+
+
+def question_option_codes(docx_path: Path, all_vars: set[str]) -> dict[str, list[str]]:
+    """Collect option codes from question blocks for scalar "all options" mutexes."""
+    doc = Document(docx_path)
+    codes: dict[str, set[str]] = {}
+    current_qid = ""
+    for paragraph in doc.paragraphs:
+        text = unicodedata.normalize("NFKC", paragraph.text)
+        qid = qid_from_question(text)
+        if qid:
+            current_qid = qid
+        option_code = option_code_from_text(text)
+        if current_qid and option_code and target_vars_for_qid(current_qid, all_vars):
+            codes.setdefault(current_qid, set()).add(option_code)
+    return {qid: sorted(values, key=int) for qid, values in codes.items()}
+
+
+def parse_external_option_target(
+    text: str,
+    all_vars: set[str],
+    question_codes: dict[str, list[str]],
+) -> str:
+    match = re.search(r"([A-Z][A-Z0-9_]*)選項\(?(\d+)\)?", text)
+    if match:
+        qid = resolve_external_qid(match.group(1), all_vars)
+        return expr_for_option(qid, match.group(2), all_vars) if qid else ""
+
+    match = re.search(r"([A-Z][A-Z0-9_]*)", text)
     if not match:
         return ""
-    return expr_for_option(match.group(1), match.group(2), all_vars)
+    qid = resolve_external_qid(match.group(1), all_vars)
+    if not qid:
+        return ""
+    codes = question_codes.get(qid, [])
+    return expr_for_existing_options(qid, codes, all_vars) if codes else ""
 
 
 def clean_condition_text(text: str) -> str:
@@ -108,7 +225,13 @@ def clean_condition_text(text: str) -> str:
     return text
 
 
-def parse_mutex_bracket(bracket: str, current_qid: str, option_code: str, all_vars: set[str]) -> tuple[str, str, str]:
+def parse_mutex_bracket(
+    bracket: str,
+    current_qid: str,
+    option_code: str,
+    all_vars: set[str],
+    question_codes: dict[str, list[str]],
+) -> tuple[str, str, str]:
     raw = unicodedata.normalize("NFKC", bracket)
     text = normalize(raw)
     if "互斥無法點選" in text:
@@ -145,7 +268,7 @@ def parse_mutex_bracket(bracket: str, current_qid: str, option_code: str, all_va
         parsed = parse_condition(target_text, all_vars)
         if parsed:
             return parsed[0], current_option, ""
-        target = parse_external_option_target(target_text, all_vars)
+        target = parse_external_option_target(target_text, all_vars, question_codes)
         if target:
             return current_option, target, ""
         return "", "", "cannot parse mutex target"
@@ -162,29 +285,54 @@ def collect_mutex_rules(docx_path: Path, all_vars: set[str], qid_filter: str = "
     current_qid = ""
     rules: list[MutexRule] = []
     review: list[dict[str, str]] = []
+    question_codes = question_option_codes(docx_path, all_vars)
     qid_filter = norm_qid(qid_filter) if qid_filter else ""
-    for source in text_units(docx_path):
-        normalized_source = unicodedata.normalize("NFKC", source)
+    for unit in text_units(docx_path, all_vars):
+        normalized_source = unicodedata.normalize("NFKC", unit.text)
         option_code = option_code_from_text(normalized_source)
         if not option_code:
-            maybe_qid = qid_from_question(normalized_source)
+            # Table text must never change paragraph context. In particular, an
+            # unresolved table must not inherit the preceding question's qid.
+            maybe_qid = qid_from_question(normalized_source) if unit.table is None else ""
             if maybe_qid:
                 current_qid = maybe_qid
-            continue
-        if not current_qid:
-            continue
-        if qid_filter and current_qid != qid_filter:
             continue
         for bracket in re.findall(r"【([^】]+)】", normalized_source):
             if "互斥" not in bracket:
                 continue
-            condition, mutex, reason = parse_mutex_bracket(bracket, current_qid, option_code, all_vars)
+            table = unit.table
+            if table is not None and not table.qid:
+                review.append(
+                    {
+                        "qid": "",
+                        "option_code": option_code,
+                        "reason": table.reason,
+                        "bracket": bracket,
+                        "source": normalized_source,
+                        "table_index": str(table.table_index),
+                        "table_option_codes": ",".join(table.option_codes),
+                        "candidate_qids": ",".join(table.candidates),
+                    }
+                )
+                continue
+            active_qid = table.qid if table is not None else current_qid
+            if not active_qid:
+                continue
+            if qid_filter and active_qid != qid_filter:
+                continue
+            condition, mutex, reason = parse_mutex_bracket(
+                bracket,
+                active_qid,
+                option_code,
+                all_vars,
+                question_codes,
+            )
             if condition and mutex:
-                if same_question_mutex(current_qid, condition, mutex):
+                if same_question_mutex(active_qid, condition, mutex):
                     continue
                 rules.append(
                     MutexRule(
-                        qid=current_qid,
+                        qid=active_qid,
                         option_code=option_code,
                         condition=condition,
                         mutex=mutex,
@@ -195,7 +343,7 @@ def collect_mutex_rules(docx_path: Path, all_vars: set[str], qid_filter: str = "
             elif reason != "display check, not option mutex":
                 review.append(
                     {
-                        "qid": current_qid,
+                        "qid": active_qid,
                         "option_code": option_code,
                         "reason": reason,
                         "bracket": bracket,
@@ -210,7 +358,17 @@ def expr_vars(expr: str) -> set[str]:
 
 
 def var_belongs_to_qid(var_name: str, qid: str) -> bool:
-    return var_name.lower().startswith(f"v{norm_qid(qid).lower()}")
+    base = re.escape(f"v{norm_qid(qid)}")
+    # ``vZA0_1`` is a separate question from ``vZA0``. Only recognised grouped
+    # suffixes belong to the same question, so the same-question guard cannot
+    # suppress a genuine cross-question mutex rule.
+    return bool(
+        re.fullmatch(
+            rf"{base}(?:m\d+|g\d+|s[A-Za-z0-9_]*|city|town)?",
+            var_name,
+            flags=re.IGNORECASE,
+        )
+    )
 
 
 def same_question_mutex(qid: str, condition: str, mutex: str) -> bool:
@@ -242,7 +400,10 @@ def existing_keys(ws: openpyxl.worksheet.worksheet.Worksheet, headers: dict[str,
 
 def write_csv(path: Path, rows: list[dict[str, str]]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
-    fields = ["status", "row", "qid", "option_code", "條件", MUTEX_HEADER, "reason", "bracket", "source"]
+    fields = [
+        "status", "row", "qid", "option_code", "條件", MUTEX_HEADER, "reason",
+        "table_index", "table_option_codes", "candidate_qids", "bracket", "source",
+    ]
     with path.open("w", newline="", encoding="utf-8-sig") as fh:
         writer = csv.DictWriter(fh, fieldnames=fields, extrasaction="ignore")
         writer.writeheader()

@@ -23,6 +23,7 @@ CUE_SHEET = "邏輯組_問卷線索"
 OPTION_SHEET = "邏輯組_選項設定"
 NEED_CUES = ("需回答此題", "需答此題", "才需回答此題", "才需答此題")
 SKIP_CUES = ("不需回答此題", "不需答此題", "不須回答此題", "免答此題")
+FLOW_CUES = ("續答",)
 VERB_PATTERN = r"(有?回答|皆回答|有?答|皆答|未答|回答|選擇|選|為)"
 
 
@@ -106,14 +107,19 @@ def doc_text_units(docx_path: Path) -> list[str]:
                 current_qid = norm_qid(match.group(1))
             units.append(text)
             normalized = normalize_text(text)
-            has_logic_cue = any(cue in normalized for cue in (*SKIP_CUES, *NEED_CUES))
+            has_logic_cue = any(cue in normalized for cue in (*SKIP_CUES, *NEED_CUES, *FLOW_CUES))
             if current_qid and has_logic_cue and not match:
                 units.append(f"{current_qid} {text}")
     for table in doc.tables:
         for row in table.rows:
-            cells = [cell.text.strip().replace("\n", " ") for cell in row.cells if cell.text.strip()]
-            if cells:
-                units.append(" ".join(cells))
+            # A table row can contain several independent options. Keeping cells
+            # separate prevents a bracket attached to option 27 from being read as
+            # if it belonged to option 05 in the same visual row.
+            units.extend(
+                cell.text.strip().replace("\n", " ")
+                for cell in row.cells
+                if cell.text.strip()
+            )
     return units
 
 
@@ -191,7 +197,11 @@ def qid_from_text(text: str) -> str:
     clean = unicodedata.normalize("NFKC", text.strip())
     clean = re.sub(r"^[\s*◎●○壹貳參一二三四五六七八九十、.()（）-]+", "", clean)
     match = re.match(r"([A-Za-z][A-Za-z0-9_]{0,12})(?=[^A-Za-z0-9_]|$)", clean)
-    return norm_qid(match.group(1)) if match else ""
+    if not match:
+        return ""
+    # Keep a meaningful lowercase suffix (for example B7a) in review output.
+    # Variable lookup remains case-insensitive through target_vars_for_qid().
+    return re.sub(r"([A-Za-z]+)0+(\d+)", lambda item: item.group(1) + str(int(item.group(2))), match.group(1))
 
 
 def find_all_var(name: str, all_vars: set[str]) -> str:
@@ -374,6 +384,25 @@ def bracket_rules(text: str, all_vars: set[str], option_overrides: dict[str, set
             cue = "skip"
         elif any(need in normalized for need in NEED_CUES):
             cue = "need"
+        elif normalized.startswith("續答"):
+            target_qid = norm_qid(normalized.removeprefix("續答"))
+            target_vars = target_vars_for_qid(target_qid, all_vars)
+            option_match = re.search(r"\((\d+)\)", source)
+            current_option = option_expr(qid, option_match.group(1), all_vars) if option_match else None
+            if not target_vars or not current_option:
+                review.append({"qid": qid, "reason": "cannot resolve continuation target or source option", "text": source, "bracket": bracket})
+                continue
+            rules.append(
+                Rule(
+                    qid=target_qid,
+                    cue="need",
+                    condition=render_node(current_option),
+                    inverse_condition=invert_node(current_option),
+                    target_vars=target_vars,
+                    source_text=source,
+                )
+            )
+            continue
         else:
             continue
         if not targets:
@@ -697,8 +726,8 @@ def refresh_logic(docx_path: Path, workbook_path: Path, *, apply: bool, qid_filt
         review.extend(unit_review)
     if qid_filter:
         qid_filter = norm_qid(qid_filter)
-        rules = [rule for rule in rules if rule.qid == qid_filter]
-        review = [item for item in review if item.get("qid") == qid_filter]
+        rules = [rule for rule in rules if norm_qid(rule.qid) == qid_filter]
+        review = [item for item in review if norm_qid(cell_text(item.get("qid"))) == qid_filter]
 
     rules = apply_skip_guards(rules, all_specs)
 
