@@ -20,6 +20,7 @@ LOGIC_SHEET = "邏輯組"
 ALL_SHEET = "all"
 REVIEW_SHEET = "邏輯組_人工確認"
 CUE_SHEET = "邏輯組_問卷線索"
+OPTION_SHEET = "邏輯組_選項設定"
 NEED_CUES = ("需回答此題", "需答此題", "才需回答此題", "才需答此題")
 SKIP_CUES = ("不需回答此題", "不需答此題", "不須回答此題", "免答此題")
 VERB_PATTERN = r"(有?回答|皆回答|有?答|皆答|未答|回答|選擇|選|為)"
@@ -100,7 +101,7 @@ def doc_text_units(docx_path: Path) -> list[str]:
         text = paragraph.text.strip()
         if text:
             clean = unicodedata.normalize("NFKC", text)
-            match = re.match(r"\s*([A-Z][A-Z0-9_]{0,12})(?=[^A-Z0-9_]|$)", clean)
+            match = re.match(r"\s*([A-Za-z][A-Za-z0-9_]{0,12})(?=[^A-Za-z0-9_]|$)", clean)
             if match:
                 current_qid = norm_qid(match.group(1))
             units.append(text)
@@ -120,6 +121,48 @@ def load_all_vars(workbook_path: Path) -> set[str]:
     wb = openpyxl.load_workbook(workbook_path, data_only=True, read_only=True)
     ws = wb[ALL_SHEET]
     return {cell_text(row[0]) for row in ws.iter_rows(min_row=2, values_only=True) if cell_text(row[0])}
+
+
+def load_all_specs(workbook_path: Path) -> dict[str, tuple[str, int]]:
+    wb = openpyxl.load_workbook(workbook_path, data_only=True, read_only=True)
+    ws = wb[ALL_SHEET]
+    specs: dict[str, tuple[str, int]] = {}
+    for row in ws.iter_rows(min_row=2, values_only=True):
+        name = cell_text(row[0] if len(row) > 0 else "")
+        if not name:
+            continue
+        kind = cell_text(row[1] if len(row) > 1 else "")
+        try:
+            width = int(cell_text(row[2] if len(row) > 2 else "") or "2")
+        except ValueError:
+            width = 2
+        specs[name.lower()] = (kind, width)
+    return specs
+
+
+def load_option_overrides(workbook_path: Path) -> dict[str, set[str]]:
+    """Read manually confirmed option codes for scalar questions.
+
+    `all` records a variable's type and width, but not necessarily its legal
+    answer codes.  The optional sheet lets a project state those codes without
+    hard-coding questionnaire-specific values in Python.
+    """
+    wb = openpyxl.load_workbook(workbook_path, data_only=True, read_only=True)
+    if OPTION_SHEET not in wb.sheetnames:
+        return {}
+    ws = wb[OPTION_SHEET]
+    headers = {cell_text(cell.value): cell.column for cell in ws[1] if cell_text(cell.value)}
+    qid_col = headers.get("題號")
+    code_col = headers.get("可用選項")
+    if not qid_col or not code_col:
+        return {}
+    result: dict[str, set[str]] = {}
+    for row_idx in range(2, ws.max_row + 1):
+        qid = norm_qid(cell_text(ws.cell(row_idx, qid_col).value))
+        raw_codes = cell_text(ws.cell(row_idx, code_col).value)
+        if qid and raw_codes:
+            result[qid] = set(expand_codes(raw_codes))
+    return result
 
 
 def logic_headers(ws: openpyxl.worksheet.worksheet.Worksheet) -> dict[str, int]:
@@ -147,7 +190,7 @@ def existing_keys(ws: openpyxl.worksheet.worksheet.Worksheet, headers: dict[str,
 def qid_from_text(text: str) -> str:
     clean = unicodedata.normalize("NFKC", text.strip())
     clean = re.sub(r"^[\s*◎●○壹貳參一二三四五六七八九十、.()（）-]+", "", clean)
-    match = re.match(r"([A-Z][A-Z0-9_]{0,12})(?=[^A-Z0-9_]|$)", clean)
+    match = re.match(r"([A-Za-z][A-Za-z0-9_]{0,12})(?=[^A-Za-z0-9_]|$)", clean)
     return norm_qid(match.group(1)) if match else ""
 
 
@@ -236,28 +279,32 @@ def combine(op: str, children: list[Node | Atom]) -> Node | Atom | None:
     return Node(op, tuple(compact))
 
 
-def parse_condition_atom(part: str, all_vars: set[str]) -> Node | Atom | None:
+def parse_condition_atom(part: str, all_vars: set[str], option_overrides: dict[str, set[str]]) -> Node | Atom | None:
     part = normalize_text(part)
     part = re.sub(r"者$", "", part)
-    part = re.sub(r"([A-Z][A-Z0-9_]*)" + VERB_PATTERN + r"\((\d+)\)[、,]?或\((\d+)\)", r"\1\2(\3)或\1\2(\4)", part)
+    part = re.sub(r"([A-Za-z][A-Za-z0-9_]*)" + VERB_PATTERN + r"\((\d+)\)[、,]?或\((\d+)\)", r"\1\2(\3)或\1\2(\4)", part)
     or_nodes: list[Node | Atom] = []
-    qid_or_before_verb = re.search(r"^[A-Z][A-Z0-9_]*(?:或[A-Z][A-Z0-9_]*)+" + VERB_PATTERN, part)
+    qid_or_before_verb = re.search(r"^[A-Za-z][A-Za-z0-9_]*(?:或[A-Za-z][A-Za-z0-9_]*)+" + VERB_PATTERN, part)
     or_parts = [part] if qid_or_before_verb else re.split(r"或", part)
     for or_part in or_parts:
         or_part = or_part.strip(" ,，、")
         if not or_part:
             continue
-        match = re.search(r"([A-Z][A-Z0-9_]*(?:[、,，及和或][A-Z][A-Z0-9_]*)*)" + VERB_PATTERN + r"(.+)$", or_part)
+        match = re.search(r"([A-Za-z][A-Za-z0-9_]*(?:[、,，及和或][A-Za-z][A-Za-z0-9_]*)*)" + VERB_PATTERN + r"(.+)$", or_part)
         if not match:
             return None
         qid_text = match.group(1)
-        qids = [norm_qid(q) for q in re.findall(r"[A-Z][A-Z0-9_]*", qid_text)]
+        qids = [norm_qid(q) for q in re.findall(r"[A-Za-z][A-Za-z0-9_]*", qid_text)]
         verb = match.group(2)
         codes = expand_codes(match.group(3))
         if not qids or not codes:
             return None
         qid_nodes: list[Node | Atom] = []
         for qid in qids:
+            if qid in option_overrides:
+                codes = [code for code in codes if code in option_overrides[qid]]
+            if not codes:
+                return None
             code_atoms = [option_expr(qid, code, all_vars) for code in codes]
             found_atoms = [atom for atom in code_atoms if atom]
             if not found_atoms:
@@ -275,7 +322,7 @@ def parse_condition_atom(part: str, all_vars: set[str]) -> Node | Atom | None:
     return combine("|", or_nodes)
 
 
-def parse_condition(condition_text: str, all_vars: set[str]) -> tuple[str, str] | None:
+def parse_condition(condition_text: str, all_vars: set[str], option_overrides: dict[str, set[str]]) -> tuple[str, str] | None:
     text = normalize_text(condition_text)
     text = text.strip("【】[]()（）,，;；。")
     if not text:
@@ -285,7 +332,7 @@ def parse_condition(condition_text: str, all_vars: set[str]) -> tuple[str, str] 
         part = part.strip(" ,，、")
         if not part:
             continue
-        node = parse_condition_atom(part, all_vars)
+        node = parse_condition_atom(part, all_vars, option_overrides)
         if node is None:
             return None
         and_nodes.append(node)
@@ -306,7 +353,7 @@ def grouped_expr(exprs: list[str], op: str) -> str:
     return f" {op} ".join(wrapped)
 
 
-def bracket_rules(text: str, all_vars: set[str]) -> tuple[list[Rule], list[dict[str, str]]]:
+def bracket_rules(text: str, all_vars: set[str], option_overrides: dict[str, set[str]]) -> tuple[list[Rule], list[dict[str, str]]]:
     source = unicodedata.normalize("NFKC", text)
     qid = qid_from_text(source)
     rules: list[Rule] = []
@@ -331,7 +378,7 @@ def bracket_rules(text: str, all_vars: set[str]) -> tuple[list[Rule], list[dict[
         for phrase in (*SKIP_CUES, *NEED_CUES):
             condition_text = condition_text.replace(phrase, "")
         condition_text = condition_text.replace("才", "")
-        parsed = parse_condition(condition_text, all_vars)
+        parsed = parse_condition(condition_text, all_vars, option_overrides)
         if not parsed:
             review.append({"qid": qid, "reason": "cannot parse condition", "text": source, "bracket": bracket})
             continue
@@ -349,6 +396,59 @@ def bracket_rules(text: str, all_vars: set[str]) -> tuple[list[Rule], list[dict[
             inverse = grouped_expr([item[2] for item in cue_rules], "&")
         rules.append(Rule(qid=qid, cue=grouped_cue, condition=condition, inverse_condition=inverse, target_vars=targets, source_text=source))
     return rules, review
+
+
+def jump_code(width: int) -> str:
+    return "9" * max(width - 1, 0) + "6"
+
+
+def add_skip_guards(condition: str, specs: dict[str, tuple[str, int]], conditional_targets: set[str]) -> str:
+    """Keep a target blank when its prerequisite was itself skipped.
+
+    A guard is only added for a prerequisite that is also a conditional target
+    somewhere in the questionnaire.  Unconditional mandatory questions, such
+    as A1 in the user's example, cannot legitimately contain a skip code and
+    therefore must not receive an impossible extra condition.
+    """
+    if not condition:
+        return condition
+    variables: dict[str, str] = {}
+    for name in re.findall(r"\b(v[A-Za-z][A-Za-z0-9_]*)\b", condition):
+        lower = name.lower()
+        variables.setdefault(lower, name)
+    guards: list[str] = []
+    for lower, display_name in variables.items():
+        if lower not in conditional_targets:
+            continue
+        spec = specs.get(lower)
+        if not spec:
+            continue
+        kind, width = spec
+        if kind != "數值":
+            continue
+        code = jump_code(width)
+        if re.search(rf"\b{re.escape(lower)}\s*~=\s*{code}\b", condition, flags=re.IGNORECASE):
+            continue
+        guards.append(f"{display_name}~={code}")
+    if not guards:
+        return condition
+    base = f"({condition})" if " | " in condition else condition
+    return " & ".join([base, *guards])
+
+
+def apply_skip_guards(rules: list[Rule], specs: dict[str, tuple[str, int]]) -> list[Rule]:
+    conditional_targets = {name.lower() for rule in rules for name in rule.target_vars}
+    return [
+        Rule(
+            qid=rule.qid,
+            cue=rule.cue,
+            condition=rule.condition,
+            inverse_condition=add_skip_guards(rule.inverse_condition, specs, conditional_targets),
+            target_vars=rule.target_vars,
+            source_text=rule.source_text,
+        )
+        for rule in rules
+    ]
 
 
 def build_rows(rules: list[Rule]) -> list[dict[str, str]]:
@@ -581,17 +681,21 @@ def write_cue_sheet(wb: openpyxl.Workbook, docx_path: Path, rules: list[Rule], r
 
 def refresh_logic(docx_path: Path, workbook_path: Path, *, apply: bool, qid_filter: str = "", csv_path: Path | None = None, report_path: Path | None = None) -> dict[str, object]:
     all_vars = load_all_vars(workbook_path)
+    all_specs = load_all_specs(workbook_path)
+    option_overrides = load_option_overrides(workbook_path)
     units = doc_text_units(docx_path)
     rules: list[Rule] = []
     review: list[dict[str, str]] = []
     for unit in units:
-        unit_rules, unit_review = bracket_rules(unit, all_vars)
+        unit_rules, unit_review = bracket_rules(unit, all_vars, option_overrides)
         rules.extend(unit_rules)
         review.extend(unit_review)
     if qid_filter:
         qid_filter = norm_qid(qid_filter)
         rules = [rule for rule in rules if rule.qid == qid_filter]
         review = [item for item in review if item.get("qid") == qid_filter]
+
+    rules = apply_skip_guards(rules, all_specs)
 
     proposed = build_rows(rules)
     wb = openpyxl.load_workbook(workbook_path)
@@ -641,6 +745,7 @@ def refresh_logic(docx_path: Path, workbook_path: Path, *, apply: bool, qid_filt
         "appended": appended,
         "duplicates": duplicates,
         "review": len(review),
+        "option_overrides": {qid: sorted(codes, key=int) for qid, codes in option_overrides.items()},
         "review_sheet": REVIEW_SHEET if apply else "",
         "cue_sheet": CUE_SHEET if apply else "",
     }
