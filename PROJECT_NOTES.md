@@ -620,6 +620,19 @@ skill 適用性觀察：
 
 轉換器會以這張表為優先依據。複選題仍會直接依 `all` 中實際存在的 `v題號m選項` 變項過濾，不會憑文字範圍補出不存在的選項。
 
+## 2026-06-21 互斥與進階邏輯提案
+
+- `refresh_logic_mutex_from_docx.py` 已和主邏輯解析器相容，可把問卷標註的選項互斥寫入 `邏輯組.互斥`；傳播 4-1 最新預覽偵測到 20 條可寫入規則、7 條待人工判讀。
+- `淨零/tools/propose_advanced_logic_from_review.py` 會從人工確認表的已標註案例產生可審核的進階規則提案，並輸出正向應答與反向不應答條件。
+- 目前已驗證五種類型：排除特殊碼後加總門檻、複選題選取數量、多選項加數值條件、複選題整題特殊碼、複選指定選項。
+- 進階提案使用 `spss:` 前綴表示已是 SPSS 等價條件；`generate_logic_checks.py` 會保留其內容，不再重複轉譯。
+
+傳播 4-1 目前檔案：
+
+- `傳播4-1/generated/advanced_logic_proposals.csv`
+- `傳播4-1/generated/advanced_logic_proposals.json`
+- `傳播4-1/generated/logic_mutex_updated_rows.csv`
+
 新增測試工具：
 
 ```text

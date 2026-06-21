@@ -322,7 +322,12 @@ def parse_condition_atom(part: str, all_vars: set[str], option_overrides: dict[s
     return combine("|", or_nodes)
 
 
-def parse_condition(condition_text: str, all_vars: set[str], option_overrides: dict[str, set[str]]) -> tuple[str, str] | None:
+def parse_condition(
+    condition_text: str,
+    all_vars: set[str],
+    option_overrides: dict[str, set[str]] | None = None,
+) -> tuple[str, str] | None:
+    option_overrides = option_overrides or {}
     text = normalize_text(condition_text)
     text = text.strip("【】[]()（）,，;；。")
     if not text:

@@ -180,6 +180,8 @@ def expand_values(text: str) -> list[str]:
 
 def convert_condition(raw: str) -> str:
     condition = raw.strip()
+    if condition.lower().startswith("spss:"):
+        return condition[5:].strip()
 
     def replace_in(match: re.Match[str]) -> str:
         var_name = match.group("var")
