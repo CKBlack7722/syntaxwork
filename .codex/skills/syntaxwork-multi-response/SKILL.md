@@ -34,3 +34,8 @@ Report:
 - rows blocked by missing `m/p`
 
 A group is safe to apply only when questionnaire codes and variable-list codes match after allowed special-code filtering.
+
+## 2026-06-26 Rule Update
+
+- Treat `96`, `97`, and `98` as standard special/no-response codes: do not require expanded `m96/m97/m98` variables unless the workbook explicitly lists them, but do capture them in unavailable/no-response fields.
+- For internal mutex ranges, do not blindly use the largest number as `互斥選項編號_迄`. Compare against the actual variable list. Write the continuous portion to `互斥選項編號_起/迄` and place remaining values in `非連續互斥選項`; for example K1 uses `迄=13` and `非連續互斥選項=88`.

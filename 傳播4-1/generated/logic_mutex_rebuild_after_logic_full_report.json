@@ -1,0 +1,9 @@
+{
+  "docx": "Z:\\AIWork\\syntaxwork\\傳播4-1\\2026年臺灣傳播調查資料庫正式調查問卷.docx",
+  "workbook": "Z:\\AIWork\\syntaxwork\\傳播4-1\\檢核程式套印-傳播4-1測試.xlsx",
+  "dry_run": false,
+  "cross_question_mutex_rules": 28,
+  "removed_mutex_only_rows": 0,
+  "appended_mutex_rows": 28,
+  "review": 0
+}

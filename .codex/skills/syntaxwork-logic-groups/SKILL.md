@@ -68,3 +68,20 @@ Run a small batch first, then full workbook fill. The report should list:
 - table mappings that were applied, plus unresolved table candidates and their evidence
 
 Do not proceed silently when a logic condition cannot be mapped to SPSS-compatible expressions.
+
+## 2026-06-26 Rule Update
+
+- Fill confident logic-group rows directly into the `邏輯組` sheet. If a new questionnaire has ambiguous logic needing review, generate a separate review output file instead of adding manual-confirmation or questionnaire-cue sheets to the project workbook.
+- For the current 傳播4-1 questionnaire, previously handled manual-confirmation and questionnaire-cue issues should not be reinserted into the workbook.
+
+
+## 2026-06-26 Full Rebuild Rule Update
+
+- When applying questionnaire-derived logic rows, rebuild the `邏輯組` content area from row 2 instead of appending after formatted blank rows. Clear only logic action columns and preserve user-controlled `m/p/s/s=` columns.
+- For the current 傳播4-1 questionnaire, advanced deterministic rules resolve E3_1 time-total gating, B7/B7a count gating, I4 B8/I1/I3 gating, Q27 K2/Q5 gating, and ZE2_1 ZE2 gating. These should produce `review=0` for this questionnaire version.
+
+
+## 2026-06-26 Mutex Rebuild Rule Update
+
+- After rebuilding the main logic rows, rebuild cross-question mutex rows with `rebuild_logic_mutex_and_sort.py`. This keeps questionnaire `選項互斥` cues in the `互斥` column of `邏輯組` and avoids confusing them with `複選題內_互斥`.
+- For 傳播4-1, this produces 28 cross-question mutex rules with `review=0`; example: `vA9 in 1` is mutually exclusive with `vO1_1 in 1..4`.

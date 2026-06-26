@@ -20,7 +20,7 @@ from docx.text.paragraph import Paragraph
 MAIN_SHEET_PREFIX = "複選題"
 MUTEX_SHEET = "複選題內_互斥"
 VAR_LIST_SHEET = "複選題變項清單"
-IGNORED_DOC_ONLY_CODES = {"97", "98"}
+STANDARD_SPECIAL_CODES = {"96", "97", "98"}
 
 
 @dataclass
@@ -163,6 +163,25 @@ def option_codes_from_block(block: str) -> list[str]:
     return codes
 
 
+def split_mutex_targets(start: str, end: str, available_codes: list[str], mutex_code: str) -> tuple[str, str]:
+    start_i, end_i = int(start), int(end)
+    candidates = sorted(
+        {int(code) for code in available_codes if code != mutex_code and start_i <= int(code) <= end_i},
+    )
+    if not candidates:
+        return end, ""
+    contiguous_end = candidates[0]
+    expected = candidates[0]
+    rest: list[str] = []
+    for code in candidates:
+        if code == expected:
+            contiguous_end = code
+            expected += 1
+        else:
+            rest.append(str(code))
+    return str(contiguous_end), ",".join(rest)
+
+
 def internal_mutex_rules_from_block(block: str) -> list[tuple[str, str, str]]:
     rules: list[tuple[str, str, str]] = []
     for line in block.splitlines():
@@ -244,11 +263,11 @@ def build_proposals(workbook_path: Path, docx_path: Path) -> tuple[list[MultiPro
         block = blocks.get(qid, "")
         var_codes = [code for code in (option_code(var) for var in vars_for_group) if code]
         raw_doc_codes = option_codes_from_block(block)
-        doc_codes = [code for code in raw_doc_codes if code not in IGNORED_DOC_ONLY_CODES]
+        doc_codes = [code for code in raw_doc_codes if code not in STANDARD_SPECIAL_CODES]
         missing = [code for code in var_codes if code not in doc_codes]
         extra = [code for code in doc_codes if code not in var_codes]
         normal = normal_codes(var_codes)
-        no_resp = no_response_codes(var_codes)
+        no_resp = no_response_codes(sorted(set(var_codes + raw_doc_codes), key=int))
         mutex_rules = internal_mutex_rules_from_block(block)
         mutex_codes = [rule[0] for rule in mutex_rules if rule[0] in var_codes]
         width = str(widths.get(vars_for_group[0], 2)) if vars_for_group else "2"
@@ -293,6 +312,7 @@ def build_proposals(workbook_path: Path, docx_path: Path) -> tuple[list[MultiPro
         )
         for code, mutex_start, mutex_end in mutex_rules:
             if code in var_codes:
+                continuous_end, noncontinuous = split_mutex_targets(mutex_start, mutex_end, var_codes, code)
                 mutex.append(
                     MutexProposal(
                         group=group,
@@ -301,10 +321,10 @@ def build_proposals(workbook_path: Path, docx_path: Path) -> tuple[list[MultiPro
                         reason="",
                         width=width,
                         mutex_start=mutex_start,
-                        mutex_end=mutex_end,
+                        mutex_end=continuous_end,
                         kind="range",
                         unavailable_count=str(len(no_resp)) if no_resp else "0",
-                        noncontinuous_mutex="",
+                        noncontinuous_mutex=noncontinuous,
                         mutex_code=code,
                         excerpt=re.sub(r"\s+", " ", block[:350]),
                     )
@@ -333,6 +353,8 @@ def apply_to_workbook(workbook_path: Path, multi: list[MultiProposal], mutex: li
     mh = headers(main_ws)
     xh = headers(mutex_ws)
     for idx, proposal in enumerate(multi, start=2):
+        if proposal.status != "match":
+            continue
         values = {
             "題號": excel_qid(proposal.group),
             "寬度": proposal.width,

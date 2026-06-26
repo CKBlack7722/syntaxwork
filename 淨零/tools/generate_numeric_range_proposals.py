@@ -214,8 +214,10 @@ def max_digit_count(range_text: str) -> int:
     return max_digits
 
 
-def special_code_for_range(range_text: str) -> str:
-    return "9" * max_digit_count(range_text) + "6"
+def special_code_for_width(width: int) -> str:
+    if width <= 1:
+        return "96"
+    return "9" * (width - 1) + "6"
 
 
 def is_probably_optional(var_name: str, block: str, source: str) -> bool:
@@ -314,8 +316,8 @@ def load_numeric_rows(
                 if special_note:
                     note = special_note if not note else f"{note}; {special_note}"
                 elif r1 and is_probably_optional(var_name, block, source):
-                    r2 = special_code_for_range(r1)
-                    note = "optional question; inferred special code by value digit width" if not note else f"{note}; optional question; inferred special code by value digit width"
+                    r2 = special_code_for_width(width)
+                    note = "optional question; inferred special code by variable width" if not note else f"{note}; optional question; inferred special code by variable width"
 
         proposed = (r1, r2, r3, r4)
         compare_status, mismatch_reason = compare_status_and_reason(existing, proposed, source)

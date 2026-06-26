@@ -11,9 +11,9 @@ from typing import Any
 import openpyxl
 
 
-MULTI_START = "**3.複選題檢核."
-MUTEX_START = "**3.1複選互斥邏輯."
-NEXT_SECTION_PREFIX = "**4."
+MULTI_START = "**三、複選題檢核."
+MUTEX_START = "* 複選題內互斥檢核."
+NEXT_SECTION_PREFIX = "**四."
 
 
 @dataclass(frozen=True)

@@ -30,6 +30,8 @@ Analyze the workbook formulas and fill all fields actually used by downstream sy
 If a field is formula-derived in the workbook, preserve or regenerate the formula pattern. If formula cache is unreliable, generate deterministic values from source fields.
 For multiple-response open fields such as `vQ22o88`, keep the open text variable as `vQ22o88` but derive the parent option variable as `vQ22m88` for formula comparison and later SPSS conditions.
 
+If the open-field variable name has no lowercase `o` option marker, keep the Excel row incomplete for human review except for user-provided `m/p`. During Excel -> SPSS generation, rows with blank `var2_new` are skipped. Rows with `var2_new` present but blank `range_new` and `n` generate only the content-listing block, not should-answer / should-not-answer checks.
+
 ## SPSS Pattern To Preserve
 
 Open-field checks usually need three situations:
@@ -49,3 +51,8 @@ Report:
 - rows where multiple-response status is uncertain
 - fields required by formulas but still blank
 - variables missing from `all`
+
+## 2026-06-26 Rule Update
+
+- In the questionnaire -> Excel skill, verify open-field variable completeness and multiple-response status. Do not broadly refill `var2_new/range_new/n`, because the first-stage Excel skeleton fill should already handle them.
+- Only fill `var2_new/range_new/n` style formula columns when the variable is an option-triggered open field, such as a variable containing `o##` or `_oth`, and the questionnaire shows that a specific numeric option requires the open text answer.

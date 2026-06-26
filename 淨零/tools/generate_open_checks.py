@@ -33,6 +33,7 @@ class OpenRule:
     is_multi: str
     parent_var: str
     range_value: str
+    n_value: str
     parent_width: int
     has_parent_condition: bool
 
@@ -72,6 +73,33 @@ def resolved_optional_id(value: Any, row_values: dict[str, Any], fallback_key: s
     if text.startswith("="):
         return cell_text(row_values.get(fallback_key)) if fallback_key else ""
     return text
+
+
+def infer_qid_from_open_var(var_name: str) -> str:
+    clean = cell_text(var_name)
+    if clean.lower().endswith("_oth"):
+        return re.sub(r"_oth$", "", clean, flags=re.IGNORECASE)
+    return re.sub(r"o[0-9A-Za-z]+$", "", clean, flags=re.IGNORECASE)
+
+
+def infer_option_from_open_var(var_name: str, qid: str) -> str:
+    clean = cell_text(var_name)
+    if clean.lower().endswith("_oth"):
+        return ""
+    suffix = clean[len(qid) :]
+    match = re.search(r"o([0-9A-Za-z]+)$", suffix, flags=re.IGNORECASE)
+    if not match:
+        return ""
+    value = match.group(1)
+    return str(int(value)) if value.isdigit() else value
+
+
+def formula_parent_fields(var: str, is_multi: str) -> tuple[str, str, str]:
+    qid = infer_qid_from_open_var(var)
+    option = infer_option_from_open_var(var, qid)
+    if is_multi == "1" and option:
+        return f"{qid}m{option}", "1", "1"
+    return qid, option, str(max(len(option), 2)) if option else ""
 
 
 def load_specs(workbook_path: Path) -> dict[str, VarSpec]:
@@ -118,7 +146,17 @@ def load_rules(workbook_path: Path) -> tuple[list[OpenRule], list[dict[str, Any]
         is_multi = cell_text(values.get("是否複選")) or "0"
         parent_var = cell_text(values.get("var2_new"))
         range_value = cell_text(values.get("range_new"))
-        has_parent_condition = bool(parent_var and range_value and not parent_var.startswith("=") and not range_value.startswith("="))
+        n_value = cell_text(values.get("n"))
+        if parent_var.startswith("="):
+            parent_var, inferred_range, inferred_n = formula_parent_fields(var, is_multi)
+            if range_value.startswith("="):
+                range_value = inferred_range
+            if n_value.startswith("=") or not n_value:
+                n_value = inferred_n
+        if not parent_var:
+            skipped.append({"row": row_idx, "var": var, "reason": "blank var2_new"})
+            continue
+        has_parent_condition = bool(range_value and n_value and not range_value.startswith("=") and not n_value.startswith("="))
         try:
             width = int(cell_text(values.get("寬度")) or "150")
         except ValueError:
@@ -127,7 +165,7 @@ def load_rules(workbook_path: Path) -> tuple[list[OpenRule], list[dict[str, Any]
         rules.append(
             OpenRule(
                 row_idx, m, p, s, s_value, var, width, is_multi,
-                parent_var, range_value, parent_width, has_parent_condition,
+                parent_var, range_value, n_value, parent_width, has_parent_condition,
             )
         )
     return rules, skipped
@@ -155,7 +193,7 @@ def render_s(rule: OpenRule) -> str:
 
 def render_m(rule: OpenRule) -> str:
     show_width = min(rule.width, 150)
-    if not rule.has_parent_condition:
+    if rule.parent_var == rule.var:
         return f'Compute m{rule.m}=concat("{rule.var}=",char.substr({rule.var},1,{show_width})).'
     return (
         f'Compute m{rule.m}=concat("{rule.parent_var}=",string({rule.parent_var},n{rule.parent_width}),'
@@ -202,7 +240,7 @@ def render_rule(rule: OpenRule) -> str:
 def render_spss(rules: list[OpenRule]) -> str:
     parts = [
         "* Encoding: UTF-8.",
-        "**OPEN FIELD CHECKS.",
+        "**二、開放欄位檢核.",
         "* SYNTAXWORK_BEGIN_OPEN.",
     ]
     parts.extend(render_rule(rule).rstrip() for rule in rules)

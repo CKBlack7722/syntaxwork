@@ -746,7 +746,7 @@ def render_limit_rule(rule: LogicRule, limit: str, specs: dict[str, VarSpec]) ->
 def render_spss(rules: list[LogicRule], specs: dict[str, VarSpec]) -> str:
     blocks = [
         "* Encoding: UTF-8.",
-        "**LOGIC GROUP CHECKS.",
+        "**四、邏輯檢核.",
         "* SYNTAXWORK_BEGIN_LOGIC.",
     ]
     blocks.extend(render_rule(rule, specs) for rule in rules)

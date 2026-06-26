@@ -30,6 +30,16 @@ class AllVar:
     width: int
 
 
+@dataclass(frozen=True)
+class PrecheckIssue:
+    severity: str
+    sheet: str
+    row: str
+    column: str
+    code: str
+    message: str
+
+
 def cell_text(value: Any) -> str:
     if value is None:
         return ""
@@ -52,6 +62,70 @@ def sheet_by_prefix(wb: openpyxl.Workbook, prefix: str) -> openpyxl.worksheet.wo
         if name.startswith(prefix) and name not in {"複選題內_互斥", "複選題變項清單"}:
             return wb[name]
     raise ValueError(f"missing sheet with prefix {prefix!r}")
+
+
+def issue(severity: str, sheet: str, row: Any, column: str, code: str, message: str) -> PrecheckIssue:
+    return PrecheckIssue(severity, sheet, str(row or ""), column, code, message)
+
+
+def all_sheet_names(wb: openpyxl.Workbook) -> list[str]:
+    return [name for name in wb.sheetnames if name.strip().lower() == "all"]
+
+
+def precheck_all_sheet(wb: openpyxl.Workbook) -> list[PrecheckIssue]:
+    issues: list[PrecheckIssue] = []
+    matches = all_sheet_names(wb)
+    if len(matches) != 1:
+        issues.append(issue("error", "", "", "", "all_sheet_count", f"Expected exactly one all sheet, found {len(matches)}: {', '.join(matches) or '(none)'}"))
+        return issues
+    sheet_name = matches[0]
+    if sheet_name != "all":
+        issues.append(issue("error", sheet_name, "", "", "all_sheet_name", "The variable metadata sheet must be named exactly all."))
+        return issues
+    ws = wb[sheet_name]
+    headers = read_headers(ws)
+    required = ["變項名稱", "變項屬性", "寬度"]
+    for header in required:
+        if header not in headers:
+            issues.append(issue("error", sheet_name, 1, header, "missing_header", f"all sheet missing required header {header}."))
+    if any(item.severity == "error" for item in issues):
+        return issues
+    data_count = 0
+    seen: dict[str, int] = {}
+    allowed_kinds = {"數值", "字串", "文字"}
+    for row_idx, values in data_rows(ws):
+        name = cell_text(values[headers["變項名稱"] - 1])
+        kind = cell_text(values[headers["變項屬性"] - 1])
+        width = cell_text(values[headers["寬度"] - 1])
+        if name.lower() == "last":
+            continue
+        data_count += 1
+        if not name:
+            issues.append(issue("error", sheet_name, row_idx, "變項名稱", "blank_var_name", "Variable name is blank."))
+        else:
+            key = name.lower()
+            if key in seen:
+                issues.append(issue("error", sheet_name, row_idx, "變項名稱", "duplicate_var", f"Variable {name} duplicates row {seen[key]}."))
+            else:
+                seen[key] = row_idx
+        if not kind:
+            issues.append(issue("error", sheet_name, row_idx, "變項屬性", "blank_kind", f"{name or '(blank)'} has blank variable type."))
+        elif kind not in allowed_kinds:
+            issues.append(issue("warning", sheet_name, row_idx, "變項屬性", "unknown_kind", f"{name} has unrecognized variable type {kind}; it will not be auto-filled into numeric/open sections."))
+        if not width:
+            issues.append(issue("error", sheet_name, row_idx, "寬度", "blank_width", f"{name or '(blank)'} has blank width."))
+        elif not width.isdigit() or int(width) <= 0:
+            issues.append(issue("error", sheet_name, row_idx, "寬度", "invalid_width", f"{name} width must be a positive integer, got {width}."))
+    if data_count == 0:
+        issues.append(issue("error", sheet_name, "", "", "no_variables", "all sheet has no variable rows."))
+    return issues
+
+
+def issue_counts(issues: list[PrecheckIssue]) -> dict[str, int]:
+    counts: dict[str, int] = {}
+    for item in issues:
+        counts[item.severity] = counts.get(item.severity, 0) + 1
+    return counts
 
 
 def data_rows(ws: openpyxl.worksheet.worksheet.Worksheet):
@@ -356,6 +430,19 @@ def fill_multi_main_sheet(
 
 def fill_sections(workbook_path: Path, apply: bool, open_option_marker: str) -> dict[str, Any]:
     wb = openpyxl.load_workbook(workbook_path)
+    precheck_issues = precheck_all_sheet(wb)
+    precheck_report = {
+        "issue_counts": issue_counts(precheck_issues),
+        "issues": [item.__dict__ for item in precheck_issues],
+    }
+    if precheck_report["issue_counts"].get("error", 0):
+        return {
+            "workbook": str(workbook_path),
+            "applied": False,
+            "skipped_due_to_precheck": True,
+            "all_precheck": precheck_report,
+            "warnings": [],
+        }
     variables, last_row = read_all_vars(wb)
     numeric_ws = sheet_by_prefix(wb, "數值題")
     open_ws = sheet_by_prefix(wb, "開放欄位")
@@ -380,6 +467,7 @@ def fill_sections(workbook_path: Path, apply: bool, open_option_marker: str) -> 
         "multi_vars": sum(len(vars_) for vars_ in multi_groups.values()),
         "applied": apply,
         "warnings": [],
+        "all_precheck": precheck_report,
     }
 
     if apply:

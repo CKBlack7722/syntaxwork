@@ -28,6 +28,7 @@ class VarSpec:
 @dataclass(frozen=True)
 class ExternalCheckRule:
     row: int
+    item_number: str
     m: str
     p: str
     s: str
@@ -345,6 +346,7 @@ def load_rules(workbook_path: Path) -> tuple[list[ExternalCheckRule], list[dict[
         p = resolved_mp_value(ws, h, row_idx, "p")
         s = resolved_optional_value(ws, h, row_idx, "s", "m")
         s_value = resolved_optional_value(ws, h, row_idx, "s=")
+        item_number = cell_text(ws.cell(row_idx, h["項目編號"]).value) if "項目編號" in h else ""
         qid = cell_text(ws.cell(row_idx, h["題號"]).value)
         vars_text = cell_text(ws.cell(row_idx, h["變項名稱"]).value)
         desc = cell_text(ws.cell(row_idx, h["檢核說明"]).value)
@@ -356,7 +358,7 @@ def load_rules(workbook_path: Path) -> tuple[list[ExternalCheckRule], list[dict[
         if not m or not p:
             skipped.append({"severity": "warning", "row": row_idx, "qid": qid, "reason": "blank m or p"})
             continue
-        rules.append(ExternalCheckRule(row_idx, m, p, s, s_value, qid, vars_text, desc, note, condition, extra_vars))
+        rules.append(ExternalCheckRule(row_idx, item_number, m, p, s, s_value, qid, vars_text, desc, note, condition, extra_vars))
     return rules, skipped
 
 
@@ -364,7 +366,7 @@ def render_rule(rule: ExternalCheckRule, specs: dict[str, VarSpec]) -> str:
     condition = normalize_condition(rule.condition, specs)
     listed_vars = rule_listed_vars(rule, specs)
     lines = [
-        f"* external check row {rule.row}: {rule.qid}.",
+        f"* external check {rule.item_number or rule.row}: {rule.qid}.",
     ]
     if not condition:
         skeleton = [
@@ -400,7 +402,7 @@ def render_rule(rule: ExternalCheckRule, specs: dict[str, VarSpec]) -> str:
 def render_spss(rules: list[ExternalCheckRule], specs: dict[str, VarSpec]) -> str:
     blocks = [
         "* Encoding: UTF-8.",
-        "**EXTERNAL CHECK ITEMS.",
+        "**五、檢核項目清單.",
         "* SYNTAXWORK_BEGIN_EXTERNAL_CHECKS.",
     ]
     aggregate_lines = render_aggregate_computes(collect_aggregate_vars(rules, specs), specs)
@@ -421,11 +423,11 @@ def duplicate_mp_report(workbook_path: Path, rules: list[ExternalCheckRule]) -> 
             continue
         ws = wb[sheet_name]
         h = headers(ws)
-        if "m" not in h and "p" not in h:
+        if "m" not in h and "p" not in h and "s" not in h:
             continue
         for row_idx, row in enumerate(ws.iter_rows(min_row=2, values_only=True), start=2):
             row_values = {name: row[idx - 1] for name, idx in h.items() if idx - 1 < len(row)}
-            for col_name in ("m", "p"):
+            for col_name in ("m", "p", "s"):
                 if col_name not in h:
                     continue
                 value = cell_text(row_values.get(col_name))

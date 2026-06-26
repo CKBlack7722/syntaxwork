@@ -63,6 +63,11 @@ def infer_multi_group(var_name: str) -> str:
     return match.group(1) if match else ""
 
 
+def is_option_open_var(var_name: str) -> bool:
+    clean = cell_text(var_name)
+    return bool(re.search(r"o[0-9A-Za-z]+$", clean, flags=re.IGNORECASE) or clean.lower().endswith("_oth"))
+
+
 def issue(project: str, severity: str, sheet: str, row: Any, column: str, code: str, message: str) -> Issue:
     return Issue(project, severity, sheet, str(row or ""), column, code, message)
 
@@ -227,8 +232,8 @@ def check_open(project: str, wb: openpyxl.Workbook, sheet_name: str) -> list[Iss
         var = cell_text(row[h["var"]])
         if cell_text(row[h["變項屬性"]]) != "字串":
             issues.append(issue(project, "error", sheet_name, row_index, "變項屬性", "invalid_open_kind", f"{var} should be 字串."))
-        if cell_text(row[h["寬度"]]) != "150":
-            issues.append(issue(project, "warning", sheet_name, row_index, "寬度", "open_width_review", f"{var} open field width is expected to be 150."))
+        if is_option_open_var(var) and cell_text(row[h["寬度"]]) != "150":
+            issues.append(issue(project, "warning", sheet_name, row_index, "寬度", "open_width_review", f"{var} option-style open field width is expected to be 150."))
         if cell_text(row[h["是否複選"]]) not in {"0", "1"}:
             issues.append(issue(project, "error", sheet_name, row_index, "是否複選", "invalid_multi_flag", f"{var} 是否複選 should be 0 or 1."))
     return issues

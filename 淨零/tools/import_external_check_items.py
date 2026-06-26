@@ -15,7 +15,7 @@ from docx import Document
 
 
 SHEET_NAME = "檢核項目清單"
-HEADERS = ["m", "p", "題號", "變項名稱", "檢核說明", "備註", "條件", "額外列出變項"]
+HEADERS = ["m", "p", "s", "s=", "項目編號", "題號", "變項名稱", "檢核說明", "備註", "條件", "額外列出變項"]
 SOURCE_HEADERS = {"題號", "變項名稱", "檢核說明", "備註"}
 
 
@@ -250,6 +250,37 @@ def aggregate_name(vars_list: list[str], compact_range: bool = False) -> str:
     return f"sum{'_'.join(labels)}_min"
 
 
+def next_external_start(workbook_path: Path) -> int:
+    wb = openpyxl.load_workbook(workbook_path, read_only=True, data_only=True)
+    used: set[int] = set()
+    logic_max = 0
+    for sheet_name in wb.sheetnames:
+        if sheet_name == SHEET_NAME:
+            continue
+        ws = wb[sheet_name]
+        try:
+            h = {cell_text(value): idx for idx, value in enumerate(next(ws.iter_rows(min_row=1, max_row=1, values_only=True)), start=1) if cell_text(value)}
+        except StopIteration:
+            continue
+        if "m" not in h:
+            continue
+        for row in ws.iter_rows(min_row=2, values_only=True):
+            value = cell_text(row[h["m"] - 1] if len(row) >= h["m"] else "")
+            if value.startswith("="):
+                continue
+            try:
+                m_id = int(value)
+            except ValueError:
+                continue
+            used.add(m_id)
+            if sheet_name.startswith("邏輯組"):
+                logic_max = max(logic_max, m_id)
+    start = ((logic_max // 100) + 1) * 100 + 1 if logic_max else 101
+    while start in used:
+        start += 100
+    return start
+
+
 def infer_extra_vars(note: str, vars_text: str, specs: dict[str, VarSpec]) -> str:
     note = norm(note)
     var_names = set(specs)
@@ -305,20 +336,25 @@ def extract_rows(docx_path: Path, workbook_path: Path) -> list[ExternalCheckRow]
     specs = load_var_specs(workbook_path)
     var_names = set(specs)
     rows: list[ExternalCheckRow] = []
+    matched_table_count = 0
     for table_index, table in enumerate(doc.tables):
         headers = [norm(cell.text) for cell in table.rows[0].cells]
         if not SOURCE_HEADERS.issubset(set(headers)):
             continue
+        group_code = chr(ord("A") + matched_table_count)
+        matched_table_count += 1
+        group_row_count = 0
         header_index = {name: idx for idx, name in enumerate(headers)}
         for row_index, row in enumerate(table.rows[1:], start=1):
             values = [norm(cell.text).replace("\n", " | ") for cell in row.cells]
-            number = values[header_index.get("編號", 0)] if "編號" in header_index else str(row_index)
-            qid = values[header_index["題號"]]
-            vars_text = values[header_index["變項名稱"]]
-            desc = values[header_index["檢核說明"]]
             note = values[header_index["備註"]]
             if "刪除" in note:
                 continue
+            group_row_count += 1
+            number = f"【{group_code}{group_row_count:02d}】"
+            qid = values[header_index["題號"]]
+            vars_text = values[header_index["變項名稱"]]
+            desc = values[header_index["檢核說明"]]
             condition, status, reason = propose_condition(desc, vars_text, note, var_names)
             extra_vars = infer_extra_vars(note, vars_text, specs)
             qid = comma_join(split_pipe(qid))
@@ -350,7 +386,7 @@ def ensure_sheet(wb: openpyxl.Workbook) -> openpyxl.worksheet.worksheet.Workshee
     for col_idx, header in enumerate(HEADERS, start=1):
         ws.cell(1, col_idx).value = header
     ws.freeze_panes = "A2"
-    widths = [10, 10, 22, 36, 80, 44, 90, 44]
+    widths = [10, 10, 10, 10, 14, 22, 36, 80, 44, 90, 44]
     for col_idx, width in enumerate(widths, start=1):
         ws.column_dimensions[openpyxl.utils.get_column_letter(col_idx)].width = width
     return ws
@@ -363,8 +399,10 @@ def write_workbook(workbook_path: Path, rows: list[ExternalCheckRow]) -> Path:
         shutil.copy2(workbook_path, backup)
     wb = openpyxl.load_workbook(workbook_path)
     ws = ensure_sheet(wb)
+    start_id = next_external_start(workbook_path)
     for row_idx, row in enumerate(rows, start=2):
-        values = ["", "", row.qid, row.vars, row.description, row.note, row.condition, row.extra_vars]
+        item_id = str(start_id + row_idx - 2)
+        values = [item_id, item_id, item_id, "", row.number, row.qid, row.vars, row.description, row.note, row.condition, row.extra_vars]
         for col_idx, value in enumerate(values, start=1):
             ws.cell(row_idx, col_idx).value = value
     wb.save(workbook_path)

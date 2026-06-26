@@ -67,7 +67,7 @@ def fill(workbook_path: Path, apply: bool) -> dict[str, Any]:
         raise ValueError("workbook has no 開放欄位 sheet")
     ws = wb["開放欄位"]
     h = headers(ws)
-    required = ["var", "是否複選", "題號", "題號變項名稱", "選項數值", "var2_new", "range_new", "n"]
+    required = ["var", "是否複選"]
     missing = [name for name in required if name not in h]
     if missing:
         raise ValueError(f"missing headers: {missing}")
@@ -89,6 +89,7 @@ def fill(workbook_path: Path, apply: bool) -> dict[str, Any]:
             if apply:
                 ws.cell(row_idx, h["是否複選"]).value = int(is_multi)
             multi_changed += 1
+        should_fill_formula = bool(re.search(r"o\d+|_oth", var_name)) and option
         formulas = {
             "題號": f'=IF(ISERROR(SEARCH("_oth",C{row_idx},1)),MID($C{row_idx},1,SEARCH("o",C{row_idx},1)-1),MID($C{row_idx},1,SEARCH("_oth",C{row_idx},1)-1))',
             "題號變項名稱": f'=IF(ISNUMBER(SEARCH("oth",$C{row_idx},1)),MID($C{row_idx},1,SEARCH("_",$C{row_idx},1)-1),IF(AND($C{row_idx}<>"vZ0city_oth",$F{row_idx}=0),VALUE(MID($C{row_idx},SEARCH("o",$C{row_idx},1)+1,LEN($C{row_idx})-SEARCH("o",$C{row_idx},1))),CONCAT(MID($C{row_idx},1,SEARCH("o",$C{row_idx},1)-1),"m",I{row_idx})))',
@@ -97,13 +98,16 @@ def fill(workbook_path: Path, apply: bool) -> dict[str, Any]:
             "range_new": f'=IF(F{row_idx}=0,H{row_idx},1)',
             "n": f'=IF(LEN(K{row_idx})=1,LEN(K{row_idx})+1,LEN(K{row_idx}))',
         }
-        for field, formula in formulas.items():
-            cell = ws.cell(row_idx, h[field])
-            if cell.value in (None, "") or str(cell.value).strip() == "#VALUE!":
-                changed.append({"row": row_idx, "var": var_name, "field": field, "old": cell_text(cell.value), "new": formula})
-                if apply:
-                    cell.value = formula
-                formula_filled += 1
+        if should_fill_formula:
+            for field, formula in formulas.items():
+                if field not in h:
+                    continue
+                cell = ws.cell(row_idx, h[field])
+                if cell.value in (None, "") or str(cell.value).strip() == "#VALUE!":
+                    changed.append({"row": row_idx, "var": var_name, "field": field, "old": cell_text(cell.value), "new": formula})
+                    if apply:
+                        cell.value = formula
+                    formula_filled += 1
     backup = ""
     if apply and changed:
         backup_path = workbook_path.parent / "generated" / f"{workbook_path.stem}.before_open_field_formula_fill.xlsx"

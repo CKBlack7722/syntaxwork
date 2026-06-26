@@ -249,13 +249,18 @@ def range_from_explicit_text(text: str) -> tuple[list[str], str]:
 
 
 def split_option_range(codes: list[str]) -> list[str]:
-    numeric = [int(c) for c in codes]
-    normal = [n for n in numeric if n < 90]
-    specials = [n for n in numeric if n >= 90]
+    numeric = sorted({int(c) for c in codes})
     result: list[str] = []
-    if normal:
-        result.append(f"{min(normal)},{max(normal)}" if min(normal) != max(normal) else str(min(normal)))
-    result.extend(str(n) for n in sorted(specials))
+    if not numeric:
+        return result
+    start = prev = numeric[0]
+    for value in numeric[1:]:
+        if value == prev + 1:
+            prev = value
+            continue
+        result.append(f"{start},{prev}" if start != prev else str(start))
+        start = prev = value
+    result.append(f"{start},{prev}" if start != prev else str(start))
     return result[:4]
 
 
@@ -361,6 +366,25 @@ def write_csv(path: Path, proposals: list[NumericProposal]) -> None:
             writer.writerow(asdict(proposal))
 
 
+def numeric_range_formula(row: int) -> str:
+    return (
+        '=CONCAT(IF(D{row}="數值",CONCATENATE(G{row}&"("&C{row}&","&'
+        'IF(ISERROR(SEARCH(",",H{row},1)),(H{row}&","&H{row}),H{row})&'
+        'IF(ISBLANK(I{row}),"",IF(ISERROR(SEARCH(",",I{row},1)),CONCATENATE(","&I{row}&","&I{row}),CONCATENATE(","&I{row}))&'
+        'IF(ISBLANK(J{row}),"",IF(ISERROR(SEARCH(",",J{row},1)),CONCATENATE(","&J{row}&","&J{row}),CONCATENATE(","&J{row}))&'
+        'IF(ISBLANK(K{row}),"",IF(ISERROR(SEARCH(",",K{row},1)),CONCATENATE(","&K{row}&","&K{row}),CONCATENATE(","&K{row}))))))&'
+        '")","")&" "&F{row})'
+    ).format(row=row)
+
+
+def can_apply_numeric_proposal(proposal: NumericProposal) -> bool:
+    if proposal.status in {"apply", "match", "range_match_special_diff"}:
+        return True
+    if proposal.status == "mismatch" and proposal.source == "option code span including table":
+        return True
+    return False
+
+
 def apply(workbook_path: Path, proposals: list[NumericProposal]) -> dict[str, Any]:
     backup = workbook_path.parent / "generated" / f"{workbook_path.stem}.before_numeric_fill_v2.xlsx"
     backup.parent.mkdir(parents=True, exist_ok=True)
@@ -371,13 +395,18 @@ def apply(workbook_path: Path, proposals: list[NumericProposal]) -> dict[str, An
     h = headers(ws)
     written = 0
     for proposal in proposals:
-        if proposal.status not in {"apply", "match", "range_match_special_diff"}:
+        if not can_apply_numeric_proposal(proposal):
             continue
         values = [proposal.proposed_r1, proposal.proposed_r2, proposal.proposed_r3, proposal.proposed_r4]
         if not values[0]:
             continue
         for col, value in zip(("r1", "r2", "r3", "r4"), values):
             ws.cell(proposal.row, h[col] + 1).value = value or None
+        if "range" in h:
+            expected_formula = numeric_range_formula(proposal.row)
+            range_cell = ws.cell(proposal.row, h["range"] + 1)
+            if cell_text(range_cell.value) != expected_formula:
+                range_cell.value = expected_formula
         written += 1
     wb.save(workbook_path)
     return {"written": written, "backup": str(backup)}

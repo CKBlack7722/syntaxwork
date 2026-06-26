@@ -470,6 +470,56 @@ def add_skip_guards(condition: str, specs: dict[str, tuple[str, int]], condition
     return " & ".join([base, *guards])
 
 
+def hhmm_minutes_expr(var: str) -> str:
+    return f"(TRUNC({var}/100)*60 + mod({var},100))"
+
+
+def multi_count_expr(prefix: str, start: int, end: int, extras: tuple[int, ...] = ()) -> str:
+    vars_list = [f"{prefix}{code:02d}" for code in range(start, end + 1)]
+    vars_list.extend(f"{prefix}{code}" for code in extras)
+    return " + ".join(f"({var}=1)" for var in vars_list)
+
+
+def advanced_rules_from_review(review: list[dict[str, str]]) -> tuple[list[Rule], set[tuple[str, str]]]:
+    rules: list[Rule] = []
+    resolved: set[tuple[str, str]] = set()
+    for item in review:
+        qid = cell_text(item.get("qid"))
+        bracket = cell_text(item.get("bracket"))
+        key = (qid, bracket)
+        if qid == "E3_1" and "E5、E6、E8、E9、E11、E12加總超過2400" in bracket:
+            vars_list = ["vE5", "vE6", "vE8", "vE9", "vE11", "vE12"]
+            valid_parts = [f"not(any({var},9797,9898))" for var in vars_list]
+            total = " + ".join(hhmm_minutes_expr(var) for var in vars_list)
+            condition = " & ".join([*valid_parts, f"({total})>2400"])
+            inverse = f"not({condition})"
+            rules.append(Rule(qid=qid, cue="need", condition=condition, inverse_condition=inverse, target_vars=("vE3_1",), source_text=cell_text(item.get("text"))))
+            resolved.add(key)
+        elif qid == "B7" and "B7a只選1個選項" in bracket:
+            count_expr = multi_count_expr("vB7am", 1, 54, (88,))
+            condition = f"({count_expr})<=1"
+            inverse = f"({count_expr})>1"
+            rules.append(Rule(qid=qid, cue="skip", condition=condition, inverse_condition=inverse, target_vars=("vB7",), source_text=cell_text(item.get("text"))))
+            resolved.add(key)
+        elif qid == "I4" and "B8答(03)或(06),且I1與I3皆為0" in bracket:
+            condition = "(vB8m03=1 | vB8m06=1) & vI1=0 & vI3=0"
+            inverse = "not((vB8m03=1 | vB8m06=1) & vI1=0 & vI3=0)"
+            rules.append(Rule(qid=qid, cue="need", condition=condition, inverse_condition=inverse, target_vars=("vI4",), source_text=cell_text(item.get("text"))))
+            resolved.add(key)
+        elif qid == "Q27" and "K2答(90)、(97)、(98)者,或Q5答(02)者" in bracket:
+            condition = "vK2m90=1 | any(vQ5,2,97,98)"
+            inverse = "vK2m90~=1 & not(any(vQ5,2,97,98))"
+            targets = tuple(f"vQ27m{code:02d}" for code in range(1, 8)) + ("vQ27m88",)
+            rules.append(Rule(qid=qid, cue="skip", condition=condition, inverse_condition=inverse, target_vars=targets, source_text=cell_text(item.get("text"))))
+            resolved.add(key)
+        elif qid == "ZE2_1" and "ZE2答(01)或(02)" in bracket:
+            condition = "vZE2m01=1 | vZE2m02=1"
+            inverse = "vZE2m01~=1 & vZE2m02~=1"
+            rules.append(Rule(qid=qid, cue="need", condition=condition, inverse_condition=inverse, target_vars=("vZE2_1",), source_text=cell_text(item.get("text"))))
+            resolved.add(key)
+    return rules, resolved
+
+
 def apply_skip_guards(rules: list[Rule], specs: dict[str, tuple[str, int]]) -> list[Rule]:
     conditional_targets = {name.lower() for rule in rules for name in rule.target_vars}
     return [
@@ -724,6 +774,11 @@ def refresh_logic(docx_path: Path, workbook_path: Path, *, apply: bool, qid_filt
         unit_rules, unit_review = bracket_rules(unit, all_vars, option_overrides)
         rules.extend(unit_rules)
         review.extend(unit_review)
+    advanced_rules, resolved_review = advanced_rules_from_review(review)
+    if advanced_rules:
+        rules.extend(advanced_rules)
+        review = [item for item in review if (cell_text(item.get("qid")), cell_text(item.get("bracket"))) not in resolved_review]
+
     if qid_filter:
         qid_filter = norm_qid(qid_filter)
         rules = [rule for rule in rules if norm_qid(rule.qid) == qid_filter]
@@ -735,31 +790,42 @@ def refresh_logic(docx_path: Path, workbook_path: Path, *, apply: bool, qid_filt
     wb = openpyxl.load_workbook(workbook_path)
     ws = wb[LOGIC_SHEET]
     headers = logic_headers(ws)
-    keys = existing_keys(ws, headers)
     output_rows: list[dict[str, str]] = []
     appended = 0
     duplicates = 0
-    for row in proposed:
-        key = (row["條件"], row["應答"], row["不應答"], row["限制"])
-        if key in keys:
-            duplicates += 1
-            output_rows.append({"status": "duplicate", "row": "", **row})
-            continue
-        if apply:
-            next_row = ws.max_row + 1
+    logic_columns = [name for name in ("條件", "應答", "不應答", "限制", "互斥") if name in headers]
+    if apply:
+        clear_to_row = max(ws.max_row, len(proposed) + 1)
+        for row_idx in range(2, clear_to_row + 1):
+            for col_name in logic_columns:
+                ws.cell(row_idx, headers[col_name]).value = None
+        seen: set[tuple[str, str, str, str]] = set()
+        next_row = 2
+        for row in proposed:
+            key = (row["條件"], row["應答"], row["不應答"], row["限制"])
+            if key in seen:
+                duplicates += 1
+                output_rows.append({"status": "duplicate", "row": "", **row})
+                continue
             for col_name in ("條件", "應答", "不應答", "限制"):
                 ws.cell(next_row, headers[col_name]).value = row[col_name]
-            output_rows.append({"status": "appended", "row": str(next_row), **row})
-            keys.add(key)
+            output_rows.append({"status": "written", "row": str(next_row), **row})
+            seen.add(key)
             appended += 1
-        else:
-            output_rows.append({"status": "proposal", "row": "", **row})
+            next_row += 1
+    else:
+        keys = existing_keys(ws, headers)
+        for row in proposed:
+            key = (row["條件"], row["應答"], row["不應答"], row["限制"])
+            if key in keys:
+                duplicates += 1
+                output_rows.append({"status": "duplicate", "row": "", **row})
+            else:
+                output_rows.append({"status": "proposal", "row": "", **row})
     for item in review:
         output_rows.append({"status": "review", "row": "", "direction": "", "條件": "", "應答": "", "不應答": "", "限制": "", **item})
 
     if apply:
-        write_review_sheet(wb, rules, review, output_rows)
-        write_cue_sheet(wb, docx_path, rules, review)
         backup = workbook_path.parent / "generated" / f"{workbook_path.stem}.before_logic_refresh.xlsx"
         backup.parent.mkdir(parents=True, exist_ok=True)
         if not backup.exists():
@@ -780,8 +846,8 @@ def refresh_logic(docx_path: Path, workbook_path: Path, *, apply: bool, qid_filt
         "duplicates": duplicates,
         "review": len(review),
         "option_overrides": {qid: sorted(codes, key=int) for qid, codes in option_overrides.items()},
-        "review_sheet": REVIEW_SHEET if apply else "",
-        "cue_sheet": CUE_SHEET if apply else "",
+        "review_sheet": "",
+        "cue_sheet": "",
     }
     if report_path:
         report_path.parent.mkdir(parents=True, exist_ok=True)

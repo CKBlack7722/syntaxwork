@@ -742,3 +742,90 @@ multi vars: 586
 - `all` 可以作為「欄位骨架 single source of truth」。
 - `數值題/開放欄位/複選題/複選題變項清單` 可視為由程式補全的工作表。
 - 問卷語意型欄位，例如數值範圍、特殊碼、互斥選項、字串格式檢查，仍需由 Word -> Excel skill、檢核項目清單或人工規則補充。
+
+
+## 2026-06-26 rule confirmations
+
+- 邏輯組：傳播4-1 目前 5 個 `resolved by advanced rule` 人工確認為正確，可視為已接受規則。
+- 開放欄位：若開放欄位變項名稱沒有小寫 `o` 選項標記，Excel 可維持不完整狀態但仍需使用者填 `m/p`。Excel -> SPSS 時，`var2_new` 空白列不轉換；`var2_new` 有值但 `range_new` 與 `n` 空白時，只產生內容列出確認，不產生應答/不應答檢核。
+- 數值題：跳答碼依變項寬度判斷，不再依有效範圍位數判斷；寬度 2 -> `96`，寬度 3 -> `996`，寬度 4 -> `9996`，寬度 5 -> `99996`。
+- 檢核項目清單：欄位改為 `m/p/s/s=/項目編號/題號/變項名稱/檢核說明/備註/條件/額外列出變項`。Word -> Excel 匯入時 `m/p/s` 同號順編，從邏輯組最大編號後的下一個 `x01` 區段開始，例如邏輯組到 764，檢核項目清單從 801 開始；`s=` 留給使用者填。`項目編號` 依 A/B 組與列順序產生，如 `【A01】`、`【B01】`。
+- Excel -> SPSS section 標題：數值題 `**一、不合理值檢核.`；開放欄位 `**二、開放欄位檢核.`；複選題含複選題內互斥 `**三、複選題檢核.`；邏輯組 `**四、邏輯檢核.`；檢核項目清單 `**五、檢核項目清單.`。
+
+
+## 2026-06-26 app architecture and step-1 test
+
+Final app scope should contain only two user-facing steps:
+
+1. Excel all sheet -> section skeleton fill. The user selects an Excel workbook. The app checks that exactly one sheet is named `all`, required headers exist (`變項名稱/變項屬性/寬度`), variable rows exist, variable names are unique, type/width cells are complete, and widths are positive integers. If this passes, the app fills `數值題`, `開放欄位`, `複選題`, and `複選題變項清單` from `all`.
+2. Excel -> syntax export. Before export, run SPSS-producing-sheet checks such as required headers, blank required cells, global `m/p/s` duplicates, formula errors, and type/width consistency. Exporters should be pluggable so SPSS is one backend now and Stata or other syntax backends can be added later.
+
+Questionnaire Word -> Excel skills remain a development/assistant workflow and should not be part of the final app UI for now.
+
+Recommended app design for Windows portability: package the app as a self-contained Windows executable/folder (for example a Python GUI packaged with PyInstaller or an equivalent desktop wrapper). It should read/write `.xlsx` directly without requiring Microsoft Excel or Python installation on the target computer. Keep the core logic separated into: workbook reader/precheck, section filler, intermediate check model, exporter plugins, and report writer.
+
+Step-1 test on `傳播4-1/檢核程式套印-傳播4-1測試.xlsx`:
+
+- all precheck passed with no issues.
+- `last` marker found at row 22; variables after `last`: 864.
+- Filled/expected section rows: `數值題=804`, `開放欄位=60`, `複選題=36`, `複選題變項清單=586`.
+- Lightweight duplicate check found no duplicate `m/p/s` values across the relevant SPSS-producing sheets after step 1.
+- The older full `validate_excel_structure.py` can be slow on this workbook and should not be used synchronously in the app UI without progress reporting or segmentation.
+
+
+## 2026-06-26 step-2 questionnaire/check-item fill test
+
+Applied Word -> Excel development skills to `傳播4-1/檢核程式套印-傳播4-1測試.xlsx` using:
+
+- `2026年臺灣傳播調查資料庫正式調查問卷.docx`
+- `傳播調查資料庫第四期第一次正式_資料檢核項目0614.docx`
+
+Results:
+
+- Numeric fields: 804 rows total; 763 stable rows filled into `r1-r4`; 41 rows remain manual because no reliable numeric range was found.
+- Open fields: 60 rows; `var2_new/range_new/n` present for all rows after formula-column fill.
+- Multi-response: 36 groups detected; 35 matched and were applied; `vM4s / M4S` remains review because the question block was not found in the questionnaire text.
+- Multi-response mutual exclusion: 7 real rows applied. The sheet may retain formatted blank rows below the real data.
+- Logic groups: 256 real rows generated from the questionnaire; 5 rows remain in the manual-review output sheet.
+- External check-item list: 47 rows imported from the 0614 check-item Word file; 43 conditions auto-filled and 4 review rows keep blank conditions. `項目編號` is filled as `【A01】`, `【B01】`, etc.
+- Lightweight validation after writing found no duplicate constant `m/p/s` values. Formula cells such as `=A2` are not treated as actual duplicate IDs until Excel recalculates them.
+
+Implementation note: `fill_multi_sheets_from_docx.py` now skips applying multi-response proposals whose status is not `match`, so review items stay available for manual handling instead of being overwritten.
+
+
+## 2026-06-26 questionnaire-to-excel skill rule update
+
+- Numeric questionnaire -> Excel fill now checks and repairs the `range` formula when stable `r1-r4` values are applied. The formula is the workbook's standard CONCAT expression that builds the SPSS validity expression from `in_or_not`, `var`, `r1-r4`, and decimal rules.
+- Open-field questionnaire -> Excel fill now focuses on variable completeness and multiple-response status. It does not broadly refill `var2_new/range_new/n`; those columns are only filled when the variable is an option-triggered open field such as `o##` or `_oth`.
+- Multi-response fill now treats `96/97/98` as standard special/no-response codes for unavailable/no-response fields without requiring expanded `m96/m97/m98` variables unless the workbook explicitly lists them.
+- Multi-response internal mutex ranges now compare against the actual variable list. Noncontinuous target values are moved to `非連續互斥選項`; for example K1 uses `互斥選項編號_迄=13` and `非連續互斥選項=88`.
+- Logic-group refresh now writes confident rows directly to `邏輯組` only. New ambiguous review/cue items should be written to generated external reports, not inserted as extra sheets in the project workbook.
+
+Applied to `傳播4-1/檢核程式套印-傳播4-1測試.xlsx`: numeric ranges were reapplied with range formulas, and multi-response/mutex rows were refreshed after the special-code and noncontinuous-mutex update.
+
+
+### Numeric range split follow-up
+
+After adding `range` formula repair, numeric option-code ranges were refined to split actual continuous runs instead of using min/max across gaps. Example from the current 傳播4-1 questionnaire: `vA3` is parsed as `r1=1,22`, `r2=88`, `r3=97,98` because the Word file lists `(22)連江縣` and `(88)其他`. This differs from the older noted expectation `1,21 / 97,98` and should be confirmed by the user if the questionnaire version changes. Stable option-code split mismatches may now be applied; manual rows remain untouched.
+
+
+## 2026-06-26 logic-group full rebuild update
+
+The logic-group questionnaire -> Excel skill now rebuilds the `邏輯組` content area from row 2 instead of appending after formatted blank rows. It clears only logic action columns (`條件/應答/不應答/限制/互斥`) and preserves user-controlled ID columns such as `m/p/s/s=`. Old in-workbook review/cue sheets are not generated.
+
+For the current 傳播4-1 questionnaire, five previously unresolved review cases are now handled by advanced deterministic rules:
+
+- `E3_1`: E5/E6/E8/E9/E11/E12 HHMM minute total > 2400, excluding 9797/9898 values.
+- `B7`: B7a selected-option count controls whether B7 should be answered.
+- `I4`: B8m03 or B8m06 plus I1=0 and I3=0.
+- `Q27`: K2m90 or Q5 in 2/97/98 skip rule, with inverse required-answer rule.
+- `ZE2_1`: ZE2m01 or ZE2m02 required-answer rule.
+
+Applied to `傳播4-1/檢核程式套印-傳播4-1測試.xlsx`: `邏輯組` now has 266 real rows starting at row 2; report `step2_logic_apply_advanced_rebuild_report.json` shows `review=0`.
+
+
+## 2026-06-26 logic mutex rebuild update
+
+After the logic-group full rebuild, cross-question option mutex rules must also be rebuilt. Use `rebuild_logic_mutex_and_sort.py` after `refresh_logic_group_from_docx.py`: it removes old mutex-only rows, collects questionnaire `互斥/選項互斥` cues, appends mutex-only rows into `邏輯組`, and sorts rows by variable order from `all`.
+
+Applied to `傳播4-1/檢核程式套印-傳播4-1測試.xlsx`: 28 cross-question mutex rules were added, `review=0`, making `邏輯組` contain 294 real rows in total. Sample rules include `vA9 in 1` mutually exclusive with `vO1_1 in 1..4`.

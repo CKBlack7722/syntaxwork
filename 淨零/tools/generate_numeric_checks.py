@@ -189,7 +189,7 @@ def render_rule(rule: NumericRule) -> str:
 def render_spss(rules: list[NumericRule]) -> str:
     parts = [
         "* Encoding: UTF-8.",
-        "**NUMERIC CHECKS.",
+        "**一、不合理值檢核.",
         "* SYNTAXWORK_BEGIN_NUMERIC.",
     ]
     parts.extend(render_rule(rule).rstrip() for rule in rules)

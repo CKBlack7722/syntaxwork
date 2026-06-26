@@ -1,0 +1,22 @@
+{
+  "counts": {
+    "manual": 41,
+    "apply": 763
+  },
+  "sources": {
+    "no numeric range found": 41,
+    "option code span including table": 141,
+    "city code rule": 1,
+    "town code list": 1,
+    "explicit numeric range": 19,
+    "multiple-response binary": 586,
+    "configured date range": 7,
+    "hour-minute hour part": 4,
+    "hour-minute minute part": 4
+  },
+  "output_csv": "Z:\\AIWork\\syntaxwork\\傳播4-1\\generated\\step2_numeric_apply.csv",
+  "apply": {
+    "written": 763,
+    "backup": "Z:\\AIWork\\syntaxwork\\傳播4-1\\generated\\檢核程式套印-傳播4-1測試.before_numeric_fill_v2.xlsx"
+  }
+}
