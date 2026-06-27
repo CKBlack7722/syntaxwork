@@ -12,7 +12,7 @@ Use this skill for questionnaire-adjacent project-specific check items that are 
 1. Read the Word table columns `題號`, `變項名稱`, `檢核說明`, and `備註`.
 2. Import into workbook sheet `檢核項目清單`.
 3. Keep columns: `m`, `p`, `s`, `s=`, `項目編號`, `題號`, `變項名稱`, `檢核說明`, `備註`, `條件`, `額外列出變項`.
-4. Auto-allocate `m/p/s` with the same sequence number, starting at the next `x01` block after the logic-group maximum, for example logic group ending at 764 means check items start at 801. Leave `s=` blank for user values.
+4. Auto-allocate `m/p` starting at the next `x01` block after the logic-group maximum, for example logic group ending at 764 means check items start at 801. Fill `s` with the same sequence number only when S variables are enabled and the sheet has an `s` column. Leave `s=` blank for user values.
 5. Fill `項目編號` from Word table group/order as `【A01】`, `【A02】`, `【B01】`, etc.
 6. Exclude rows where `備註=刪除`.
 

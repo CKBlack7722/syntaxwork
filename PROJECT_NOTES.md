@@ -1,4 +1,4 @@
-# SPSS Survey Syntax Automation Project Notes
+﻿# SPSS Survey Syntax Automation Project Notes
 
 本專案目標是把問卷檢核流程整理成可搬移、可重跑的自動化工作流。主要資料夾如下：
 
@@ -13,8 +13,8 @@
 工具位置：
 
 ```text
-淨零/tools/generate_logic_checks.py
-淨零/tools/static_check_generated_logic.py
+tools/generate_logic_checks.py
+tools/static_check_generated_logic.py
 ```
 
 目前支援從 Excel 的 `邏輯組` sheet 產生 `**LOGIC GROUP CHECKS.` 區塊。
@@ -118,13 +118,13 @@ vQ24m1 to vQ24m6
 建議下一支工具：
 
 ```text
-淨零/tools/generate_multi_checks.py
+tools/generate_multi_checks.py
 ```
 
 目前已建立第一版工具：
 
 ```text
-淨零/tools/generate_multi_checks.py
+tools/generate_multi_checks.py
 ```
 
 已試跑：
@@ -184,8 +184,8 @@ p
 新增工具：
 
 ```text
-淨零/tools/generate_multi_checks.py
-淨零/tools/build_spss_checks.py
+tools/generate_multi_checks.py
+tools/build_spss_checks.py
 ```
 
 `generate_multi_checks.py` 只產生 `**3.複選題檢核.` 與 `**3.1複選互斥邏輯.` 區塊。設計原則是：
@@ -224,8 +224,8 @@ p
 新增工具：
 
 ```text
-淨零/tools/generate_numeric_range_proposals.py
-淨零/tools/compare_questionnaire_completeness.py
+tools/generate_numeric_range_proposals.py
+tools/compare_questionnaire_completeness.py
 ```
 
 目前先產生建議值與比對報告，不直接覆蓋 Excel：
@@ -261,13 +261,13 @@ generated/numeric_range_mismatch_review.csv
 產生消費者2邏輯組語法：
 
 ```powershell
-& 'C:\Users\choco\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe' 'Z:\AIWork\syntax\淨零\tools\generate_logic_checks.py' --workbook 'Z:\AIWork\syntax\消費者2\檢核程式套印-台灣消費者2.xlsx' --output 'Z:\AIWork\syntax\消費者2\generated\logic_checks_generated.sps' --report 'Z:\AIWork\syntax\消費者2\generated\logic_checks_report.txt'
+& 'C:\Users\choco\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe' 'Z:\AIWork\syntax\tools\generate_logic_checks.py' --workbook 'Z:\AIWork\syntax\消費者2\檢核程式套印-台灣消費者2.xlsx' --output 'Z:\AIWork\syntax\消費者2\generated\logic_checks_generated.sps' --report 'Z:\AIWork\syntax\消費者2\generated\logic_checks_report.txt'
 ```
 
 靜態檢查：
 
 ```powershell
-& 'C:\Users\choco\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe' 'Z:\AIWork\syntax\淨零\tools\static_check_generated_logic.py' --syntax 'Z:\AIWork\syntax\消費者2\generated\logic_checks_generated.sps'
+& 'C:\Users\choco\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe' 'Z:\AIWork\syntax\tools\static_check_generated_logic.py' --syntax 'Z:\AIWork\syntax\消費者2\generated\logic_checks_generated.sps'
 ```
 
 注意：換電腦後 Python 路徑可能不同。最穩定做法是請 Codex 先讀取這份 notes，再使用該電腦可用的 Python 執行同一支工具。
@@ -302,8 +302,8 @@ PROJECT_NOTES.md
 新增/調整工具：
 
 ```text
-淨零/tools/run_survey_check_pipeline.py
-淨零/tools/generate_logic_checks.py
+tools/run_survey_check_pipeline.py
+tools/generate_logic_checks.py
 ```
 
 本輪修正：
@@ -412,7 +412,7 @@ generated/numeric_range_mismatch_review.csv
 新增工具：
 
 ```text
-淨零/tools/generate_open_field_proposals.py
+tools/generate_open_field_proposals.py
 ```
 
 工具規則：
@@ -468,7 +468,7 @@ generated/open_field_mismatch_review.csv
 新增工具：
 
 ```text
-淨零/tools/validate_excel_structure.py
+tools/validate_excel_structure.py
 ```
 
 pipeline 更新：
@@ -570,7 +570,7 @@ skill 適用性觀察：
 
 ## 2026-06-20 開放欄位辨識規則更新
 
-`淨零/tools/fill_excel_sections_from_all.py` 現在支援：
+`tools/fill_excel_sections_from_all.py` 現在支援：
 
 - `all` 找不到 `last` 時，從第 1 筆變項資料開始（Excel 第 2 列），不再中止。
 - 開放欄位預設只把「最後一個小寫 `o` 後面接純數字」辨識為選項型欄位，例如 `vO1o88` 會正確拆成原題變項 `vO1` 與選項 `88`；大寫題號中的 `O` 不會被誤判。
@@ -586,7 +586,7 @@ skill 適用性觀察：
 
 ## 2026-06-20 問卷邏輯組人工確認
 
-`淨零/tools/refresh_logic_group_from_docx.py` 現在在寫入 Word -> Excel 邏輯組時，同步建立兩張人工審核工作表：
+`tools/refresh_logic_group_from_docx.py` 現在在寫入 Word -> Excel 邏輯組時，同步建立兩張人工審核工作表：
 
 - `邏輯組_人工確認`：一列代表一個問卷邏輯規則，並列問卷原文、條件成立／不成立的轉譯、各自應答與不應答變項、實際邏輯組列號、人工確認與備註。
 - `邏輯組_問卷線索`：列出所有偵測到的問卷跳答、顯示與流程線索，標示為「已產生對照規則／需人工判讀／未對照：請檢查／忽略：非資料應答邏輯」，用於檢查覆蓋完整性。
@@ -623,7 +623,7 @@ skill 適用性觀察：
 ## 2026-06-21 互斥與進階邏輯提案
 
 - `refresh_logic_mutex_from_docx.py` 已和主邏輯解析器相容，可把問卷標註的選項互斥寫入 `邏輯組.互斥`；傳播 4-1 最新預覽偵測到 20 條可寫入規則、7 條待人工判讀。
-- `淨零/tools/propose_advanced_logic_from_review.py` 會從人工確認表的已標註案例產生可審核的進階規則提案，並輸出正向應答與反向不應答條件。
+- `tools/propose_advanced_logic_from_review.py` 會從人工確認表的已標註案例產生可審核的進階規則提案，並輸出正向應答與反向不應答條件。
 - 目前已驗證五種類型：排除特殊碼後加總門檻、複選題選取數量、多選項加數值條件、複選題整題特殊碼、複選指定選項。
 - 進階提案使用 `spss:` 前綴表示已是 SPSS 等價條件；`generate_logic_checks.py` 會保留其內容，不再重複轉譯。
 
@@ -672,7 +672,7 @@ ZE2_1 複選選項續答
 新增測試工具：
 
 ```text
-淨零/tools/fill_excel_sections_from_all.py
+tools/fill_excel_sections_from_all.py
 ```
 
 用途：
@@ -829,3 +829,103 @@ Applied to `傳播4-1/檢核程式套印-傳播4-1測試.xlsx`: `邏輯組` now 
 After the logic-group full rebuild, cross-question option mutex rules must also be rebuilt. Use `rebuild_logic_mutex_and_sort.py` after `refresh_logic_group_from_docx.py`: it removes old mutex-only rows, collects questionnaire `互斥/選項互斥` cues, appends mutex-only rows into `邏輯組`, and sorts rows by variable order from `all`.
 
 Applied to `傳播4-1/檢核程式套印-傳播4-1測試.xlsx`: 28 cross-question mutex rules were added, `review=0`, making `邏輯組` contain 294 real rows in total. Sample rules include `vA9 in 1` mutually exclusive with `vO1_1 in 1..4`.
+
+
+## 2026-06-27 logic/check-item id allocation update
+
+Logic-group rebuild now supports formal id allocation. Use `--allocate-ids` to fill `m/p`; use `--fill-s` when the workflow or future app UI indicates that S variables should exist. `p` is written as a row-relative formula such as `=A2`; `s` uses the same id as `m`; `s=` remains user-controlled and blank by default.
+
+The logic-group start id is the next `x01` block after the previous SPSS-producing sections in workbook order. In the current `傳播4-1/檢核程式套印-傳播4-1測試.xlsx`, numeric/open/multiple-response ids end at:
+
+```text
+數值題: 101-904
+開放欄位: 1000-1059
+複選題: 1101-1136
+```
+
+Therefore logic-group ids start at `1201`. After mutex rebuild and sorting, the current logic group has 311 rows:
+
+```text
+邏輯組: 1201-1511
+檢核項目清單: 1601-1647
+```
+
+The `檢核項目清單` importer keeps using the next `x01` block after the logic-group maximum. It now supports `--no-fill-s` for future UI workflows where the user does not enable S variables.
+
+The HHMM minute-tens restriction is now part of the main logic-group rebuild. If `數值題` has `寬度=5` and `r1=1,2359`, the logic group receives a `限制` row such as:
+
+```text
+vD3 minute_tens in 0,1,2,3,4,5
+```
+
+Generated SPSS renders this as:
+
+```spss
+do if not any(mod(trunc(vD3/10),10),0,1,2,3,4,5).
+```
+
+Current verification:
+
+```text
+邏輯組 rules generated by Excel -> SPSS: 311
+logic sheet corrections: 0
+logic sheet unresolved: 0
+global duplicate m/p/s check: 0
+檢核項目清單 rows: 47, auto conditions: 43, review: 4
+```
+
+
+## 2026-06-27 selective Excel-to-SPSS export update
+
+Future app export UI should expose five independent SPSS export groups:
+
+```text
+1. 數值題
+2. 開放欄位
+3. 複選題
+4. 邏輯組
+5. 檢核項目清單
+```
+
+The user can choose any subset, for example only `數值題` and `邏輯組`. Each selected group should first generate its own section file, then `build_spss_checks.py` merges the selected sections in the app-defined order. This keeps the backend pluggable and avoids forcing all sections to be valid before exporting a partial syntax file.
+
+Current test generated only:
+
+```text
+傳播4-1/generated/logic_checks_selected_generated.sps
+傳播4-1/generated/external_checks_selected_generated.sps
+傳播4-1/generated/selected_logic_external_checks.sps
+```
+
+Results:
+
+```text
+邏輯組 rules: 311, unresolved: 0
+檢核項目清單 rules: 47, pending commented skeletons: 4, duplicate m/p/s: 0
+```
+
+`檢核項目清單` SPSS messages now combine `項目編號` and `檢核說明`, for example:
+
+```spss
+compute p1601="【A01】 受訪者為女性,...".
+```
+
+Numeric `range` formulas were repaired to avoid Excel `_xludf.CONCAT` / `#NAME?` issues. The generator now writes `CONCATENATE(...)` rather than `CONCAT(...)`; the current 傳播4-1 test workbook had 763 existing numeric range formulas repaired.
+
+
+## 2026-06-27 repository folder layout update
+
+Reusable tooling has been moved out of sample/test data folders:
+
+```text
+tools/        reusable Python and command-line tools
+.codex/       reusable Codex skills
+generated/    repository-level generated comparisons/reports
+消費者/       replaceable sample/test project data
+消費者2/      replaceable sample/test project data
+淨零/         replaceable sample/test project data
+傳播4-1/      replaceable sample/test project data
+```
+
+The four project folders above should not contain reusable skills, app code, or shared tools because they may be manually deleted and replaced with new examples. Use `tools/...` in future commands and documentation instead of the old `淨零/tools/...` path.
+

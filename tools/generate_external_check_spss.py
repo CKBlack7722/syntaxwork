@@ -228,7 +228,7 @@ def condition_vars(condition: str, specs: dict[str, VarSpec]) -> list[str]:
 
 
 def message_text(rule: ExternalCheckRule) -> str:
-    text = rule.description.replace('"', "'")
+    text = " ".join(part for part in (rule.item_number, rule.description) if part).replace('"', "'")
     return text[:230]
 
 

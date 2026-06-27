@@ -13,6 +13,7 @@ import openpyxl
 from docx import Document
 from openpyxl.styles import Alignment, Font, PatternFill
 
+from id_allocator import assign_ids, next_logic_start
 from analyze_logic_from_docx import extract_cues
 
 
@@ -548,6 +549,58 @@ def build_rows(rules: list[Rule]) -> list[dict[str, str]]:
     return rows
 
 
+def numeric_sheet_headers(ws: openpyxl.worksheet.worksheet.Worksheet) -> dict[str, int]:
+    return {
+        cell_text(value): idx
+        for idx, value in enumerate(next(ws.iter_rows(min_row=1, max_row=1, values_only=True)), start=1)
+        if cell_text(value)
+    }
+
+
+def time_minute_tens_limit_rows(workbook_path: Path) -> list[dict[str, str]]:
+    """Build HHMM minute validation rows from the numeric field sheet.
+
+    A 4-digit HHMM value is stored in a width-5 numeric column because it may
+    also contain special codes such as 9797/9898/99996.  The numeric range
+    `1,2359` is not enough by itself: values like 1260 are inside the numeric
+    min/max range, but the minute tens digit is impossible.  These rows add a
+    logic-group `限制` check such as `vD3 minute_tens in 0,1,2,3,4,5`.
+    """
+    wb = openpyxl.load_workbook(workbook_path, data_only=True, read_only=True)
+    if "數值題" not in wb.sheetnames:
+        return []
+    ws = wb["數值題"]
+    headers = numeric_sheet_headers(ws)
+    required = {"var", "寬度", "r1"}
+    if not required.issubset(headers):
+        return []
+    rows: list[dict[str, str]] = []
+    seen: set[str] = set()
+    var_idx = headers["var"] - 1
+    width_idx = headers["寬度"] - 1
+    r1_idx = headers["r1"] - 1
+    for row in ws.iter_rows(min_row=2, values_only=True):
+        var_name = cell_text(row[var_idx] if var_idx < len(row) else "")
+        width = cell_text(row[width_idx] if width_idx < len(row) else "")
+        r1 = cell_text(row[r1_idx] if r1_idx < len(row) else "")
+        if not var_name or var_name in seen:
+            continue
+        if width == "5" and r1 == "1,2359":
+            rows.append(
+                {
+                    "條件": "",
+                    "應答": "",
+                    "不應答": "",
+                    "限制": f"{var_name} minute_tens in 0,1,2,3,4,5",
+                    "qid": var_name.removeprefix("v"),
+                    "source": "數值題 r1=1,2359：HHMM 分鐘十位數限制",
+                    "direction": "limit",
+                }
+            )
+            seen.add(var_name)
+    return rows
+
+
 def write_csv(path: Path, rows: list[dict[str, str]]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     fieldnames = ["status", "row", "qid", "direction", "條件", "應答", "不應答", "限制", "source", "reason", "bracket", "text"]
@@ -763,7 +816,17 @@ def write_cue_sheet(wb: openpyxl.Workbook, docx_path: Path, rules: list[Rule], r
 
 
 
-def refresh_logic(docx_path: Path, workbook_path: Path, *, apply: bool, qid_filter: str = "", csv_path: Path | None = None, report_path: Path | None = None) -> dict[str, object]:
+def refresh_logic(
+    docx_path: Path,
+    workbook_path: Path,
+    *,
+    apply: bool,
+    qid_filter: str = "",
+    csv_path: Path | None = None,
+    report_path: Path | None = None,
+    allocate_ids: bool = False,
+    fill_s: bool = False,
+) -> dict[str, object]:
     all_vars = load_all_vars(workbook_path)
     all_specs = load_all_specs(workbook_path)
     option_overrides = load_option_overrides(workbook_path)
@@ -787,6 +850,8 @@ def refresh_logic(docx_path: Path, workbook_path: Path, *, apply: bool, qid_filt
     rules = apply_skip_guards(rules, all_specs)
 
     proposed = build_rows(rules)
+    limit_rows = time_minute_tens_limit_rows(workbook_path)
+    proposed.extend(limit_rows)
     wb = openpyxl.load_workbook(workbook_path)
     ws = wb[LOGIC_SHEET]
     headers = logic_headers(ws)
@@ -813,7 +878,13 @@ def refresh_logic(docx_path: Path, workbook_path: Path, *, apply: bool, qid_filt
             seen.add(key)
             appended += 1
             next_row += 1
+        id_assignment = (
+            assign_ids(ws, next_logic_start(wb, LOGIC_SHEET), fill_s=fill_s)
+            if allocate_ids
+            else {"assigned": 0, "start_id": 0, "end_id": 0, "filled_s": 0}
+        )
     else:
+        id_assignment = {"assigned": 0, "start_id": next_logic_start(wb, LOGIC_SHEET), "end_id": 0, "filled_s": 0}
         keys = existing_keys(ws, headers)
         for row in proposed:
             key = (row["條件"], row["應答"], row["不應答"], row["限制"])
@@ -841,9 +912,11 @@ def refresh_logic(docx_path: Path, workbook_path: Path, *, apply: bool, qid_filt
         "qid_filter": qid_filter,
         "source_units": len(units),
         "rules": len(rules),
+        "limit_rows": len(limit_rows),
         "proposed_rows": len(proposed),
         "appended": appended,
         "duplicates": duplicates,
+        "id_assignment": id_assignment,
         "review": len(review),
         "option_overrides": {qid: sorted(codes, key=int) for qid, codes in option_overrides.items()},
         "review_sheet": "",
@@ -863,6 +936,8 @@ def main() -> None:
     parser.add_argument("--qid", default="")
     parser.add_argument("--proposal-csv", type=Path)
     parser.add_argument("--report", type=Path)
+    parser.add_argument("--allocate-ids", action="store_true", help="Fill m/p ids from the next x01 block after previous SPSS-producing sheets.")
+    parser.add_argument("--fill-s", action="store_true", help="Also fill s with the same id when the workbook has an s column. s= remains user-controlled.")
     parser.add_argument(
         "--preview-workbook",
         type=Path,
@@ -883,6 +958,8 @@ def main() -> None:
         qid_filter=args.qid,
         csv_path=args.proposal_csv,
         report_path=args.report,
+        allocate_ids=args.allocate_ids,
+        fill_s=args.fill_s,
     )
     if args.preview_workbook:
         report["source_workbook"] = str(args.workbook)

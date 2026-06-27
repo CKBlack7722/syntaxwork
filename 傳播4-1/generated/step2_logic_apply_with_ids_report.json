@@ -1,0 +1,22 @@
+{
+  "docx": "傳播4-1\\2026年臺灣傳播調查資料庫正式調查問卷.docx",
+  "workbook": "傳播4-1\\檢核程式套印-傳播4-1測試.xlsx",
+  "apply": true,
+  "qid_filter": "",
+  "source_units": 2840,
+  "rules": 136,
+  "limit_rows": 17,
+  "proposed_rows": 289,
+  "appended": 283,
+  "duplicates": 6,
+  "id_assignment": {
+    "assigned": 283,
+    "start_id": 1201,
+    "end_id": 1483,
+    "filled_s": 283
+  },
+  "review": 0,
+  "option_overrides": {},
+  "review_sheet": "",
+  "cue_sheet": ""
+}

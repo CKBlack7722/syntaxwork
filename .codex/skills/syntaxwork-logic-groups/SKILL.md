@@ -13,7 +13,9 @@ Use this skill for the questionnaire -> Excel step only. Do not edit questionnai
 2. Parse the questionnaire `.docx` in document order, preserving paragraphs and tables. Read table cells separately; do not concatenate a whole row when an option-level rule may be present.
 3. Extract logic conditions from bracketed instructions such as `【A答(01)者,需回答此題】`, display-question notes, skip notes, and table-scoped conditions.
 4. Fill only confident logic-group rows. Leave ambiguous conditions blank and report them.
-5. Compare filled rows against questionnaire text and existing generated reports before moving to Excel -> SPSS.
+5. Add deterministic `限制` rows that belong to logic-group validation, such as HHMM minute checks.
+6. Rebuild cross-question mutex rows as the second sub-step of the same logic-group workflow.
+7. Compare filled rows against questionnaire text and existing generated reports before moving to Excel -> SPSS.
 
 ## Required Rules
 
@@ -29,7 +31,10 @@ Use this skill for the questionnaire -> Excel step only. Do not edit questionnai
 - For mutex rows, write the prerequisite in `條件` and the forbidden simultaneous option/condition in `互斥`; leave `應答`, `不應答`, and `限制` blank. Example: `條件=vA9 in 1`, `互斥=vO1_1 in 1`.
 - Ignore display-check wording such as `互斥無法點選,選項號隱藏` for mutex extraction; these belong to numeric/check-display handling instead.
 - Treat display-only date questions as numeric width `14` fields in `all`; final apps should allow user-configured start/end dates.
-- For 4-digit time fields such as `K1G2`, add validation logic that prevents impossible minutes: the third digit cannot be `6`, `7`, `8`, or `9`.
+- For 4-digit time fields such as `D3` or `K1G2`, add validation logic that prevents impossible minutes: the minute tens digit cannot be `6`, `7`, `8`, or `9`.
+  - In Excel `邏輯組.限制`, write this as `vD3 minute_tens in 0,1,2,3,4,5`.
+  - The current deterministic rule is: if `數值題` has `寬度=5` and `r1=1,2359`, treat it as an HHMM field that needs this limit row.
+  - These rows are part of the main logic-group rebuild, not an optional post-processing step.
 - Use markers only in generated SPSS, not in questionnaire files: `* SYNTAXWORK_BEGIN_LOGIC.` and `* SYNTAXWORK_END_LOGIC.`
 - If a condition requires interpretation across distant questions, record a review item rather than guessing.
 
@@ -85,3 +90,12 @@ Do not proceed silently when a logic condition cannot be mapped to SPSS-compatib
 
 - After rebuilding the main logic rows, rebuild cross-question mutex rows with `rebuild_logic_mutex_and_sort.py`. This keeps questionnaire `選項互斥` cues in the `互斥` column of `邏輯組` and avoids confusing them with `複選題內_互斥`.
 - For 傳播4-1, this produces 28 cross-question mutex rules with `review=0`; example: `vA9 in 1` is mutually exclusive with `vO1_1 in 1..4`.
+- This is still considered part of the logic-group workflow. It remains a separate command because mutex extraction depends on option/table-level cues and final variable-order sorting; keeping it after the main rebuild prevents the main rebuild from accidentally deleting or duplicating mutex-only rows.
+
+## 2026-06-27 ID Allocation Rule
+
+- When applying logic-group rows to the workbook, allocate `m/p` only when requested by the workflow or UI, using `--allocate-ids`.
+- The logic-group start id is the next `x01` block after previous SPSS-producing sheets in workbook order. For example, if the multiple-response section ends at `1136`, logic-group ids start at `1201`.
+- After cross-question mutex rows are rebuilt and sorted, run id allocation again so every final logic-group row, including mutex-only rows and `限制` rows, has a continuous `m/p` id.
+- `p` should be stored as a row-relative formula such as `=A2`, matching the existing numeric/open/multiple-response sections.
+- If the workbook has an `s` column and the user/workflow enables S variables, fill `s` with the same id as `m`; leave `s=` blank for user-provided values. If S variables are not enabled, do not touch `s/s=`.

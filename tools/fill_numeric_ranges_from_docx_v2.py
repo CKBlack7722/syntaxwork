@@ -368,7 +368,7 @@ def write_csv(path: Path, proposals: list[NumericProposal]) -> None:
 
 def numeric_range_formula(row: int) -> str:
     return (
-        '=CONCAT(IF(D{row}="數值",CONCATENATE(G{row}&"("&C{row}&","&'
+        '=CONCATENATE(IF(D{row}="數值",CONCATENATE(G{row}&"("&C{row}&","&'
         'IF(ISERROR(SEARCH(",",H{row},1)),(H{row}&","&H{row}),H{row})&'
         'IF(ISBLANK(I{row}),"",IF(ISERROR(SEARCH(",",I{row},1)),CONCATENATE(","&I{row}&","&I{row}),CONCATENATE(","&I{row}))&'
         'IF(ISBLANK(J{row}),"",IF(ISERROR(SEARCH(",",J{row},1)),CONCATENATE(","&J{row}&","&J{row}),CONCATENATE(","&J{row}))&'

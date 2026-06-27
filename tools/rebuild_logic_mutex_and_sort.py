@@ -9,6 +9,7 @@ from pathlib import Path
 
 import openpyxl
 
+from id_allocator import assign_ids, next_logic_start
 from refresh_logic_group_from_docx import cell_text, load_all_vars
 from refresh_logic_mutex_from_docx import LOGIC_SHEET, MUTEX_HEADER, collect_mutex_rules, ensure_mutex_header
 
@@ -136,7 +137,16 @@ def write_csv(path: Path, rules, review: list[dict[str, str]]) -> None:
             writer.writerow({"status": "review", **item})
 
 
-def rebuild(docx_path: Path, workbook_path: Path, *, output_csv: Path | None = None, report_path: Path | None = None, dry_run: bool = False) -> dict[str, object]:
+def rebuild(
+    docx_path: Path,
+    workbook_path: Path,
+    *,
+    output_csv: Path | None = None,
+    report_path: Path | None = None,
+    dry_run: bool = False,
+    allocate_ids: bool = False,
+    fill_s: bool = False,
+) -> dict[str, object]:
     all_vars = load_all_vars(workbook_path)
     rules, review = collect_mutex_rules(docx_path, all_vars)
     wb = openpyxl.load_workbook(workbook_path)
@@ -146,6 +156,11 @@ def rebuild(docx_path: Path, workbook_path: Path, *, output_csv: Path | None = N
     h = headers(ws)
     appended = append_mutex_rules(ws, h, rules)
     sort_logic_rows(ws, h, all_var_order(workbook_path))
+    id_assignment = (
+        assign_ids(ws, next_logic_start(wb, LOGIC_SHEET), fill_s=fill_s)
+        if allocate_ids
+        else {"assigned": 0, "start_id": 0, "end_id": 0, "filled_s": 0}
+    )
 
     if not dry_run:
         backup = workbook_path.parent / "generated" / f"{workbook_path.stem}.before_logic_mutex_rebuild_sort.xlsx"
@@ -163,6 +178,7 @@ def rebuild(docx_path: Path, workbook_path: Path, *, output_csv: Path | None = N
         "cross_question_mutex_rules": len(rules),
         "removed_mutex_only_rows": removed,
         "appended_mutex_rows": appended,
+        "id_assignment": id_assignment,
         "review": len(review),
     }
     if report_path:
@@ -178,6 +194,8 @@ def main() -> None:
     parser.add_argument("--output-csv", type=Path)
     parser.add_argument("--report", type=Path)
     parser.add_argument("--dry-run", action="store_true")
+    parser.add_argument("--allocate-ids", action="store_true", help="Fill m/p ids for the final sorted 邏輯組 rows.")
+    parser.add_argument("--fill-s", action="store_true", help="Also fill s with the same id when the 邏輯組 sheet has an s column.")
     args = parser.parse_args()
     print(
         json.dumps(
@@ -187,6 +205,8 @@ def main() -> None:
                 output_csv=args.output_csv,
                 report_path=args.report,
                 dry_run=args.dry_run,
+                allocate_ids=args.allocate_ids,
+                fill_s=args.fill_s,
             ),
             ensure_ascii=False,
         )

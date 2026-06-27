@@ -1,0 +1,35 @@
+{
+  "rules": 47,
+  "skipped": 0,
+  "pending_conditions": 4,
+  "duplicate_mp_issues": 0,
+  "skipped_rows": [],
+  "pending_condition_rows": [
+    {
+      "severity": "info",
+      "row": 16,
+      "qid": "E14",
+      "reason": "blank condition; emitted commented SPSS skeleton"
+    },
+    {
+      "severity": "info",
+      "row": 38,
+      "qid": "Z2_1",
+      "reason": "blank condition; emitted commented SPSS skeleton"
+    },
+    {
+      "severity": "info",
+      "row": 39,
+      "qid": "Z2_2,ZE2_1",
+      "reason": "blank condition; emitted commented SPSS skeleton"
+    },
+    {
+      "severity": "info",
+      "row": 40,
+      "qid": "ZE2_3",
+      "reason": "blank condition; emitted commented SPSS skeleton"
+    }
+  ],
+  "duplicate_mp": [],
+  "output": "傳播4-1\\generated\\external_checks_selected_generated.sps"
+}

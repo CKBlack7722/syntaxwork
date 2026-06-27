@@ -28,7 +28,7 @@ s=
 ```
 
 4. Fill `題號`, `變項名稱`, `檢核說明`, and `備註` directly from the Word table.
-5. Auto-allocate `m/p/s` together from the next `x01` block after the logic-group maximum, while keeping them unique across SPSS-producing sheets. Leave `s=` blank unless the user supplies a value. Always check duplicate `m`, `p`, and `s` values across SPSS-producing sheets before syntax generation.
+5. Auto-allocate `m/p` from the next `x01` block after the logic-group maximum, while keeping them unique across SPSS-producing sheets. If the workflow/user enables S variables and the sheet has an `s` column, allocate `s` with the same id; otherwise leave `s` blank. Leave `s=` blank unless the user supplies a value. Always check duplicate `m`, `p`, and enabled `s` values across SPSS-producing sheets before syntax generation.
 6. Convert `檢核說明` into SPSS condition syntax in `條件`. Use `變項名稱` as the authoritative variable list, but inspect the description and questionnaire/Excel metadata when the rule references derived variables or related fields.
 7. Fill `額外列出變項` only when `備註` or `檢核說明` asks the output message to include variables beyond those required by `條件`. Use comma-separated values, never `|`.
    - For notes such as `列出E5~E12加總合計時數`, first inspect the `all` sheet and include only variables that share the same time-field type and width.

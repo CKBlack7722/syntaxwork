@@ -392,7 +392,7 @@ def ensure_sheet(wb: openpyxl.Workbook) -> openpyxl.worksheet.worksheet.Workshee
     return ws
 
 
-def write_workbook(workbook_path: Path, rows: list[ExternalCheckRow]) -> Path:
+def write_workbook(workbook_path: Path, rows: list[ExternalCheckRow], *, fill_s: bool = True) -> Path:
     backup = workbook_path.parent / "generated" / f"{workbook_path.stem}.before_external_checks.xlsx"
     backup.parent.mkdir(parents=True, exist_ok=True)
     if not backup.exists():
@@ -402,7 +402,7 @@ def write_workbook(workbook_path: Path, rows: list[ExternalCheckRow]) -> Path:
     start_id = next_external_start(workbook_path)
     for row_idx, row in enumerate(rows, start=2):
         item_id = str(start_id + row_idx - 2)
-        values = [item_id, item_id, item_id, "", row.number, row.qid, row.vars, row.description, row.note, row.condition, row.extra_vars]
+        values = [item_id, item_id, item_id if fill_s else "", "", row.number, row.qid, row.vars, row.description, row.note, row.condition, row.extra_vars]
         for col_idx, value in enumerate(values, start=1):
             ws.cell(row_idx, col_idx).value = value
     wb.save(workbook_path)
@@ -426,6 +426,7 @@ def main() -> int:
     parser.add_argument("--output-csv", required=True, type=Path)
     parser.add_argument("--report", required=True, type=Path)
     parser.add_argument("--apply", action="store_true")
+    parser.add_argument("--no-fill-s", action="store_true", help="Leave s blank even when the 檢核項目清單 sheet has an s column.")
     args = parser.parse_args()
 
     rows = extract_rows(args.docx, args.workbook)
@@ -441,7 +442,7 @@ def main() -> int:
         "headers": HEADERS,
     }
     if args.apply:
-        report["backup"] = str(write_workbook(args.workbook, rows))
+        report["backup"] = str(write_workbook(args.workbook, rows, fill_s=not args.no_fill_s))
     args.report.parent.mkdir(parents=True, exist_ok=True)
     args.report.write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
     print(json.dumps(report, ensure_ascii=False))
