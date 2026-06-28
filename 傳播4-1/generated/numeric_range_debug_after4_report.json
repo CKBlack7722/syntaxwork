@@ -1,0 +1,21 @@
+{
+  "counts": {
+    "manual": 27,
+    "match": 673,
+    "range_match_special_diff": 68,
+    "apply": 27,
+    "mismatch": 9
+  },
+  "sources": {
+    "no numeric range found": 27,
+    "option code span including table": 155,
+    "city code rule": 1,
+    "town code list": 1,
+    "explicit numeric range": 19,
+    "multiple-response binary": 586,
+    "configured date range": 7,
+    "hour-minute hour part": 4,
+    "hour-minute minute part": 4
+  },
+  "output_csv": "傳播4-1\\generated\\numeric_range_debug_after4.csv"
+}

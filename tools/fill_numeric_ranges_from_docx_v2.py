@@ -94,6 +94,84 @@ def normalize_number(value: str) -> str:
     return value
 
 
+QID_PATTERN = re.compile(r"([A-Z]{1,8}[0-9][A-Z0-9_]*[A-Z]?)")
+QID_TITLE_PATTERN = re.compile(r"([A-Z]{1,8}[0-9][A-Z0-9_]*[A-Z]?)(?=[.．‧、:：()（）])")
+
+
+def skip_code_for_width(width: int) -> str:
+    width = max(int(width or 2), 2)
+    return ("9" * (width - 1)) + "6"
+
+
+def is_optional_by_question_logic(text: str) -> bool:
+    text = norm(text)
+    cues = (
+        "才需回答此題",
+        "才需答此題",
+        "需回答此題",
+        "需答此題",
+        "不需回答此題",
+        "不需答此題",
+        "不須回答此題",
+        "不須答此題",
+        "免答此題",
+        "跳答",
+    )
+    return any(cue in text for cue in cues)
+
+
+def strip_logic_brackets(text: str) -> str:
+    def replacement(match: re.Match[str]) -> str:
+        segment = match.group(0)
+        return "" if is_optional_by_question_logic(segment) else segment
+
+    text = re.sub(r"【[^】]*】", replacement, norm(text))
+    text = re.sub(r"\[[^\]]*\]", replacement, text)
+    return text
+
+
+def numeric_bounds(value: str) -> tuple[float, float] | None:
+    parts = [part for part in value.split(",") if part != ""]
+    if not parts:
+        return None
+    try:
+        numbers = [float(part) for part in parts]
+    except ValueError:
+        return None
+    return min(numbers), max(numbers)
+
+
+def value_contains_code(value: str, code: str) -> bool:
+    bounds = numeric_bounds(value)
+    if bounds is None:
+        return value == code
+    target = float(code)
+    return bounds[0] <= target <= bounds[1]
+
+
+def sort_range_values(values: list[str]) -> list[str]:
+    def key(value: str) -> tuple[float, float, str]:
+        bounds = numeric_bounds(value)
+        if bounds is None:
+            return (float("inf"), float("inf"), value)
+        return (bounds[0], bounds[1], value)
+
+    result: list[str] = []
+    for value in sorted([v for v in values if v], key=key):
+        if value not in result:
+            result.append(value)
+    return result
+
+
+def with_skip_code_if_optional(values: list[str], width: int, block: str) -> list[str]:
+    if not values or not is_optional_by_question_logic(block):
+        return values
+    skip_code = skip_code_for_width(width)
+    if any(value_contains_code(value, skip_code) for value in values):
+        return sort_range_values(values)[:4]
+    return sort_range_values(values + [skip_code])[:4]
+
+
 def qid_from_var(var: str) -> str:
     qid = var[1:] if var.lower().startswith("v") else var
     qid = re.sub(r"o\d+$", "", qid)
@@ -119,8 +197,11 @@ def qid_candidates(var: str) -> list[str]:
 
 def question_id_from_text(text: str) -> str:
     compact = norm(text).replace(" ", "").upper()
-    match = re.match(r"^([A-Z]{1,5}[0-9][A-Z0-9]*)", compact)
-    return match.group(1).upper() if match else ""
+    match = re.match(QID_PATTERN, compact)
+    if match:
+        return match.group(1).upper()
+    title_match = re.search(QID_TITLE_PATTERN, compact[:120])
+    return title_match.group(1).upper() if title_match else ""
 
 
 def table_text(table: Table) -> str:
@@ -133,7 +214,7 @@ def table_text(table: Table) -> str:
 
 def table_question_ids(text: str) -> list[str]:
     ids: list[str] = []
-    for match in re.finditer(r"(?:^|\n|\t)([A-Z]{1,5}[0-9][A-Z0-9]*)\b", norm(text)):
+    for match in re.finditer(r"(?:^|\n|\t)" + QID_PATTERN.pattern + r"\b", norm(text).upper()):
         qid = match.group(1).upper()
         if qid not in ids:
             ids.append(qid)
@@ -162,6 +243,7 @@ def doc_blocks(docx_path: Path) -> dict[str, str]:
         qid = question_id_from_text(text)
         if qid:
             starts.append((idx, qid))
+    paragraph_qids = {qid for _, qid in starts}
     blocks: dict[str, str] = {}
     for i, (start, qid) in enumerate(starts):
         end = starts[i + 1][0] if i + 1 < len(starts) else len(items)
@@ -172,6 +254,8 @@ def doc_blocks(docx_path: Path) -> dict[str, str]:
                 continue
             table_block = "\n".join([items[start][1], text])
             for child_qid in table_question_ids(text):
+                if child_qid in paragraph_qids:
+                    continue
                 blocks[child_qid] = table_block
     return blocks
 
@@ -202,6 +286,7 @@ def read_multi_vars(wb: openpyxl.Workbook) -> set[str]:
 
 
 def option_codes(block: str) -> list[str]:
+    block = strip_logic_brackets(block)
     codes: list[str] = []
     patterns = [
         r"□\s*[（(]\s*(\d{1,6})\s*[)）]",
@@ -296,10 +381,11 @@ def infer_values(
             return ["0,59", "97", "98"], "apply", "hour-minute minute part"
     values, source = range_from_explicit_text(block)
     if values:
-        return values, "apply", source
+        return with_skip_code_if_optional(values, width, block), "apply", source
     codes = option_codes(block)
     if codes:
-        return split_option_range(codes), "apply", "option code span including table"
+        values = split_option_range(codes)
+        return with_skip_code_if_optional(values, width, block), "apply", "option code span including table"
     return [], "manual", "no numeric range found"
 
 
